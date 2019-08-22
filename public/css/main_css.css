@@ -1,0 +1,368 @@
+.main_css {
+}
+.stbRA
+{
+	
+	FONT-SIZE: 12px;
+    	COLOR: #000000;
+    	FONT-FAMILY: Arial,Verdana;
+    	TEXT-DECORATION:none;
+	text-align: right;
+	 height: 14px;
+}
+.stb
+{
+
+    COLOR: #000000;
+   FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 12px;
+    height: 14px;
+    margin-bottom: 0px;
+}
+.menu1 {
+	background-image: url(images/top_menu.png);
+	background-repeat: no-repeat;
+}
+.menu1_hr {
+	background-image: url(images/top_menu_hr.png);
+	background-repeat: no-repeat;
+}
+.bg_cntr_1 {
+	background-image: url(images/bg_cntr_cntr1.png);
+	background-repeat: repeat-y;
+}
+.bg_btm {
+	background-image: url(images/bg_btm_mn1.png);
+	background-repeat: no-repeat;
+}
+.bg_btn {
+	background-image: url(images/ok-icon.png);
+	background-repeat: no-repeat;
+}
+.text_menu {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #000;
+}
+.text_menu_hr {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #CF0;
+}
+.text_welcome {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: normal;
+	color: #DAFA6B;
+	font-style: italic;
+}
+.text_you_r_in {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+}
+.line_v_page {
+	background-image: url(images/line_v2_page.jpg);
+	background-repeat: repeat-y;
+	background-position: center;
+}
+.text_L_menu {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+}
+.text_menu_L_head {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #F60;
+	line-height: 17px;
+	font-style: italic;
+}
+.text_buttons {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333;
+}
+.text_menu_hr1 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #CF0;
+}
+.report_bg_c {
+	background-image: url(images/report_h_C.png);
+	background-repeat: repeat-x;
+}
+.reports_line_v {
+	background-image: url(images/line_v4_page.jpg);
+	background-repeat: repeat-y;
+}
+.reports_cntr_bg {
+	background-image: url(images/report_cntr_bg.png);
+	background-repeat: no-repeat;
+}
+.btn1 {
+	background-image: url(images/btn_1.png);
+	background-repeat: no-repeat;
+}
+.text_buttons1 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #FFF;
+	font-style: italic;
+}
+.btn2 {
+	background-image: url(images/btn_2.png);
+	background-repeat: no-repeat;
+}
+.menu_L_bg_top {
+	background-image: url(images/menu_L_back_top1.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+.menu_L_bg_cntr {
+	background-image: url(images/menu_L_back_cntr1.png);
+	background-repeat: repeat-y;
+	background-position: right;
+}
+.menu_L_bg_btm {
+	background-image: url(images/menu_L_back_btm1.png);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+.user_bg1 {
+	background-image: url(images/use_main_scrn1.jpg);
+	background-repeat: no-repeat;
+}
+.user_bg2 {
+	background-image: url(images/use_main_scrn2.jpg);
+	background-repeat: no-repeat;
+}
+.TDBlack11NormalNew
+{
+    FONT-WEIGHT:bold;
+    FONT-SIZE: 11px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none;
+ 
+}
+.TDBlack8NormalNew
+{
+    FONT-WEIGHT:bold;
+    FONT-SIZE: 8px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none;
+ 
+}
+.TDBlack11NormalOld
+{
+    FONT-WEIGHT:normal;
+    FONT-SIZE: 11px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none;
+ 
+}
+.GridTableHeader
+{
+    FONT-WEIGHT:bold ;
+    FONT-SIZE: 11px;
+    FONT-STYLE: normal ;
+    COLOR: #CC3300;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+    TEXT-DECORATION: none;
+    text-align:center;
+}
+
+.textboxData
+{
+
+    COLOR: #000000;
+   FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 11px;
+    height: 14px;
+
+}
+.textRight
+{
+
+ text-align:right;
+    FONT-WEIGHT:bold;
+    FONT-SIZE: 11px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+
+}
+.textboxesRightAlign
+{
+
+    COLOR: #000000;
+   FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 11px;
+  height: 14px;
+    text-align:right;
+}
+.ddlData
+{
+
+    COLOR: #000000;
+   FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 11px;
+    height: 21px;
+   
+}
+.myButtonStyle
+{
+	background-color:#7F7F7F;
+.ddlData
+{
+
+    COLOR: #000000;
+   FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 11px;
+}
+ght: 20px;
+}
+.myButtonStyle1
+{
+	background-color:White; 
+	font-weight:bold;
+	text-align:left;
+    COLOR:#7F7F7F;
+	FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 12px;
+    height: 20px;
+}
+.myCheckBoxStyle
+{ 
+	text-align:left;
+	FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 12px;
+    width:100%;
+}
+.myPanelStyle
+{ 
+	text-align:left;
+	FONT-FAMILY: Arial,Verdana;
+    TEXT-DECORATION: none;
+    font-size: 11px;
+}
+
+.ListSearchExtenderNew
+{
+	 font-family:  Arial, Helvetica, sans-serif;
+	color:White;
+	background-color:White;
+	 font-size: 12px;
+}
+.ListSearchExtender
+{
+	 font-family: Verdana, Arial, Helvetica, sans-serif;
+	color:White;
+	background-color:#CE6700;
+	 font-size: 11px;
+}
+.GridTableDataTxtAlignRight
+{
+    FONT-WEIGHT:normal ;
+    FONT-SIZE: 11px;
+    COLOR: #0066FF;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+    text-align:right;
+
+}
+.GridTableDataTxtCENTER
+{
+    FONT-WEIGHT:normal ;
+    FONT-SIZE: 11px;
+    COLOR: #0066FF;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+    text-align:center;
+
+}
+.GridTableData
+{
+    color:Blue;
+}
+.GridTableDataTxtAlignLeftRed
+{
+    FONT-WEIGHT:normal ;
+    FONT-SIZE: 11px;
+    color:Red;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+    text-align:left;
+    margin-left:2pt;
+    
+
+}
+.GridTableDataTxtAlignLeft
+{
+    FONT-WEIGHT:normal ;
+    FONT-SIZE: 11px;
+    COLOR: #0066FF;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+    text-align:left;
+    margin-left:2pt;
+
+}
+.forWebService
+{
+     FONT-WEIGHT:bold ;
+    FONT-SIZE: 12px;
+    COLOR: Black;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+   
+}
+.forWebServiceBlue
+{
+     FONT-WEIGHT:bold ;
+    FONT-SIZE: 12px;
+    COLOR: Blue;
+    FONT-FAMILY:Arial, Verdana,Helvetica, sans-serif;
+   
+}
+.TDBlack11NormalForGrid
+{
+    FONT-WEIGHT:normal;
+    FONT-SIZE: 11px;
+    COLOR: #000000;
+    FONT-STYLE: normal;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    TEXT-DECORATION: none
+}
+.roundedbox {
+   
+      FONT-FAMILY: Arial,Verdana;
+    font-family:Arial,Verdana;
+    font-size:9pt;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1px;
+    margin-bottom:1px;
+    padding:3px;
+  
+    border-top:1px solid #A3B38A;
+    border-left:1px solid #A3B38A;
+    border-right:1px solid #A3B38A;
+    border-bottom:1px solid #A3B38A;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+ background:#fff;
