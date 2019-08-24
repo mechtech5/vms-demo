@@ -28,8 +28,7 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="{{url('/home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-       <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
+        <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
         <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Fleet</span></a></li>
       </ul>
  </aside> 

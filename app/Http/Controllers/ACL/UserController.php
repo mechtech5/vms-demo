@@ -127,7 +127,9 @@ class UserController extends Controller
         $roleId = $request->roleId;
 
         $user = User::where('id', '=', $userId)->firstOrFail();
-        $user->roles()->sync($roleId); 
+        $user->roles()->sync($roleId);
+
+        User::where('id',$userId)->update($data);
     }
 
     public function changePermission(Request $request){

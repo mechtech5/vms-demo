@@ -30,8 +30,8 @@ class CityController extends Controller
      */
     public function create()
     {
-      
-        $state = Master_state::all();
+        $fleet_code = session('fleet_code');       
+        $state = Master_state::where('fleet_code',$fleet_code)->get();
         return view('city.create',compact('state'));
     }
 
@@ -47,7 +47,7 @@ class CityController extends Controller
        $validatedData = $request->validate([
                                        'state_id' =>'required',
                                        'city_name'=> 'required',
-                                       'city_code' => 'required'
+                                       'city_code' => 'required|max:3'
                                        ]);
        $validatedData['city_name'] =  ucwords($request->city_name);
        $validatedData['city_code'] = strtoupper($request->city_code); 

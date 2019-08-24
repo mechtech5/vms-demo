@@ -28,8 +28,7 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="{{url('/home')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-         <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
+        <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
         <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Fleet</span></a></li>
       </ul>
  </aside> 
@@ -37,11 +36,11 @@
  <main class="app-content">
 	  <div class="app-title">
 	    <div>
-	      <h1><i class="fa fa-dashboard"></i>ACL</h1>
+	      <h1><i class="fa fa-dashboard"></i>Fleets</h1>
 	    </div>
 	    <ul class="app-breadcrumb breadcrumb">
 	      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-	      <li class="breadcrumb-item"><a href="#">ACL</a></li>
+	      <li class="breadcrumb-item"><a href="#">fleets</a></li>
 	    </ul>
 	  </div>
 	  <div class="row">
@@ -56,22 +55,26 @@
 								<thead>
 									<tr>
 										<th>SNo.</th>
-										<th>Role</th>
+										<th>Fleet Code</th>
+										<th>Fleet Name</th>
+										<th>Fleet Owner</th>
 										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									@php  $count =0;	@endphp 
-									@foreach($user as $users)
+									@foreach($fleet as $fleets)
+									<?php $users = App\User::where('id', $fleets->fleet_owner)->first(); ?>
 										<tr>
 											<td  style="width: 16.66%">{{ ++$count}}</td>
+											<td>{{$fleets->fleet_code}}</td>
+											<td>{{$fleets->fleet_name}}</td>
 											<td>{{$users->name}}</td>
 											<td  style="width: 16.66%;text-align: center;">
-												<?php if(in_array($users->id,$ids)){ ?>
-												<a href="{{route('fleet.edit',[$users->id])}}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-												<a href="{{url('fleetdestroy',$users->id)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
-												<!-- <a href="{{route('fleet.show',[$users->id])}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a> -->
-											<?php } ?>	
+												
+												<a href="{{route('fleet.edit',[$fleets->fleet_owner])}}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
+												<a href="{{url('fleetdestroy',$fleets->fleet_owner)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+																								
 											</td>
 										</tr>
 									@endforeach

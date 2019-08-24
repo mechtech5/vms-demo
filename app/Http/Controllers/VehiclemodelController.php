@@ -16,7 +16,8 @@ class VehiclemodelController extends Controller
      */
     public function index()
     {
-        $model = DB::table('vch_model')->get();
+         $fleet_code = session('fleet_code');
+        $model = DB::table('vch_model')->where('fleet_code',$fleet_code)->get();
         return view('vehicle_model.show',compact('model'));
     }
 
@@ -27,7 +28,8 @@ class VehiclemodelController extends Controller
      */
     public function create()
     {
-        $company  = vch_comp::all();
+         $fleet_code = session('fleet_code');
+        $company  = vch_comp::where('fleet_code',$fleet_code)->get();
         
         return view('vehicle_model.create',compact('company'));
     }

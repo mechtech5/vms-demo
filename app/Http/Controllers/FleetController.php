@@ -17,11 +17,7 @@ class FleetController extends Controller
     {
         $user = User::all();
         $fleet = DB::table('fleet_mast')->get();
-        $ids = array();
-        foreach ($fleet as $fleets) {
-            $ids[] =  $fleets->fleet_owner;
-        }
-        return view('fleet.show',compact('user','ids'));
+        return view('fleet.show',compact('fleet'));
     }
 
     /**
@@ -53,6 +49,7 @@ class FleetController extends Controller
         $validatedData['fleet_desc'] = $request->fleet_desc;
 
         DB::table('fleet_mast')->insert($validatedData);
+        
         return redirect('fleet');
 
     }

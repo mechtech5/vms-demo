@@ -167,7 +167,7 @@
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Manufacturer Year"> Manufacturer Year</label>
-                                                    <input id="email" class="form-control" name="reg_manuf_year" value="">
+                                                    <input id="email" type="text" class="form-control" name="reg_manuf_year" value="">
 
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
@@ -180,7 +180,9 @@
                                                     <label for="vehicle_model ">Vehicle Model </label>
                                                        <select name="state_id" class="selectpicker form-control">
                                                             <option selected=" true " disabled="true">Select..</option>
-                                                            
+                                                            @foreach($model as $models)
+                                                              <option value="{{$models->id}}">{{$models->model_name}}</option>
+                                                            @endforeach  
                                                         </select>
                                                         
                                                  </div>
@@ -231,7 +233,9 @@
                                                 <label for="Dealer City ">Dealer City</label>
                                                    <select name="pur_dealer_city" class="selectpicker form-control">
                                                         <option selected=" true " disabled="true">Select..</option>
-                                                        
+                                                        @foreach($city as $cities)
+                                                           <option value="{{$cities->id}}">{{$cities->city_name}}</option>                                    
+                                                        @endforeach                       
                                                     </select>
                                                     
                                              </div>
@@ -325,45 +329,50 @@
 
                                         <div class="col-sm-12 col-md-12 col-xl-12  table-responsive " style="display: none;" id="mytable4">
                                             
-                                             <div class="col-md-6 col-xl-6 mt-2">
+                                             <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Start Date">Start Date</label>
                                                 <input id="email1" type="date" class="form-control  " name="sale_dt" value="">
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sale Price">Sale Price </label>
                                                 <input id="email" type="" class="form-control" name="sale_amt" value="">
 
                                             </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Buyer Company">Buyer Company</label>
                                                 <input id="email1" type="" class="form-control  " name="email1" value="">
 
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sold To">Sold To</label>
                                                 <input id="email1" type="" class="form-control  " name="email1" value="">                                                    
                                              </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
+
+                                             <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Buyer City  ">Buyer City  </label>
+                                                <select name="buyer_city" class="selectpicker form-control">
+                                                     <option selected="true" disabled="true">Select..</option>
+                                                     @foreach($city as $cities)
+                                                        <option value="{{$cities->id}}">{{$cities->city_name}}</option>                                    
+                                                    @endforeach                                                  
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Buyer Phone ">Buyer Phone </label>
+                                                <input id="email1" type="text" class="form-control  " name="buyer_phone" value="">
+                                            </div>
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Old meter Reading at Sale">Old meter Reading at Sale</label>
+                                                <input id="email1" class="form-control  " name="sale_odo_reading" value="">
+                                            </div>
+                                            <div class="col-md-8 col-xl-8 mt-2">
                                                 <label for="Buyer Address">Buyer Address</label>
                                                 <textarea id="email1" class="form-control  " name="buyer_addr" value=""></textarea>
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Buyer City  ">Buyer City  </label>
-                                                <select name="buyer_city" class="selectpicker form-control">
-                                                     <option selected="true" disabled="true">Select..</option>                                                
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Buyer Phone ">Buyer Phone </label>
-                                                <input id="email1" type="text" class="form-control  " name="buyer_phone" value="">
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Old meter Reading at Sale">Old meter Reading at Sale</label>
-                                                <input id="email1" class="form-control  " name="sale_odo_reading" value="">
-                                            </div>
+                                            
                                             <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Buyer Address">Comments</label>
                                                 <textarea id="email1" class="form-control  " name="sale_comments" value=""> </textarea>
@@ -422,29 +431,29 @@
                                             <span id='file_type' class="invalid-feedback d-block" role="alert">
                                                 <strong></strong>
                                             </span>
-                                             <div class="col-md-12 col-xl-12 mt-2">
+                                             <div class="col-md-12 col-xl-12 mt-2" id='vehicle_pic'>
                                                 <label for="Vehicle Picture">Vehicle Picture</label>
-                                                <input class="image" type="file" name="vch_pic" value="">
+                                                <input class="image" type="file" data="vch_pic" name="vch_pic" value="">
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div class="col-md-12 col-xl-12 mt-2" id="chasis_pic">
                                                 <label for="Chasis Picture">Chasis Picture</label>
-                                                <input class="image"type="file" name="chassic_pic" value="">
+                                                <input class="image"type="file" data="chasis_pic" name="chassic_pic" value="">
 
                                             </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div class="col-md-12 col-xl-12 mt-2" id="reg_pic">
                                                 <label for="Registration Book (RC)">Registration Book (RC)</label>
-                                                <input class="image"type="file" name="rc_book_pic" value="">
+                                                <input class="image"type="file" data="reg_pic" name="rc_book_pic" value="">
 
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div class="col-md-12 col-xl-12 mt-2" id="pan_pic">
                                                 <label for="Owner PAN Card">Owner PAN Card</label>
-                                                <input class="image" type="file" name="owner_pan_pic" value="">                                                    
+                                                <input class="image" data="pan_pic" type="file" name="owner_pan_pic" value="">                                                    
                                              </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div class="col-md-12 col-xl-12 mt-2" id="tds_pic">
                                                 <label for="TDS Declaration">TDS Declaration</label>
-                                                <input class="image" type="file" name="tds_declaration_pic" value="">
+                                                <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -503,6 +512,8 @@
             $('#mytable2').hide();
             $('#mytable3').hide();
             $('#mytable4').hide();
+            $('#mytable5').hide();
+            $('#mytable6').hide();
         }
         else if(data=='purchase'){
             $('#mytable1').hide();
@@ -549,6 +560,27 @@
           
         }
     });
+
+     $('#registration,#chasis,#purchase,#sale,#engine,#vehicle').on('change',function(){
+        var data = $(this).attr('data');
+           
+        if(data=='registration'){
+            $('#tds_pic').show();
+            $('#mytable2').hide();
+            $('#mytable3').hide();
+            $('#mytable4').hide();
+            $('#mytable5').hide();
+            $('#mytable6').hide();
+        }
+        else if(data=='purchase'){
+            $('#mytable1').hide();
+            $('#mytable2').show();
+            $('#mytable3').hide();
+            $('#mytable4').hide();
+            $('#mytable5').hide();
+            $('#mytable6').hide();
+        }
+      });
   })  
 
 </script>

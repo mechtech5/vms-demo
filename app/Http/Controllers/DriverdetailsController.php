@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 use File;
 use DB;
 use Session;
 use App\City;
+use App\Exports\DriverExport;
+use App\Imports\DriverImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 
 class DriverdetailsController extends Controller
 {
@@ -125,4 +131,17 @@ class DriverdetailsController extends Controller
             <option value='<?php echo $cities->id ;?>'><?php echo $cities->city_name ;?></option>
     <?php  } 
     }
+
+     public function export() 
+    {
+        return Excel::download(new DriverExport, 'driver.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new DriverImport,request()->file('file'));
+        
+        return redirect('driver');
+    }
+
 }

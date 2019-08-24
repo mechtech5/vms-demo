@@ -11,94 +11,97 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
 
-Route::get('/', 'HomeController@index')->name('home');
+// Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['role:admin']], function () {
+	// This Route start For RolesController
 
-// This Route start For RolesController
+	Route::resource('/admin', 'ACL\RolesController');
+	Route::get('/delete/{id}','ACL\RolesController@destroy')->name('delete');
+	Route::post('/saveChanges','ACL\RolesController@saveChanges')->name('saveChanges');
 
-Route::resource('/admin', 'ACL\RolesController');
-Route::get('/delete/{id}','ACL\RolesController@destroy')->name('delete');
-Route::post('/saveChanges','ACL\RolesController@saveChanges')->name('saveChanges');
+	// End RolesController
 
-// End RolesController
+	// Start Permission Conroller 
 
-// Start Permission Conroller 
+	Route::resource('permissions', 'ACL\PermissionController');
+	Route::get('/delete_permissions/{id}', 'ACL\PermissionController@destroy')->name('delete_permissions');
 
-Route::resource('permissions', 'ACL\PermissionController');
-Route::get('/delete_permissions/{id}', 'ACL\PermissionController@destroy')->name('delete_permissions');
+	// End Permission Conroller 
 
-// End Permission Conroller 
+	// Start Users Conroller 
 
-// Start Users Conroller 
+	Route::resource('/users', 'ACL\UserController');
+	Route::get('/destroy/{id}', 'ACL\UserController@destroy')->name('destroy');
+	Route::post('/changesRole','ACL\UserController@changesRole')->name('changesRole');
+	Route::post('/changePermission','ACL\UserController@changePermission')->name('changePermission');
 
-Route::resource('/users', 'ACL\UserController');
-Route::get('/destroy/{id}', 'ACL\UserController@destroy')->name('destroy');
-Route::post('/changesRole','ACL\UserController@changesRole')->name('changesRole');
-Route::post('/changePermission','ACL\UserController@changePermission')->name('changePermission');
+	//Start FleetController
 
+	Route::resource('/fleet','FleetController');
+	Route::get('fleetdestroy/{id}','FleetController@destroy')->name('model.destroy');
+
+	//End FleetController
+});
 // End Users Conroller 
 
+ Route::group(['middleware' => ['role:fleets']], function () {
 
-//Strat Dashboard Controller
 
-Route::resource('/dashboard','DashboardController');
+		//Strat Dashboard Controller
 
-//End Dashboard Controller
+		Route::resource('/dashboard','DashboardController');
 
-//Start State contoller
+		//End Dashboard Controller
 
-Route::resource('/state','StateController');
-Route::get('Statedestroy/{id}','StateController@destroy')->name('state.destroy');
+		//Start State contoller
 
-//End State Controller
+		Route::resource('/state','StateController');
+		Route::get('Statedestroy/{id}','StateController@destroy')->name('state.destroy');
 
-//Start City Controller
+		//End State Controller
 
-Route::resource('/city','CityController');
-Route::get('Citydestroy/{id}','CityController@destroy')->name('city.destroy');
+		//Start City Controller
 
-//End City Controller
+		Route::resource('/city','CityController');
+		Route::get('Citydestroy/{id}','CityController@destroy')->name('city.destroy');
 
-//Start Vehicle Controller
+		//End City Controller
 
-Route::resource('/vehicle','VehicleController');
-Route::get('Vehicledestroy/{id}','VehicleController@destroy')->name('vehicle.destroy');
+		//Start Vehicle Controller
 
-//End Vehicle Controller
+		Route::resource('/vehicle','VehicleController');
+		Route::get('Vehicledestroy/{id}','VehicleController@destroy')->name('vehicle.destroy');
 
-//start VehiclemodelController
+		//End Vehicle Controller
 
-Route::resource('/vehicleModel','VehiclemodelController');
-Route::get('Modeldestroy/{id}','VehiclemodelController@destroy')->name('model.destroy');
+		//start VehiclemodelController
 
-//End VehiclemodelController
+		Route::resource('/vehicleModel','VehiclemodelController');
+		Route::get('Modeldestroy/{id}','VehiclemodelController@destroy')->name('model.destroy');
 
-//Start FleetController
+		//End VehiclemodelController
 
-Route::resource('/fleet','FleetController');
-Route::get('fleetdestroy/{id}','FleetController@destroy')->name('model.destroy');
+		//Start VehicledetailsController
 
-//End FleetController
+		Route::resource('/vehicledetails','VehicledetailsController');
+		Route::post('/vehicleget','VehicledetailsController@get_model');
+		Route::get('vdetails_delete/{id}','VehicledetailsController@destroy')->name('vehicledetails.destroy');
 
-//Start VehicledetailsController
+		//End VehicledetailsController
 
-Route::resource('/vehicledetails','VehicledetailsController');
-Route::post('/vehicleget','VehicledetailsController@get_model');
-Route::get('vdetails_delete/{id}','VehicledetailsController@destroy')->name('vehicledetails.destroy');
+		//Start DriverdetailsController
 
-//End VehicledetailsController
+		Route::resource('/driver','DriverdetailsController');
+		Route::get('/driverdelete/{id}','DriverdetailsController@destroy')->name('driverdelete');
+		Route::post('/drivercity','DriverdetailsController@get_city');
+		Route::get('/export','DriverdetailsController@export')->name('driver.export');
+		Route::post('/import','DriverdetailsController@import')->name('driver.import');
 
-//Start DriverdetailsController
+		//End DriverdetailsController
 
-Route::resource('/driver','DriverdetailsController');
-Route::get('/driverdelete/{id}','DriverdetailsController@destroy')->name('driverdelete');
-Route::post('/drivercity','DriverdetailsController@get_city');
-
-//End DriverdetailsController
+});

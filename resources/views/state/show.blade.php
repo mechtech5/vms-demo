@@ -10,7 +10,7 @@
               <h3> STATE DETAILS </h3>
           </div>
           <div class="col-sm-6 col-md-6">
-              <a style="margin-bottom: 5px;" href="{{route('state.create')}}" class="btn btn-inverse pull-right" >ADD NEW</a>
+              <a style="margin-bottom: 5px;" href="{{route('state.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
        
             <table id="myTable">

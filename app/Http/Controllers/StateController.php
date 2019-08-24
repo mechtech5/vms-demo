@@ -14,7 +14,8 @@ class StateController extends Controller
     
     public function index()
     {
-        $state = DB::table('master_states')->get();
+        $fleet_code = session('fleet_code');
+        $state = DB::table('master_states')->where('fleet_code',$fleet_code)->get();
         return view('state.show',compact('state'));
     }
 

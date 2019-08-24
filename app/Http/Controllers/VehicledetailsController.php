@@ -36,10 +36,11 @@ class VehicledetailsController extends Controller
     {
        $fleet_code = session('fleet_code');
 
-       $model   = DB::table('vch_model')->get();
+       $model   = DB::table('vch_model')->where('fleet_code',$fleet_code)->get();
+       $city    = DB::table('master_cities')->where('fleet_code',$fleet_code)->get();
        $company = vch_comp::where('fleet_code',$fleet_code)->get();
 
-       return view('vehicle_detail.create',compact('company','model'));
+       return view('vehicle_detail.create',compact('company','model','city'));
     }
 
     

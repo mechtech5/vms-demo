@@ -5,6 +5,7 @@ namespace App\Http\Controllers\ACL;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
+use DB;
 
 class PermissionController extends Controller
 {

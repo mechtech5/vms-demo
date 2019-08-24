@@ -15,7 +15,8 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicle = DB::table('vch_comps')->get();
+        $fleet_code = session('fleet_code');
+        $vehicle = DB::table('vch_comps')->where('fleet_code',$fleet_code)->get();
         return view('vehicle.show',compact('vehicle'));
     }
 

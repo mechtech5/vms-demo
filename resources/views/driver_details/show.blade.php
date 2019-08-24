@@ -1,5 +1,18 @@
 @extends('state.main') 
 @section('content')
+<style type="text/css">
+  .file {
+  position: relative;
+  overflow: hidden;
+}
+.file input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+</style>
 <div class="container">
 <div id="ContentPlaceHolder1_PnlShow"  style="display: inline;">
   <div class="row">
@@ -9,10 +22,21 @@
           <div class="col-sm-6 col-md-6">
               <h3> CITY DETAILS </h3>
           </div>
-          <div class="col-sm-6 col-md-6">
-              <a style="margin-bottom: 5px;" href="{{route('driver.create')}}" class="btn btn-inverse pull-right" >ADD NEW</a>
+          <div class="col-sm-3 col-md-3">
+              <a style="margin-bottom: 5px;" href="{{route('driver.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
-       
+          <div class="col-sm-3 col-md-3">
+           <form id="target" class="pull-right" action="{{ route('driver.import') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+               <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+                Import
+                <input id="file" type="file" name="file"/>
+              </div>
+                <a class="btn btn-inverse" href="{{ route('driver.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
+
+            </form>  
+                       
+          </div>
             <table id="myTable">
               <thead>
                 <tr >
@@ -38,7 +62,7 @@
       
               </tbody>
             </table>
-            
+    
             </div>
           </div>
         </div>
@@ -47,6 +71,9 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
+    $('#file').change(function() {
+       $('#target').submit();
+      });
 } );
 
 </script>
