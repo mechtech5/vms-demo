@@ -424,34 +424,44 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-12 col-md-12 col-xl-12 " style="display: none;" id="mytable6">
+                                        <div class="col-sm-12 col-md-12 col-xl-12 " id="mytable6">
                                             <span id='file_size' class="invalid-feedback d-block" role="alert">
                                                 <strong></strong>
                                             </span>
                                             <span id='file_type' class="invalid-feedback d-block" role="alert">
                                                 <strong></strong>
                                             </span>
-                                             <div class="col-md-12 col-xl-12 mt-2" id='vehicle_pic'>
+                                             <div  class="col-md-6 col-xl-6 mt-2">
+                                                <label for="Buyer City  ">Select image type </label>
+                                                <select id="images_slc" name="images_slc" class="selectpicker form-control">
+                                                    <option value="vch_pic">Vehicle Picture</option>
+                                                    <option value='chasis_pic'>Chasis Picture</option>
+                                                    <option value="reg_pic">Registration Book (RC)</option>
+                                                    <option value="pan_pic">Owner PAN Card</option>
+                                                    <option value="tds_pic">TDS Declaration</option>   
+                                                </select>
+                                            </div>
+                                             <div  class="col-md-3 col-xl-3 mt-2" id='vehicle_pic'>
                                                 <label for="Vehicle Picture">Vehicle Picture</label>
                                                 <input class="image" type="file" data="vch_pic" name="vch_pic" value="">
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2" id="chasis_pic">
+                                            <div style="display: none" class="col-md-3 col-xl-3 mt-2" id="chasis_pic">
                                                 <label for="Chasis Picture">Chasis Picture</label>
                                                 <input class="image"type="file" data="chasis_pic" name="chassic_pic" value="">
 
                                             </div>
-                                            <div class="col-md-12 col-xl-12 mt-2" id="reg_pic">
+                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2" id="reg_pic">
                                                 <label for="Registration Book (RC)">Registration Book (RC)</label>
                                                 <input class="image"type="file" data="reg_pic" name="rc_book_pic" value="">
 
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2" id="pan_pic">
+                                            <div class="col-md-6 col-xl-6 mt-2" style="display: none" id="pan_pic">
                                                 <label for="Owner PAN Card">Owner PAN Card</label>
                                                 <input class="image" data="pan_pic" type="file" name="owner_pan_pic" value="">                                                    
                                              </div>
-                                            <div class="col-md-12 col-xl-12 mt-2" id="tds_pic">
+                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2"  id="tds_pic">
                                                 <label for="TDS Declaration">TDS Declaration</label>
                                                 <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
                                             </div>
@@ -561,24 +571,46 @@
         }
     });
 
-     $('#registration,#chasis,#purchase,#sale,#engine,#vehicle').on('change',function(){
-        var data = $(this).attr('data');
-           
-        if(data=='registration'){
-            $('#tds_pic').show();
-            $('#mytable2').hide();
-            $('#mytable3').hide();
-            $('#mytable4').hide();
-            $('#mytable5').hide();
-            $('#mytable6').hide();
+     $('#images_slc').on('change',function(){
+        var data = $(this).val();
+                   
+        if(data=='vch_pic'){
+            $('#vehicle_pic').show();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
         }
-        else if(data=='purchase'){
-            $('#mytable1').hide();
-            $('#mytable2').show();
-            $('#mytable3').hide();
-            $('#mytable4').hide();
-            $('#mytable5').hide();
-            $('#mytable6').hide();
+        else if(data=='chasis_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').show();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='reg_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').show();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='pan_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').show();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='tds_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').show();
         }
       });
   })  

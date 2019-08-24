@@ -419,29 +419,50 @@
 
                                         <div class="col-sm-12 col-md-12 col-xl-12 " style="display: none;" id="mytable6">
                                             
-                                             <div class="col-md-12 col-xl-12 mt-2">
+                                             <span id='file_size' class="invalid-feedback d-block" role="alert">
+                                                <strong></strong>
+                                            </span>
+                                            <span id='file_type' class="invalid-feedback d-block" role="alert">
+                                                <strong></strong>
+                                            </span>
+                                             <div  class="col-md-6 col-xl-6 mt-2">
+                                                <label for="Buyer City  ">Select image type </label>
+                                                <select id="images_slc" name="images_slc" class="selectpicker form-control">
+                                                    <option value="vch_pic">Vehicle Picture</option>
+                                                    <option value='chasis_pic'>Chasis Picture</option>
+                                                    <option value="reg_pic">Registration Book (RC)</option>
+                                                    <option value="pan_pic">Owner PAN Card</option>
+                                                    <option value="tds_pic">TDS Declaration</option>   
+                                                </select>
+                                            </div>
+                                             <div  class="col-md-3 col-xl-3 mt-2" id='vehicle_pic'>
                                                 <label for="Vehicle Picture">Vehicle Picture</label>
-                                                <input id="email1" type="file" name="vch_pic" value="">
+                                                <input class="image" type="file" data="vch_pic" name="vch_pic" value="">
+                                                <img src="storage/app/"></img>
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div style="display: none" class="col-md-3 col-xl-3 mt-2" id="chasis_pic">
                                                 <label for="Chasis Picture">Chasis Picture</label>
-                                                <input id="email" type="file" name="chassic_pic" value="">
+                                                <input class="image"type="file" data="chasis_pic" name="chassic_pic" value="">
+                                                <img src="storage/app/"></img>
 
                                             </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2" id="reg_pic">
                                                 <label for="Registration Book (RC)">Registration Book (RC)</label>
-                                                <input id="email1" type="file" name="rc_book_pic" value="">
+                                                <input class="image"type="file" data="reg_pic" name="rc_book_pic" value="">
+                                                <img src="storage/app/"></img>
 
                                             </div>
 
-                                            <div class="col-md-12 col-xl-12 mt-2">
+                                            <div class="col-md-6 col-xl-6 mt-2" style="display: none" id="pan_pic">
                                                 <label for="Owner PAN Card">Owner PAN Card</label>
-                                                <input id="email1" type="file" name="owner_pan_pic" value="">                                                    
+                                                <input class="image" data="pan_pic" type="file" name="owner_pan_pic" value="">
+                                                <img src="storage/app/"></img>                                                    
                                              </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
-                                                <label for="TDS Declaration">TDS Declaration</label>
-                                                <input id="email1" type="file" name="tds_declaration_pic" value="">
+                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2"  id="tds_pic">
+                                                <label for="TDS Declaration">TDS Declaration {{ $edata->tds_declaration_pic }}</label>
+                                                <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
+                                                <img src="storage/app/public/<?php echo $edata->fleet_code.'/vehicle_number/'.$edata->vch_no.'/'.$edata->tds_declaration_pic ; ?>"></img>
                                             </div>
                                         </div>
                                     </div>
@@ -530,6 +551,48 @@
             $('#mytable6').show();
         }
     });
+     $('#images_slc').on('change',function(){
+        var data = $(this).val();
+                   
+        if(data=='vch_pic'){
+            $('#vehicle_pic').show();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
+        }
+        else if(data=='chasis_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').show();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='reg_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').show();
+            $('#pan_pic').hide();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='pan_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').show();
+            $('#tds_pic').hide();
+        }
+
+        else if(data=='tds_pic'){
+            $('#vehicle_pic').hide();
+            $('#chasis_pic').hide();
+            $('#reg_pic').hide();
+            $('#pan_pic').hide();
+            $('#tds_pic').show();
+        }
+      });
     })  
 
 </script>
