@@ -7,11 +7,22 @@
       <div class="box box-color orange box-condensed box-bordered">
         <div class="box-title">
           <div class="col-sm-6 col-md-6">
-              <h3> VEHICLE DETAILS </h3>
+              <h3> VEHICLE MODEL </h3>
           </div>
-          <div class="col-sm-6 col-md-6">
+          <div class="col-sm-3 col-md-3">
               <a style="margin-bottom: 5px;" href="{{route('vehicleModel.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
+           <div class="col-sm-3 col-md-3">
+             <form id="target" class="pull-right" action="{{ route('model.import') }}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                 <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+                  Import
+                  <input id="file" type="file" name="file"/>
+                </div>
+                  <a class="btn btn-inverse" href="{{ route('model.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
+
+              </form>  
+            </div>
        
             <table id="myTable">
               <thead>
@@ -50,6 +61,9 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
+    $('#file').change(function() {
+       $('#target').submit();
+      });
 } );
 
 </script>

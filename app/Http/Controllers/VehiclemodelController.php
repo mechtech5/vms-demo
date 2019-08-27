@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use DB; 
 use App\vch_comp;
 use Session;
+use App\Exports\VehicleModelExport;
+use App\Imports\VehicleModelImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VehiclemodelController extends Controller
 {
@@ -111,5 +114,17 @@ class VehiclemodelController extends Controller
     {
         DB::table('vch_model')->where('id',$id)->delete();
          return redirect('vehicleModel');
+    }
+
+     public function export() 
+    {
+        return Excel::download(new VehicleModelExport, 'vehiclemodel.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new VehicleModelImport,request()->file('file'));
+        
+        return redirect('vehice');
     }
 }

@@ -1,17 +1,7 @@
 @extends('state.main') 
 @section('content')
 <style type="text/css">
-  .file {
-  position: relative;
-  overflow: hidden;
-}
-.file input {
-  position: absolute;
-  font-size: 50px;
-  opacity: 0;
-  right: 0;
-  top: 0;
-}
+
 </style>
 <div class="container">
 <div id="ContentPlaceHolder1_PnlShow"  style="display: inline;">
@@ -20,7 +10,7 @@
       <div class="box box-color orange box-condensed box-bordered">
         <div class="box-title">
           <div class="col-sm-6 col-md-6">
-              <h3> CITY DETAILS </h3>
+              <h3> DRIVER DETAILS </h3>
           </div>
           <div class="col-sm-3 col-md-3">
               <a style="margin-bottom: 5px;" href="{{route('driver.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>

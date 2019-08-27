@@ -37,20 +37,27 @@ class LoginController extends Controller
 
      public function redirectPath()
     {
-        $roleId = Auth::user()->role_id;
-        
-        if (method_exists($this, 'redirectTo')) {
-            return $this->redirectTo();
+        $Id  = Auth::user()->id;
+        $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
+        $roleid = $hasrole->role_id;
+        if(!empty($roleid)){
+            if (method_exists($this, 'redirectTo')) {
+                return $this->redirectTo();
+            }
+            switch ($roleid) {
+                case '1' : $login = '/admin';
+                    break;
+                case '2':
+                    return $login = '/dashboard';
+                    break;
+                default:
+                    return $login='/';
+            }
         }
-        switch ($roleId) {
-            case '1' : $login = '/admin';
-                break;
-            case '2':
-                return $login = '/dashboard';
-                break;
-            default:
-                return $login='/';
-        }
+        else{
+            $login='/';
+        }    
+       
      return property_exists($this, 'redirectTo') ? $this->redirectTo : $login;
     }
 }

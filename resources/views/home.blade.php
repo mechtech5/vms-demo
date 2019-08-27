@@ -1,7 +1,9 @@
-@extends('layouts.app')
+@extends(Auth::user()->id == 1 ? 'layouts.ACLadmin' : 'state.main' )
+
 
 @section('content')
-<div class="container">
+ <main class="app-content">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -19,5 +21,5 @@
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection

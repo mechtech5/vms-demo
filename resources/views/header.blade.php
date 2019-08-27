@@ -68,7 +68,7 @@
                         <ul class='main-nav'>
                             <li class='<?php if(Request::segment(1) == 'dashboard'){ echo 'active'; } ?>' id="L1"><a href="{{route('dashboard.index')}}"><span>Dashboard</span>
                             </a></li>
-                            <li id="L2" class='<?php if( (Request::segment(1) == 'city') || (Request::segment(1) == 'state')){ echo 'active'; } ?>'><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Setup</span>
+                            <li id="L2" class='<?php if( (Request::segment(1) == 'city') || (Request::segment(1) == 'state') || (Request::segment(1) == 'vehicle') || (Request::segment(1) == 'vehicleModel') || (Request::segment(1) == 'vehicledetails') || (Request::segment(1) == 'driver')){ echo 'active'; } ?>'><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Setup</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
                                     <li class='dropdown-submenu'><a href="#">Other Setup</a>
@@ -174,14 +174,14 @@
                                     <li><a href="ExpensesReport.aspx"><span>Reports</span></a> </li>
                                 </ul>
                             </li>
-                            <li id="L8"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Repair/Maintenance</span>
+                            <li id="L8" class="{{Request::segment(1) == 'filter' ? 'active' : ''}} {{Request::segment(1) == 'oilchange' ? 'active' : ''}} oilchange"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Repair/Maintenance</span>
                                 <span class=""></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="ffilterreplacment.aspx">Filter Replacement</a></li>
-                                    <li><a href="foilchange.aspx">Oil Change</a></li>
+                                <ul class="dropdown-menu ">
+                                    <li class=""><a href="{{route('filter.index')}}">Filter Replacement</a></li>
+                                    <li><a href="{{route('oilchange.index')}}">Oil Change</a></li>
                                     <li><a href="fantifreeze.aspx">Anti Freeze</a></li>
                                     <li><a href="ffueltank.aspx">Fuel Tank Cleaning</a></li>
-                                    <li><a href="fbatterycharging.aspx">Battery Charging</a></li>
+                                    <li><a href="{{route('batterycharge.index')}}">Battery Charging</a></li>
                                     <li><a href="frimcleaning.aspx">RIM Cleaning</a></li>
                                     <li><a href="fpaintjob.aspx">Painting Job</a></li>
                                     <li><a href="frmServiceJobCreation.aspx">Service Job Creation</a></li>

@@ -5060,7 +5060,7 @@ label, input, button, select, textarea {
 }
 
 #navigation {
-  background: #368ee0;
+  background: #37a000;
   position: relative;
   z-index: 100;
 }
@@ -5070,24 +5070,24 @@ label, input, button, select, textarea {
 }
 #navigation .dropdown-menu {
   border-top: 0;
-  border-color: #368ee0;
+  border-color: #37a000;
 }
 #navigation .dropdown-menu > li.dropdown-submenu .dropdown-menu {
-  border-top: 2px solid #368ee0;
+  border-top: 2px solid #37a000;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
   margin-left: 0;
 }
 #navigation .dropdown-menu > li.dropdown-submenu:hover > a, #navigation .dropdown-menu > li.dropdown-submenu:focus > a {
-  background: #368ee0;
+  background: #37a000;
   color: #fff;
 }
 #navigation .dropdown-menu > li.dropdown-submenu:hover > a:after, #navigation .dropdown-menu > li.dropdown-submenu:focus > a:after {
   border-left-color: #fff;
 }
 #navigation .dropdown-menu > li > a:hover {
-  background: #368ee0;
+  background: #37a000;
   color: #fff;
   filter: none;
 }
@@ -5309,7 +5309,7 @@ label, input, button, select, textarea {
   text-decoration: none;
 }
 #navigation .user .dropdown > a:hover {
-  background: #1b67af;
+  background: #37a000;
 }
 #navigation .user .dropdown > a img {
   margin-left: 10px;
@@ -5365,7 +5365,7 @@ label, input, button, select, textarea {
 }
 #navigation .main-nav > li > a:hover {
   text-decoration: none;
-  background: #1e74c5;
+  background: #37a000;
 }
 #navigation .main-nav > li > a:hover .caret {
   border-top-color: #fff;
@@ -9393,5 +9393,17 @@ select.form-control:not([size]):not([multiple]) {
   border: none !important;
   padding: 15px !important;
   margin-bottom: 0px !important;
+}
+
+.file {
+  position: relative;
+  overflow: hidden;
+}
+.file input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
 }
 /* End City Section*/

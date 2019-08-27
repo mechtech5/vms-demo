@@ -9,9 +9,20 @@
           <div class="col-sm-6 col-md-6">
               <h3> VEHICLE DETAILS </h3>
           </div>
-          <div class="col-sm-6 col-md-6">
+          <div class="col-sm-3 col-md-3">
               <a style="margin-bottom: 5px;" href="{{route('vehicle.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
+          <div class="col-sm-3 col-md-3">
+             <form id="target" class="pull-right" action="{{ url('vehicle.import') }}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                 <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+                  Import
+                  <input id="file" type="file" name="file"/>
+                </div>
+                  <a class="btn btn-inverse" href="{{ url('vehicleExport') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
+
+              </form>  
+            </div>
        
             <table id="myTable">
               <thead>

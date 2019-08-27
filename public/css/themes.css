@@ -282,7 +282,7 @@ ul > li.orange, .label-orange {
 }
 
 .box.box-color.orange .box-title {
-  background: #f8a31f !important;
+  background: #3ca99e !important;
 }
 .box.box-color.orange .box-title .actions > a:hover {
   color: #f8a31f;
@@ -291,10 +291,10 @@ ul > li.orange, .label-orange {
   background: #f8a31f;
 }
 .box.box-color.orange .btn.btn-primary {
-  background: #f8a31f;
+  background:#3ca99e;
 }
 .box.box-bordered.box-color.orange .box-title {
-  border-color: #f8a31f !important;
+  border-color: #3ca99e !important;
 }
 .box.box-bordered.box-color.orange .box-content {
   border-color: #f8a31f !important;

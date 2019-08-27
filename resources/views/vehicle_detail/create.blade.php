@@ -13,7 +13,7 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3> COMPANY DETAILS </h3>
+                <h3> VEHICLE DETAILS </h3>
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('vehicledetails.index')}}">Back</a>

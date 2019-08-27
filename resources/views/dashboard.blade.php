@@ -32,18 +32,18 @@
                                 <input type="hidden" name="HALLINDIAPERMITMAIL" id="HALLINDIAPERMITMAIL" value="0" />
                                 </td>
                             </tr>
-                            <tr style="background-color: #f5a020;">
-                            <td align="center" valign="middle" colspan="5">
+                            <tr style="background:linear-gradient(to bottom, #ffd89b 0%, #19547b 100%);">
+                            <td align="center" valign="middle" colspan="5"> 
                             <div style="height: 30px; padding-top: 5px;">
-                            <p style="font-size: 13px; color: White; font-weight: bold;">
-                             gadimalik dashboard for current month</p>
+                            <p style="font-size: 13px; color: #fff; font-weight: bold;">
+                             Vehicle Managment Dashboard </p>
                             </div>
                             </td>
                             </tr>
                             <tr>
                             <td align="left" valign="top" colspan="5">
                             <table width="100%" border="10px" style="border-color: #358fde; border-style: inherit;">
-                                <tr style="background-color: #358fde;">
+                                <tr style="background-color: #3ca99e;">
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
                                         Insurance</td>
 

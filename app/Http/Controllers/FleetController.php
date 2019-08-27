@@ -42,8 +42,9 @@ class FleetController extends Controller
 
         $validatedData = $request->validate([
                                        'fleet_owner' =>'required',
-                                       'fleet_name'=> 'required',
-                                       'fleet_code' => 'required|min:8'
+                                       'fleet_name'  => 'required',
+                                       'fleet_code'  => 'required|min:8|max:8',
+                                       'fleet_desc'  =>'required|alpha'
                                        ]);
        
         $validatedData['fleet_desc'] = $request->fleet_desc;

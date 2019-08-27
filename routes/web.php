@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', 'Auth\LoginController@showLoginForm');
+//Route::get('/', 'Auth\LoginController@showLoginForm');
 
-// Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
 
@@ -76,6 +76,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 		Route::resource('/vehicle','VehicleController');
 		Route::get('Vehicledestroy/{id}','VehicleController@destroy')->name('vehicle.destroy');
+		Route::get('/vehicleExport','VehicleController@export')->name('vehicle.export');
+		Route::post('/import','VehicleController@import')->name('vehicle.import');
 
 		//End Vehicle Controller
 
@@ -83,6 +85,8 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 		Route::resource('/vehicleModel','VehiclemodelController');
 		Route::get('Modeldestroy/{id}','VehiclemodelController@destroy')->name('model.destroy');
+		Route::get('/modelExport','VehiclemodelController@export')->name('model.export');
+		Route::post('/modelImport','VehiclemodelController@import')->name('model.import');
 
 		//End VehiclemodelController
 
@@ -104,4 +108,30 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 		//End DriverdetailsController
 
+		//strat filtercontroller
+		
+		Route::resource('/filter','filter\FilterController');
+		Route::get('/filtrdelete/{id}','filter\FilterController@destroy')->name('filter.delete');
+		Route::get('/filterExport','filter\FilterController@export')->name('filter.export');
+		Route::post('/filterImport','filter\FilterController@import')->name('filter.import');
+
+		//end filtercontroller
+
+		//strat oliChangeController
+		
+		Route::resource('/oilchange','Oilchange\OilChangeController');
+		Route::get('/oildelete/{id}','Oilchange\OilChangeController@destroy')->name('oilchange.delete');
+		Route::get('/oilExport','Oilchange\OilChangeController@export')->name('oilchange.export');
+		Route::post('/oilImport','Oilchange\OilChangeController@import')->name('oilchange.import');
+
+		//end oliChangeController
+
+		//strat oliChangeController
+		
+		Route::resource('/batterycharge','BatteryCharge\BatteryController');
+		Route::get('/betterydelete/{id}','BatteryCharge\BatteryController@destroy')->name('oilchange.delete');
+		Route::get('/batteryExport','BatteryCharge\BatteryController@export')->name('batterycharge.export');
+		Route::post('/batteryImport','BatteryCharge\BatteryController@import')->name('batterycharge.import');
+
+		//end oliChangeController
 });
