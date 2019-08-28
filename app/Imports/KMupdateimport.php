@@ -2,33 +2,32 @@
 
 namespace App\Imports;
 
-use App\vehicle_master;
-use App\Models\Filter;
+use App\Models\KMupdate;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use App\vehicle_master;
 use DB;
 use DateTime;
 
-class FilterImport implements ToCollection,WithHeadingRow
+class KMupdateimport implements ToCollection,WithHeadingRow
 {
-     public function collection(Collection $rows)
-    {    
+    
+    public function collection(Collection $rows)
+    {   
         $error = array();
         $fleet_code = session('fleet_code');
 
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
-
-    
-            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['filter_type']) && !empty($row['filter_company'])  && !empty($row['km_reading']) && !empty($row['cost']) )
-            {                    
+            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['kilometer_reading']))
+            {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
                 
 
                 if(!empty($vch_num)){
-
+                    
                     $cdate = strtotime(date('Y-m-d'));
                     $cdate = date('Y-m-d ', $cdate);
                     $date  = strtotime($row['date']);
@@ -39,14 +38,11 @@ class FilterImport implements ToCollection,WithHeadingRow
                     
                     if($date1 <= $date2){
 
-                        Filter::create([
+                        KMupdate::create([
                         'fleet_code'   => $row['fleet_code'],
                         'vch_id'       => $vch_num->id ,
-                        'filter_comp'  => $row['filter_company'],
                         'date'         => $row['date'],
-                        'filter_type'  => $row['filter_type'],
-                        'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        'reading'   => $row['kilometer_reading']
                         ]); 
                     }
 

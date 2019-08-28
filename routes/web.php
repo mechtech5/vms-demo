@@ -51,8 +51,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
  Route::group(['middleware' => ['role:fleets']], function () {
 
-
-		//Strat Dashboard Controller
+     	//Strat Dashboard Controller
 
 		Route::resource('/dashboard','DashboardController');
 
@@ -129,9 +128,37 @@ Route::group(['middleware' => ['role:admin']], function () {
 		//strat oliChangeController
 		
 		Route::resource('/batterycharge','BatteryCharge\BatteryController');
-		Route::get('/betterydelete/{id}','BatteryCharge\BatteryController@destroy')->name('oilchange.delete');
+		Route::get('/betterydelete/{id}','BatteryCharge\BatteryController@destroy')->name('batterycharge.delete');
 		Route::get('/batteryExport','BatteryCharge\BatteryController@export')->name('batterycharge.export');
 		Route::post('/batteryImport','BatteryCharge\BatteryController@import')->name('batterycharge.import');
 
 		//end oliChangeController
+
+		//strat PaintingController
+		
+		Route::resource('/painting','Painting\PaintingController');
+		Route::get('/paintingdelete/{id}','Painting\PaintingController@destroy')->name('painting.delete');
+		Route::get('/paintingExport','Painting\PaintingController@export')->name('painting.export');
+		Route::post('/paintingImport','Painting\PaintingController@import')->name('painting.import');
+
+		//end PaintingController
+
+		//strat FueltankController  
+		
+		Route::resource('/fueltank','Fueltank\FueltankController');
+		Route::get('/fueltankdelete/{id}','Fueltank\FueltankController@destroy')->name('fueltank.delete');
+		Route::get('/fueltankExport','Fueltank\FueltankController@export')->name('fueltank.export');
+		Route::post('/fueltankImport','Fueltank\FueltankController@import')->name('fueltank.import');
+
+		//end FueltankController
+
+		//strat KMupdateController  
+		
+		Route::resource('/kmupdate','KMupdateController');
+		Route::get('/kmupdatedelete/{id}','KMupdateController@destroy')->name('kmupdate.delete');
+		Route::get('/kmupdateExport','KMupdateController@export')->name('kmupdate.export');
+		Route::post('/kmupdateImport','KMupdateController@import')->name('kmupdate.import');
+		Route::get('/kmupdateImport','KMupdateController@download')->name('kmupdate.download');
+
+		//end KMupdateController
 });

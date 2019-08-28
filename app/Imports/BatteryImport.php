@@ -2,28 +2,25 @@
 
 namespace App\Imports;
 
-use App\Models\OilChange;
+use App\Models\BatteryCharge;
 use App\vehicle_master;
-use App\Models\Filter;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use DB;
 use DateTime;
-use Session;
 
-class OilImport implements ToCollection,WithHeadingRow
+class BatteryImport implements ToCollection,WithHeadingRow
 {
-    
-    public function collection(Collection $rows)
-    {    
+   public function collection(Collection $rows)
+    {
+        
         $error = array();
         $fleet_code = session('fleet_code');
 
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
-            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['km_reading']) && !empty($row['cost']))
+            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['specific_gravity']) && !empty($row['volt_reading']) && !empty($row['km_reading']) && !empty($row['charging_by']) && !empty($row['cost']))
             {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
                 
@@ -40,12 +37,18 @@ class OilImport implements ToCollection,WithHeadingRow
                     
                     if($date1 <= $date2){
 
-                        OilChange::create([
-                        'fleet_code'   => $row['fleet_code'],
-                        'vch_id'       => $vch_num->id ,
-                        'date'         => $row['date'],
-                        'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        BatteryCharge::create([
+                        'fleet_code'  => $row['fleet_code'],
+                        'vch_id'      => $vch_num->id ,
+                        'spec_grav'   => $row['specific_gravity'],
+                        'date'        => $row['date'],
+                        'volt_reading'=> $row['volt_reading'],
+                        'km_reading'  => $row['km_reading'],
+                        'cost'        => $row['cost'],
+                        'batt_water'  => $row['battery_water'],
+                        'batt_acid'   => $row['battery_acid'],
+                        'chr_by'      => $row['charging_by'],
+                        'batt_cond'   => $row['battery_condition'],
                         ]); 
                     }
 
@@ -55,3 +58,4 @@ class OilImport implements ToCollection,WithHeadingRow
          return $error;
     }
 }
+

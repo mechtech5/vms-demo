@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BatteryCharge extends Model
+class Painting extends Model
 {
-     protected $table   = 'srv_battery_charging';
+	protected $table   = 'srv_painting_job';
     protected $guarded = [];
 }

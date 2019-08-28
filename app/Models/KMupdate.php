@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BatteryCharge extends Model
+class KMupdate extends Model
 {
-     protected $table   = 'srv_battery_charging';
+    protected $table = 'vch_km_readings';
     protected $guarded = [];
 }

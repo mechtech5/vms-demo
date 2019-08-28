@@ -2,28 +2,27 @@
 
 namespace App\Imports;
 
+use App\Models\Painting;
 use App\vehicle_master;
 use App\Models\Filter;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use DB;
 use DateTime;
-
-class FilterImport implements ToCollection,WithHeadingRow
+use Session;
+class PaintingImport implements ToCollection,WithHeadingRow
 {
-     public function collection(Collection $rows)
-    {    
+    
+    public function collection(Collection $rows)
+    { 
         $error = array();
         $fleet_code = session('fleet_code');
 
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
-
-    
-            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['filter_type']) && !empty($row['filter_company'])  && !empty($row['km_reading']) && !empty($row['cost']) )
-            {                    
+            if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['km_reading']) && !empty($row['cost']))
+            {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
                 
 
@@ -39,14 +38,16 @@ class FilterImport implements ToCollection,WithHeadingRow
                     
                     if($date1 <= $date2){
 
-                        Filter::create([
-                        'fleet_code'   => $row['fleet_code'],
-                        'vch_id'       => $vch_num->id ,
-                        'filter_comp'  => $row['filter_company'],
-                        'date'         => $row['date'],
-                        'filter_type'  => $row['filter_type'],
-                        'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        Painting::create([
+                        'fleet_code'    => $row['fleet_code'],
+                        'vch_id'        => $vch_num->id ,
+                        'date'          => $row['date'],
+                        'km_reading'    => $row['km_reading'],
+                        'cost'          => $row['cost'],
+                        'cabin_color'   => $row['cabin_color'],
+                        'body_colo'     => $row['body_colo'],
+                        'chasis_color'  => $row['chasis_color'],
+                        'interior_color'=> $row['interior_color']
                         ]); 
                     }
 

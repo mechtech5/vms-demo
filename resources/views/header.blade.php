@@ -83,7 +83,7 @@
                                             <li><a href="{{route('vehicle.index')}}">Vehicle Company</a></li>
                                             <li><a href="{{route('vehicleModel.index')}}">Vehicle Model</a></li>
                                             <li><a href="{{route('vehicledetails.index')}}">Vehicle Details</a></li>
-                                            <li><a href="fvehiclekmupdate.aspx">Vehicle KM Update</a></li>
+                                            <li><a href="{{route('kmupdate.index')}}">Vehicle KM Update</a></li>
                                             <li><a href="{{route('driver.index')}}">Driver Details</a></li>
                                         </ul>
                                     </li>
@@ -174,28 +174,15 @@
                                     <li><a href="ExpensesReport.aspx"><span>Reports</span></a> </li>
                                 </ul>
                             </li>
-                            <li id="L8" class="{{Request::segment(1) == 'filter' ? 'active' : ''}} {{Request::segment(1) == 'oilchange' ? 'active' : ''}} oilchange"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Repair/Maintenance</span>
+                            <li id="L8" class="{{Request::segment(1) == 'filter' ? 'active' : ''}} {{Request::segment(1) == 'oilchange' ? 'active' : ''}} {{Request::segment(1) == 'fueltank' ? 'active' : ''}} {{Request::segment(1) == 'batterycharge' ? 'active' : ''}} {{Request::segment(1) == 'painting' ? 'active' : ''}} oilchange"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Repair/Maintenance</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu ">
                                     <li class=""><a href="{{route('filter.index')}}">Filter Replacement</a></li>
                                     <li><a href="{{route('oilchange.index')}}">Oil Change</a></li>
-                                    <li><a href="fantifreeze.aspx">Anti Freeze</a></li>
-                                    <li><a href="ffueltank.aspx">Fuel Tank Cleaning</a></li>
+                                   
+                                    <li><a href="{{route('fueltank.index')}}">Fuel Tank Cleaning</a></li>
                                     <li><a href="{{route('batterycharge.index')}}">Battery Charging</a></li>
-                                    <li><a href="frimcleaning.aspx">RIM Cleaning</a></li>
-                                    <li><a href="fpaintjob.aspx">Painting Job</a></li>
-                                    <li><a href="frmServiceJobCreation.aspx">Service Job Creation</a></li>
-                                    <li><a href="fServiceNoWiseJobSetup.aspx">Service No Wise Job Setup</a></li>
-                                    <li class='dropdown-submenu'><a href="#">Workshop</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="finspectioncat.aspx">Inspection Category</a></li>
-                                            <li><a href="fjobdetails.aspx">Job Detail</a></li>
-                                            <li><a href="fjobcardtemplate.aspx">Job Card Template</a></li>
-                                             <li><a href="fjobcardcreation.aspx">Job Card Creation</a></li>
-                                              <li><a href="fjobcardcompletion.aspx">Job Card Completion</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="RepairMaintenaceReport.aspx"><span>Reports</span></a> </li>
+                                    <li><a href="{{route('painting.index')}}">Painting Job</a></li>
                                 </ul>
                             </li>
                             <li id="L9"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Finance</span>

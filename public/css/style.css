@@ -9406,4 +9406,10 @@ select.form-control:not([size]):not([multiple]) {
   right: 0;
   top: 0;
 }
+
+.error_msg{
+  position: absolute;
+ left: 94px;
+top: 57px
+}
 /* End City Section*/

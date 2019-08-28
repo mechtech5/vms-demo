@@ -40,6 +40,20 @@ class LoginController extends Controller
         $Id  = Auth::user()->id;
         $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
         $roleid = $hasrole->role_id;
+    
+        $fleet = DB::table('fleet_mast')->where('fleet_owner',$Id)->get();
+
+       if(count($fleet) !=0){
+            $fleer_code = $fleet[0]->fleet_code;
+            
+            Session::put('fleet_code', $fleer_code);
+            $path = storage_path('app/public/'.$fleer_code.'/vehicle_number');
+                           
+            if(! File::exists($path)){
+                File::makeDirectory($path, 0777, true, true);
+            }   
+         
+         }
         if(!empty($roleid)){
             if (method_exists($this, 'redirectTo')) {
                 return $this->redirectTo();

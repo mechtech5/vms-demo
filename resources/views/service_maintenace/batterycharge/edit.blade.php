@@ -14,8 +14,9 @@
                 <a class="btn btn-inverse pull-right" href="{{route('batterycharge.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form class="well form-horizontal" method="post" action="{{route('batterycharge.store')}}">
+             <form class="well form-horizontal" method="post" action="{{route('batterycharge.update',$data->id)}}">
               {{csrf_field()}}
+              @method('PATCH')
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
@@ -27,10 +28,11 @@
 		                                  <strong>{{ 'Please Select Vehicle' }}</strong>
 		                              </span>
 		                          @enderror
+
 		                       <select name="vch_id" class="selectpicker form-control">
-		                            <option value="0" selected=" true " disabled="true">Select..</option>
+		                            <option value="0" selected="true" disabled="true" >Select..</option>
 		                            @foreach($vehicle as $vehicles)
-		                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
+		                               <option value="{{$vehicles->id}}" {{$vehicles->id == $data->vch_id ? 'selected':'' }}>{{$vehicles->vch_no}}</option>
 		                            @endforeach     
 		                        </select>
 		                      
@@ -43,7 +45,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="vehicle_no" class="form-control" name="km_reading" value="{{old('km_reading')}}" > 
+                                <input id="vehicle_no" class="form-control" name="km_reading" value="{{old('km_reading') ?? $data->km_reading}}" > 
                                  
                             </div>
                                                        
@@ -54,7 +56,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email" name="spec_grav" class="form-control  " value="{{old('spec_grav')}}">
+                                <input id="email" name="spec_grav" class="form-control  " value="{{old('spec_grav') ?? $data->spec_grav}}">
                                 
                             </div>
 
@@ -65,7 +67,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="volt_reading" value="{{old('volt_reading')}}">
+                                <input id="email1" class="form-control  " name="volt_reading" value="{{old('volt_reading') ?? $data->volt_reading}}">
                                
                             </div>
 
@@ -76,7 +78,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="batt_water" value="{{old('batt_water')}}">
+                                <input id="email1" class="form-control  " name="batt_water" value="{{old('batt_water') ?? $data->batt_water}}">
                                
                             </div>
 
@@ -87,7 +89,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="batt_acid" value="{{old('batt_acid')}}">
+                                <input id="email1" class="form-control  " name="batt_acid" value="{{old('batt_acid') ?? $data->batt_acid}}">
                                
                             </div>
 
@@ -98,7 +100,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="chr_by" value="{{old('chr_by')}}">
+                                <input id="email1" class="form-control  " name="chr_by" value="{{old('chr_by') ??  $data->chr_by}}">
                                
                             </div>
 
@@ -109,7 +111,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="batt_cond" value="{{old('batt_cond')}}">
+                                <input id="email1" class="form-control  " name="batt_cond" value="{{old('batt_cond') ?? $data->batt_cond}}">
                                
                             </div>
 
@@ -120,7 +122,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control  " name="cost" value="{{old('cost')}}">
+                                <input id="email1" class="form-control  " name="cost" value="{{old('cost') ?? $data->cost}}">
                                
                             </div>
 
@@ -131,7 +133,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control" type="date" name="date" value="{{old('date')}}">
+                                <input id="email1" class="form-control" type="date" name="date" value="{{old('date') ?? $data->date}}">
                                
                             </div>
 
@@ -142,7 +144,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <textarea id="email1" class="form-control  " name="remarks" value="">{{old('remarks')}}</textarea>
+                                <textarea id="email1" class="form-control  " name="remarks" value="">{{old('remarks') ?? $data->remarks}}</textarea>
                                
                             </div>
                         </div>     
