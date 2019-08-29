@@ -77,6 +77,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('Vehicledestroy/{id}','VehicleController@destroy')->name('vehicle.destroy');
 		Route::get('/vehicleExport','VehicleController@export')->name('vehicle.export');
 		Route::post('/import','VehicleController@import')->name('vehicle.import');
+		Route::get('/vehicleformat','VehicleController@download')->name('vehicle.download');
 
 		//End Vehicle Controller
 
@@ -86,6 +87,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('Modeldestroy/{id}','VehiclemodelController@destroy')->name('model.destroy');
 		Route::get('/modelExport','VehiclemodelController@export')->name('model.export');
 		Route::post('/modelImport','VehiclemodelController@import')->name('model.import');
+		Route::get('/modelformate','VehiclemodelController@download')->name('model.download');
 
 		//End VehiclemodelController
 
@@ -104,6 +106,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::post('/drivercity','DriverdetailsController@get_city');
 		Route::get('/export','DriverdetailsController@export')->name('driver.export');
 		Route::post('/import','DriverdetailsController@import')->name('driver.import');
+		Route::get('/driverformat','DriverdetailsController@download')->name('driver.download');
 
 		//End DriverdetailsController
 
@@ -158,7 +161,17 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/kmupdatedelete/{id}','KMupdateController@destroy')->name('kmupdate.delete');
 		Route::get('/kmupdateExport','KMupdateController@export')->name('kmupdate.export');
 		Route::post('/kmupdateImport','KMupdateController@import')->name('kmupdate.import');
-		Route::get('/kmupdateImport','KMupdateController@download')->name('kmupdate.download');
+		Route::get('/kmupdatedownload','KMupdateController@download')->name('kmupdate.download');
 
 		//end KMupdateController
+
+		//strat PUCDetailsController  
+		
+		Route::resource('/pucdetails','Document\PUCDetailsController');
+		Route::get('/pucdetailsdelete/{id}','Document\PUCDetailsController@destroy')->name('pucdetails.delete');
+		Route::get('/pucdetailsExport','Document\PUCDetailsController@export')->name('pucdetails.export');
+		Route::post('/pucdetailsImport','Document\PUCDetailsController@import')->name('pucdetails.import');
+		Route::get('/pucdetailsdownload','Document\PUCDetailsController@download')->name('pucdetails.download');
+
+		//end PUCDetailsController
 });

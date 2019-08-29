@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use DB;
 use Auth;
+use Session;
+use File;
 
 class LoginController extends Controller
 {

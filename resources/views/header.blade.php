@@ -92,7 +92,7 @@
                             <li id="L3"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Documents</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="fpuc.aspx">PUC Details</a> </li>
+                                    <li><a href="{{route('pucdetails.index')}}">PUC Details</a> </li>
                                     <li><a href="ffitness.aspx">Fitness Details</a> </li>
                                     <li><a href="froadtax.aspx">Road Tax Details</a> </li>
                                     <li><a href="fgreentax.aspx">Green Tax Details</a> </li>

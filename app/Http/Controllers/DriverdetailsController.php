@@ -143,5 +143,9 @@ class DriverdetailsController extends Controller
         
         return redirect('driver');
     }
+    public function download() {
+        $file_path = public_path('demo_files/Demo_DriverFormat.xlsx');
+        return response()->download($file_path);
+    }
 
 }

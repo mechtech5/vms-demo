@@ -118,4 +118,9 @@ class VehicleController extends Controller
         
         return redirect('vehice');
     }
+
+    public function download() {
+        $file_path = public_path('demo_files/Demo_VehicleFormat.xlsx');
+        return response()->download($file_path);
+    }
 }

@@ -12,10 +12,10 @@
           <div class="col-sm-6 col-md-6">
               <h3> DRIVER DETAILS </h3>
           </div>
-          <div class="col-sm-3 col-md-3">
+          <div class="col-sm-2 col-md-2">
               <a style="margin-bottom: 5px;" href="{{route('driver.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
-          <div class="col-sm-3 col-md-3">
+          <div class="col-sm-4 col-md-4">
            <form id="target" class="pull-right" action="{{ route('driver.import') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
@@ -23,6 +23,7 @@
                 <input id="file" type="file" name="file"/>
               </div>
                 <a class="btn btn-inverse" href="{{ route('driver.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
+                <a class="btn btn-inverse" href="{{route('driver.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
 
             </form>  
                        
