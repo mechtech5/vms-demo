@@ -7,14 +7,14 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>PUC DOCUMENT DETAILS</h3>
+                <h3>FITNESS DOCUMENT DETAILS</h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
-                <a class="btn btn-inverse pull-right" href="{{route('pucdetails.index')}}">Back</a>
+                <a class="btn btn-inverse pull-right" href="{{route('fitness.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('pucdetails.update',$data->id)}}">
+             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('fitness.update',$data->id)}}">
               {{csrf_field()}}
               @method('PATCH')
                  <div class="card-body " >
@@ -55,9 +55,9 @@
 				                </div>
 	                                                            
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">PUC No</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Fitness No</label>
 	                                
-	                                <input id="vehicle_no" class="form-control" name="puc_no" value="{{old('puc_no') ?? $data->puc_no}}" > 
+	                                <input id="vehicle_no" class="form-control" name="fitness_no" value="{{old('fitness_no') ?? $data->fitness_no}}" > 
 	                                @error('puc_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter PUC number' }}</strong>
@@ -70,9 +70,9 @@
 	                        <div class="row">    
                                                        
 	                            <div class="col-md-3 col-xl-3 mt-2">
-	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">PUC Amount</label>
+	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Fitness Amount</label>
 	                               
-	                                <input id="email" name="puc_amt" class="form-control  " value="{{old('spec_grav') ?? $data->puc_amt}}">
+	                                <input id="email" name="fitness_amt" class="form-control  " value="{{old('fitness_amt') ?? $data->fitness_amt}}">
 	                                 @error('puc_amt')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter PUC amount' }}</strong>

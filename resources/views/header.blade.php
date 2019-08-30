@@ -89,13 +89,13 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li id="L3"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Documents</span>
+                            <li  class='<?php if( (Request::segment(1) == 'fitness') || (Request::segment(1) == 'pucdetails') ||  (Request::segment(1) == 'roadtax') || (Request::segment(1) == 'greentax') ){ echo 'active'; }?>' id="L3"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Documents</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('pucdetails.index')}}">PUC Details</a> </li>
-                                    <li><a href="ffitness.aspx">Fitness Details</a> </li>
-                                    <li><a href="froadtax.aspx">Road Tax Details</a> </li>
-                                    <li><a href="fgreentax.aspx">Green Tax Details</a> </li>
+                                    <li><a href="{{route('fitness.index')}}">Fitness Details</a> </li>
+                                    <li><a href="{{route('roadtax.index')}}">Road Tax Details</a> </li>
+                                    <li><a href="{{route('greentax.index')}}">Green Tax Details</a> </li>
                                     <li><a href="finsurance.aspx">Insurance Details</a> </li>
                                     <li><a href="fyearlypermit.aspx">State Permit A</a> </li>
                                     <li><a href="fstatepermitb.aspx">State Permit B</a> </li>

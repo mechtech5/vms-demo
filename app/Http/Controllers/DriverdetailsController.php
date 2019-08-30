@@ -123,7 +123,7 @@ class DriverdetailsController extends Controller
     }
 
     public function get_city(Request $request){
-        echo$id   = $request->id; 
+        $id   = $request->id; 
         $city = DB::table('master_cities')->where('state_id',$id)->get();
         ?>
             <option>Select..</option>

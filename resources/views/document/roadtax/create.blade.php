@@ -7,16 +7,15 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>PUC DOCUMENT DETAILS</h3>
+                <h3>ROAD TAX DETAILS </h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
-                <a class="btn btn-inverse pull-right" href="{{route('pucdetails.index')}}">Back</a>
+                <a class="btn btn-inverse pull-right" href="{{route('roadtax.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('pucdetails.update',$data->id)}}">
+             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('roadtax.store')}}">
               {{csrf_field()}}
-              @method('PATCH')
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
@@ -27,7 +26,7 @@
 			                       <select name="vch_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}" {{$vehicles->id == $data->vch_id ? 'selected':''}}>{{$vehicles->vch_no}}</option>
+			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
 			                            @endforeach     
 			                        </select>
 			                         @error('vch_id')
@@ -55,12 +54,12 @@
 				                </div>
 	                                                            
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">PUC No</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Road Tax No</label>
 	                                
-	                                <input id="vehicle_no" class="form-control" name="puc_no" value="{{old('puc_no') ?? $data->puc_no}}" > 
-	                                @error('puc_no')
+	                                <input id="vehicle_no" class="form-control" name="roadtax_no" value="{{old('roadtax_no')}}" > 
+	                                @error('roadtax_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter PUC number' }}</strong>
+			                               <strong>{{ 'Please enter roadtax number' }}</strong>
 			                            </span>
 			                         @enderror
 	                                 
@@ -70,21 +69,20 @@
 	                        <div class="row">    
                                                        
 	                            <div class="col-md-3 col-xl-3 mt-2">
-	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">PUC Amount</label>
-	                               
-	                                <input id="email" name="puc_amt" class="form-control  " value="{{old('spec_grav') ?? $data->puc_amt}}">
-	                                 @error('puc_amt')
+	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Road Tax Amount</label>	                               
+	                                <input id="email" name="roadtax_amt" class="form-control  " value="{{old('roadtax_amt')}}">
+	                                @error('roadtax_amt')
 			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter PUC amount' }}</strong>
+			                               <strong>{{ 'Please enter roadtax amount' }}</strong>
 			                            </span>
-			                         @enderror
+			                        @enderror
 	                                
 	                            </div>
 
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
 	                               
-	                                <input id="email1" class="form-control" type="date" name="valid_from" value="{{old('valid_from') ?? $data->valid_from}}">
+	                                <input id="email1" class="form-control" type="date" name="valid_from" value="{{old('valid_from')}}">
 	                                 @error('valid_from')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please select valid from ' }}</strong>
@@ -96,7 +94,7 @@
 	                           <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
 	                               
-	                                <input id="email1" class="form-control" type="date" name="valid_till" value="{{old('valid_till') ?? $data->valid_till}}">
+	                                <input id="email1" class="form-control" type="date" name="valid_till" value="{{old('valid_till')}}">
 	                                 @error('valid_till')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select till date' }}</strong>
@@ -108,7 +106,7 @@
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
-	                                <input id="email1" class="form-control" type="date" name="update_dt" value="{{old('update_dt') ?? $data->update_dt}}">
+	                                <input id="email1" class="form-control" type="date" name="update_dt" value="{{old('update_dt')}}">
 	                                @error('update_dt')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please select update date" }}</strong>
@@ -117,19 +115,18 @@
 	                               
 	                            </div>
 	                        </div>
-	                        <div class="row">   
-	                        
+	                        <div class="row">    
 	                            <div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Payment mode</label>
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
-			                            <option value="0">Mode</option>
-			                            <option {{$data->payment_mode == 'cash' ? 'selected':''}} value="cash">Cash</option>
-										<option {{$data->payment_mode == 'cheque' ? 'selected':''}} value="cheque">Cheque</option>
-										<option {{$data->payment_mode == 'credit' ? 'selected':''}} value="credit">Credit</option>
-										<option {{$data->payment_mode == 'dd' ? 'selected':''}} value="dd">DD</option>
-										<option {{$data->payment_mode == 'rtgs' ? 'selected':''}} value="rtgs">RTGS</option>
-										<option {{$data->payment_mode == 'neft' ? 'selected':''}} value="neft">NEFT</option>  
+			                            <option selected="true" value="0">Mode</option>
+			                            <option value="cash">Cash</option>
+										<option value="cheque">Cheque</option>
+										<option value="credit">Credit</option>
+										<option value="dd">DD</option>
+										<option value="rtgs">RTGS</option>
+										<option value="neft">NEFT</option>  
 			                        </select>
 			                        @error('payment_mode')
 			                              <span class="invalid-feedback d-block " role="alert">
@@ -144,7 +141,7 @@
 			                	<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
 	                               
-                               		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no') ?? $data->payment_mode == 'cheque' ? $data->pay_no :''}}">
+                               		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no')}}">
                                		  @error('pay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque number" }}</strong>
@@ -154,7 +151,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="cpay_dt" name="pay_dt" value="{{old('pay_dt') ?? $data->payment_mode == 'cheque' ? $data->pay_dt :''}}">
+                               		 <input id="email1" class="form-control" type="date" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
@@ -166,7 +163,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                               
-                               		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank') ?? $data->payment_mode == 'cheque' ? $data->pay_bank :''}}">
+                               		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank')}}">
                                		  @error('pay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
@@ -177,7 +174,7 @@
                            		 <div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
 	                               
-                               		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch') ?? $data->payment_mode == 'cheque' ? $data->pay_branch :''}}">
+                               		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
                                		  @error('pay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
@@ -191,7 +188,7 @@
 			                	<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
 	                               
-                               		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no') ?? $data->payment_mode == 'dd' ? $data->pay_no :''}}">
+                               		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no')}}">
                                		  @error('pay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD number' }}</strong>
@@ -201,7 +198,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="dpay_dt" value="{{old('pay_dt') ?? $data->payment_mode == 'dd' ? $data->pay_dt :''}}">
+                               		 <input id="email1" class="form-control" type="date" name="dpay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD date' }}</strong>
@@ -213,7 +210,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                                
-                               		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank') ?? $data->payment_mode == 'dd' ? $data->pay_bank :''}}">
+                               		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank')}}">
                                		 @error('pay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
@@ -224,7 +221,7 @@
                            		 <div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
 	                               
-                               		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch') ?? $data->payment_mode == 'dd' ? $data->pay_branch :''}}">
+                               		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch')}}">
                                		  @error('pay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
@@ -243,7 +240,7 @@
 			                               <strong>{{ 'Please enter RTGS number' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_no" value="{{old('rpay_no')?? $data->payment_mode == 'rtgs' ? $data->pay_no :''}}">
+                               		 <input id="email1" class="form-control  " name="rpay_no" value="{{old('rpay_no')}}">
                                 </div>
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS Date</label>
@@ -252,7 +249,7 @@
 			                               <strong>{{ 'Please enter RTGS date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  "type="date" name="rpay_dt" value="{{old('pay_dt') ?? $data->payment_mode == 'rtgs' ? $data->pay_dt :''}}">
+                               		 <input id="email1" class="form-control  "type="date" name="rpay_dt" value="{{old('pay_dt')}}">
                                
                            		 </div>
                            		
@@ -263,7 +260,7 @@
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_bank" value="{{old('rpay_bank') ?? $data->payment_mode == 'rtgs' ? $data->pay_bank :''}}">
+                               		 <input id="email1" class="form-control  " name="rpay_bank" value="{{old('rpay_bank')}}">
                                
                            		 </div>
                            		 <div class="col-md-3 col-xl-3 mt-2">
@@ -273,7 +270,7 @@
 			                               <strong>{{ 'Please enter branch name' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_branch" value="{{old('rpay_branch') ?? $data->payment_mode == 'rtgs' ? $data->pay_branch :''}}">
+                               		 <input id="email1" class="form-control  " name="rpay_branch" value="{{old('rpay_branch')}}">
                                
                            		 </div>
                            	</div>
@@ -286,7 +283,7 @@
 			                               <strong>{{ 'Please enter NEFT number' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_no" value="{{old('npay_no') ?? $data->payment_mode == 'neft' ? $data->pay_no :''}}">
+                               		 <input id="email1" class="form-control  " name="npay_no" value="{{old('npay_no')}}">
                                 </div>
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT Date</label>
@@ -295,7 +292,7 @@
 			                               <strong>{{ 'Please enter NEFT date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control" type="date" name="npay_dt" value="{{old('npay_dt')?? $data->payment_mode == 'neft' ? $data->pay_dt :''}}">
+                               		 <input id="email1" class="form-control" type="date" name="npay_dt" value="{{old('npay_dt')}}">
                                
                            		 </div>
                            		
@@ -306,7 +303,7 @@
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_bank" value="{{old('npay_bank') ?? $data->payment_mode == 'neft' ? $data->pay_bank :''}}">
+                               		 <input id="email1" class="form-control  " name="npay_bank" value="{{old('npay_bank')}}">
                                
                            		 </div>
                            		 <div class="col-md-3 col-xl-3 mt-2">
@@ -316,17 +313,14 @@
 			                               <strong>{{ 'Please enter branch name' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_branch" value="{{old('npay_branch') ?? $data->payment_mode == 'neft' ? $data->pay_branch :''}}">
+                               		 <input id="email1" class="form-control  " name="npay_branch" value="{{old('npay_branch')}}">
                                
                            		 </div>
                            	</div>
                            	<div class=row>
-				                 <div class="col-md-12 col-xl-12 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+				                 <div class="col-md-12 col-xl-12 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
 	                                <input type="file" id="image" name="doc_file" value="">
-	                                @if(!empty($data->doc_file))
-	                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
-	                                @endif 
 	                            </div>
 	                        </div>    
 
@@ -393,7 +387,7 @@
 
     })
 
-    	var type = "{{old('payment_mode') ?? $data->payment_mode}}"
+    	var type = "{{old('payment_mode')}}"
     	if(type == 'cheque'){
     		$('.cheque').show();
     		$('.dd').hide();

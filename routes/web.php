@@ -174,4 +174,35 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/pucdetailsdownload','Document\PUCDetailsController@download')->name('pucdetails.download');
 
 		//end PUCDetailsController
+
+		//strat FitnessDetailsContrller  
+		
+		Route::resource('/fitness','Document\FitnessDetailsController');
+		Route::get('/fitnessDetailsDelete/{id}','Document\FitnessDetailsController@destroy')->name('fitness.delete');
+		Route::get('/fitnessExport','Document\FitnessDetailsController@export')->name('fitness.export');
+		Route::post('/fitnessDetailsImport','Document\FitnessDetailsController@import')->name('fitness.import');
+		Route::get('/fitnessDetailsdownload','Document\FitnessDetailsController@download')->name('fitness.download');
+
+		//end FitnessDetailsContrller
+
+
+		//strat FitnessDetailsContrller  
+		
+		Route::resource('/roadtax','Document\RoadtaxDetailsController');
+		Route::get('/roadtaxDetailsDelete/{id}','Document\RoadtaxDetailsController@destroy')->name('roadtax.delete');
+		Route::get('/roadtaxExport','Document\RoadtaxDetailsController@export')->name('roadtax.export');
+		Route::post('/roadtaxDetailsImport','Document\RoadtaxDetailsController@import')->name('roadtax.import');
+		Route::get('/roadtaxDetailsdownload','Document\RoadtaxDetailsController@download')->name('roadtax.download');
+
+		//end FitnessDetailsContrller
+
+		//strat FitnessDetailsContrller  
+		
+		Route::resource('/greentax','Document\GreentaxDetailsController');
+		Route::get('/greentaxDelete/{id}','Document\GreentaxDetailsController@destroy')->name('greentax.delete');
+		Route::get('/greentaxExport','Document\GreentaxDetailsController@export')->name('greentax.export');
+		Route::post('/greentaxDetailsImport','Document\GreentaxDetailsController@import')->name('greentax.import');
+		Route::get('/greentaxDetailsdownload','Document\GreentaxDetailsController@download')->name('greentax.download');
+
+		//end FitnessDetailsContrller
 });

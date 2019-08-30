@@ -4,43 +4,42 @@ namespace App\Http\Controllers\Document;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\vehicle_master;
-use App\Exports\PUCDetailsExport;
-use App\Imports\PUCDetailsImport;
+use App\Exports\FitnessDetailsExport;
+use App\Imports\FitnessDetailsImport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\PUCDetails;
 use Session;
+use App\Models\FitnessDetails;
+use App\vehicle_master;
 use File;
-use DB;
 
-class PUCDetailsController extends Controller
+class FitnessDetailsController extends Controller
 {
-   
+    
     public function index()
     {
-        $fleet_code  = session('fleet_code');
-        $pucDetails = PUCDetails::where('fleet_code',$fleet_code)->get();
-        return view('document.puc_details.show',compact('pucDetails'));
+        $fleet_code = session('fleet_code');
+        $fitness = FitnessDetails::where('fleet_code',$fleet_code)->get();
+        return view('document.fitness.show',compact('fitness'));
     }
 
+   
     public function create()
     {
-        $fleet_code  = session('fleet_code');
-        $vehicle     = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.puc_details.create',compact('vehicle'));
+        $fleet_code = session('fleet_code');
+        $vehicle  = vehicle_master::where('fleet_code',$fleet_code)->get();
+        return view('document.fitness.create',compact('vehicle'));
     }
 
-  
     public function store(Request $request)
-    {  
+    {
         $data = $request->validate([ 'vch_id'       => 'required',
                                      'agent_id'     => 'required',   
-                                     "puc_amt"     => 'required|numeric',
+                                     "fitness_amt"     => 'required|numeric',
                                      "valid_from"  => 'required',
                                      "valid_till"  => 'required',
                                      "update_dt"   => 'required',
                                      "payment_mode"=> 'required|not_in:0',
-                                     'puc_no'      => 'required',
+                                     'fitness_no'      => 'required',
                                       'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
@@ -48,11 +47,11 @@ class PUCDetailsController extends Controller
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
 
-        PUCDetails::create($vdata);
-        return redirect('pucdetails');
+        FitnessDetails::create($vdata);
+        return redirect('fitness');
     }
 
-    
+   
     public function show($id)
     {
         //
@@ -62,22 +61,22 @@ class PUCDetailsController extends Controller
     public function edit($id)
     {
         $fleet_code = session('fleet_code');
-        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
-        $data       = PUCDetails::where('id',$id)->first();
-        return view('document.puc_details.edit',compact('vehicle','data'));
+        $vehicle = vehicle_master::where('fleet_code',$fleet_code)->get(); 
+        $data = FitnessDetails::find($id);
+        return view('document.fitness.edit',compact('vehicle','data'));
     }
 
     
     public function update(Request $request, $id)
     {
-          $data = $request->validate([ 'vch_id'       => 'required',
+        $data = $request->validate([ 'vch_id'       => 'required',
                                      'agent_id'     => 'required',   
-                                     "puc_amt"     => 'required|numeric',
+                                     "fitness_amt"     => 'required|numeric',
                                      "valid_from"  => 'required',
                                      "valid_till"  => 'required',
                                      "update_dt"   => 'required',
                                      "payment_mode"=> 'required|not_in:0',
-                                     'puc_no'      => 'required',
+                                     'fitness_no'      => 'required',
                                       'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
@@ -85,29 +84,31 @@ class PUCDetailsController extends Controller
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
 
-       PUCDetails::where('id',$id)->update($vdata);
-        return redirect('pucdetails');
+        FitnessDetails::where('id',$id)->update($vdata);
+        return redirect('fitness');
     }
 
+  
     public function destroy($id)
     {
-        PUCDetails::where('id',$id)->delete();
-        return redirect('pucdetails');
+        FitnessDetails::where('id',$id)->delete();
+        return redirect('fitness');
     }
+
     public function export() 
     {
-        return Excel::download(new PUCDetailsExport, 'PUCDetails.xlsx');
+        return Excel::download(new FitnessDetailsExport, 'FitnessDetails.xlsx');
     }
 
      public function import(Request $request) 
     {
-        $data = Excel::import(new PUCDetailsImport,request()->file('file'));
+        $data = Excel::import(new FitnessDetailsImport,request()->file('file'));
         
-        return redirect('pucdetails');
+        return redirect('fitness');
     }
 
      public function download() {
-        $file_path = public_path('demo_files/Demo_PUCDetails.xlsx');
+        $file_path = public_path('demo_files/Demo_FitnessDetails.xlsx');
         return response()->download($file_path);
     }
 
@@ -131,7 +132,7 @@ class PUCDetailsController extends Controller
         }
         
        if(empty($request->hasFile('doc_file'))){
-           $old_data =PUCDetails::where('id',$id)->first();
+           $old_data =FitnessDetails::where('id',$id)->first();
 
             if($request->image == null) {
                 $vdata['doc_file'] = $old_data->doc_file;    
