@@ -4,125 +4,127 @@ namespace App\Http\Controllers\Document;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Exports\GreentaxDetailsExport;
-use App\Imports\GreentaxDetailsImport;
+use App\Exports\StatePermitExport;
+use App\Imports\StatePermitImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
-use App\Models\GreentaxDetails;
+use App\Models\StatePermit;
 use App\vehicle_master;
+use App\State;
 use File;
 use Illuminate\Support\Facades\Storage;
 
-
-class GreentaxDetailsController extends Controller
+class StatePermitController extends Controller
 {
-    
+   
     public function index()
     {
         $fleet_code = session('fleet_code');
-        $greentax = GreentaxDetails::where('fleet_code',$fleet_code)->get();
-        return view('document.greentax.show',compact('greentax'));
-    }
-
-    
-    public function create()
-    {
-        $fleet_code = session('fleet_code');
-        $vehicle = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.greentax.create',compact('vehicle'));
+        $state      = StatePermit::where('fleet_code',$fleet_code)->get();
+        return view('document.statepermit.show',compact('state'));
     }
 
    
-    public function store(Request $request)
+    public function create()
     {
-        $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'     => 'required',   
-                                     "greentax_amt"  => 'required|numeric',
-                                     "valid_from"   => 'required',
-                                     "valid_till"   => 'required',
-                                     "update_dt"    => 'required',
-                                     "payment_mode" => 'required|not_in:0',
-                                     'greentax_no'   => 'required|numeric',
-                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $fleet_code = session('fleet_code');
+        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
+        $state_list = State::where('fleet_code',$fleet_code)->get(); 
+        return view('document.statepermit.create',compact('vehicle','state_list'));
+    }
+
+  
+    public function store(Request $request)
+    { 
+        $data = $request->validate([ 'vch_id'           => 'required',
+                                     'agent_id'         => 'required',   
+                                     "all_india_permit" => 'required|numeric',
+                                     "valid_from"    => 'required',
+                                     "valid_till"    => 'required',
+                                     "update_dt"     => 'required',
+                                     "payment_mode"  => 'required|not_in:0',
+                                     'draft_date'    => 'required',
+                                     'permit_no'     => 'required|numeric',
+                                     'permit_amt'    => 'required|numeric',
+                                     'draft_no'      => 'required|numeric',
+                                     'state_id'      => 'required', 
+                                      'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
+        
     
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
-
-        GreentaxDetails::create($vdata);
-        return redirect('greentax');
+        StatePermit::create($vdata);
+        return redirect('statepermit');
     }
 
-    
     public function show($id)
     {
-        
+        //
     }
 
-   
     public function edit($id)
     {
         $fleet_code = session('fleet_code');
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
-        $data       = GreentaxDetails::find($id);
-        return view('document.greentax.edit',compact('vehicle','data'));
+        $state_list = State::where('fleet_code',$fleet_code)->get(); 
+        $data       = StatePermit::find($id);
+        return view('document.statepermit.edit',compact('vehicle','state_list','data'));
     }
 
-    
     public function update(Request $request, $id)
     {
-        $fleet_code = session('fleet_code');
-         $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'     => 'required',   
-                                     "greentax_amt"  => 'required|numeric',
-                                     "valid_from"   => 'required',
-                                     "valid_till"   => 'required',
-                                     "update_dt"    => 'required',
-                                     "payment_mode" => 'required|not_in:0',
-                                     'greentax_no'   => 'required|numeric',
-                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $data = $request->validate([ 'vch_id'           => 'required',
+                                     'agent_id'         => 'required',   
+                                     "all_india_permit" => 'required|numeric',
+                                     "valid_from"    => 'required',
+                                     "valid_till"    => 'required',
+                                     "update_dt"     => 'required',
+                                     "payment_mode"  => 'required|not_in:0',
+                                     'draft_date'    => 'required',
+                                     'permit_no'     => 'required|numeric',
+                                     'permit_amt'    => 'required|numeric',
+                                     'draft_no'      => 'required|numeric',
+                                     'state_id'      => 'required', 
+                                      'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
-
+        
     
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
-        $vdata['fleet_code'] = $fleet_code;
-        
-        $old_data = GreentaxDetails::find($id);
-        GreentaxDetails::where('id',$id)->update($vdata);
-       
-        if($old_data->doc_file != null && $old_data->doc_file != $vdata['doc_file'] && $vdata['doc_file']!=null){
-            Storage::delete('app/public/'.$fleet_code.'/Document/'.$old_data->doc_file);
-        }
-        return redirect('greentax');
+        $vdata['fleet_code'] = session('fleet_code');
+        StatePermit::where('id',$id)->update($vdata);
+        return redirect('statepermit');
     }
 
     
     public function destroy($id)
     {
-        GreentaxDetails::where('id',$id)->delete();
-        $old_data = GreentaxDetails::find($id);
-        if(!empty($old_data->doc_file )){
-            Storage::delete('app/public/'.$fleet_code.'/Document/Greentax/'.$old_data->doc_file);
-        }    
-        return redirect('greentax');
+        StatePermit::where('id',$id)->delete();   
+        return redirect('statepermit');
     }
 
      public function export() 
     {
-        return Excel::download(new GreentaxDetailsExport, 'GreentaxDetails.xlsx');
+        return Excel::download(new StatePermitExport, 'StatePermit.xlsx');
     }
 
      public function import(Request $request) 
     {
-        $data = Excel::import(new GreentaxDetailsImport,request()->file('file'));
+        $data = Excel::import(new StatePermitImport,request()->file('file'));
         
-        return redirect('greentax');
+        return redirect('statepermit');
     }
 
      public function download() {
-        $file_path = public_path('demo_files/Demo_GreentaxDetails.xlsx');
+
+     
+
+
+        $file_path =
+        public_path('demo_files/Demo_Insurance.xlsx');
+
         return response()->download($file_path);
     }
 
@@ -135,18 +137,18 @@ class GreentaxDetailsController extends Controller
             $extension = $request->file('doc_file')->getClientOriginalExtension();
             $fileNameToStore = $request->payment_mode.'_'.$filename.'.'.$extension;
 
-            $chk_path = storage_path('app/public/'.$fleet_code.'/Document/Greentax/');
-                          
+            $chk_path = storage_path('app/public/'.$fleet_code.'/Document/statepermit/');
+                           
             if(! File::exists($chk_path)){
                 File::makeDirectory($chk_path, 0777, true, true);
             }
 
-            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/Greentax/', $fileNameToStore);
+            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/statepermit/', $fileNameToStore);
             $vdata['doc_file'] = $fileNameToStore;    
         }
         
        if(!empty($id) && empty($request->hasFile('doc_file'))){
-           $old_data =GreentaxDetails::where('id',$id)->first();
+           $old_data =StatePermit::where('id',$id)->first();
 
             if($request->image == null) {
                 $vdata['doc_file'] = $old_data->doc_file;    

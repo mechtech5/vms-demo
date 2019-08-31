@@ -202,7 +202,37 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/greentaxDelete/{id}','Document\GreentaxDetailsController@destroy')->name('greentax.delete');
 		Route::get('/greentaxExport','Document\GreentaxDetailsController@export')->name('greentax.export');
 		Route::post('/greentaxDetailsImport','Document\GreentaxDetailsController@import')->name('greentax.import');
-		Route::get('/greentaxDetailsdownload','Document\GreentaxDetailsController@download')->name('greentax.download');
+		Route::get('/greentaxDetailsDOWNLOAD','Document\GreentaxDetailsController@download')->name('greentax.download');
 
 		//end FitnessDetailsContrller
+
+		//strat insuranceDetailsContrller  
+		
+		Route::resource('/insurance','Document\InsuranceDetailsController');
+		Route::get('/insuranceDelete/{id}','Document\InsuranceDetailsController@destroy')->name('insurance.delete');
+		Route::get('/insuranceExport','Document\InsuranceDetailsController@export')->name('insurance.export');
+		Route::post('/insuranceDetailsImport','Document\InsuranceDetailsController@import')->name('insurance.import');
+		Route::get('/insuranceDetailsDownload','Document\InsuranceDetailsController@download')->name('insurance.download');
+
+		//end insuranceDetailsContrller
+
+		//strat StatePermitContrller  
+		
+		Route::resource('/statepermit','Document\StatePermitController');
+		Route::get('/statepermitDelete/{id}','Document\StatePermitController@destroy')->name('statepermit.delete');
+		Route::get('/statepermitExport','Document\StatePermitController@export')->name('statepermit.export');
+		Route::post('/statepermitDetailsImport','Document\StatePermitController@import')->name('statepermit.import');
+		Route::get('/statepermitDetailsDOwnload','Document\StatePermitController@download')->name('statepermit.download');
+
+		//end StatePermitContrller
+
+		//strat TempPermitContrller  
+		
+		Route::resource('/temppermit','Document\TempPermitController');
+		Route::get('/temppermitDelete/{id}','Document\TempPermitController@destroy')->name('temppermit.delete');
+		Route::get('/temppermitExport','Document\TempPermitController@export')->name('temppermit.export');
+		Route::post('/temppermitImport','Document\TempPermitController@import')->name('temppermit.import');
+		Route::get('/temppermitDOWnload','Document\TempPermitController@download')->name('temppermit.download');
+
+		//end TempPermitContrller
 });

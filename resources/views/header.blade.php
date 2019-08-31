@@ -89,19 +89,16 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li  class='<?php if( (Request::segment(1) == 'fitness') || (Request::segment(1) == 'pucdetails') ||  (Request::segment(1) == 'roadtax') || (Request::segment(1) == 'greentax') ){ echo 'active'; }?>' id="L3"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Documents</span>
+                            <li  class='<?php if( (Request::segment(1) == 'fitness') || (Request::segment(1) == 'pucdetails') ||  (Request::segment(1) == 'roadtax') || (Request::segment(1) == 'greentax') || (Request::segment(1) == 'insurance') || (Request::segment(1) == 'statepermit') ){ echo 'active'; }?>' id="L3"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Documents</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{route('pucdetails.index')}}">PUC Details</a> </li>
                                     <li><a href="{{route('fitness.index')}}">Fitness Details</a> </li>
                                     <li><a href="{{route('roadtax.index')}}">Road Tax Details</a> </li>
                                     <li><a href="{{route('greentax.index')}}">Green Tax Details</a> </li>
-                                    <li><a href="finsurance.aspx">Insurance Details</a> </li>
-                                    <li><a href="fyearlypermit.aspx">State Permit A</a> </li>
-                                    <li><a href="fstatepermitb.aspx">State Permit B</a> </li>
-                                    <li><a href="ffiveyearlypermit.aspx">All India Permit</a> </li>
-                                    <li><a href="TemporaryPermitinfo.aspx">Temporary Permit</a> </li>
-                                    <li><a href="VehicleDocumentReport.aspx"><span>Reports</span></a> </li>
+                                    <li><a href="{{route('insurance.index')}}">Insurance Details</a> </li>
+                                    <li><a href="{{route('statepermit.index')}}">State Permit</a> </li>
+                                    <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li>
                                 </ul>
                             </li>
                             <li id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
