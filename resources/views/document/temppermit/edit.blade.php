@@ -7,15 +7,16 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>STATE PERMIT DETAILS </h3>
+                <h3>UPDATE TEMPORARY PERMIT DETAILS </h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('temppermit.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('temppermit.store')}}">
+             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('temppermit.update',$data->id)}}">
               {{csrf_field()}}
+              @method('PATCH')
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
@@ -27,7 +28,7 @@
 			                       <select name="vch_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
+			                               <option value="{{$vehicles->id}}"{{$vehicles->id == $data->vch_id ? 'selected':''}}>{{$vehicles->vch_no}}</option>
 			                            @endforeach     
 			                        </select>
 			                         @error('vch_id')
@@ -59,7 +60,7 @@
 			                       <select name="tp_state_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($state_list as $state)
-			                               <option value="{{$state->id}}">{{$state->state_name}}</option>
+			                               <option value="{{$state->id}}"{{$state->id == $data->tp_state_id ?'selected':''}}>{{$state->state_name}}</option>
 			                            @endforeach     
 			                        </select>
 			                         @error('tp_state_id')
@@ -73,7 +74,7 @@
 			                	<div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Current location/File Name</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" name="curr_loc" value="{{old('curr_loc')}}" > 
+	                                <input id="ins_policy_no" class="form-control" name="curr_loc" value="{{old('curr_loc') ?? $data->curr_loc}}" > 
 	                                @error('curr_loc')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter draft number' }}</strong>
@@ -84,7 +85,7 @@
 	                              <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Transfer to location sitename</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" name="trans_loc" value="{{old('trans_loc')}}" > 
+	                                <input id="ins_policy_no" class="form-control" name="trans_loc" value="{{old('trans_loc') ?? $data->trans_loc}}" > 
 	                                @error('trans_loc')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter draft date' }}</strong>
@@ -96,25 +97,22 @@
 			                    <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Temporary Permit No</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" name="tp_permit_no" value="{{old('tp_permit_no')}}" > 
+	                                <input id="ins_policy_no" class="form-control" name="tp_permit_no" value="{{old('tp_permit_no') ?? $data->tp_permit_no}}" > 
 	                                @error('tp_permit_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter permit number' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
-		                        </div>
-	                            
-	                            	
+		                        </div>                 	
 	                                           
 				            </div>
-	                         <div class="row">	                        
-	                        
+	                         <div class="row">	                    
 
 	                           <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Total days</label>
 	                               
-	                                <input id="email1" class="form-control" name="tp_total_days" value="{{old('tp_total_days')}}">
+	                                <input id="email1" class="form-control" name="tp_total_days" value="{{old('tp_total_days') ?? $data->tp_total_days}}">
 	                                 @error('tp_total_days')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select expiry date' }}</strong>
@@ -126,7 +124,7 @@
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Road Tax No </label>
 	                                
-	                                <input id="email1" class="form-control"  name="tp_roadtax_no" value="{{old('tp_roadtax_no')}}">
+	                                <input id="email1" class="form-control"  name="tp_roadtax_no" value="{{old('tp_roadtax_no') ?? $data->tp_roadtax_no}}">
 	                                @error('tp_roadtax_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please select update date" }}</strong>
@@ -137,7 +135,7 @@
 	                           	<div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Road Tax Amt</label>
 	                                
-	                                <input id="ins_policy_no" checked="true"  class="form-control" name="tp_tax_amt" value="{{old('tp_tax_amt')}}" > 
+	                                <input id="ins_policy_no" checked="true"  class="form-control" name="tp_tax_amt" value="{{old('tp_tax_amt') ?? $data->tp_tax_amt}}" > 
 	                                @error('tp_tax_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -150,8 +148,8 @@
 		                    	<div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Formalities Complete</label><br>
 	                                
-	                                <input id="ins_policy_no" type="radio" checked="true" name="forms_cmpl" value="1" >Yes
-	                                <input id="ins_policy_no" type="radio" name="forms_cmpl" value="0" >No 
+	                                <input {{$data->forms_cmpl == 1 ? 'checked':''}} id="ins_policy_no" type="radio"  name="forms_cmpl" value="1" >Yes
+	                                <input {{$data->forms_cmpl == 0 ? 'checked':''}} id="ins_policy_no" type="radio" name="forms_cmpl" value="0" >No 
 	                                @error('forms_cmpl')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -162,7 +160,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Formalities Start date</label>
 	                                
-	                                <input id="ins_policy_no" type='date' class="form-control" name="forms_start_dt" value="{{old('forms_start_dt')}}" > 
+	                                <input id="ins_policy_no" type='date' class="form-control" name="forms_start_dt" value="{{old('forms_start_dt') ?? $data->forms_start_dt}}" > 
 	                                @error('forms_start_dt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -173,7 +171,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">End Date</label>
 	                                
-	                                <input id="ins_policy_no" type="date"  class="form-control" name="forms_end_dt" value="{{old('forms_end_dt')}}" > 
+	                                <input id="ins_policy_no" type="date"  class="form-control" name="forms_end_dt" value="{{old('forms_end_dt') ?? $data->forms_end_dt}}" > 
 	                                @error('forms_end_dt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -184,7 +182,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Total days</label>
 	                                
-	                                <input id="ins_policy_no" checked="true"  class="form-control" name="forms_total_days" value="{{old('forms_total_days')}}" > 
+	                                <input id="ins_policy_no" checked="true"  class="form-control" name="forms_total_days" value="{{old('forms_total_days') ?? $data->forms_total_days}}" > 
 	                                @error('forms_total_days')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -197,7 +195,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Permit Start date</label>
 	                                
-	                                <input id="ins_policy_no" type='date' class="form-control" name="tp_permit_start_dt" value="{{old('tp_permit_start_dt')}}" > 
+	                                <input id="ins_policy_no" type='date' class="form-control" name="tp_permit_start_dt" value="{{old('tp_permit_start_dt') ?? $data->tp_permit_start_dt}}" > 
 	                                @error('tp_permit_start_dt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter permit amout' }}</strong>
@@ -208,7 +206,7 @@
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Permit End Date</label>
 	                               
-	                                <input id="email1" class="form-control" type="date" name="tp_permit_end_dt" value="{{old('tp_permit_end_dt')}}">
+	                                <input id="email1" class="form-control" type="date" name="tp_permit_end_dt" value="{{old('tp_permit_end_dt') ?? $data->tp_permit_end_dt}}">
 	                                 @error('tp_permit_end_dt')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please select valid from ' }}</strong>
@@ -218,7 +216,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Road Tax Start date</label>
 	                                
-	                                <input id="ins_policy_no" checked="true" type="date" class="form-control" name="tp_roadtax_start_dt" value="{{old('tp_roadtax_start_dt')}}" > 
+	                                <input id="ins_policy_no" checked="true" type="date" class="form-control" name="tp_roadtax_start_dt" value="{{old('tp_roadtax_start_dt') ?? $data->tp_roadtax_start_dt}}" > 
 	                                @error('tp_roadtax_start_dt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -229,7 +227,7 @@
 		                        <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">End Date</label>
 	                                
-	                                <input id="ins_policy_no" checked="true" type="date"  class="form-control" name="tp_roadtax_end_dt" value="{{old('tp_roadtax_end_dt')}}" > 
+	                                <input id="ins_policy_no" checked="true" type="date"  class="form-control" name="tp_roadtax_end_dt" value="{{old('tp_roadtax_end_dt') ?? $data->tp_roadtax_end_dt}}" > 
 	                                @error('tp_roadtax_end_dt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
@@ -242,7 +240,7 @@
 		                        <div class="col-md-12 col-xl-12 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Remarks</label>
 	                                
-	                                <textarea id="ins_policy_no" checked="true"  class="form-control" name="remarks" value="{{old('remarks')}}" ></textarea> 
+	                                <textarea id="ins_policy_no" checked="true"  class="form-control" name="remarks" value="" >{{old('remarks') ?? $data->remarks}}</textarea> 
 	                                @error('remarks')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>

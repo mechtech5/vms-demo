@@ -32,7 +32,7 @@
                   <th style="width: 100px;">SR. NO</th>
                   <th style="width: 320px;">PERMIT NUMBER</th>
                   <th style="width: 320px;">VEHICLE NUMBER</th>
-                  <th style="width: 320px;">PERMIT AMOUNT</th>
+                  <th style="width: 320px;">TAX AMOUNT</th>
                   <th style="width: 320px;">PERMIT STATE</th>
                   <th style="width: 320px;">VALID FROM</th>
                   <th style="width: 320px;">EXPIRY DATE</th>
@@ -42,18 +42,26 @@
               
               <?php $count = 0; ?>
               @foreach($temppermit as $temp) 
-              @php ($vch_no = \App\vehicle_master::find($temp->vch_id))            
+              <?php  if(!empty($temp->tp_state_id) && !empty($temp->vch_id) ){
+                       $vch_no = \App\vehicle_master::find($temp->vch_id);
+                       $state  = \App\State::find($temp->tp_state_id);
+                     }
+                     else{
+                        $vch_no = array();
+                        $state  = array();
+                     } ?>
+                      
                 <tr>
                   <td style="width: 10%;  padding-left: 20px;">{{++$count}}</td>
-                  <td style="width: 17%;padding-left: 20px">{{$temp->permit_no }}</td>
+                  <td style="width: 17%;padding-left: 20px">{{$temp->tp_permit_no}}</td>
                   <td style="padding-left: 20px">{{$vch_no->vch_no }}</td>
-                  <td style="padding-left: 20px">{{$temp->permit_amt}}</td>
-                  <td style="padding-left: 20px">{{$temp->permit_amt}}</td>
-                  <td style="padding-left: 20px">{{$temp->valid_from}}</td>
-                  <td style="padding-left: 20px">{{$temp->valid_till}}</td>
+                  <td style="width: 14%; padding-left: 20px">{{$temp->tp_tax_amt}}</td>
+                  <td style="width: 14%; padding-left: 20px">{{$state->state_name}}</td>
+                  <td style="padding-left: 20px">{{$temp->tp_permit_start_dt}}</td>
+                  <td style="padding-left: 20px">{{$temp->tp_permit_end_dt}}</td>
                   <td style="width:10%; text-align:center;">
-                    <a style="padding: 2px 5px;" href="{{route('statepermit.edit',$temp->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('statepermit.delete',$temp->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding: 2px 5px;" href="{{route('temppermit.edit',$temp->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('temppermit.delete',$temp->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach
