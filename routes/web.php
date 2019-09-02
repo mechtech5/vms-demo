@@ -46,6 +46,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 	Route::get('fleetdestroy/{id}','FleetController@destroy')->name('model.destroy');
 
 	//End FleetController
+
 });
 // End Users Conroller 
 
@@ -240,6 +241,13 @@ Route::group(['middleware' => ['role:admin']], function () {
 		
 		Route::resource('/agent','AgentController');
 		Route::get('/agentDelete/{id}','AgentController@destroy')->name('agent.delete');
+		
+		//end AgentContrller
+
+		//strat AgentContrller  
+		
+		Route::resource('/company','InsuranceCompanyController');
+		Route::get('/companyDelete/{id}','InsuranceCompanyController@destroy')->name('company.delete');
 		
 		//end AgentContrller
 });

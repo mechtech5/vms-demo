@@ -41,14 +41,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[ 'name' =>'required',
-                             'email' => 'required|email|unique:users,email',
-                             'password' => 'required',
-                             'password_confirmation' => 'required_with:password|same:password'
-        ]);
+                                   'email' => 'required|email|unique:users,email'
+                                 ]);
+        $name = strtolower($request->name);
+        $password = substr($name,0,4).'1234';
         $data = array(
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => Hash::make($password),
                 );
         User::insert($data);
         return redirect('admin');

@@ -76,6 +76,7 @@
                                             <li><a href="{{route('state.index')}}">State Setup</a></li>
                                             <li><a href="{{route ('city.index')}}">City Setup</a></li>
                                             <li><a href="{{route ('agent.index')}}">Agent</a></li>
+                                            <li><a href="{{route ('company.index')}}">Insurance Company</a></li>
                                             <li><a href="#">Expense Type Setup</a></li>
                                         </ul>
                                     </li>

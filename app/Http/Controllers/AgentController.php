@@ -30,6 +30,7 @@ class AgentController extends Controller
                                       "agent_email"  => 'required|email|unique:agent_mast,agent_email',
                                       "agent_address"=> 'required'
                                     ]);
+        $data['fleet_code'] = session('fleet_code');
         Agent::create($data);
         return redirect('agent');
     }
@@ -42,14 +43,22 @@ class AgentController extends Controller
 
     public function edit($id)
     {
-        
+        $data  = Agent::find($id);
+        return view('agent.edit',compact('data'));
     }
 
 
     public function update(Request $request, $id)
     {
-        $data = Agent::find($id);
-        return view('agent.edit',compact('data'));
+        $data  = $request->validate(["agent_name"    => 'required',
+                                      "agent_code"   => 'required',
+                                      "agent_phone"  => 'required|numeric',
+                                      "agent_email"  => 'required',
+                                      "agent_address"=> 'required'
+                                    ]);
+        $data['fleet_code'] = session('fleet_code');
+        Agent::where('id',$id)->update($data);
+        return redirect('agent');
     }
 
    

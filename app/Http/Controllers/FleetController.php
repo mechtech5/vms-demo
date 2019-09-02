@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
+use Illuminate\Support\Facades\Crypt;
 
 class FleetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         $user = User::all();
@@ -21,56 +20,44 @@ class FleetController extends Controller
         return view('fleet.show',compact('user','fleet'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $user  = User::all();
         return view('fleet.create',compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
 
         $validatedData = $request->validate([
                                        'fleet_owner' =>'required',
                                        'fleet_name'=> 'required',
-                                       'fleet_code' => 'required|min:2|max:8'
+                                       'fleet_code' => 'required|min:8|'
                                        ]);
-       
+       $user     = User::find($request->fleet_owner);
+       $u_name     = strtolower($user->name);
+       $password = substr($u_name,0,4).'1234';
+       $name['username'] = $user->email;
+       $name['name']     = $u_name;
+       $name['password'] = $password;
+             
         $validatedData['fleet_desc'] = $request->fleet_desc;
 
-        DB::table('fleet_mast')->insert($validatedData);
+        $last_id =  DB::table('fleet_mast')->insert($validatedData);
+       // if(!empty($last_id)
+        Mail::to($user->email)->send(new SendMailable($name));
         return redirect('fleet');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
         $fleet = DB::table('fleet_mast')->where('fleet_owner',$id)->get();
@@ -78,13 +65,7 @@ class FleetController extends Controller
         return view('fleet.edit',compact('fleet','user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -99,15 +80,18 @@ class FleetController extends Controller
         return redirect('fleet');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         DB::table('fleet_mast')->where('fleet_owner',$id)->delete();
         return redirect('fleet');
+    }
+
+    public function mail()
+    {
+       $name = 'Krunal';
+       
+       
+       return 'Email was sent';
     }
 }

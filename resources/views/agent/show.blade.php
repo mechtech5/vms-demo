@@ -30,13 +30,13 @@
                                     
                 <tr>
                   <td style="width: 10%;  padding-left: 20px;">{{++$count}}</td>
-                  <td style="width: 17%;padding-left: 20px">{{$temp->agent_name}}</td>
-                  <td style="padding-left: 20px">{{$vch_no->agent_code }}</td>
-                  <td style="width: 14%; padding-left: 20px">{{$temp->agent_phone}}</td>
-                  <td style="width: 14%; padding-left: 20px">{{$state->agent_email}}</td>
+                  <td style="width: 17%;padding-left: 20px">{{$Agent->agent_name}}</td>
+                  <td style="width: 13%; padding-left: 20px">{{$Agent->agent_code }}</td>
+                  <td style="width: 14%; padding-left: 20px">{{$Agent->agent_phone}}</td>
+                  <td style="width: 14%; padding-left: 20px">{{$Agent->agent_email}}</td>
                   <td style="width:10%; text-align:center;">
-                    <a style="padding: 2px 5px;" href="{{route('agent.edit',$temp->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('agent.delete',$temp->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding: 2px 5px;" href="{{route('agent.edit',$Agent->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('agent.delete',$Agent->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach
