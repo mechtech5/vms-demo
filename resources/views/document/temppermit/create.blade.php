@@ -7,7 +7,7 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>STATE PERMIT DETAILS </h3>
+                <h3>TEMPORARY PERMIT DETAILS </h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
@@ -272,85 +272,6 @@
 <script type="text/javascript">
   $(document).ready( function () {
     
-    $('#type').on('change',function(){
-    	var type = $(this).val();
-    	if(type == 'cheque'){
-    		$('.cheque').show();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').hide();
-    		$('#cheque_no').on('keyup',function(){
-    			var chk = $(this).val();
-    			if($.isNumeric(chk)){
-
-    			}
-    		})
-
-    	}
-    	else if(type == 'dd'){
-    		$('.cheque').hide();
-    		$('.dd').show();
-    		$('.rtgs').hide();
-    		$('.neft').hide();
-    	}
-
-    	else if(type == 'rtgs'){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').show();
-    		$('.neft').hide();
-    	}
-
-    	else if(type == 'neft'){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').show();
-    	}
-    	else if( (type == 'cash') || (type == 'credit') || (type="") ){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').hide();	
-    	}
-
-    })
-
-    	var type = "{{old('payment_mode')}}"
-    	if(type == 'cheque'){
-    		$('.cheque').show();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').hide();
-      	}
-
-    	else if(type == 'dd'){
-    		$('.cheque').hide();
-    		$('.dd').show();
-    		$('.rtgs').hide();
-    		$('.neft').hide();
-    	}
-
-    	else if(type == 'rtgs'){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').show();
-    		$('.neft').hide();
-    	}
-
-    	else if(type == 'neft'){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').show();
-    	}
-    	else if( (type == 'cash') || (type == 'credit') || (type="0") ){
-    		$('.cheque').hide();
-    		$('.dd').hide();
-    		$('.rtgs').hide();
-    		$('.neft').hide();	
-    	}
-      
 	});
 
 </script>

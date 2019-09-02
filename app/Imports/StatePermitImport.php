@@ -18,6 +18,7 @@ class StatePermitImport implements ToCollection,WithHeadingRow
     { 
         $error = array();
         $fleet_code = session('fleet_code');
+        
 
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;

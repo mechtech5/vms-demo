@@ -235,4 +235,11 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/temppermitDOWnload','Document\TempPermitController@download')->name('temppermit.download');
 
 		//end TempPermitContrller
+
+		//strat AgentContrller  
+		
+		Route::resource('/agent','AgentController');
+		Route::get('/agentDelete/{id}','AgentController@destroy')->name('agent.delete');
+		
+		//end AgentContrller
 });
