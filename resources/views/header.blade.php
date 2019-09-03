@@ -155,13 +155,12 @@
                                     <li><a href="TyreReport.aspx"><span>Reports</span></a> </li>
                                 </ul>
                             </li>
-                            <li id="L6"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Fuel</span>
+                            <li class="<?php if( (Request::segment(1) == 'petrolpump') || (Request::segment(1) == 'fuelentry') || (Request::segment(1) == 'fuelbill')){ echo 'active' ;} ?> " id="L6"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Fuel</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="fpetrolpump.aspx">Petrol Pump Details</a> </li>
-                                    <li><a href="ffuleentry.aspx">Fuel Filled Entry</a> </li>
-                                    <li><a href="ffulepaymententry.aspx">Fuel Bill Payment</a> </li>
-                                    <li><a href="FuelReports.aspx"><span>Reports</span></a> </li>
+                                    <li><a href="{{route('petrolpump.index')}}">Petrol Pump Details</a> </li>
+                                    <li><a href="{{route('fuelentry.index')}}">Fuel Filled Entry</a> </li>
+                                    <li><a href="{{route('fuelbill.index')}}">Fuel Bill Payment</a> </li>
                                 </ul>
                             </li>
                             <li id="L7"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Expenses</span>

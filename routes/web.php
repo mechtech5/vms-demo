@@ -250,4 +250,31 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/companyDelete/{id}','InsuranceCompanyController@destroy')->name('company.delete');
 		
 		//end AgentContrller
+
+
+		//Start PetrolPumpContrller
+		Route::resource('/petrolpump','Fuel\PetrolPumpController');
+		Route::get('/petrolpumpDelete/{id}','Fuel\PetrolPumpController@destroy')->name('petrolpump.delete');
+		Route::get('/petrolpumpExport','Fuel\PetrolPumpController@export')->name('petrolpump.export');
+		Route::post('/petrolpumpImport','Fuel\PetrolPumpController@import')->name('petrolpump.import');
+		Route::get('/petrolpumpDOWnloAd','Fuel\PetrolPumpController@download')->name('petrolpump.download');
+		Route::post('/get_city','Fuel\PetrolPumpController@get_city')->name('petrolpump.get_city');
+
+		//End PetrolPumpContrller
+
+		//Statr FuelEnrtyController
+		Route::resource('/fuelentry','Fuel\FuelEntryController');
+		Route::get('/fuelentryDelete/{id}','Fuel\FuelEntryController@destroy')->name('fuelentry.delete');
+		Route::get('/fuelentryExport','Fuel\FuelEntryController@export')->name('fuelentry.export');
+		Route::post('/fuelentryImport','Fuel\FuelEntryController@import')->name('fuelentry.import');
+		Route::get('/fuelentryDOwnloaD','Fuel\FuelEntryController@download')->name('fuelentry.download');
+		//End FuelEntryController
+
+		//Statr FuelBillController
+		Route::resource('/fuelbill','Fuel\FuelBillController');
+		Route::get('/fuelbillDelete/{id}','Fuel\FuelBillController@destroy')->name('fuelbill.delete');
+		Route::get('/fuelbillExport','Fuel\FuelBillController@export')->name('fuelbill.export');
+		Route::post('/fuelbillImport','Fuel\FuelBillController@import')->name('fuelbill.import');
+		Route::get('/fuelbillDOwnLoaD','Fuel\FuelBillController@download')->name('fuelbill.download');
+		//End FuelBillController
 });
