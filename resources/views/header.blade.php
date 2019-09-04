@@ -103,15 +103,15 @@
                                     <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li>
                                 </ul>
                             </li>
-                            <li id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
+                            <li class="<?php if ((Request::segment(1) == 'sparetype') || (Request::segment(1) == 'spareunit') || (Request::segment(1) == 'sparecompany') || (Request::segment(1) == 'sparemaster') ){ echo 'active'; }?>" id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
                                     <li class='dropdown-submenu'><a href="#">Setup</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="fitemtype.aspx">Spare Type</a></li>
-                                            <li><a href="fitemunit.aspx">Spare Unit</a></li>
-                                            <li><a href="fitemcompany.aspx">Spare Company</a></li>
-                                            <li><a href="fitemmaster.aspx">Spare Master</a></li>
+                                            <li><a href="{{route('sparetype.index')}}">Spare Type</a></li>
+                                            <li><a href="{{route('spareunit.index')}}">Spare Unit</a></li>
+                                            <li><a href="{{route('sparecompany.index')}}">Spare Company</a></li>
+                                            <li><a href="{{route('sparemaster.index')}}">Spare Master</a></li>
                                             <li><a href="fssupplier.aspx">Supplier/Vendor</a></li>
                                         </ul>
                                     </li>

@@ -11,25 +11,26 @@
 
             </div>
             <div class="col-sm-6 col-md-6">
-                <a class="btn btn-inverse pull-right" href="{{route('sparetype.index')}}">Back</a>
+                <a class="btn btn-inverse pull-right" href="{{route('spareunit.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('sparetype.store')}}">
+             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('spareunit.store')}}">
               {{csrf_field()}}
+              
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                         	<div class="row">
 
 				                <div class="col-md-4 col-xl-4 mt-2 ">
-	                                <label class="pull-right" for="Vehicle No." >Spare Category Name</label><span class="pull-right" style="color: #FF0000;font-size:15px;">*</span>               
+	                                <label class="pull-right" for="Vehicle No." >Spare Unit Name</label><span class="pull-right" style="color: #FF0000;font-size:15px;">*</span>               
 	                               
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                                               
-	                                <input id="ins_policy_no" class="form-control" name="type_name" value="{{old('type_name')}}" > 
-	                                @error('type_name')
+	                                <input id="ins_policy_no" class="form-control" name="unit_name" value="{{old('unit_name')}}" > 
+	                                @error('unit_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter spare type name' }}</strong>
 			                            </span>
@@ -40,14 +41,14 @@
 				            <div class="row">
 
 				                <div class="col-md-4 col-xl-4 mt-2 ">
-	                                <label class="pull-right" for="Vehicle No." >Spare Category Description</label>               
+	                                <label class="pull-right" for="Vehicle No." >Spare Unit Description</label>               
 	                               
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                                               
-	                                <textarea id="ins_policy_no" class="form-control" name="type_desc" value="{{old('type_desc')}}" ></textarea> 
-	                                @error('type_desc')
+	                                <textarea id="ins_policy_no" class="form-control" name="unit_desc" value="{{old('unit_desc')}}" ></textarea> 
+	                                @error('unit_desc')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter agent name' }}</strong>
 			                            </span>

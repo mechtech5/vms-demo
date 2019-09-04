@@ -277,4 +277,44 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::post('/fuelbillImport','Fuel\FuelBillController@import')->name('fuelbill.import');
 		Route::get('/fuelbillDOwnLoaD','Fuel\FuelBillController@download')->name('fuelbill.download');
 		//End FuelBillController
+
+		//Statr FuelBillController
+		Route::resource('/fuelbill','Fuel\FuelBillController');
+		Route::get('/fuelbillDelete/{id}','Fuel\FuelBillController@destroy')->name('fuelbill.delete');
+		Route::get('/fuelbillExport','Fuel\FuelBillController@export')->name('fuelbill.export');
+		Route::post('/fuelbillImport','Fuel\FuelBillController@import')->name('fuelbill.import');
+		Route::get('/fuelbillDOwnLoaD','Fuel\FuelBillController@download')->name('fuelbill.download');
+		//End FuelBillController 
+
+		//Statr SpareTypeController
+		Route::resource('/sparetype','Spare\SpareTypeController');
+		Route::get('/sparetypeDelete/{id}','Spare\SpareTypeController@destroy')->name('sparetype.delete');
+		Route::get('/sparetypeExport','Spare\SpareTypeController@export')->name('sparetype.export');
+		Route::post('/sparetypeImport','Spare\SpareTypeController@import')->name('sparetype.import');
+		Route::get('/sparetypeDOwnLoaD','Spare\SpareTypeController@download')->name('sparetype.download');
+		//End SpareTypeController
+
+		//Statr SpareTypeController 
+		Route::resource('/spareunit','Spare\SpareUnitController');
+		Route::get('/spareunitDelete/{id}','Spare\SpareUnitController@destroy')->name('spareunit.delete');
+		Route::get('/spareunitExport','Spare\SpareUnitController@export')->name('spareunit.export');
+		Route::post('/spareunitImport','Spare\SpareUnitController@import')->name('spareunit.import');
+		Route::get('/spareunitDOwnLoaD','Spare\SpareUnitController@download')->name('spareunit.download');
+		//End SpareTypeController
+
+		//Statr SpareCompanyController 
+		Route::resource('/sparecompany','Spare\SpareCompanyController');
+		Route::get('/sparecompanyDelete/{id}','Spare\SpareCompanyController@destroy')->name('sparecompany.delete');
+		Route::get('/sparecompanyExport','Spare\SpareCompanyController@export')->name('sparecompany.export');
+		Route::post('/sparecompanyImport','Spare\SpareCompanyController@import')->name('sparecompany.import');
+		Route::get('/sparecompanyDOwnLoaD','Spare\SpareCompanyController@download')->name('sparecompany.download');
+		//End SpareCompanyController
+
+		//Statr SpareMasterController 
+		Route::resource('/sparemaster','Spare\SpareMasterController');
+		Route::get('/sparemasterDelete/{id}','Spare\SpareMasterController@destroy')->name('sparemaster.delete');
+		Route::get('/sparemasterExport','Spare\SpareMasterController@export')->name('sparemaster.export');
+		Route::post('/sparemasterImport','Spare\SpareMasterController@import')->name('sparemaster.import');
+		Route::get('/sparemasterDOwnLoaD','Spare\SpareMasterController@download')->name('sparemaster.download');
+		//End SpareMasterController
 });
