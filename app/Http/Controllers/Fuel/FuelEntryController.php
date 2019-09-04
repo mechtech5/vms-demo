@@ -118,7 +118,7 @@ class FuelEntryController extends Controller
     }
 
     public function download() {
-       $file_path = public_path('demo_files/Demo_Kmupdate.xlsx');
+       $file_path = public_path('demo_files/Demo_FuelEntry.xlsx');
     return response()->download($file_path);
     }
 }

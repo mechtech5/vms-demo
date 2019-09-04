@@ -7,15 +7,16 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>ADD FUELBILL DETAILS</h3>
+                <h3>UPDATE FUELBILL DETAILS</h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('fuelbill.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('fuelbill.store')}}">
+             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('fuelbill.update',$data->id)}}">
               {{csrf_field()}}
+              @method('PATCH')
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
@@ -26,22 +27,22 @@
 			                       <select id='pump_city' name="fuel_stn_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " >Select..</option> 
 			                            @foreach($pump as $Pump)
-			                               <option value="{{$Pump->id}}">{{$Pump->pump_name}}</option>
+			                               <option value="{{$Pump->id}}"{{$Pump->id == $data->fuel_stn_id ? 'selected':''}}>{{$Pump->pump_name}}</option>
 			                            @endforeach       
 			                        </select>
 			                        @error('fuel_stn_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please Select petrol pump' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Date</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" type="date" name="date" value="{{old('date')}}" > 
+	                                <input id="ins_policy_no" class="form-control" type="date" name="date" value="{{old('date') ?? $data->date}}" > 
 	                                @error('date')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please select date' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>
@@ -49,10 +50,10 @@
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Total Amount</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" name="total_amt_paid" value="{{old('total_amt_paid')}}" > 
+	                                <input id="ins_policy_no" class="form-control" name="total_amt_paid" value="{{old('total_amt_paid') ?? $data->total_amt_paid}}" > 
 	                                @error('total_amt_paid')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter amount' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>
@@ -65,12 +66,12 @@
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
 			                            <option selected="true" value="0">Mode</option>
-			                            <option value="cash">Cash</option>
-										<option value="cheque">Cheque</option>
-										<option value="credit">Credit</option>
-										<option value="dd">DD</option>
-										<option value="rtgs">RTGS</option>
-										<option value="neft">NEFT</option>  
+			                            <option {{$data->payment_mode == 'cash' ? 'selected':''}} value="cash">Cash</option>
+										<option {{$data->payment_mode == 'cheque' ? 'selected':''}} value="cheque">Cheque</option>
+										<option {{$data->payment_mode == 'credit' ? 'selected':''}} value="credit">Credit</option>
+										<option {{$data->payment_mode == 'dd' ? 'selected':''}} value="dd">DD</option>
+										<option {{$data->payment_mode == 'rtgs' ? 'selected':''}} value="rtgs">RTGS</option>
+										<option {{$data->payment_mode == 'neft' ? 'selected':''}} value="neft">NEFT</option>  
 			                        </select>
 			                        @error('payment_mode')
 			                              <span class="invalid-feedback d-block " role="alert">
@@ -265,7 +266,7 @@
 		                        <div class="col-md-12 col-xl-12 mt-2">
 	                                <label for="Vehicle No.">Remarks</label>
 	                                
-	                                <textarea id="ins_policy_no" class="form-control" name="remarks" value="{{old('remarks')}}" ></textarea> 
+	                                <textarea id="ins_policy_no" class="form-control" name="remarks" value="" >{{old('remarks') ?? $data->remarks}}</textarea> 
 	                                @error('remarks')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter address' }}</strong>

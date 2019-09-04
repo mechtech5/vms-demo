@@ -22,7 +22,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	Route::resource('/admin', 'ACL\RolesController');
 	Route::get('/delete/{id}','ACL\RolesController@destroy')->name('delete');
-	Route::post('/saveChanges','ACL\RolesController@saveChanges')->name('saveChanges');
+	Route::post('/save_changes','ACL\RolesController@saveChanges')->name('saveChanges');
 
 	// End RolesController
 
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	Route::resource('/users', 'ACL\UserController');
 	Route::get('/destroy/{id}', 'ACL\UserController@destroy')->name('destroy');
-	Route::post('/changesRole','ACL\UserController@changesRole')->name('changesRole');
+	Route::post('/changes_role','ACL\UserController@changesRole')->name('changesRole');
 	Route::post('/changePermission','ACL\UserController@changePermission')->name('changePermission');
 
 	//Start FleetController

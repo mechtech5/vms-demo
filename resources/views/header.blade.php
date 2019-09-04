@@ -204,7 +204,7 @@
                                     <img src="FLAT/img/demo/user-avatar.jpg" alt="">
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a href="changepassword.aspx" style="color: Black;">Change Password</a> </li>
+                                    <li><a href="{{route('dashboard.edit',Auth::user()->id)}}" style="color: Black;">Change Password</a> </li>
                                     <li>
                                        <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
