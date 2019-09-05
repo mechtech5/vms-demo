@@ -25,42 +25,42 @@
 	                             <div class="col-md-4 col-xl-4 mt-2">
                                		<label for="vehicle_model ">Select Comapny</label>
                                    <select id="state_id" name="comp_id" class="selectpicker form-control">
-                                        <option>Select..</option>
+                                        <option value="0">Select..</option>
                                         @foreach($comapny as $Comapny)
                                         	<option value="{{$Comapny->id}}">{{$Comapny->comp_name}}</option>
                                         @endforeach		
                                     </select>   
                                     @error('comp_id')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please select company' }}</strong>
 		                            </span>
 		                        	@enderror                                 
                              	</div>
 	                             <div class="col-md-4 col-xl-4 mt-2">
                                		<label for="vehicle_model ">Select Type</label>
                                    <select id="state_id" name="type_id" class="selectpicker form-control">
-                                        <option>Select..</option>
+                                        <option value="0">Select..</option>
                                         @foreach($type as $Type)
                                         	<option value="{{$Type->id}}">{{$Type->type_name}}</option>
                                         @endforeach		
                                     </select>    
                                      @error('type_id')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ "Plesae select spare type" }}</strong>
 		                            </span>
 		                        	@enderror                                  
                              	</div>
                              <div class="col-md-4 col-xl-4 mt-2">
                                <label for="vehicle_model ">Select Unit</label>
                                    <select id="state_id" name="unit_id" class="selectpicker form-control">
-                                        <option>Select..</option>
+                                        <option value="0">Select..</option>
                                         @foreach($unit as $Unit)
                                         	<option value="{{$Unit->id}}">{{$Unit->unit_name}}</option>
                                         @endforeach		
                                     </select>     
                                     @error('unit_id')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please select spare unit' }}</strong>
 		                            </span>
 		                        	@enderror                                
                              </div>
@@ -71,7 +71,7 @@
                                 <input id="email" name="name" class="form-control  " value="{{old('phone')}}">
                                 @error('name')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please select spare name' }}</strong>
 		                            </span>
 		                         @enderror
                                 
@@ -83,7 +83,7 @@
                                 <input id="email1" class="form-control  " name="stk_open" value="{{old('stk_open')}}">
                                 @error('stk_open')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please enter spare stock open' }}</strong>
 		                            </span>
 		                         @enderror
                                
@@ -94,7 +94,7 @@
                                   <input id="email1" class="form-control" name="stk_curr" value="{{old('stk_curr')}}">
                                   @error('stk_curr')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Pease enter spare current stock' }}</strong>
 		                            </span>
 		                         @enderror
                                
@@ -107,7 +107,7 @@
                                 <input id="email" class="form-control" name="stk_buffer" value="{{old('stk_buffer')}}">
                                 @error('stk_buffer')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{'Please enter buffer stock'}}</strong>
 		                            </span>
 		                         @enderror
 
@@ -142,14 +142,14 @@
                                 <input class="form-control"  type="" id="email1"  name="stk_value" value="{{old('stk_value')}}">
                                 @error('stk_value')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please enter stock value' }}</strong>
 		                            </span>
 		                         @enderror
                             </div>
                              <div class="col-md-4 col-xl-4 mt-2">
                                 <label for="IMEI Number">Part No</label><br>
                                 <input class="form-control"  type="" id="email1"  name="part_no" value="{{old('part_no')}}">
-                                @error('stk_curr')
+                                @error('part_no')
 		                            <span class="invalid-feedback d-block" role="alert">
 		                               <strong>{{ $message }}</strong>
 		                            </span>
@@ -158,9 +158,9 @@
                              <div class="col-md-4 col-xl-4 mt-2">
                                 <label for="IMEI Number">Sales Price</label><br>
                                 <input class="form-control" type="" id="email1"  name="sales_prc" value="{{old('sales_prc')}}">
-                                @error('stk_curr')
+                                @error('sales_prc')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
+		                               <strong>{{ 'Please enter sales price' }}</strong>
 		                            </span>
 		                         @enderror
                             </div>
@@ -182,22 +182,7 @@
 </div>    
 
 <script type="text/javascript">
-  $(document).ready( function () {
-    $('#myTable').DataTable();
-    
-    $('#state_id').on('change',function(){
-        var state_id = $('#state_id').val();
-        $.ajax({
-                url: "/drivercity",
-                type: 'POST',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data: {'id':state_id},
-                success: function (data) {
-                   $('#city_id').html(data);
-                }
-            })
-       })
-	});
+
 
 </script>
 @endsection

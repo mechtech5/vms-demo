@@ -112,7 +112,7 @@
                                             <li><a href="{{route('spareunit.index')}}">Spare Unit</a></li>
                                             <li><a href="{{route('sparecompany.index')}}">Spare Company</a></li>
                                             <li><a href="{{route('sparemaster.index')}}">Spare Master</a></li>
-                                            <li><a href="fssupplier.aspx">Supplier/Vendor</a></li>
+                                            <li><a href="{{route('sparevendor.index')}}">Supplier/Vendor</a></li>
                                         </ul>
                                     </li>
                                     <li class='dropdown-submenu'><a href="#">Transactions</a>
@@ -130,10 +130,10 @@
                             </li>
                             <li id="L5"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Tyre-Inventory</span>
                                 <span class=""></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class='dropdown-submenu'><a href="#">Setup</a>
+                                <ul  class="dropdown-menu">
+                                    <li  class='dropdown-submenu <?php if ((Request::segment(1) == 'tyrecompany')) { echo 'active'; } ?> '><a style="background-color: #37a000;" href="#">Setup</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="ftyrecompany.aspx">Tyre Company</a></li>
+                                            <li><a href="{{route('tyrecompany.index')}}">Tyre Company</a></li>
                                             <li><a href="ftyremodel.aspx">Tyre Model</a></li>
                                             <li><a href="ftyretype.aspx">Tyre Type</a></li>
                                             <li><a href="fsupplier.aspx">Supplier/Vendor</a></li>

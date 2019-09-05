@@ -316,5 +316,24 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/sparemasterExport','Spare\SpareMasterController@export')->name('sparemaster.export');
 		Route::post('/sparemasterImport','Spare\SpareMasterController@import')->name('sparemaster.import');
 		Route::get('/sparemasterDOwnLoaD','Spare\SpareMasterController@download')->name('sparemaster.download');
+		Route::post('/sparemaster_suppliers','Spare\SpareMasterController@suppliers')->name('sparemaster.suppliers');
 		//End SpareMasterController
+
+		//Statr SpareVendorController  
+		Route::resource('/sparevendor','Spare\SpareVendorController');
+		Route::get('/sparevendorDelete/{id}','Spare\SpareVendorController@destroy')->name('sparevendor.delete');
+		Route::get('/sparevendorExport','Spare\SpareVendorController@export')->name('sparevendor.export');
+		Route::post('/sparevendorImport','Spare\SpareVendorController@import')->name('sparevendor.import');
+		Route::get('/sparevendorDOwnLoaD','Spare\SpareVendorController@download')->name('sparevendor.download');
+		Route::post('/sparevendor_get_city','Spare\SpareVendorController@get_city')->name('sparevendor.get_city');
+
+		//End SpareVendorController
+
+		//Statr TyreCompanyController 
+		Route::resource('/tyrecompany','Tyre\TyreCompanyController');
+		Route::get('/tyrecompanyDelete/{id}','Tyre\TyreCompanyController@destroy')->name('tyrecompany.delete');
+		Route::get('/tyrecompany_export','Tyre\TyreCompanyController@export')->name('tyrecompany.export');
+		Route::post('/tyrecompany_import','Tyre\TyreCompanyController@import')->name('tyrecompany.import');
+		Route::get('/tyrecompany_DOwnLoaD','Tyre\TyreCompanyController@download')->name('tyrecompany.download');
+		//End TyreCompanyController
 });

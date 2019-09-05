@@ -42,16 +42,19 @@
               
               <?php $count = 0; ?>
               @foreach($spares as $Spares) 
+              @php ($cat  = App\Models\SpareType::find($Spares->type_id))
+              @php ($unit = App\Models\SpareUnit::find($Spares->unit_id))
+              @php ($comp = App\Models\SpareCompany::find($Spares->comp_id))
                  
                 <tr>
                   <td style=" padding-left: 20px;">{{++$count}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style=" width:10%; padding-left: 20px">{{$Spares->comp_name}}</td>
-                  <td style="width:10%; text-align:center;">
+                  <td style=" width:15%; padding-left: 20px">{{$Spares->name}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$cat->type_name}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$unit->unit_name}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$comp->comp_name}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Spares->stk_curr}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Spares->stk_value}}</td>
+                  <td style="width:15%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('sparemaster.edit',$Spares->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('sparemaster.delete',$Spares->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>

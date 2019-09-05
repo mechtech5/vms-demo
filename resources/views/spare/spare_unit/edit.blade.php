@@ -7,7 +7,7 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>UPDATE SPARE TYPE</h3>
+                <h3>UPDATE SPARE UNIT</h3>
 
             </div>
             <div class="col-sm-6 col-md-6">

@@ -2,16 +2,31 @@
 
 namespace App\Exports;
 
-use App\SpareMaster;
+use App\Models\SpareMaster;
 use Maatwebsite\Excel\Concerns\FromCollection;
-
-class SpareMasterexport implements FromCollection
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Session;
+class SpareMasterexport implements FromQuery,WithMapping,WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    use Exportable;
+    public function query()
     {
-        return SpareMaster::all();
+        $fleet_code = session('fleet_code');
+    	$comp = SpareMaster::join('spare_type_mast', 'spare_type_mast.id', '=', 'spare_mast.type_id')->join('spare_comp_mast', 'spare_comp_mast.id', '=', 'spare_mast.comp_id')->join('spare_unit_mast', 'spare_unit_mast.id', '=', 'spare_mast.unit_id')->where('spare_mast.fleet_code',$fleet_code);
+ 
+        return $comp;   
+    }
+
+    public function map($comp): array
+    {
+    	return [ $comp->name,$comp->type_name,$comp->unit_name,$comp->comp_name,$comp->stk_curr,$comp->stk_value];
+    }
+
+    public function headings(): array
+    {
+        return ['Name','Type Name','Unit Name','Company Name','Stock Current','Stock Value'];
     }
 }
