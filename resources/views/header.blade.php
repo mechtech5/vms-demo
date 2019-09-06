@@ -131,12 +131,13 @@
                             <li id="L5"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Tyre-Inventory</span>
                                 <span class=""></span></a>
                                 <ul  class="dropdown-menu">
-                                    <li  class='dropdown-submenu <?php if ((Request::segment(1) == 'tyrecompany')) { echo 'active'; } ?> '><a style="background-color: #37a000;" href="#">Setup</a>
+                                    <li  class='dropdown-submenu <?php if ((Request::segment(1) == 'tyrecompany')
+                                            || (Request::segment(1) == 'tyremodel') || (Request::segment(1) == 'tyrevendor')) { echo 'active'; } ?> '><a href="#">Setup</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{route('tyrecompany.index')}}">Tyre Company</a></li>
-                                            <li><a href="ftyremodel.aspx">Tyre Model</a></li>
-                                            <li><a href="ftyretype.aspx">Tyre Type</a></li>
-                                            <li><a href="fsupplier.aspx">Supplier/Vendor</a></li>
+                                            <li><a href="{{route('tyremodel.index')}}">Tyre Model</a></li>
+                                            <li><a href="{{route('tyretype.index')}}">Tyre Type</a></li>
+                                            <li><a href="{{route('tyrevendor.index')}}">Supplier/Vendor</a></li>
                                         </ul>
                                     </li>
                                     <li class='dropdown-submenu'><a href="#">Transactions</a>

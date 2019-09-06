@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use App\Exports\StateExport;
+use App\Imports\StateImport;
+use Maatwebsite\Excel\Facades\Excel;
 class StateController extends Controller
 {
     public function __construct()
@@ -19,22 +22,12 @@ class StateController extends Controller
         return view('state.show',compact('state'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
         return view('state.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $fleet_code = session('fleet_code');
@@ -53,36 +46,18 @@ class StateController extends Controller
        return redirect('state');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = DB::table('master_states')->where('id',$id)->get();
         return view('state.edit',compact('data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $data = array();
@@ -97,15 +72,27 @@ class StateController extends Controller
        return redirect('state');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         DB::table('master_states')->where('id',$id)->delete();
         return redirect('state');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new StateExport, 'State.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new StateImport,request()->file('file'));
+        
+        return redirect()->back();
+    }
+
+    public function download() {
+       $file_path = public_path('demo_files/Demo_State.xlsx');
+       return response()->download($file_path);
     }
 }

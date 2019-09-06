@@ -121,6 +121,7 @@ class SpareMasterController extends Controller
 
     public function suppliers(Request $request){
         $fleet_code = session('fleet_code');
+        $data = $request->validate(['rate'=>'required']);
         $data['rate']          = $request->rate;
         $data['vendor_id']     = $request->vendor_id;
         $data['spare_comp_id'] = $request->comp_id;

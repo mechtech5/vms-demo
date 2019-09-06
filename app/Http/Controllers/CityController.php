@@ -7,6 +7,9 @@ use App\master_state;
 use App\City;
 use DB;
 use Session;
+use App\Exports\CityExport;
+use App\Imports\CityImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CityController extends Controller
 {
@@ -23,24 +26,14 @@ class CityController extends Controller
         return view('city.show',compact ('city'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $fleet_code = session('fleet_code');       
-        $state = Master_state::where('fleet_code',$fleet_code)->get();
+        $state = master_state::where('fleet_code',$fleet_code)->get();
         return view('city.create',compact('state'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {      
       $fleet_code = session('fleet_code');
@@ -94,5 +87,22 @@ class CityController extends Controller
     {
        DB::table('master_cities')->where('id',$id)->delete();
         return redirect('city');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new CityExport, 'City.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new CityImport,request()->file('file'));
+        
+        return redirect()->back();
+    }
+
+    public function download() {
+       $file_path = public_path('demo_files/Demo_State.xlsx');
+       return response()->download($file_path);
     }
 }

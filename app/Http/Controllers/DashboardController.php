@@ -8,6 +8,7 @@ use Session;
 use App\User;
 use Auth;
 use File;
+use Illuminate\Support\Facades\Hash;
 class DashboardController extends Controller
 {
      public function __construct()
@@ -44,33 +45,19 @@ class DashboardController extends Controller
         return view('dashboard',compact('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+   
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         
@@ -84,7 +71,23 @@ class DashboardController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate(['old_password' =>'required',
+                                     'new_password'=>'required'   
+                                    ]);
+       $current_password = Auth::User()->password;    
+           
+     if (!(Hash::check($request->old_password, Auth::user()->password))) 
+      { 
+         return redirect()->back()->with('error','Old password not matched');
+        }
+        else{
+          
+           $user_id = Auth::User()->id;                       
+            $obj_user = User::find($user_id);
+            $obj_user->password = Hash::make($data['new_password']);
+            $obj_user->save();
+            return redirect()->back()->with("error","Password changed successfully !");
+        }
     }
 
     public function destroy($id)

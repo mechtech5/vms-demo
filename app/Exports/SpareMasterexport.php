@@ -22,11 +22,11 @@ class SpareMasterexport implements FromQuery,WithMapping,WithHeadings
 
     public function map($comp): array
     {
-    	return [ $comp->name,$comp->type_name,$comp->unit_name,$comp->comp_name,$comp->stk_curr,$comp->stk_value];
+    	return [ $comp->name,$comp->type_name,$comp->unit_name,$comp->comp_name,$comp->stk_open,$comp->stk_curr,$comp->stk_value,$comp->stk_buffer,$comp->rate,$comp->gst,$comp->part_no,$comp->sales_prc];
     }
 
     public function headings(): array
     {
-        return ['Name','Type Name','Unit Name','Company Name','Stock Current','Stock Value'];
+        return ['Name','Type Name','Unit Name','Company Name','Opening Stock','Stock Current','Buffer Stock','Stock Value','Rate','GST%','Part No','Sales Price'];
     }
 }

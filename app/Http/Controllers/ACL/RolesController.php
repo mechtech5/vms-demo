@@ -8,6 +8,7 @@ use DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+
 class RolesController extends Controller
 {
       public function __construct()
@@ -17,6 +18,7 @@ class RolesController extends Controller
 
     public function index()
     {
+       
         $show_role    = DB::table('roles')->get();
         $permissions  = DB::table('permissions')->get();
         $user         = DB::table('users')->get();

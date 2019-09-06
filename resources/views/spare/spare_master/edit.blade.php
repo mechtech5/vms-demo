@@ -224,13 +224,13 @@
 								                               <strong>{{ 'Please enter sales price' }}</strong>
 								                            </span>
 								                         @enderror
-								                         <span class="error" style="color: red; display: none">* Input digits (0 - 9)</span>
+								                         <span class="error" style="color: red; display: none">* Input digits (0 - 9) and not empty</span>
 						                            </div>
 					                            </div> 
 					                             <div class="row">    
 					                             	<input type="hidden" value="{{$data->id}}" id="eid" name="">
 							                         <div class="col-md-12" style="margin-top: 24px;">
-							                         	<a id="submitven"  style="margin-right: -8px;" value="Submit" class="btn btn-primary active text-center">Submit</a>
+							                         	<button id="submitven" disabled="disabled" style="margin-right: -8px;" value="Submit" class="btn btn-primary active text-center">Submit</button>
 							                       	</div>
 							                    </div>   
 					                            <div class="row sup_table" style="padding-top: 21px;">
@@ -282,13 +282,17 @@
 	 $(document).ready( function () {
  	
  	   $("#rate").bind("keypress", function (e) {
-         var keyCode = e.which ? e.which : e.keyCode
-	      if (!(keyCode >= 48 && keyCode <= 57)) {
+ 	   	var rate =$('#rate').val();
+ 	   	alert(rate)
+        var keyCode = e.which ? e.which : e.keyCode
+	      if (!(keyCode >= 48 && keyCode <= 57) ) {
             $(".error").css("display", "inline");
+            $('#submitven').css('disabled','false');
             return false;
           }else{
             $(".error").css("display", "none");
           }
+        
       });
 
     $('#myTable').DataTable();

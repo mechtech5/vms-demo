@@ -35,6 +35,14 @@ class FleetController extends Controller
                                        'fleet_name'=> 'required',
                                        'fleet_code' => 'required|min:8|'
                                        ]);
+      
+       $ckh_fleet = DB::table('fleet_mast')->where('fleet_code', '=', $validatedData['fleet_code'])->first();
+       if(!empty($ckh_fleet)){
+          return redirect()->back()->with('fleet_code','Fleet Code already exists');
+       }
+       else{
+        
+     
        $user     = User::find($request->fleet_owner);
        $u_name     = strtolower($user->name);
        $password = substr($u_name,0,4).'1234';
@@ -45,10 +53,10 @@ class FleetController extends Controller
         $validatedData['fleet_desc'] = $request->fleet_desc;
 
         $last_id =  DB::table('fleet_mast')->insert($validatedData);
-       // if(!empty($last_id)
+       
         Mail::to($user->email)->send(new SendMailable($name));
         return redirect('fleet');
-
+      }
     }
 
     

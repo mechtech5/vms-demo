@@ -57,6 +57,12 @@
 		                    <div class="col-md-4 inputGroupContainer">
 		                       <div class="input-group">
 		                          <input id="addressLine1" name="fleet_code" class="form-control"  value="{{old('fleet_code')}}" type="text">
+		                          <?php if(Session::get('fleet_code')){ ?>
+		                          	<span class="invalid-feedback d-block" role="alert">
+		                               <strong>{{ Session::get('fleet_code') }}</strong>
+		                            </span>                         	 		
+		                          	 		
+		                      <?php    	}?>
 		                          @error('fleet_code')
 		                            <span class="invalid-feedback d-block" role="alert">
 		                               <strong>{{ $message }}</strong>

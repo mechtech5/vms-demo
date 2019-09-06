@@ -37,8 +37,15 @@ class SpareMasterImport implements ToCollection,WithHeadingRow
                         'unit_id'     => $unit->id,
                         'comp_id'     => $comp->id,
                         'stk_curr'    => $row['stock_current'],
-                        'stk_value'   => $row['stock_value']                        
-                        ]); 
+                        'stk_value'   => $row['stock_value'],
+                        'stk_open'    => $row['opening_stock'],
+                        'stk_buffer'  => $row['buffer_stock'],
+                        'rate'        => $row['rate'],
+                        'gst'         => $row['gst'],
+                        'part_no'     => $row['part_no'],
+                        'sales_prc'   => $row['sales_price']
+
+                        ]);
                     //}
 
                 }

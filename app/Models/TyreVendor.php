@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TyreModel extends Model 
+class TyreVendor extends Model 
 {
-    protected $table   = 'tyre_model_mast';
+    protected $table   = 'tyre_vendor_mast';
     protected $guarded = [];
 }

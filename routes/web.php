@@ -61,7 +61,10 @@ Route::group(['middleware' => ['role:admin']], function () {
 		//Start State contoller
 
 		Route::resource('/state','StateController');
-		Route::get('Statedestroy/{id}','StateController@destroy')->name('state.destroy');
+		Route::get('statedestroy/{id}','StateController@destroy')->name('state.delete');
+		Route::get('/stateexport','StateController@export')->name('state.export');
+		Route::post('/stateimport','StateController@import')->name('state.import');
+		Route::get('/statedownload','StateController@download')->name('state.download');
 
 		//End State Controller
 
@@ -69,6 +72,10 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 		Route::resource('/city','CityController');
 		Route::get('Citydestroy/{id}','CityController@destroy')->name('city.destroy');
+		Route::get('/cityexport','CityController@export')->name('city.export');
+		Route::post('/cityimport','CityController@import')->name('city.import');
+		Route::get('/citydownload','CityController@download')->name('city.download');
+
 
 		//End City Controller
 
@@ -336,4 +343,31 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::post('/tyrecompany_import','Tyre\TyreCompanyController@import')->name('tyrecompany.import');
 		Route::get('/tyrecompany_DOwnLoaD','Tyre\TyreCompanyController@download')->name('tyrecompany.download');
 		//End TyreCompanyController
+
+		//Statr TyreModelController 
+		Route::resource('/tyremodel','Tyre\TyreModelController');
+		Route::get('/tyremodelDelete/{id}','Tyre\TyreModelController@destroy')->name('tyremodel.destroy');
+		Route::get('/tyremodel_export','Tyre\TyreModelController@export')->name('tyremodel.export');
+		Route::post('/tyremodel_import','Tyre\TyreModelController@import')->name('tyremodel.import');
+		Route::get('/tyremodel_DOwnLoaD','Tyre\TyreModelController@download')->name('tyremodel.download');
+		//End TyreModelController
+
+		//Statr TyreVendorController  
+		Route::resource('/tyrevendor','Tyre\TyreVendorController');
+		Route::get('/tyrevendorDelete/{id}','Tyre\TyreVendorController@destroy')->name('tyrevendor.delete');
+		Route::get('/tyrevendorExport','Tyre\TyreVendorController@export')->name('tyrevendor.export');
+		Route::post('/tyrevendorImport','Tyre\TyreVendorController@import')->name('tyrevendor.import');
+		Route::get('/tyrevendorDOwnLoaD','Tyre\TyreVendorController@download')->name('tyrevendor.download');
+		Route::post('/tyrevendor_get_city','Tyre\TyreVendorController@get_city')->name('tyrevendor.get_city');
+
+		//End TyreVendorController
+
+		//Statr TyreTypeController  
+		Route::resource('/tyretype','Tyre\TyreTypeController');
+		Route::get('/tyretypeDelete/{id}','Tyre\TyreTypeController@destroy')->name('tyretype.delete');
+		Route::get('/tyretypeExport','Tyre\TyreTypeController@export')->name('tyretype.export');
+		Route::post('/tyretype_Import','Tyre\TyreTypeController@import')->name('tyretype.import');
+		Route::get('/tyretypeDOwnLoaD','Tyre\TyreTypeController@download')->name('tyretype.download');
+		
+		//End TyreTypeController
 });
