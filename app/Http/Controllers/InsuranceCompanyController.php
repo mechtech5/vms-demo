@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\InsuranceCompany;
+use App\Exports\InsurancExport;
+use App\Imports\InsurancImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InsuranceCompanyController extends Controller
 {
@@ -66,5 +69,21 @@ class InsuranceCompanyController extends Controller
     {
         InsuranceCompany::where('id',$id)->delete();
         return redirect('company');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new InsurancExport, 'InsuranceCompany.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new InsurancImport,request()->file('file'));
+        
+        return redirect('comapny');
+    }
+    public function download() {
+        $file_path = public_path('demo_files/Demo_agent.xlsx');
+        return response()->download($file_path);
     }
 }

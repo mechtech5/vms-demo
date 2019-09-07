@@ -248,6 +248,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 		
 		Route::resource('/agent','AgentController');
 		Route::get('/agentDelete/{id}','AgentController@destroy')->name('agent.delete');
+		Route::get('/agentexport','AgentController@export')->name('agent.export');
+		Route::post('/agentimport','AgentController@import')->name('agent.import');
+		Route::get('/agentdownload','AgentController@download')->name('agent.download');
 		
 		//end AgentContrller
 
@@ -255,6 +258,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 		
 		Route::resource('/company','InsuranceCompanyController');
 		Route::get('/companyDelete/{id}','InsuranceCompanyController@destroy')->name('company.delete');
+		Route::get('/companyexport','InsuranceCompanyController@export')->name('company.export');
+		Route::post('/companyimport','InsuranceCompanyController@import')->name('company.import');
+		Route::get('/companydownload','InsuranceCompanyController@download')->name('company.download');
 		
 		//end AgentContrller
 

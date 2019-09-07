@@ -23,11 +23,11 @@ class TyreVendorExport implements FromQuery,WithMapping,WithHeadings
 
     public function map($comp): array
     {
-    	return [ $comp->name,$comp->mobile,$comp->phone,$comp->contact_person_name,$comp->state_name,$comp->city_name];
+    	return [ $comp->name,$comp->mobile,$comp->phone,$comp->contact_person_name,$comp->contact_person_phone,$comp->gst,$comp->state_name,$comp->city_name,$comp->vendor_type,$comp->email];
     }
 
     public function headings(): array
     {
-        return ['Name','Mobile Number','Phone Number','Person Name','State Name','City Name'];
+        return ['Name','Mobile Number','Phone Number','Person Name','Person Contact','GST NO.','State Name','City Name','Supplier Type','Email'];
     }
 }

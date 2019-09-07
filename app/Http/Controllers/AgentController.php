@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Agent;
 use Session;
+use App\Exports\Agentexport;
+use App\Imports\AgentImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AgentController extends Controller
 {
@@ -66,5 +69,21 @@ class AgentController extends Controller
     {
         Agent::where('id',$id)->delete();
         return redirect('agent');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new Agentexport, 'agent.xlsx');
+    }
+
+     public function import(Request $request) 
+    {
+        $data = Excel::import(new AgentImport,request()->file('file'));
+        
+        return redirect('agent');
+    }
+    public function download() {
+        $file_path = public_path('demo_files/Demo_agent.xlsx');
+        return response()->download($file_path);
     }
 }
