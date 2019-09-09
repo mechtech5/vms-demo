@@ -97,9 +97,9 @@
                                     <li><a href="{{route('pucdetails.index')}}">PUC Details</a> </li>
                                     <li><a href="{{route('fitness.index')}}">Fitness Details</a> </li>
                                     <li><a href="{{route('roadtax.index')}}">Road Tax Details</a> </li>
-                                    <li><a href="{{route('greentax.index')}}">Green Tax Details</a> </li>
+                                  {{--   <li><a href="{{route('greentax.index')}}">Green Tax Details</a> </li> --}}
                                     <li><a href="{{route('insurance.index')}}">Insurance Details</a> </li>
-                                    <li><a href="{{route('statepermit.index')}}">State Permit</a> </li>
+                                    <li><a href="{{route('statepermit.index')}}">Permit</a> </li>
                                     <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li>
                                 </ul>
                             </li>

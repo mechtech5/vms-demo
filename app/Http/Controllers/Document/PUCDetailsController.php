@@ -101,6 +101,7 @@ class PUCDetailsController extends Controller
 
      public function import(Request $request) 
     {
+        $validator = $request->validate(['file'=> 'required|mimes:doc,csv,xlsx,xls,docx,ppt,odt,ods,odp']);
         $data = Excel::import(new PUCDetailsImport,request()->file('file'));
         
         return redirect('pucdetails');
