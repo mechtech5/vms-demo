@@ -15,7 +15,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
-
+Route::match(['get', 'post'], 'register', function () {
+    return abort(403, 'Forbidden');
+})->name('register');
 
 Route::group(['middleware' => ['role:admin']], function () {
 	// This Route start For RolesController
@@ -204,15 +206,15 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 		//end FitnessDetailsContrller
 
-		//strat FitnessDetailsContrller  
+		//strat GreenTaxContrller  
 		
-		Route::resource('/greentax','Document\GreentaxDetailsController');
-		Route::get('/greentaxDelete/{id}','Document\GreentaxDetailsController@destroy')->name('greentax.delete');
-		Route::get('/greentaxExport','Document\GreentaxDetailsController@export')->name('greentax.export');
-		Route::post('/greentaxDetailsImport','Document\GreentaxDetailsController@import')->name('greentax.import');
-		Route::get('/greentaxDetailsDOWNLOAD','Document\GreentaxDetailsController@download')->name('greentax.download');
+		// Route::resource('/greentax','Document\GreentaxDetailsController');
+		// Route::get('/greentaxDelete/{id}','Document\GreentaxDetailsController@destroy')->name('greentax.delete');
+		// Route::get('/greentaxExport','Document\GreentaxDetailsController@export')->name('greentax.export');
+		// Route::post('/greentaxDetailsImport','Document\GreentaxDetailsController@import')->name('greentax.import');
+		// Route::get('/greentaxDetailsDOWNLOAD','Document\GreentaxDetailsController@download')->name('greentax.download');
 
-		//end FitnessDetailsContrller
+		//end GreenTaxContrller
 
 		//strat insuranceDetailsContrller  
 		

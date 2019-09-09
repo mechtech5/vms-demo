@@ -97,10 +97,10 @@
                                     <li><a href="{{route('pucdetails.index')}}">PUC Details</a> </li>
                                     <li><a href="{{route('fitness.index')}}">Fitness Details</a> </li>
                                     <li><a href="{{route('roadtax.index')}}">Road Tax Details</a> </li>
-                                  {{--   <li><a href="{{route('greentax.index')}}">Green Tax Details</a> </li> --}}
+                                  {{--   <li><a href="{{/oute('greentax.index')}}">Green Tax Details</a> </li> --}}
                                     <li><a href="{{route('insurance.index')}}">Insurance Details</a> </li>
                                     <li><a href="{{route('statepermit.index')}}">Permit</a> </li>
-                                    <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li>
+                                    {{-- <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li> --}}
                                 </ul>
                             </li>
                             <li class="<?php if ((Request::segment(1) == 'sparetype') || (Request::segment(1) == 'spareunit') || (Request::segment(1) == 'sparecompany') || (Request::segment(1) == 'sparemaster') ){ echo 'active'; }?>" id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
@@ -178,10 +178,16 @@
                                 <ul class="dropdown-menu ">
                                     <li class=""><a href="{{route('filter.index')}}">Filter Replacement</a></li>
                                     <li><a href="{{route('oilchange.index')}}">Oil Change</a></li>
-                                   
-                                    <li><a href="{{route('fueltank.index')}}">Fuel Tank Cleaning</a></li>
                                     <li><a href="{{route('batterycharge.index')}}">Battery Charging</a></li>
-                                    <li><a href="{{route('painting.index')}}">Painting Job</a></li>
+                                    <ul class="dropdown-menu ">
+                                        
+                                    </ul> 
+                                    <li class="dropdown-submenu"><a href="#">Other</a>
+                                        <ul class="dropdown-menu">
+                                           <li><a href="{{route('painting.index')}}">Painting Job</a></li>
+                                            <li><a href="{{route('fueltank.index')}}">Fuel Tank Cleaning</a></li>
+                                        </ul>
+                                    </li>                                 
                                 </ul>
                             </li>
                             <li id="L9"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Finance</span>
