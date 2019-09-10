@@ -176,7 +176,7 @@
 				</tr>
 				<tr>
 				<td align="left" valign="top" colspan="5">                                                   <table width="100%" border="10px" style="border-color: #f5a020; border-style: inherit;">
-                <tr style="background-color: #666666;">
+                <tr style="background-color: #3ca99e;">
                     <td style="width: 20%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                               margin-left: 20px;" align="left" valign="top">
                             Spare Stock Details</td>
@@ -209,7 +209,7 @@
                                                                                             
 </div>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Spare Issued Details
@@ -232,7 +232,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Tyre Stock Details
@@ -255,7 +255,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Tyre Issued Details
@@ -278,7 +278,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Overall Vehicles View
@@ -301,7 +301,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Current Vehicle Location
@@ -328,7 +328,7 @@
                                                                                             
 </div>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Spare Supplier Due Payments
@@ -344,7 +344,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Fuel Outstanding
@@ -365,7 +365,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         General Expense Payment Outstanding
@@ -386,7 +386,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Tyre Remolding Outstanding
@@ -407,7 +407,7 @@
                                                                                                 </tr>
                                                                                             </table>
                                                                                             <table width="100%">
-                                                                                                <tr style="background-color: #666666;">
+                                                                                                <tr style="background-color: #3ca99e;">
                                                                                                     <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                         margin-left: 20px;" align="left" valign="top">
                                                                                                         Tyre Expense Payment Outstanding
@@ -442,7 +442,7 @@
                                                                                                         
 </div>
                                                                                                         <table width="100%">
-                                                                                                            <tr style="background-color: #666666;">
+                                                                                                            <tr style="background-color: #3ca99e;">
                                                                                                                 <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                                     margin-left: 20px;" align="left" valign="top">
                                                                                                                     Due Finance EMI
@@ -467,7 +467,7 @@
                                                                                                 <tr>
                                                                                                     <td>
                                                                                                         <table width="100%">
-                                                                                                            <tr style="background-color: #666666;">
+                                                                                                            <tr style="background-color: #3ca99e;">
                                                                                                                 <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                                     margin-left: 20px;" align="left" valign="top">
                                                                                                                     Vehicle Service Reminders
@@ -485,7 +485,7 @@
                                                                                                     </td>
                                                                                                     <td rowspan="2" valign="top">
                                                                                                         <table width="100%">
-                                                                                                            <tr style="background-color: #666666;">
+                                                                                                            <tr style="background-color: #3ca99e;">
                                                                                                                 <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                                     margin-left: 20px;" align="left" valign="top">
                                                                                                                     Vehicle Cost To Company
@@ -530,7 +530,7 @@
                                                                                                 <tr>
                                                                                                     <td>
                                                                                                         <table width="100%">
-                                                                                                            <tr style="background-color: #666666;">
+                                                                                                            <tr style="background-color: #3ca99e;">
                                                                                                                 <td style="width: 100%; color: White; height: 20px; font-size: 12px; font-weight: bold;
                                                                                                                     margin-left: 20px;" align="left" valign="top">
                                                                                                                     Company Purchases Done

@@ -82,7 +82,7 @@
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
 	                               
-	                                <input id="email1" class="form-control" type="date" name="valid_from" value="{{old('valid_from')}}">
+	                                <input id="email1" class="form-control datepicker"  name="valid_from" value="{{old('valid_from')}}">
 	                                 @error('valid_from')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please select valid from ' }}</strong>
@@ -94,7 +94,7 @@
 	                           <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
 	                               
-	                                <input id="email1" class="form-control" type="date" name="valid_till" value="{{old('valid_till')}}">
+	                                <input id="email1" class="form-control datepicker"  name="valid_till" value="{{old('valid_till')}}">
 	                                 @error('valid_till')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select till date' }}</strong>
@@ -106,7 +106,7 @@
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
-	                                <input id="email1" class="form-control" type="date" name="update_dt" value="{{old('update_dt')}}">
+	                                <input id="email1" class="form-control datepicker" name="update_dt" value="{{old('update_dt')}}">
 	                                @error('update_dt')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please select update date" }}</strong>
@@ -151,7 +151,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
@@ -198,7 +198,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="dpay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" name="dpay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD date' }}</strong>
@@ -249,7 +249,7 @@
 			                               <strong>{{ 'Please enter RTGS date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  "type="date" name="rpay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker"  name="rpay_dt" value="{{old('pay_dt')}}">
                                
                            		 </div>
                            		
@@ -292,7 +292,7 @@
 			                               <strong>{{ 'Please enter NEFT date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control" type="date" name="npay_dt" value="{{old('npay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" name="npay_dt" value="{{old('npay_dt')}}">
                                
                            		 </div>
                            		
@@ -342,6 +342,10 @@
 
 <script type="text/javascript">
   $(document).ready( function () {
+  	$(function() {
+        $( ".datepicker" ).datepicker();
+    
+      });
     
     $('#type').on('change',function(){
     	var type = $(this).val();

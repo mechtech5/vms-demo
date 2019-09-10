@@ -38,7 +38,7 @@
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Date</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" type="date" name="date" value="{{old('date')}}" > 
+	                                <input id="ins_policy_no" class="form-control datepicker" readonly='true' name="date" value="{{old('date')}}" > 
 	                                @error('date')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter agent name' }}</strong>
@@ -95,7 +95,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" readonly='true' name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
@@ -142,7 +142,7 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
 	                               
-                               		 <input id="email1" class="form-control" type="date" name="dpay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" readonly='true' name="dpay_dt" value="{{old('pay_dt')}}">
                                		  @error('pay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD date' }}</strong>
@@ -193,7 +193,7 @@
 			                               <strong>{{ 'Please enter RTGS date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control  "type="date" name="rpay_dt" value="{{old('pay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" readonly='true' name="rpay_dt" value="{{old('pay_dt')}}">
                                
                            		 </div>
                            		
@@ -236,7 +236,7 @@
 			                               <strong>{{ 'Please enter NEFT date' }}</strong>
 			                            </span>
 			                         @enderror
-                               		 <input id="email1" class="form-control" type="date" name="npay_dt" value="{{old('npay_dt')}}">
+                               		 <input id="email1" class="form-control datepicker" readonly='true' name="npay_dt" value="{{old('npay_dt')}}">
                                
                            		 </div>
                            		
@@ -294,7 +294,11 @@
 </div>
 <script type="text/javascript">
   $(document).ready( function () {
-    
+        $(function() {
+     	   $( ".datepicker" ).datepicker();
+    	})
+
+
     $('#type').on('change',function(){
     	var type = $(this).val();
     	if(type == 'cheque'){

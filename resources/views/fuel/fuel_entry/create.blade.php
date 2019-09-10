@@ -68,7 +68,7 @@
 			                	 <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Date</label>
 	                                
-	                                <input id="ins_policy_no" class="form-control" type="date" name="date" value="{{old('date')}}" > 
+	                                <input id="ins_policy_no" class="form-control datepicker" readonly="true" name="date" value="{{old('date')}}" > 
 	                                @error('date')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter agent name' }}</strong>
@@ -265,5 +265,11 @@
 </div>
 </div>
 <script type="text/javascript">
+	$(document).ready(function(){
+    	 $(function() {
+        	$( ".datepicker" ).datepicker();
+     	});
+    })	 
+
 </script>
 @endsection

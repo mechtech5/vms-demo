@@ -113,7 +113,7 @@
                             <div class="col-md-3 col-xl-3 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Painting Date</label>
                                 
-                                <input id="email1" class="form-control" type="date" name="date" value="{{$data->date}} ">
+                                <input id="email1" class="form-control datepicker" readonly="true" name="date" value="{{$data->date}} ">
                                 @error('date')
 		                            <span class="invalid-feedback d-block" role="alert">
 		                               <strong>{{ $message }}</strong>
@@ -151,7 +151,9 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
-      
+      $(function() {
+         $( ".datepicker" ).datepicker();
+      })
 	});
 
 </script>
