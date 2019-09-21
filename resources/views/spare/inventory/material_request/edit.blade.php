@@ -72,7 +72,7 @@
                             	</div>	
                                 <div class="box box-color orange box-condensed box-bordered">
                                     <div class="box-title">
-                                        <h3>SUPPLIER INFORMATION FOR ABOVE SPARE</h3>
+                                        <h3>SPARES</h3>
                                     </div>
                                     <div class="box-content nopadding" style="height: 305px;overflow: scroll;" align="center">
                                       <div id="ContentPlaceHolder1_Panel5" style="background-color:Transparent;height:auto;width:90%;padding-top: 22px;">

@@ -118,7 +118,7 @@
                                     <li class='dropdown-submenu'><a href="#">Transactions</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{route('material_request.index')}}">Material Request</a></li>
-                                            <li><a href="fpo.aspx">Purchase Order</a></li>
+                                            <li><a href="{{route('purchase_order.index')}}">Purchase Order</a></li>
                                             <li><a href="fgrn.aspx">Goods Receipt Note(GRN)</a></li>
                                             <li><a href="fitemissue.aspx">Spare Issue</a></li>
                                             <li><a href="fitemstockupdate.aspx">Spare Stock Update</a></li>

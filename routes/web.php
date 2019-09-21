@@ -390,4 +390,16 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::post('/show_model','Spare\MaterialRequestController@show_model')->name('material.show_model');
 		Route::post('/remove_item','Spare\MaterialRequestController@remove_session')->name('material.remove_session');
 		//End MaterialRequestController
+
+		//Statr PurchaseOrderController  
+
+		Route::resource('/purchase_order','Spare\PurchaseOrderController');
+		Route::get('/purchase_order/{id}','Spare\PurchaseOrderController@destroy')->name('purchase.delete');
+		Route::get('/purchase_order_export','Spare\PurchaseOrderController@export')->name('purchase.export');
+		Route::post('/purchase_order_import','Spare\PurchaseOrderController@import')->name('purchase.import');
+		Route::get('/purchase_order_downLoad','Spare\PurchaseOrderController@download')->name('purchase.download');
+		Route::post('/purchase_record','Spare\PurchaseOrderController@get_type_rec')->name('purchase.get_type_rec');
+		Route::post('/purchase_model','Spare\PurchaseOrderController@show_model')->name('purchase.model');
+		
+		//End PurchaseOrderController
 });

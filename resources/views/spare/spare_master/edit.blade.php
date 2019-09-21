@@ -230,7 +230,7 @@
 					                             <div class="row">    
 					                             	<input type="hidden" value="{{$data->id}}" id="eid" name="">
 							                         <div class="col-md-12" style="margin-top: 24px;">
-							                         	<button id="submitven" disabled="disabled" style="margin-right: -8px;" value="Submit" class="btn btn-primary active text-center">Submit</button>
+							                         	<button id="submitven" disabled="true" style="margin-right: -8px;" value="Submit" class="btn btn-primary active text-center">Submit</button>
 							                       	</div>
 							                    </div>   
 					                            <div class="row sup_table" style="padding-top: 21px;">
@@ -281,16 +281,16 @@
 <script type="text/javascript">
 	 $(document).ready( function () {
  	
- 	   $("#rate").bind("keypress", function (e) {
- 	   	var rate =$('#rate').val();
- 	   	alert(rate)
+ 	   $("#rate").on("keyup", function (e) {
+ 	   	var rate = $('#rate').val();
         var keyCode = e.which ? e.which : e.keyCode
-	      if (!(keyCode >= 48 && keyCode <= 57) ) {
-            $(".error").css("display", "inline");
-            $('#submitven').css('disabled','false');
-            return false;
-          }else{
+	      if ($.isNumeric($('#rate').val())) {	      
             $(".error").css("display", "none");
+            $('#submitven').prop('disabled',false);
+            
+          }else{
+          	$(".error").css("display", "inline");
+            $('#submitven').prop('disabled',true);
           }
         
       });

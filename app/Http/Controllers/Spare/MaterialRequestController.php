@@ -17,6 +17,10 @@ class MaterialRequestController extends Controller
 {
     public function index()
     {
+        if(session('data')){
+            Session::forget('data');
+            Session::forget('ids'); 
+         }
         $fleet_code = session('fleet_code');
         $request    = MaterialRequest::where('fleet_code',$fleet_code)->get();
         return view('spare.inventory.material_request.show',compact('request'));
@@ -24,10 +28,6 @@ class MaterialRequestController extends Controller
 
     public function create()
     {
-        Session::forget('data');
-        Session::forget('ids'); 
-
-        //dd(session('ids'));
         $data = array();
         $fleet_code = session('fleet_code');
         $type       = SpareType::where('fleet_code',$fleet_code)->get();
@@ -166,18 +166,18 @@ class MaterialRequestController extends Controller
         $data    = array(); 
         $ids     = session('ids');
         $item_id = array();
-        foreach ($ids as $Ids => $value) {
-            $items     = MaterialItemRequest::where('id',$Ids)->first();
-            if(empty($items)){
-
-            }
-            else{
-                 $item_id[] = $items->spare_id;
-            }           
-           
-        }
+        
 
         if($page =='edit'){
+            foreach ($ids as $Ids => $value) {
+                $items     = MaterialItemRequest::where('id',$Ids)->first();
+                if(empty($items)){
+                }
+                else{
+                     $item_id[] = $items->spare_id;
+                }           
+               
+            }
             foreach ($id as $Id) {                
                 if(!in_array($Id, $item_id)){
                     Session::push('ids.'.$Id,$Id);
