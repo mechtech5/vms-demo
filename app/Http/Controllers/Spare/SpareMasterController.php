@@ -41,7 +41,7 @@ class SpareMasterController extends Controller
         $data = $request->validate(["comp_id" => "required|not_in:0",
                                     "type_id" => "required|not_in:0",
                                     "unit_id" => "required|not_in:0",
-                                    "name" => "required|alpha",
+                                    "name" => "required|string",
                                     "stk_open" => "required|numeric",
                                     "stk_curr" => "required|numeric",
                                     "stk_buffer" => "nullable",

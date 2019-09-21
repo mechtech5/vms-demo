@@ -378,4 +378,16 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/tyretypeDOwnLoaD','Tyre\TyreTypeController@download')->name('tyretype.download');
 		
 		//End TyreTypeController
+
+		//Statr MaterialRequestController  
+		Route::resource('/material_request','Spare\MaterialRequestController');
+		Route::get('/material_delete/{id}','Spare\MaterialRequestController@destroy')->name('material.delete');
+		Route::get('/material_export','Spare\MaterialRequestController@export')->name('material.export');
+		Route::post('/material_import','Spare\MaterialRequestController@import')->name('material.import');
+		Route::get('/material_download','Spare\MaterialRequestController@download')->name('material.download');
+		Route::post('/get_type_rec','Spare\MaterialRequestController@get_type_rec')->name('material.get_type_rec');
+		Route::post('/save_in_session','Spare\MaterialRequestController@save_in_session')->name('material.save_in_session');
+		Route::post('/show_model','Spare\MaterialRequestController@show_model')->name('material.show_model');
+		Route::post('/remove_item','Spare\MaterialRequestController@remove_session')->name('material.remove_session');
+		//End MaterialRequestController
 });

@@ -9,8 +9,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap&subset=latin-ext" rel="stylesheet"> 
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title style="font-family: 'Courgette' ">Vehicle Management System</title>
 
     <!-- Scripts -->
     

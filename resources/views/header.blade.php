@@ -9,18 +9,18 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-
+    <link rel = "icon" href ="{{asset('image/fleetio-logo-mark-only.svg')}}" type = "image/x-icon" style="line-height: 40px;">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <!-- Scripts -->
-    
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{asset('js/main_admin.js')}}"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+        
+   {{--  <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script> --}}
 
    
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
@@ -33,29 +33,29 @@
     <link rel="dns-prefetch" href="{{url('//fonts.gstatic.com')}}">
     <link href="{{url('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
-  
-<!-- Styles -->
+      
+    <!-- Styles -->
 
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/chosen.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/main_css.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/TableTools.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/themes.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
-   <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/chosen.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main_css.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/TableTools.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/themes.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
+ 
 
-  
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+    {{-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- #region datatables files -->
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
-<script src="~/scripts/jquery-1.10.2.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- #region datatables files -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
+    {{-- <script src="~/scripts/jquery-1.10.2.js"></script> --}}
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <!-- Styles -->
 </head>
@@ -117,7 +117,7 @@
                                     </li>
                                     <li class='dropdown-submenu'><a href="#">Transactions</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="fmtr.aspx">Material Request</a></li>
+                                            <li><a href="{{route('material_request.index')}}">Material Request</a></li>
                                             <li><a href="fpo.aspx">Purchase Order</a></li>
                                             <li><a href="fgrn.aspx">Goods Receipt Note(GRN)</a></li>
                                             <li><a href="fitemissue.aspx">Spare Issue</a></li>

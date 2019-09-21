@@ -25,7 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a style="font-family: 'Courgette', cursive;" class="navbar-brand" href="{{ url('/') }}">
-                    Vehicle Management System </a>
+                  <img style="height: 37px;" src= "{{asset('image/fleetio-logo-mark-only.svg')}}">  Vehicle Management System </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
