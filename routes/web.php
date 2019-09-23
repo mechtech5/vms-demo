@@ -400,6 +400,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/purchase_order_downLoad','Spare\PurchaseOrderController@download')->name('purchase.download');
 		Route::post('/purchase_record','Spare\PurchaseOrderController@get_type_rec')->name('purchase.get_type_rec');
 		Route::post('/purchase_model','Spare\PurchaseOrderController@show_model')->name('purchase.model');
-		
+		Route::post('/gte_mtr_no','Spare\PurchaseOrderController@get_mtr_no')->name('purchase.mtr_no');
+		Route::post('/get_mtr_list','Spare\PurchaseOrderController@get_mtr_list')->name('purchase.get_mtr_list');
+		Route::post('/purchase_order_session','Spare\PurchaseOrderController@save_in_session')->name('purchase.purchase_order_session');
+		Route::post('/purchase_order_remove','Spare\MaterialRequestController@remove_session')->name('purchase.purchase_order_remove');
 		//End PurchaseOrderController
 });

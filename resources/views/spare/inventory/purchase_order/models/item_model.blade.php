@@ -20,9 +20,9 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function(){
-		 $('#myTable2').DataTable().destroy();
+		$('#myTable2').DataTable().destroy();
 		$("#type_id").on('change',function(){
-		var id = $(this).val();
+		   var id = $(this).val();
 			$.ajax({
 		          url: '{{route('purchase.get_type_rec')}}',
 		          type: 'POST',
