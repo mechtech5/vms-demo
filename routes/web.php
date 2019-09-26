@@ -403,6 +403,6 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::post('/gte_mtr_no','Spare\PurchaseOrderController@get_mtr_no')->name('purchase.mtr_no');
 		Route::post('/get_mtr_list','Spare\PurchaseOrderController@get_mtr_list')->name('purchase.get_mtr_list');
 		Route::post('/purchase_order_session','Spare\PurchaseOrderController@save_in_session')->name('purchase.purchase_order_session');
-		Route::post('/purchase_order_remove','Spare\MaterialRequestController@remove_session')->name('purchase.purchase_order_remove');
+		Route::post('/purchase_order_remove','Spare\PurchaseOrderController@remove_session')->name('purchase.purchase_order_remove');
 		//End PurchaseOrderController
 });

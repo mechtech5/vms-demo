@@ -257,40 +257,8 @@
             $("#MyPopup .modal-body").html(data);
             $("#MyPopup").modal("show");
           }
-      });
-     //$("#MyPopup .modal-title").html(title);
-     
+      });    
  });
-
-
- //    $('#submit1').click(function(event){
- //    	event.preventDefault()
- //    	var data = {};
- //    	var id ;
-   
-	//    $(':checkbox:checked').each(function(i){
-	//    	data.push( {qty: $('#qty_'+id).val(),request: $('#request_'+id).val(),remark: $('#remark_'+id).val() 
- //   		,remark: $('#remark_'+id).val()});
-	//    		// id             = $(this).val();	
-	//     	// data['id']     = id;
-	//     	// data['qty']    = $('#qty_'+id).val()
-	//     	// data['request']= $('#request_'+id).val()
-	//     	// data['remark']= $('#remark_'+id).val()
-	//    	});
- //     alert(data);
-
- //    $.ajax({
- //          url: '{{route('material_request.store')}}',
- //          type: 'POST',
- //          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
- //          data: {'data':data},
- //          success: function(data) {
- //            $('.show_item').html(data);
- //          }
- //      });
-
-	// });
-
 
 $('#submit').click(function(){
     	var id = [];   

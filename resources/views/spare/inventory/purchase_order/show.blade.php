@@ -41,14 +41,15 @@
               
               <?php $count = 0; ?>
               @foreach($request as $Request) 
-                                
+              @php ($vendor = App\Models\SpareVendor::find($Request->vendor_code))
+                                     
                 <tr>
                   <td style=" width:15% ;padding-left: 20px;">{{++$count}}</td>
-                  <td style=" width:15%; padding-left: 20px">{{$Request->mtr_no}}</td>
-                  <td style=" width:15%; padding-left: 20px">{{$Request->mtr_date}}</td>
-                  <td style=" width:15%; padding-left: 20px">{{$Request->prep_by}}</td>
-                  <td style=" width:15%; padding-left: 20px">{{$Request->po_no}}</td>
-                  <td style=" width:15%; padding-left: 20px">{{$Request->po_no}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Request->po_number}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Request->po_date}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$vendor->name}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Request->net_amt}}</td>
+                  <td style=" width:15%; padding-left: 20px">{{$Request->total_qty}}</td>
                   <td style="width:15%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('purchase_order.edit',$Request->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('purchase.delete',$Request->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>

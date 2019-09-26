@@ -165,8 +165,7 @@ class MaterialRequestController extends Controller
         $data1   = array();
         $data    = array(); 
         $ids     = session('ids');
-        $item_id = array();
-        
+        $item_id = array();        
 
         if($page =='edit'){
             foreach ($ids as $Ids => $value) {
