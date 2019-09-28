@@ -27,6 +27,11 @@ class PurchaseOrderController extends Controller
   
     public function create()
     {
+        if(session('update') == 'yes'){
+          session::forget('data');        
+          Session::forget('ids');
+          Session::put('update','no');
+        }
         $fleet_code = session('fleet_code');
         $supplier   = SpareVendor::where('fleet_code',$fleet_code)->get();
         return view('spare.inventory.purchase_order.create',compact('supplier'));
@@ -135,13 +140,15 @@ class PurchaseOrderController extends Controller
         if(session('update') == 'yes'){
             return view('spare.inventory.purchase_order.edit',compact('supplier','po_data'));
         }        
-        
+        Session::put('e_id',$id);
         session::forget('data');        
-        Session::forget('ids');        
-        $po_item = PurchaseOrder_item::where('po_id',$po_data->id)->get();
+        Session::forget('ids');   
+        Session::forget('edit_id');   
+        $po_item = PurchaseOrder_item::where('po_id',$id)->get();
         foreach ($po_item as $Data) {  
             $item = SpareMaster::find($Data->spare_id);
             Session::push('ids.'.$Data->id,$Data->id);
+            Session::put('edit_id.'.$Data->id,$Data->id);
             $data1['id']       = $item->id;
             $data1['name']     = $item->name;
             $data1['type_id']  = $item->type_id;
@@ -181,12 +188,12 @@ class PurchaseOrderController extends Controller
         Session::put('update','yes');
 
         $data =  $request->validate([
-            'qty.*'       =>'required|string',
-            'rate.*'      =>'required|string',
-            'disc_pct.*'  =>'required|string',
-            'igst_pct.*'  =>'required|string',
-            'cgst_pct.*'  =>'required|string',
-            'sgst_pct.*'  =>'required|string',
+            'qty.*'       =>'required|numeric',
+            'rate.*'      =>'required|numeric',
+            'disc_pct.*'  =>'required|numeric',
+            'igst_pct.*'  =>'required|numeric',
+            'cgst_pct.*'  =>'required|numeric',
+            'sgst_pct.*'  =>'required|numeric',
             'amt.*'       =>'nullable',
             'disc_amt.*'  =>'nullable',
             'igst_amt.*'  =>'nullable',
@@ -225,7 +232,7 @@ class PurchaseOrderController extends Controller
      
        $count = count($all_ids);       
        $x = 0;
-       $id       = $request->id; 
+       $s_id       = $request->id; 
        $qty      = $data['qty'];
        $rate     = $data['rate'];
        $disc_pct = $data['disc_pct'];
@@ -242,7 +249,7 @@ class PurchaseOrderController extends Controller
        
        if($id){
             while($x < $count){
-                $itm_data['spare_id']  = $id[$x];
+                $itm_data['spare_id']  = $s_id[$x];
                 $itm_data['qty']       = $qty[$x];
                 $itm_data['rate']      = $rate[$x];
                 $itm_data['disc_pct']  = $disc_pct[$x];
@@ -256,8 +263,8 @@ class PurchaseOrderController extends Controller
                 $itm_data['amt']       = $amt[$x];
                 $itm_data['net_amt']   = $net_amt[$x];
                 $itm_data['po_id']     = $id;
+              
                 if(in_array($all_ids[$x],$update_ids)){
-
                     PurchaseOrder_item::where('id',$all_ids[$x])->update($itm_data);   
                 }
                 else{
@@ -276,7 +283,9 @@ class PurchaseOrderController extends Controller
 
     public function destroy($id)
     {
-        //
+        PurchaseOrder::where('id',$id)->delete();
+        PurchaseOrder_item::where('po_id',$id)->delete();
+        return redirect('purchase_order');
     }
     public function show_model(Request $request){
         $fleet_code = session('fleet_code');
@@ -301,44 +310,87 @@ class PurchaseOrderController extends Controller
     }    
 
     public function get_mtr_list(Request $request){
-        $id   = $request->id;      
-        if($request->page == 'edit'){
-
-            $data     = MaterialItemRequest::where('request_id',$id)->get();        
-            $mtr_dtls = MaterialRequest::find($id)->first();
-            Session::put('mtr_no',$mtr_dtls->mtr_no);
-            Session::put('mtr_id',$id);
-            foreach ($data as $Data) {
-                $item = SpareMaster::find($Data->spare_id);            
-                Session::push('ids.'.$item->id,$item->id);
-                $data1['id']       = $item->id;
-                $data1['name']     = $item->name;
-                $data1['type_id']  = $item->type_id;
-                $data1['unit_id']  = $item->unit_id;
-                $data1['comp_id']  = $item->comp_id;
-                 $data1['qty']     = '' ;
-                $data1['rate']     = '';
-                $data1['amt']      = '';
-                $data1['disc_pct'] = '';
-                $data1['disc_amt'] = '';
-                $data1['igst_pct'] = '';
-                $data1['igst_amt'] = '';
-                $data1['cgst_pct'] = '';
-                $data1['cgst_amt'] = '';
-                $data1['sgst_pct'] = '';
-                $data1['sgst_amt'] = '';
-                $data1['net_amt']  = '';
-                $data1['remark']   = '';
-                $data1['mtr_data'] = 'yes';
-               
-                session()->put('mtr_data','yes');
-                session()->push('data.'.$item->id, $data1);  
+        $id     = $request->id;      
+        $ids    = session('ids');
+        $old_id = array();
+        if(!empty($ids)){
+            foreach ($ids as $Ids) {
+                $old_id[] = $Ids[0];
             }
         }
+       
+        if($request->page == 'edit'){ 
+                 Session::forget('data');        
+                 Session::forget('ids');               
+                foreach ($old_id as $key => $val) {    
+                                  
+                    if(in_array($val,session('edit_id'))){ 
+
+                        $old_data = PurchaseOrder_item::where('id',$val)->first();
+                        $item= SpareMaster::where('id',$old_data->spare_id)->first();                      
+                        Session::push('ids.'.$old_data->id,$old_data->id);
+                        $data1['id']       = $item->id;
+                        $data1['name']     = $item->name;
+                        $data1['type_id']  = $item->type_id;
+                        $data1['unit_id']  = $item->unit_id;
+                        $data1['comp_id']  = $item->comp_id;
+                        $data1['qty']      = $old_data->qty ? $old_data->qty:'';
+                        $data1['rate']     = $old_data->rate ? $old_data->rate : '';
+                        $data1['amt']      = $old_data->amt ? $old_data->amt:'' ;
+                        $data1['disc_pct'] = $old_data->disc_pct ? $old_data->disc_pct:'';
+                        $data1['disc_amt'] = $old_data->disc_amt ? $old_data->disc_amt:'';
+                        $data1['igst_pct'] = $old_data->igst_pct ? $old_data->igst_pct :'';
+                        $data1['igst_amt'] = $old_data->igst_amt ? $old_data->igst_amt :'';
+                        $data1['cgst_pct'] = $old_data->cgst_pct ? $old_data->cgst_pct :'';
+                        $data1['cgst_amt'] = $old_data->cgst_amt ? $old_data->cgst_amt :'';
+                        $data1['sgst_pct'] = $old_data->sgst_pct ? $old_data->sgst_pct :'';
+                        $data1['sgst_amt'] = $old_data->sgst_amt ? $old_data->sgst_amt :'';
+                        $data1['net_amt']  = $old_data->net_amt  ? $old_data->net_amt :'';
+                        $data1['remark']   = $old_data->remark ? $old_data->remark : '';
+                        $data1['mtr_data'] = 'yes';
+                      
+                        session()->put('mtr_data','yes');
+                        session()->push('data.'.$old_data->id, $data1);                 
+                    }  
+                }            
+
+                $data     = MaterialItemRequest::where('request_id',$id)->get();        
+                $mtr_dtls = MaterialRequest::find($id)->first();
+               
+                foreach ($data as $Data) {
+                  
+                    $item = SpareMaster::find($Data->spare_id);                      
+                    Session::push('ids.'.$item->id,$item->id);
+                    $data1['id']       = $item->id;
+                    $data1['name']     = $item->name;
+                    $data1['type_id']  = $item->type_id;
+                    $data1['unit_id']  = $item->unit_id;
+                    $data1['comp_id']  = $item->comp_id;
+                    $data1['qty']      = '' ;
+                    $data1['rate']     = '';
+                    $data1['amt']      = '';
+                    $data1['disc_pct'] = '';
+                    $data1['disc_amt'] = '';
+                    $data1['igst_pct'] = '';
+                    $data1['igst_amt'] = '';
+                    $data1['cgst_pct'] = '';
+                    $data1['cgst_amt'] = '';
+                    $data1['sgst_pct'] = '';
+                    $data1['sgst_amt'] = '';
+                    $data1['net_amt']  = '';
+                    $data1['remark']   = '';
+                    $data1['mtr_data'] = 'yes';
+                   
+                    session()->put('mtr_data','yes');
+                    session()->push('data.'.$item->id, $data1);  
+                }
+            }
+
+
         else{
             Session::forget('data');        
             Session::forget('ids');
-
+           
             $data     = MaterialItemRequest::where('request_id',$id)->get();        
             $mtr_dtls = MaterialRequest::find($id)->first();
             Session::put('mtr_no',$mtr_dtls->mtr_no);
@@ -351,11 +403,19 @@ class PurchaseOrderController extends Controller
                 $data1['type_id'] = $item->type_id;
                 $data1['unit_id'] = $item->unit_id;
                 $data1['comp_id'] = $item->comp_id;
-                $data1['qty']     = '';
-                $data1['remarks'] = '';
-                $data1['not']      = 'not';
-                $data1['readonly'] = 'readonly';
-                $data1['mtr_data'] = 'yes';
+                $data1['qty']      = '' ;
+                $data1['rate']     = '';
+                $data1['amt']      = '';
+                $data1['disc_pct'] = '';
+                $data1['disc_amt'] = '';
+                $data1['igst_pct'] = '';
+                $data1['igst_amt'] = '';
+                $data1['cgst_pct'] = '';
+                $data1['cgst_amt'] = '';
+                $data1['sgst_pct'] = '';
+                $data1['sgst_amt'] = '';
+                $data1['net_amt']  = '';
+                $data1['remark']   = '';
                 session()->put('mtr_data','yes');
                 session()->push('data.'.$item->id, $data1);  
             }
@@ -369,44 +429,50 @@ class PurchaseOrderController extends Controller
         $data1   = array();
         $data    = array(); 
         $ids     = session('ids');  
+        
         $item_id = array();        
-        if(session('mtr_data')=='yes'){
-            session::forget('data');        
-            Session::forget('ids');
-            session()->put('mtr_data','no');
+        
+        $e_id = session('e_id');
+         if(!empty(session('e_id'))){
+            Session::forget('data');        
+            Session::forget('ids'); 
+            Session::put('e_id','');
         }
-
+        
         if($page =='edit'){
              foreach ($ids as $Ids) {
                $item_id[] = $Ids[0];            
             }                          
-            
-            foreach ($item_id as $Ids) {                
-                $items     = PurchaseOrder_item::where('id',$Ids)->first();
-                Session::push('ids.'.$Ids,$Ids);
+            if(!empty($e_id)){
+                foreach ($item_id as $Ids) {                                 
+                    if(in_array($Ids,session('edit_id'))){
+                        $items     = PurchaseOrder_item::where('id',$Ids)->where('po_id',$e_id)->first();
+                        Session::push('ids.'.$Ids,$Ids);            
+                        $data = SpareMaster::find($items->spare_id);
+                        $data1['id']      = $data->id;
+                        $data1['name']    = $data->name;
+                        $data1['type_id'] = $data->type_id;
+                        $data1['unit_id'] = $data->unit_id;
+                        $data1['comp_id'] = $data->comp_id;
+                        $data1['qty']     = $items->qty;
+                        $data1['rate']    = $items->rate;
+                        $data1['amt']     = $items->amt;
+                        $data1['disc_pct']= $items->disc_pct;
+                        $data1['disc_amt']= $items->disc_amt;
+                        $data1['igst_pct']= $items->igst_pct;
+                        $data1['igst_amt']= $items->igst_amt;
+                        $data1['cgst_pct']= $items->cgst_pct;
+                        $data1['cgst_amt']= $items->cgst_amt;
+                        $data1['sgst_pct']= $items->sgst_pct;
+                        $data1['sgst_amt']= $items->sgst_amt;
+                        $data1['net_amt'] = $items->net_amt;
+                        $data1['remark']  = $items->remarks;
+                        $data1['update']  = 'yes';
+                        session()->push('data.'.$Ids, $data1);        
+                    }                     
+                 }   
+             }
 
-                $data = SpareMaster::find($items->spare_id);
-                $data1['id']      = $data->id;
-                $data1['name']    = $data->name;
-                $data1['type_id'] = $data->type_id;
-                $data1['unit_id'] = $data->unit_id;
-                $data1['comp_id'] = $data->comp_id;
-                $data1['qty']     = $items->qty;
-                $data1['rate']    = $items->rate;
-                $data1['amt']     = $items->amt;
-                $data1['disc_pct']= $items->disc_pct;
-                $data1['disc_amt']= $items->disc_amt;
-                $data1['igst_pct']= $items->igst_pct;
-                $data1['igst_amt']= $items->igst_amt;
-                $data1['cgst_pct']= $items->cgst_pct;
-                $data1['cgst_amt']= $items->cgst_amt;
-                $data1['sgst_pct']= $items->sgst_pct;
-                $data1['sgst_amt']= $items->sgst_amt;
-                $data1['net_amt']= $items->net_amt;
-                $data1['remarks']= $items->remarks;
-
-                session()->push('data.'.$Ids, $data1);                             
-            }
             foreach ($id as $Id) {
                 Session::push('ids.'.$Id,$Id);
                 $data = SpareMaster::find($Id);
@@ -427,7 +493,7 @@ class PurchaseOrderController extends Controller
                 $data1['sgst_pct']= '';
                 $data1['sgst_amt']= '';
                 $data1['net_amt'] = '';
-                $data1['remarks'] = '';
+                $data1['remark'] = '';
                 session()->push('data.'.$data->id, $data1);
             }
             return view('spare.inventory.purchase_order.po_item_table',compact('data'));             

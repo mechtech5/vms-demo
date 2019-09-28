@@ -17,10 +17,9 @@ class MaterialRequestController extends Controller
 {
     public function index()
     {
-        if(session('data')){
-            Session::forget('data');
-            Session::forget('ids'); 
-         }
+       Session::forget('data');
+       Session::forget('ids'); 
+    
         $fleet_code = session('fleet_code');
         $request    = MaterialRequest::where('fleet_code',$fleet_code)->get();
         return view('spare.inventory.material_request.show',compact('request'));

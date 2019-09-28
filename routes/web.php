@@ -394,7 +394,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		//Statr PurchaseOrderController  
 
 		Route::resource('/purchase_order','Spare\PurchaseOrderController');
-		Route::get('/purchase_order/{id}','Spare\PurchaseOrderController@destroy')->name('purchase.delete');
+		Route::get('/purchase_delete/{id}','Spare\PurchaseOrderController@destroy')->name('purchase.delete');
 		Route::get('/purchase_order_export','Spare\PurchaseOrderController@export')->name('purchase.export');
 		Route::post('/purchase_order_import','Spare\PurchaseOrderController@import')->name('purchase.import');
 		Route::get('/purchase_order_downLoad','Spare\PurchaseOrderController@download')->name('purchase.download');
