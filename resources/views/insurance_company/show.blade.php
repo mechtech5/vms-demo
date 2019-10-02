@@ -46,7 +46,7 @@
                   <td style="width: 14%; padding-left: 20px">{{$Company->comp_phone}}</td>
                   <td style="width: 14%; padding-left: 20px">{{$Company->comp_email}}</td>
                   <td style="width:10%; text-align:center;">
-                    <a style="padding: 2px 5px;" href="{{route('company.edit',$Company->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding: 2px 5px;" style="padding: 2px 5px;" href="{{route('company.edit',$Company->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('company.delete',$Company->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>

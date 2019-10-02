@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\master_state;
 use App\City;
-use DB;
 use Session;
 use App\Exports\CityExport;
 use App\Imports\CityImport;
@@ -22,7 +21,7 @@ class CityController extends Controller
     public function index()
     {   
         $fleet_code = session('fleet_code');
-        $city = DB::table('master_cities')->where('fleet_code',$fleet_code)->get();
+        $city = City::where('fleet_code',$fleet_code)->get();
         return view('city.show',compact ('city'));
     }
 
@@ -38,15 +37,15 @@ class CityController extends Controller
     {      
       $fleet_code = session('fleet_code');
        $validatedData = $request->validate([
-                                       'state_id' =>'required',
-                                       'city_name'=> 'required',
+                                       'state_id' =>'required|not_in:0',
+                                       'city_name'=> 'required|string|regex:/^[\pL\s\-]+$/u',
                                        'city_code' => 'required|max:3'
                                        ]);
        $validatedData['city_name'] =  ucwords($request->city_name);
        $validatedData['city_code'] = strtoupper($request->city_code); 
        $validatedData['fleet_code'] = $fleet_code;   
         
-        DB::table('master_cities')->insert($validatedData);
+        City::create($validatedData);
     
          return redirect('city');
      }
@@ -60,7 +59,7 @@ class CityController extends Controller
     
     public function edit($id)
     {
-        $data = DB::table('master_cities')->where('id',$id)->get();
+        $data = City::where('id',$id)->get();
         $state = master_state::all();
         
         return view('city.edit',compact("data",'state'));
@@ -72,21 +71,21 @@ class CityController extends Controller
       
         $validatedData = $request->validate([
                                        'state_id' =>'required',
-                                       'city_name'=> 'required|alpha',
-                                       'city_code' => 'required|alpha'                                  
+                                       'city_name'=> 'required|regex:/^[\pL\s\-]+$/u',
+                                       'city_code' => 'required|max:3'                                  
                                     ]);
        $validatedData['city_name']  =  ucwords($request->city_name);
        $validatedData['city_code'] = strtoupper($request->city_code);    
         
-       DB::table('master_cities')->where('id',$id)->update($validatedData);
+       City::where('id',$id)->update($validatedData);
        return redirect('city');
     }
 
     
     public function destroy($id)
     {
-       DB::table('master_cities')->where('id',$id)->delete();
-        return redirect('city');
+      City::where('id',$id)->delete();
+      return redirect('city');
     }
 
     public function export() 
@@ -102,7 +101,7 @@ class CityController extends Controller
     }
 
     public function download() {
-       $file_path = public_path('demo_files/Demo_State.xlsx');
+       $file_path = public_path('demo_files/Demo_City.xlsx');
        return response()->download($file_path);
     }
 }

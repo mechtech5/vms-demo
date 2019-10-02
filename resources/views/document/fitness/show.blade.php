@@ -46,13 +46,12 @@
                   <td style="width: 10%;  padding-left: 20px;">{{++$count}}</td>
                   <td style="width: 17%;padding-left: 20px">{{$Fitness->fitness_no}}</td>
                   <td style="padding-left: 20px">{{$vch_no->vch_no }}</td>
-                  <td style="padding-left: 20px">{{$Fitness->puc_amt}}</td>
+                  <td style="padding-left: 20px">{{$Fitness->fitness_amt}}</td>
                   <td style="padding-left: 20px">{{$Fitness->valid_from}}</td>
                   <td style="padding-left: 20px">{{$Fitness->valid_till}}</td>
                   <td style="width:10%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('fitness.edit',$Fitness->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('fitness.delete',$Fitness->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                    <a style="padding: 2px 5px;" href="{{asset("storage/$Fitness->fleet_code/Document/$Fitness->doc_file")}}" runat="server" class="btn btn-success" rel="tooltip" title="" download="" data-original-title="Download"><i class="fa fa-download"></i></a>
                   </td>
                 </tr>
                 @endforeach

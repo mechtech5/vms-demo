@@ -16,31 +16,31 @@
              <form class="well form-horizontal" method="post" action="{{route('city.store')}}">
               {{csrf_field()}}
                  <div class="form-group">
-                    <label class="col-md-3 control-label">State</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <label class="col-md-3 control-label"><span style="color: #FF0000; font-size:20px;">*</span>State</label>
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <select name="state_id" class="selectpicker form-control">
-                             <option selected=" true " disabled="true">Select..</option>
+                             <option value="0" selected=" true " disabled="true">Select..</option>
                              @foreach($state as $states)
                                 <option value="{{$states->id}}">{{$states->state_name}}</option>
                              @endforeach     
                           </select>
                         </div>
                          @error('state_id')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback d-block" role="alert">
+                                  <strong>{{ 'Please select state' }}</strong>
                               </span>
                           @enderror
                     </div>
                  </div>
                  <div class="form-group">
-                    <label class="col-md-3 control-label">City Name</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <label class="col-md-3 control-label"><span style="color: #FF0000; font-size:20px;">*</span>City Name</label>
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <input id="addressLine1" name="city_name" class="form-control"  value="" type="text">
                           @error('city_name')
                             <span class="invalid-feedback d-block" role="alert">
-                               <strong>{{ $message }}</strong>
+                               <strong>{{ 'Please enter city name in characters' }}</strong>
                             </span>
                          @enderror
 
@@ -48,21 +48,21 @@
                     </div>
                   </div>
                  <div class="form-group">
-                    <label class="col-md-3 control-label">City Short Name</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <label class="col-md-3 control-label"><span style="color: #FF0000; font-size:20px;">*</span>City Short Name</label>
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <input id="city" name="city_code" class="form-control"  value="" type="text">
-                           @error('city_short_name')
+                           @error('city_code')
                             <span class="invalid-feedback d-block" role="alert">
-                               <strong>{{ $message }}</strong>
+                               <strong>{{ 'Please enter city short name in characters (maximum length 3)' }}</strong>
                             </span>
                          @enderror
                         </div>
                     </div>
                  </div>
                   <div class="form-group">
-                    <div class="col-md-4">
-                      <input style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right"></input>
+                    <div class="col-md-12 text-center">
+                      <input style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active "></input>
                     </div>
                  </div>
                 </form>

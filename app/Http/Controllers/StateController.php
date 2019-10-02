@@ -8,6 +8,9 @@ use Session;
 use App\Exports\StateExport;
 use App\Imports\StateImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\State;
+use Validator;
+
 class StateController extends Controller
 {
     public function __construct()
@@ -18,7 +21,7 @@ class StateController extends Controller
     public function index()
     {
         $fleet_code = session('fleet_code');
-        $state = DB::table('master_states')->where('fleet_code',$fleet_code)->get();
+        $state = State::where('fleet_code',$fleet_code)->get();
         return view('state.show',compact('state'));
     }
 
@@ -33,16 +36,15 @@ class StateController extends Controller
         $fleet_code = session('fleet_code');
 
         $data = array();
-        $this->validate($request,['state'=>'required',
-                                  'state_short' => 'required' 
+        $this->validate($request,['state'=>'required|regex:/^[\pL\s\-]+$/u',
+                                  'state_short' => 'required|max:3' 
                                 ]);
 
        $data['state_name'] = ucwords($request->state);
        $data['state_code'] = strtoupper($request->state_short);
        $data['fleet_code'] = $fleet_code;
        
-
-       DB::table('master_states')->insert($data);
+       State::create($data);
        return redirect('state');
     }
 
@@ -54,28 +56,28 @@ class StateController extends Controller
 
     public function edit($id)
     {
-        $data = DB::table('master_states')->where('id',$id)->get();
+        $data = State::where('id',$id)->get();
         return view('state.edit',compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $data = array();
-        $this->validate($request,['state'=>'required',
-                                  'state_short' => 'required' 
+        $this->validate($request,['state'=>'required|regex:/^[\pL\s\-]+$/u',
+                                  'state_short' => 'required|max:3' 
                                 ]);
 
        $data['state_name'] = ucwords($request->state);
        $data['state_code'] = strtoupper($request->state_short);
        
-       DB::table('master_states')->where('id',$id)->update($data);
+       State::where('id',$id)->update($data);
        return redirect('state');
     }
 
     
     public function destroy($id)
     {
-        DB::table('master_states')->where('id',$id)->delete();
+        State::where('id',$id)->delete();
         return redirect('state');
     }
 

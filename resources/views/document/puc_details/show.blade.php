@@ -51,8 +51,7 @@
                   <td style="padding-left: 20px">{{$pucdetails->valid_till}}</td>
                   <td style="width:10%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('pucdetails.edit',$pucdetails->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('pucdetails.delete',$pucdetails->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
-                    <a style="padding: 2px 5px;" href="{{asset("storage/$pucdetails->fleet_code/Document/$pucdetails->doc_file")}}" runat="server" class="btn btn-success" rel="tooltip" title="" download="" data-original-title="Download"><i class="fa fa-download"></i></a>
+                    <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('pucdetails.delete',$pucdetails->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>                    
                   </td>
                 </tr>
                 @endforeach

@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class FitnessDetailsImport implements ToCollection,WithHeadingRow
 {
@@ -16,26 +17,23 @@ class FitnessDetailsImport implements ToCollection,WithHeadingRow
     {   
         $error = array();
         $fleet_code = session('fleet_code');
-
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
+            
             if(!empty($row['vehicle_number']) && !empty($row['pay_date']) && !empty($row['pay_number'])   && !empty($row['fitness_number'])
                 && !empty($row['payment_mode']))
-            {                        
+            {   
+                $pay_date   = Date::excelToDateTimeObject($row['pay_date']);
+                $valid_from = Date::excelToDateTimeObject($row['valid_from']);
+                $valid_till = Date::excelToDateTimeObject($row['valid_till']);
+
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
+
+                $pay_date   = $pay_date->format('Y-m-d');
+                $valid_from = $valid_from->format('Y-m-d');
+                $valid_till = $valid_till->format('Y-m-d');
    
-                if(!empty($vch_num)){
-                    
-                    // $cdate = strtotime(date('Y-m-d'));
-                    // $cdate = date('Y-m-d ', $cdate);
-                    // $date  = strtotime($row['date']);
-                    // $date  = date('Y-m-d ', $date);
-
-                    // $date1 = new DateTime($date);
-                    // $date2 = new DateTime($cdate);
-                    
-                    // if($date1 <= $date2){
-
+                if(!empty($vch_num)){                    
                         FitnessDetails::create([
                         'fleet_code'  => $row['fleet_code'],
                         'vch_id'      => $vch_num->id ,
@@ -43,15 +41,13 @@ class FitnessDetailsImport implements ToCollection,WithHeadingRow
                         'fitness_no'  => $row['fitness_number'],
                         'fitness_amt' => $row['fitness_amount'],
                         'payment_mode'=> $row['payment_mode'],
-                        'pay_dt'      => $row['pay_date'],
+                        'pay_dt'      => $pay_date,
                         'pay_bank'    => $row['pay_bank'],
                         'pay_branch'  => $row['pay_branch'],
-                        'valid_from'  => $row['valid_from'],
-                        'valid_till'  => $row['valid_till'],
+                        'valid_from'  => $valid_from,
+                        'valid_till'  => $valid_till,
                         'pay_no'      => $row['pay_number']
                         ]); 
-                    //}
-
                 }
             }
         }

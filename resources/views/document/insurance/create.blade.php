@@ -43,8 +43,8 @@
 				                    
 			                       <select name="agent_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
-			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
+			                            @foreach($agent as $Agent)
+			                               <option value="{{$Agent->id}}">{{$Agent->agent_name}}</option>
 			                            @endforeach     
 			                        </select>
 			                        @error('agent_id')
@@ -59,8 +59,8 @@
 				                    
 			                       <select name="ins_comp" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
-			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
+			                            @foreach($ins_company as $company)
+			                               <option value="{{$company->id}}">{{$company->comp_name}}</option>
 			                            @endforeach     
 			                        </select>
 			                        @error('ins_comp')
@@ -71,13 +71,9 @@
 				                </div>
 
 				                <div class="col-md-3 col-xl-3 mt-2">
-				                    <label class="">Select Insurance Type</label>
-				                    
-			                       <select name="ins_type" class="selectpicker form-control">
+				                    <label class="">Select Insurance Type</label>				                    
+			                        <select name="ins_type" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
-			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
-			                            @endforeach     
 			                        </select>
 			                        @error('ins_type')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
@@ -389,7 +385,7 @@
   $(document).ready( function () {
     
     $(function() {
-        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     });
 
     $('#type').on('change',function(){

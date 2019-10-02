@@ -11,6 +11,7 @@ use Session;
 use App\Models\FitnessDetails;
 use App\vehicle_master;
 use File;
+use App\Models\Agent;
 
 class FitnessDetailsController extends Controller
 {
@@ -26,21 +27,22 @@ class FitnessDetailsController extends Controller
     public function create()
     {
         $fleet_code = session('fleet_code');
-        $vehicle  = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.fitness.create',compact('vehicle'));
+        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.fitness.create',compact('vehicle','agent'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([ 'vch_id'       => 'required',
                                      'agent_id'     => 'required',   
-                                     "fitness_amt"     => 'required|numeric',
-                                     "valid_from"  => 'required',
-                                     "valid_till"  => 'required',
-                                     "update_dt"   => 'required',
-                                     "payment_mode"=> 'required|not_in:0',
-                                     'fitness_no'      => 'required',
-                                      'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+                                     "fitness_amt"  => 'required|numeric',
+                                     "valid_from"   => 'required',
+                                     "valid_till"   => 'required',
+                                     "update_dt"    => 'required',
+                                     "payment_mode" => 'required|not_in:0',
+                                     'fitness_no'   => 'required|numeric',
+                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -63,7 +65,8 @@ class FitnessDetailsController extends Controller
         $fleet_code = session('fleet_code');
         $vehicle = vehicle_master::where('fleet_code',$fleet_code)->get(); 
         $data = FitnessDetails::find($id);
-        return view('document.fitness.edit',compact('vehicle','data'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.fitness.edit',compact('vehicle','data','agent'));
     }
 
     
@@ -71,13 +74,13 @@ class FitnessDetailsController extends Controller
     {
         $data = $request->validate([ 'vch_id'       => 'required',
                                      'agent_id'     => 'required',   
-                                     "fitness_amt"     => 'required|numeric',
-                                     "valid_from"  => 'required',
-                                     "valid_till"  => 'required',
-                                     "update_dt"   => 'required',
-                                     "payment_mode"=> 'required|not_in:0',
-                                     'fitness_no'      => 'required',
-                                      'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+                                     "fitness_amt"  => 'required|numeric',
+                                     "valid_from"   => 'required',
+                                     "valid_till"   => 'required',
+                                     "update_dt"    => 'required',
+                                     "payment_mode" => 'required|not_in:0',
+                                     'fitness_no'   => 'required|numeric',
+                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -131,7 +134,7 @@ class FitnessDetailsController extends Controller
             $vdata['doc_file'] = $fileNameToStore;    
         }
         
-       if(empty($request->hasFile('doc_file'))){
+       if(empty($request->hasFile('doc_file')) && !empty($id)){
            $old_data =FitnessDetails::where('id',$id)->first();
 
             if($request->image == null) {

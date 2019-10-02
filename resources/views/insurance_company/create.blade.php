@@ -27,30 +27,29 @@
 	                                <input id="ins_policy_no" class="form-control" name="comp_name" value="{{old('comp_name')}}" > 
 	                                @error('comp_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter comapny name in alphabets' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>	
 
 			                    <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Company Mobile No.</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Company Contact No.</label>
 	                                
 	                                <input id="ins_policy_no" class="form-control" name="comp_phone" value="{{old('comp_phone')}}" > 
 	                                @error('comp_phone')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter company contact number (enter only number)' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
 		                        </div>
 
 		                        <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Company Email</label>
-	                                
+	                                <label for="Vehicle No.">Company Email</label>                           
 	                                <input id="ins_policy_no" type="email" class="form-control" name="comp_email" value="{{old('comp_email')}}" > 
 	                                @error('comp_email')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent email' }}</strong>
+			                               <strong>{{ 'Please enter company email' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
@@ -58,7 +57,7 @@
 				            </div>
 		                    <div class="row">    
 		                        <div class="col-md-12 col-xl-12 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Company Address</label>
+	                                <label for="Vehicle No.">Company Address</label>
 	                                
 	                                <textarea id="ins_policy_no" class="form-control" name="comp_addr" value="{{old('comp_addr')}}" ></textarea> 
 	                                @error('comp_addr')

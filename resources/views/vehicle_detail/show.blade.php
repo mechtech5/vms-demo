@@ -38,8 +38,8 @@
                   <td style="width: 20%;padding-left: 20px"><?php if(count($vch_comp) != 0){ echo $vch_comp[0]->comp_name; }?></td>
                   <td style="width: 20%;padding-left: 20px"><?php if(count($vch_model) != 0){ echo $vch_model[0]->model_name; }?></td>
                   <td style="width:10%; text-align:center;">
-                    <a href="{{route('vehicledetails.edit',$models->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{url('vdetails_delete',$models->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding:2px 5px;" href="{{route('vehicledetails.edit',$models->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding:2px 8px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{url('vdetails_delete',$models->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach

@@ -18,7 +18,7 @@
               @method('PUT')
                  <div class="form-group">
                     <label class="col-md-3 control-label">State</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <select name="state_id" class="selectpicker form-control">
                              <option disabled="true">Select..</option>
@@ -37,12 +37,12 @@
                  </div>
                  <div class="form-group">
                     <label class="col-md-3 control-label">City Name</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <input id="addressLine1" name="city_name" class="form-control"  value="{{$data[0]->city_name}}" type="text">
                           @error('city_name')
                             <span class="invalid-feedback d-block" role="alert">
-                               <strong>{{ $message }}</strong>
+                               <strong>{{'Please enter city name in characters'}}</strong>
                             </span>
                          @enderror
 
@@ -51,20 +51,20 @@
                   </div>
                  <div class="form-group">
                     <label class="col-md-3 control-label">City Short Name</label>
-                    <div class="col-md-8 inputGroupContainer">
+                    <div class="col-md-7 inputGroupContainer">
                        <div class="input-group">
                           <input id="city" name="city_code" class="form-control"  value="{{$data[0]->city_code}}" type="text">
                            @error('city_code')
                             <span class="invalid-feedback d-block" role="alert">
-                               <strong>{{ $message }}</strong>
+                               <strong>{{'Please enter city short name in characters (maximum length 3)'}}</strong>
                             </span>
                          @enderror
                         </div>
                     </div>
                  </div>
                  <div class="form-group">
-                    <div class="col-md-4">
-                      <input style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right"></input>
+                    <div class="col-md-12 text-center">
+                      <input style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active "></input>
                     </div>
                  </div>
                 </form>

@@ -12,13 +12,14 @@ use App\Models\PUCDetails;
 use Session;
 use File;
 use DB;
+use App\Models\Agent;
 
 class PUCDetailsController extends Controller
 {
    
     public function index()
     {
-        $fleet_code  = session('fleet_code');
+        $fleet_code = session('fleet_code');
         $pucDetails = PUCDetails::where('fleet_code',$fleet_code)->get();
         return view('document.puc_details.show',compact('pucDetails'));
     }
@@ -27,7 +28,8 @@ class PUCDetailsController extends Controller
     {
         $fleet_code  = session('fleet_code');
         $vehicle     = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.puc_details.create',compact('vehicle'));
+        $agent       = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.puc_details.create',compact('vehicle','agent'));
     }
 
   
@@ -40,7 +42,7 @@ class PUCDetailsController extends Controller
                                      "valid_till"  => 'required',
                                      "update_dt"   => 'required',
                                      "payment_mode"=> 'required|not_in:0',
-                                     'puc_no'      => 'required',
+                                     'puc_no'      => 'required|numeric',
                                       'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
@@ -64,21 +66,21 @@ class PUCDetailsController extends Controller
         $fleet_code = session('fleet_code');
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         $data       = PUCDetails::where('id',$id)->first();
-        return view('document.puc_details.edit',compact('vehicle','data'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.puc_details.edit',compact('vehicle','data','agent'));
     }
-
     
     public function update(Request $request, $id)
     {
-          $data = $request->validate([ 'vch_id'       => 'required',
-                                     'agent_id'     => 'required',   
-                                     "puc_amt"     => 'required|numeric',
-                                     "valid_from"  => 'required',
-                                     "valid_till"  => 'required',
-                                     "update_dt"   => 'required',
-                                     "payment_mode"=> 'required|not_in:0',
-                                     'puc_no'      => 'required',
-                                      'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+          $data = $request->validate([ 'vch_id'      => 'required',
+                                       'agent_id'    => 'required',   
+                                       "puc_amt"     => 'required|numeric',
+                                       "valid_from"  => 'required',
+                                       "valid_till"  => 'required',
+                                       "update_dt"   => 'required',
+                                       "payment_mode"=> 'required|not_in:0',
+                                       'puc_no'      => 'required|numeric',
+                                        'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -127,11 +129,11 @@ class PUCDetailsController extends Controller
                 File::makeDirectory($chk_path, 0777, true, true);
             }
 
-            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/', $fileNameToStore);
+            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/PUCDetails', $fileNameToStore);
             $vdata['doc_file'] = $fileNameToStore;    
         }
         
-       if(empty($request->hasFile('doc_file'))){
+       if(empty($request->hasFile('doc_file')) && !empty($id)){
            $old_data =PUCDetails::where('id',$id)->first();
 
             if($request->image == null) {

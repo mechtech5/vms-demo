@@ -27,10 +27,10 @@ class AgentController extends Controller
     
     public function store(Request $request)
     {
-        $data  = $request->validate(["agent_name"    => 'required',
+        $data  = $request->validate(["agent_name"    => 'required|regex:/^[\pL\s\-]+$/u',
                                       "agent_code"   => 'required',
                                       "agent_phone"  => 'required|numeric',
-                                      "agent_email"  => 'required|email|unique:agent_mast,agent_email',
+                                      "agent_email"  => 'required|email',
                                       "agent_address"=> 'required'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
@@ -53,10 +53,10 @@ class AgentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data  = $request->validate(["agent_name"    => 'required',
-                                      "agent_code"   => 'required',
+        $data  = $request->validate(["agent_name"    => 'required|regex:/^[\pL\s\-]+$/u',
+                                      "agent_code"   => 'required|numeric',
                                       "agent_phone"  => 'required|numeric',
-                                      "agent_email"  => 'required',
+                                      "agent_email"  => 'required|email',
                                       "agent_address"=> 'required'
                                     ]);
         $data['fleet_code'] = session('fleet_code');

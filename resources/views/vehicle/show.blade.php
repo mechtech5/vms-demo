@@ -7,13 +7,13 @@
       <div class="box box-color orange box-condensed box-bordered">
         <div class="box-title">
           <div class="col-sm-6 col-md-6">
-              <h3> VEHICLE DETAILS </h3>
+              <h3> VEHICLE COMPANY DETAILS </h3>
           </div>
           <div class="col-sm-2 col-md-2">
               <a style="margin-bottom: 5px;" href="{{route('vehicle.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
           <div class="col-sm-4 col-md-4">
-             <form id="target" class="pull-right" action="{{ url('vehicle.import') }}" method="POST" enctype="multipart/form-data">
+             <form id="target" class="pull-right" action="{{ url('import_vehicle') }}" method="POST" enctype="multipart/form-data">
                   {{ csrf_field() }}
                  <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
                   Import
@@ -41,8 +41,8 @@
                   <td style="width: 30%;padding-left: 20px">{{$vehicles->comp_name}}</td>
                    <td style="width: 30%;padding-left: 20px">{{$vehicles->comp_desc}}</td>
                   <td style="width:10%; text-align:center;">
-                    <a href="{{route('vehicle.edit',$vehicles->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{url('Vehicledestroy',$vehicles->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding: 2px 5px" href="{{route('vehicle.edit',$vehicles->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding: 2px 8px" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{url('Vehicledestroy',$vehicles->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -58,6 +58,9 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
+    $('#file').change(function() {
+       $('#target').submit();
+      });
 } );
 
 </script>

@@ -20,12 +20,14 @@ class AgentImport implements ToCollection,WithHeadingRow
         foreach ($rows as $row) {
             
             $row['fleet_code'] =  $fleet_code;
-            if(!empty($row['agent_name']) && !empty($row['agent_code']) && !empty($row['agent_phone']))              
+            if(!empty($row['agent_name']) && !empty($row['agent_code']) && !empty($row['agent_phone']))      
             {   
-                Agent::create(['fleet_code'  => $row['fleet_code'],
-                                'agent_name' => $row['agent_name'],
-                                'agent_code' => $row['agent_code'],
-                                'agent_phone' => $row['agent_phone']
+                $email = $row['agent_email'] ? $row['agent_email'] :'';
+                Agent::create(['fleet_code'   => $row['fleet_code'],
+                                'agent_name'  => $row['agent_name'],
+                                'agent_code'  => $row['agent_code'],
+                                'agent_phone' => $row['agent_phone'],
+                                'agent_email' => $email
                                 ]);                   
                
             }

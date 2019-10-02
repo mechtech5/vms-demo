@@ -8,6 +8,7 @@ use App\Models\InsuranceCompany;
 use App\Exports\InsurancExport;
 use App\Imports\InsurancImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Validator;
 
 class InsuranceCompanyController extends Controller
 {
@@ -28,11 +29,10 @@ class InsuranceCompanyController extends Controller
   
     public function store(Request $request)
     {
-        $data  = $request->validate(["comp_name"    => 'required',
-                                      "comp_phone"   => 'required',
-                                      "comp_email"  => 'required|numeric',
-                                      "comp_email"  => 'required|email|unique:agent_mast,agent_email',
-                                      "comp_addr"=> 'required'
+        $data  = $request->validate([ "comp_name"   => 'required|regex:/^[\pL\s\-]+$/u',
+                                      "comp_phone"  => 'required|numeric',
+                                      "comp_email"  => 'nullable|email',
+                                      "comp_addr"   => 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         InsuranceCompany::create($data);
@@ -53,11 +53,10 @@ class InsuranceCompanyController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data  = $request->validate(["comp_name"    => 'required',
-                                      "comp_phone"   => 'required|string|min:9|max:10',
-                                      "comp_email"  => 'required|numeric',
-                                      "comp_email"  => 'required|email|unique:agent_mast,agent_email',
-                                      "comp_addr"=> 'required'
+        $data  = $request->validate(["comp_name"    => 'required|regex:/^[\pL\s\-]+$/u',
+                                      "comp_phone"   => 'required|numeric',
+                                      "comp_email"  => 'nullable|email',
+                                      "comp_addr"=> 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         InsuranceCompany::where('id',$id)->update($data);
@@ -80,10 +79,10 @@ class InsuranceCompanyController extends Controller
     {
         $data = Excel::import(new InsurancImport,request()->file('file'));
         
-        return redirect('comapny');
+        return redirect('company');
     }
     public function download() {
-        $file_path = public_path('demo_files/Demo_agent.xlsx');
+        $file_path = public_path('demo_files/InsuranceCompany.xlsx');
         return response()->download($file_path);
     }
 }

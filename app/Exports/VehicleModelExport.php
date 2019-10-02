@@ -18,6 +18,7 @@ class VehicleModelExport implements  FromQuery,WithMapping,WithHeadings
 
    public function query()
     {
+        
     	$fleet_code = session('fleet_code');
     	$comp = vch_comp::join('vch_model','vch_comps.id','=', 'vch_model.vcompany_code')->where('vch_model.fleet_code',$fleet_code);
     	

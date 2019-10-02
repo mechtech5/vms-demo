@@ -12,6 +12,8 @@ use App\Models\InsuranceDetails;
 use App\vehicle_master;
 use File;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Agent;
+use App\Models\InsuranceCompany;
 
 class InsuranceDetailsController extends Controller
 {
@@ -25,9 +27,11 @@ class InsuranceDetailsController extends Controller
    
     public function create()
     {
-        $fleet_code = session('fleet_code');
-        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.insurance.create',compact('vehicle'));
+        $fleet_code  = session('fleet_code');
+        $vehicle     = vehicle_master::where('fleet_code',$fleet_code)->get();
+        $agent       = Agent::where('fleet_code',$fleet_code)->get();
+        $ins_company = InsuranceCompany::where('fleet_code',$fleet_code)->get();
+        return view('document.insurance.create',compact('vehicle','agent','ins_company'));
     }
    
     public function store(Request $request)
@@ -42,7 +46,7 @@ class InsuranceDetailsController extends Controller
                                      'ins_amt'       => 'required',
                                      'ins_pre_amt'   => 'required',
                                      'ins_comp'      => 'required',
-                                     'ins_type'      => 'required',
+                                     'ins_type'      => 'nullable',
                                       'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
@@ -64,7 +68,9 @@ class InsuranceDetailsController extends Controller
         $fleet_code = session('fleet_code');
         $data       = InsuranceDetails::find($id);
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
-       return view('document.insurance.edit',compact('vehicle','data'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        $ins_company = InsuranceCompany::where('fleet_code',$fleet_code)->get();
+       return view('document.insurance.edit',compact('vehicle','data','agent','ins_company'));
     }
     
     public function update(Request $request, $id)
@@ -76,10 +82,10 @@ class InsuranceDetailsController extends Controller
                                      "valid_till"    => 'required',
                                      "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
-                                     'ins_amt'       => 'required|numeric',
-                                     'ins_pre_amt'   => 'required|numeric',
-                                     'ins_comp'      => 'required|alpha',
-                                     'ins_type'      => 'required',
+                                     'ins_amt'       => 'required',
+                                     'ins_pre_amt'   => 'required',
+                                     'ins_comp'      => 'required',
+                                     'ins_type'      => 'nullable',
                                       'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     

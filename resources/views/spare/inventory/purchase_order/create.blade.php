@@ -359,8 +359,8 @@ $('#submit').click(function(){
           headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
           data: {'id':id},
           success: function(data) {
-           	$("#MyPopup").modal("show");
-             location.reload();
+           	$("#MyPopup").modal("hide");
+            $('.sup_table').html(data); 
           }
       });
 

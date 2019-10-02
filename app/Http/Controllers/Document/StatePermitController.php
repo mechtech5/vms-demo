@@ -13,6 +13,7 @@ use App\vehicle_master;
 use App\State;
 use File;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Agent;
 
 class StatePermitController extends Controller
 {
@@ -30,7 +31,8 @@ class StatePermitController extends Controller
         $fleet_code = session('fleet_code');
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         $state_list = State::where('fleet_code',$fleet_code)->get(); 
-        return view('document.statepermit.create',compact('vehicle','state_list'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.statepermit.create',compact('vehicle','state_list','agent'));
     }
 
   
@@ -70,7 +72,8 @@ class StatePermitController extends Controller
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         $state_list = State::where('fleet_code',$fleet_code)->get(); 
         $data       = StatePermit::find($id);
-        return view('document.statepermit.edit',compact('vehicle','state_list','data'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.statepermit.edit',compact('vehicle','state_list','data','agent'));
     }
 
     public function update(Request $request, $id)

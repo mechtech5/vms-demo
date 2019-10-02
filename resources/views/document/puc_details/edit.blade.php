@@ -43,8 +43,8 @@
 				                    
 			                       <select name="agent_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
-			                            @foreach($vehicle as $vehicles)
-			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
+			                            @foreach($agent as $Agent)
+			                               <option {{$Agent->id == $data->agent_id ? 'selected':''}} value="{{$Agent->id}}">{{$Agent->agent_name}}</option>
 			                            @endforeach     
 			                        </select>
 			                        @error('agent_id')
@@ -350,7 +350,7 @@
   $(document).ready( function () {
     
   	$(function() {
-        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     });
 
     $('#type').on('change',function(){

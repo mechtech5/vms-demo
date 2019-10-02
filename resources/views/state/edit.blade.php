@@ -17,34 +17,41 @@
                <form class="form-horizontal" method="post" action="{{route('state.update',$data[0]->id)}}">
                 {{csrf_field()}}
                 @method('PATCH')
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="email"><span style="color: #FF0000; font-size:20px;">*</span>State Name :</label>
-                    <div class="col-sm-10 state-form-input">
-                      <input class="form-control " id="email" name="state" value="{{old('state') ?? $data[0]->state_name}}">
-                    
-                    @error('state')
-                    <span class="invalid-feedback d-block" role="alert">
-                       <strong>{{ $message }}</strong>
-                    </span>
-                   @enderror
-                   </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd"><span style="color: #FF0000; font-size:20px;">*</span>State Short Name:</label>
-                    <div class="col-sm-10 state-form-input">          
-                      <input class="form-control" id="pwd" name="state_short" value="{{old('state_short')?? $data[0]->state_code }}">
-                    
-                    @error('state_short')
-                    <span class="invalid-feedback d-block" role="alert">
-                       <strong>{{ $message }}</strong>
-                    </span>
-                   @enderror
-                   </div>
-                  </div>
-                  <div class="form-group">        
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-default">Submit</button>
+                  <div class="row">
+                   <div class="col-md-2 col-sm-2">
+                   </div> 
+                    <div class="col-md-2 col-sm-2 state-form-input">
+                      <label class="control-label pull-right" for="email"><span style="color: #FF0000; font-size:20px;">*</span>State Name :</label>                   
                     </div>
+                    <div class="col-md-5 col-sm-5 state-form-input">    
+                        <input class="form-control " value="{{old('state') ?? $data[0]->state_name}}" id="email" name="state">                      
+                      @error('state')
+                      <span class="invalid-feedback d-block" role="alert">
+                         <strong>{{ 'Please enter state name in characters' }}</strong>
+                      </span>
+                     @enderror
+                    </div>
+                  </div>
+                  <div class="row mt-3" >
+                    <div class="col-md-2 col-sm-2">
+                    </div> 
+                    <div class="col-md-2 col-sm-2 state-form-input">
+                      <label class="control-label pull-right" for="email"><span style="color: #FF0000; font-size:20px;">*</span>State Short Name :</label>                   
+                    </div>
+                    <div class="col-md-5 col-sm-5 state-form-input ">             
+                      <input class="form-control" id="pwd" value="{{old('state_short') ?? $data[0]->state_code}}" name="state_short">
+                      @error('state_short')
+                      <span class="invalid-feedback d-block" role="alert">
+                         <strong>{{ 'Please enter state short name in characters (maximum length 3)' }}</strong>
+                      </span>
+                     @enderror
+                    </div>                     
+                      
+                  </div>                                   
+                  <div class="row">         
+                      <div class="col-sm-12 col-sm-10 text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
                   </div>
                 </form>
               </div>

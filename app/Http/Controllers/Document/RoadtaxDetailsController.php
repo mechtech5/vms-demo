@@ -11,6 +11,7 @@ use Session;
 use App\Models\RoadtaxDetails;
 use App\vehicle_master;
 use File;
+use App\Models\Agent;
 
 class RoadtaxDetailsController extends Controller
 {
@@ -25,9 +26,10 @@ class RoadtaxDetailsController extends Controller
    
     public function create()
     {
-        $fleet_code     = session('fleet_code');
-        $vehicle = vehicle_master::where('fleet_code',$fleet_code)->get();
-        return view('document.roadtax.create',compact('vehicle'));
+        $fleet_code = session('fleet_code');
+        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.roadtax.create',compact('vehicle','agent'));
     }
 
    
@@ -64,7 +66,8 @@ class RoadtaxDetailsController extends Controller
         $fleet_code = session('fleet_code');
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         $data       = RoadtaxDetails::find($id);
-        return view('document.roadtax.edit',compact('vehicle','data'));
+        $agent      = Agent::where('fleet_code',$fleet_code)->get();
+        return view('document.roadtax.edit',compact('vehicle','data','agent'));
     }
 
     

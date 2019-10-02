@@ -28,21 +28,11 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
    
                 if(!empty($vch_num)){
                     
-                    // $cdate = strtotime(date('Y-m-d'));
-                    // $cdate = date('Y-m-d ', $cdate);
-                    // $date  = strtotime($row['date']);
-                    // $date  = date('Y-m-d ', $date);
-
-                    // $date1 = new DateTime($date);
-                    // $date2 = new DateTime($cdate);
-                    
-                    // if($date1 <= $date2){
-
-                        PUCDetails::create([
+                    PUCDetails::create([
                         'fleet_code'  => $row['fleet_code'],
                         'vch_id'      => $vch_num->id ,
                         'agent_id'    => 1,
-                        'puc_no'      => $row['pay_number'],
+                        'puc_no'      => $row['puc_number'],
                         'puc_amt'     => $row['amount'],
                         'payment_mode'=> $row['payment_mode'],
                         'pay_dt'      => $row['pay_date'],

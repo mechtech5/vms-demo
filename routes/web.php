@@ -76,7 +76,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('Citydestroy/{id}','CityController@destroy')->name('city.destroy');
 		Route::get('/cityexport','CityController@export')->name('city.export');
 		Route::post('/cityimport','CityController@import')->name('city.import');
-		Route::get('/citydownload','CityController@download')->name('city.download');
+		Route::get('/city_ download','CityController@download')->name('city.download');
 
 
 		//End City Controller
@@ -86,7 +86,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::resource('/vehicle','VehicleController');
 		Route::get('Vehicledestroy/{id}','VehicleController@destroy')->name('vehicle.destroy');
 		Route::get('/vehicleExport','VehicleController@export')->name('vehicle.export');
-		Route::post('/import','VehicleController@import')->name('vehicle.import');
+		Route::post('/import_vehicle','VehicleController@import')->name('vehicle.import');
 		Route::get('/vehicleformat','VehicleController@download')->name('vehicle.download');
 
 		//End Vehicle Controller
@@ -262,7 +262,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/companyDelete/{id}','InsuranceCompanyController@destroy')->name('company.delete');
 		Route::get('/companyexport','InsuranceCompanyController@export')->name('company.export');
 		Route::post('/companyimport','InsuranceCompanyController@import')->name('company.import');
-		Route::get('/companydownload','InsuranceCompanyController@download')->name('company.download');
+		Route::get('/company_download','InsuranceCompanyController@download')->name('company.download');
 		
 		//end AgentContrller
 

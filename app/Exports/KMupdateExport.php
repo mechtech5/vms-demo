@@ -29,7 +29,7 @@ class KMupdateExport implements FromQuery,WithMapping,WithHeadings
 
     public function headings(): array
     {
-        return ['Vehicle Number','Date','Kilometer Reading','Cost'];
+        return ['Vehicle Number','Date','Kilometer Reading'];
     }
 }
 

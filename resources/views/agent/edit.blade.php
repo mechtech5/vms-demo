@@ -28,7 +28,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="agent_name" value="{{old('agent_name') ?? $data->agent_name}}" > 
 	                                @error('agent_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter agent name in characters' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>	
@@ -39,7 +39,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="agent_code" value="{{old('agent_code') ?? $data->agent_code}}" > 
 	                                @error('agent_code')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent code' }}</strong>
+			                               <strong>{{ 'Please enter agent code (in number)' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
@@ -53,7 +53,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="agent_phone" value="{{old('agent_phone') ?? $data->agent_phone}}" > 
 	                                @error('agent_phone')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter agent mobile number (enter only number)' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 

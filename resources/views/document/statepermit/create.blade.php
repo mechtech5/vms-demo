@@ -56,8 +56,8 @@
 				                     
 			                       <select name="agent_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
-			                            @foreach($state_list as $state)
-			                               <option value="{{$state->id}}">{{$state->state_name}}</option>
+			                            @foreach($agent as $Agent)
+			                               <option value="{{$Agent->id}}">{{$Agent->agent_name}}</option>
 			                            @endforeach     
 			                        </select>
 			                         @error('agent_id')

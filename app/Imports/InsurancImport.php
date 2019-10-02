@@ -20,9 +20,12 @@ class InsurancImport implements ToCollection,WithHeadingRow
             
             $row['fleet_code'] =  $fleet_code;
             if(!empty($row['company_name']) && !empty($row['company_phone']) )                
-            {   InsuranceCompany::create(['fleet_code'  => $row['fleet_code'],
+            {    
+                $email = $row['company_email'] ? $row['company_email'] : '';
+               InsuranceCompany::create(['fleet_code'  => $row['fleet_code'],
                                         'comp_name' => ucfirst($row['company_name']),
-                                        'comp_phone' => $row['company_phone']
+                                        'comp_phone' => $row['company_phone'],
+                                        'comp_email' => $email
                                         ]);                  
 
             }

@@ -13,7 +13,7 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3> VEHICLE DETAILS </h3>
+                <h3>ADD VEHICLE DETAILS </h3>
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('vehicledetails.index')}}">Back</a>
@@ -42,7 +42,7 @@
                      <div class="inputGroupContainer">
                        <div class="input-group">
                           <select id="vch_comp" name="vch_comp" class="selectpicker form-control">
-                             <option >Select..</option>
+                             <option value="0">Select..</option>
                             @foreach($company as $comp)
                                 <option value="{{$comp->id}}">{{$comp->comp_name}}</option>
                             @endforeach    
@@ -57,18 +57,17 @@
                               <strong style="font-size: smaller;">{{ "Please enter vehicle model" }}</strong>
                           </span>
                       @enderror
-                       <div class="inputGroupContainer">
-                           <div class="input-group">
-                            
+                      <div class="inputGroupContainer">
+                           <div class="input-group">                            
                               <select id="vch_model" name="vch_model" class="selectpicker form-control">
-                                 <option selected=" true " disabled="true">Select..</option>
+                                 <option selected="true" value="0">Select..</option>
                               </select>
                             </div>
                         </div> 
                     </div>
             
                 <div class="col-md-6 col-xl-6 mt-2">
-                    <span style="color: #FF0000;font-size:15px;">*</span> <label for=" Vehicle Owner Name"> Vehicle Owner Name</label>
+                    <label for=" Vehicle Owner Name"> Vehicle Owner Name</label>
                     @error('owner_name')
                           <span class="text-danger pull-right" role="alert">
                               <strong style="font-size: smaller;">{{ "Please enter owner name" }}</strong>
@@ -78,7 +77,7 @@
 
                 </div>
                 <div class="col-md-6 col-xl-6 mt-2">
-                    <span style="color: #FF0000;font-size:15px;">*</span> <label for="Owner Address">Owner Address</label>
+                    <label for="Owner Address">Owner Address</label>
                     @error('owner_addr')
                           <span class="text-danger pull-right" role="alert">
                               <strong style="font-size: smaller;">{{ "Please enter owner address" }}</strong>
@@ -89,7 +88,7 @@
                 </div>
 
                 <div class="col-md-6 col-xl-6 mt-2">
-                    <span style="color: #FF0000;font-size:15px;">*</span> <label for=" Owner PAN Card No">Owner PAN Card No</label>
+                    <label for=" Owner PAN Card No">Owner PAN Card No</label>
                     @error('owner_pan')
                           <span class="text-danger pull-right" role="alert">
                               <strong style="font-size: smaller;">{{ "Please enter pan card number" }}</strong>
@@ -97,12 +96,7 @@
                       @enderror
                     <input id="email" type="text" class="form-control" name="owner_pan" value="">
 
-                </div>
-                <!-- <div class="col-md-6 col-xl-6 mt-2">
-                    <label for="IMEI Number">IMEI Number</label>
-                    <input id="email1" type="email" class="form-control  " name="email1" value="">
-
-                </div> -->      
+                </div>      
                  <div class="form-group">
                     
                  </div>
@@ -146,46 +140,35 @@
                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="No Of Tyres">No Of Tyres </label>
-                                                    <input id="email" type="text" name="reg_no_tyres" class="form-control  " value="">
+                                                    <input id="email" type="text" name="reg_no_tyres" class="form-control" value="{{ old('reg_no_tyres') }}">
 
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Avg. Mileage">Avg. Mileage</label>
-                                                    <input id="email1" type="text" name="reg_mileage" class="form-control" name="email1" value="">
+                                                    <input id="email1" type="text" name="reg_mileage" class="form-control" value="{{ old('reg_mileage') }}">
 
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Chasis No">Chasis No </label>
-                                                    <input id="email" name="reg_chassis_no" class="form-control  " value="">
+                                                    <input id="email" name="reg_chassis_no" class="form-control" value="{{ old('reg_chassis_no') }}">
 
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Engine No">Engine No</label>
-                                                    <input id="email1" class="form-control  " name="reg_engine_no" value="">
+                                                    <input id="email1" class="form-control" name="reg_engine_no" value="{{old('reg_engine_no')}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Manufacturer Year"> Manufacturer Year</label>
-                                                    <input id="email" type="text" class="form-control" name="reg_manuf_year" value="">
+                                                    <input id="email" type="text" class="form-control" name="reg_manuf_year" value="{{old('reg_manuf_year')}}">
 
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Regi. Date</label>
-                                                    <input id="email1" type="date" class="form-control " name="reg_date" value="">
-
-                                                </div>
-
-                                                <div class="col-md-6 col-xl-6 mt-2">
-                                                    <label for="vehicle_model ">Vehicle Model </label>
-                                                       <select name="state_id" class="selectpicker form-control">
-                                                            <option selected=" true " disabled="true">Select..</option>
-                                                            @foreach($model as $models)
-                                                              <option value="{{$models->id}}">{{$models->model_name}}</option>
-                                                            @endforeach  
-                                                        </select>
-                                                        
-                                                 </div>
+                                                    <input id="email1" type="text" readonly="true" class="form-control datepicker" name="reg_date" value="{{
+                                                      old('reg_date') }}">
+                                                </div>                                               
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="KM Reading">KM Reading</label>
                                                     <input id="email1" class="form-control  " name="email1" value="">
@@ -226,7 +209,7 @@
                                                 
                                             <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Dealer Address">Dealer Address </label>
-                                                <input id="email" name="pur_dealer_addr"  class="form-control  " value="">
+                                                <input id="email" name="pur_dealer_addr"  class="form-control" value="">
 
                                             </div>
                                            <div class="col-md-6 col-xl-6 mt-2">
@@ -243,7 +226,6 @@
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="After Sales Services Provideb By ">After Sales Services Provideb By  </label>
                                                 <input id="email" type="text" name="pur_after_sales_srv" class="form-control  " value="">
-
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Invoice No">Invoice No</label>
@@ -252,58 +234,43 @@
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Invoice Date">Invoice Date</label>
-                                                <input id="email" name="pur_invoice_dt" type="date" class="form-control  " value="">
+                                                <input id="email" readonly="true" name="pur_invoice_dt" type="text" class="form-control  datepicker" value="">
 
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Vehicle Company Name">Vehicle Company Name</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">
+                                            </div> 
 
-                                            </div>
-
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Assest Cost ">Assest Cost</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                                    
+                                             <div class="col-md-6 col-xl-6 mt-2">
+                                                <label for="Assest Cost ">Purchase Amount</label>
+                                                <input id="email1" type="" class="form-control  " name="pur_amt" value="">                                                    
                                              </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="KM Reading">KM Reading</label>
-                                                <input id="email1"  class="form-control  " name="email1" value="">
-                                            </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for=" Free Services Provided ">Free Services Provided </label><br>
-                                                <input id="email" name="pur_free_srv" type="radio" value="">Yes<br>
-                                                <input id="email"  name="pur_free_srv" type="radio" value="">No
-
-                                            </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="No of Free Services ">No of Free Services  </label>
                                                 <input id="email1" type="" class="form-control  " name="pur_free_srv_count" value="">
+                                            </div> 
 
-                                            </div>
-
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-3 col-xl-3 mt-2">
                                                 <label for="Duplicate key at H.O.">Duplicate key at H.O.</label><br>
-                                                <input id="email" name="pur_duplicate_key" type="radio" value="">Yes<br>
-                                                <input id="email"  name="pur_duplicate_key" type="radio" value="">No
+                                                <input id="email" name="pur_duplicate_key" type="radio" value="1">Yes<br>
+                                                <input id="email"  name="pur_duplicate_key" type="radio" value="0">No
+                                            </div>                                            
 
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="IMEI Number">Tare Weight</label>
-                                                <input id="email1"  class="form-control  " name="email1" value="">
-                                            </div>
+                                            <div class="col-md-3 col-xl-3 mt-2">
+                                                <label for=" Free Services Provided ">Free Services Provided </label><br>
+                                                <input id="email" name="pur_free_srv" type="radio" value="1">Yes<br>
+                                                <input id="email"  name="pur_free_srv" type="radio" value="0">No
+                                            </div>                                                                                    
                                         </div>
                                         
                                         <div class="col-sm-12 col-md-12 col-xl-12  table-responsive " style="display: none;" id="mytable3">
                                             
                                              <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Chasis Serial No.">Chasis Serial No.</label>
-                                                <input id="email1"  class="form-control  " name="chassis_serial_no" value="">
+                                                <input id="email1"  class="form-control" name="chassis_serial_no" value="">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Assesories Supplied at Purchase">Assesories Supplied at Purchase</label>
-                                                <input id="email" type="" name="accessories_supplied" class="form-control  " value="">
+                                                <input id="email" type="" name="accessories_supplied" class="form-control" value="">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
@@ -330,8 +297,8 @@
                                         <div class="col-sm-12 col-md-12 col-xl-12  table-responsive " style="display: none;" id="mytable4">
                                             
                                              <div class="col-md-4 col-xl-4 mt-2">
-                                                <label for="Start Date">Start Date</label>
-                                                <input id="email1" type="date" class="form-control  " name="sale_dt" value="">
+                                                <label for="Start Date">Sale Date</label>
+                                                <input id="email1" readonly="true" type="text" class="form-control datepicker" name="sale_dt" value="">
                                             </div>
 
                                             <div class="col-md-4 col-xl-4 mt-2">
@@ -340,8 +307,8 @@
 
                                             </div>
                                             <div class="col-md-4 col-xl-4 mt-2">
-                                                <label for="Buyer Company">Buyer Company</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">
+                                                <label for="Buyer Company">Buyer Name</label>
+                                                <input id="email1" type="" class="form-control  " name="buyer_name" value="">
 
                                             </div>
 
@@ -369,7 +336,7 @@
                                             </div>
                                             <div class="col-md-8 col-xl-8 mt-2">
                                                 <label for="Buyer Address">Buyer Address</label>
-                                                <textarea id="email1" class="form-control  " name="buyer_addr" value=""></textarea>
+                                                <textarea style="height: 34px;" id="email1" class="form-control  " name="buyer_addr" value=""></textarea>
                                             </div>
 
                                             
@@ -413,18 +380,14 @@
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Cylinders ">Cylinders</label>
                                                 <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="">
-                                            </div>
+                                            </div>                                           
                                             <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Engine Interior Color">Engine Interior Color</label>
-                                                <input id="email1" type="text" class="form-control  " name="email1" value="">
-                                            </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Torque (lb-ft)">Torque (lb-ft)</label>
                                                 <input id="email1" type="text" class="form-control  " name="eng_torque" value="">
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-12 col-md-12 col-xl-12 " id="mytable6">
+                                        <div class="col-sm-12 col-md-12 col-xl-12 " style="display: none;" id="mytable6">
                                             <span id='file_size' class="invalid-feedback d-block" role="alert">
                                                 <strong></strong>
                                             </span>
@@ -488,7 +451,10 @@
 
 <script type="text/javascript">
   $(document).ready( function () {
-    
+    $(function() {
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
+     });
+
     $('#vch_comp').on('change',function(){
         var vch_comp = $('#vch_comp').val();
         $.ajax({

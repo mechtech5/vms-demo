@@ -495,8 +495,7 @@ class PurchaseOrderController extends Controller
                 $data1['net_amt'] = '';
                 $data1['remark'] = '';
                 session()->push('data.'.$data->id, $data1);
-            }
-            return view('spare.inventory.purchase_order.po_item_table',compact('data'));             
+            }                         
         }
         else{
             foreach ($id as $Id) {
@@ -508,9 +507,23 @@ class PurchaseOrderController extends Controller
                 $data1['unit_id'] = $data->unit_id;
                 $data1['comp_id'] = $data->comp_id;
                 $data1['part_no'] = $data->part_no;
+                $data1['qty']     = '' ;
+                $data1['rate']    = '';
+                $data1['amt']     = '';
+                $data1['disc_pct']= '';
+                $data1['disc_amt']= '';
+                $data1['igst_pct']= '';
+                $data1['igst_amt']= '';
+                $data1['cgst_pct']= '';
+                $data1['cgst_amt']= '';
+                $data1['sgst_pct']= '';
+                $data1['sgst_amt']= '';
+                $data1['net_amt'] = '';
+                $data1['remark'] = '';
                 session()->push('data.'.$data->id, $data1);
             }
         }
+        return view('spare.inventory.purchase_order.po_item_table',compact('data'));
     }
 
     public function remove_session(Request $request){

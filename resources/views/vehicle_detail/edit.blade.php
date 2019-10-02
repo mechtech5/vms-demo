@@ -7,7 +7,7 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3> COMPANY DETAILS </h3>
+                <h3>UPDATE VEHICLE DETAILS </h3>
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('vehicledetails.index')}}">Back</a>
@@ -57,13 +57,9 @@
                       @enderror
                        <div class="inputGroupContainer">
                            <div class="input-group">
-                            
+                            @php ($vch = App\vch_model::find($edata->vch_model))                      
                               <select id="vch_model" name="vch_model" class="selectpicker form-control">
                                  <option disabled="true">Select..</option>
-                                @foreach($model as $models)
-
-                                    <option value='{{$models->id}}' {{$edata->vch_model == $models->id ? 'selected' : ''}} >{{$models->model_name}}</option>
-                                @endforeach    
                               </select>
                             </div>
                         </div> 
@@ -99,14 +95,8 @@
                       @enderror
                     <input id="email" type="text" class="form-control" name="owner_pan" value="{{ old('owner_pan') ?? $edata->owner_pan}}">
 
-                </div>
-                <!-- <div class="col-md-6 col-xl-6 mt-2">
-                    <label for="IMEI Number">IMEI Number</label>
-                    <input id="email1" type="email" class="form-control  " name="email1" value="">
-
-                </div> -->      
+                </div>                  
                  <div class="form-group">
-                    
                  </div>
                   <div class="row">
                     <div class="box-title" style="width: 100%;">
@@ -174,18 +164,9 @@
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Regi. Date</label>
-                                                    <input id="email1" type="date" class="form-control " name="reg_date" value="{{ old('reg_date') ?? $edata->reg_date}}">
+                                                    <input id="email1" type="text" class="form-control v" name="reg_date" readonly="true" value="{{ old('reg_date') ?? $edata->reg_date}}">
 
                                                 </div>
-
-                                                <div class="col-md-6 col-xl-6 mt-2">
-                                                    <label for="vehicle_model ">Vehicle Model </label>
-                                                       <select name="state_id" class="selectpicker form-control">
-                                                            <option selected=" true " disabled="true">Select..</option>
-                                                            
-                                                        </select>
-                                                        
-                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="KM Reading">KM Reading</label>
                                                     <input id="email1" class="form-control  " name="email1" value="">
@@ -240,56 +221,39 @@
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="After Sales Services Provideb By ">After Sales Services Provideb By  </label>
-                                                <input id="email" type="text" name="pur_after_sales_srv" class="form-control  " value="">
+                                                <input id="email" type="text" name="pur_after_sales_srv" class="form-control  " value="{{ old('pur_after_sales_srv') ?? $edata->pur_after_sales_srv}}">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Invoice No">Invoice No</label>
-                                                <input id="email1" type="text" class="form-control  " name="pur_invoice_no" value="">
+                                                <input id="email1" type="text" class="form-control  " name="pur_invoice_no" value="{{ old('pur_invoice_no') ?? $edata->pur_invoice_no}}">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Invoice Date">Invoice Date</label>
-                                                <input id="email" name="pur_invoice_dt" type="date" class="form-control  " value="">
+                                                <input id="email" name="pur_invoice_dt" type="text" class="form-control datepicker" readonly="true" value="{{ old('pur_invoice_dt') ?? $edata->pur_invoice_dt}}">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Vehicle Company Name">Vehicle Company Name</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">
-
-                                            </div>
-
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Assest Cost ">Assest Cost</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                                    
-                                             </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="KM Reading">KM Reading</label>
-                                                <input id="email1"  class="form-control  " name="email1" value="">
-                                            </div>
-
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for=" Free Services Provided ">Free Services Provided </label><br>
-                                                <input id="email" name="pur_free_srv" type="radio" value="">Yes<br>
-                                                <input id="email"  name="pur_free_srv" type="radio" value="">No
-
-                                            </div>
+                                                <label for="Assest Cost ">Purchase Amount</label>
+                                                <input id="email1" type="" class="form-control  " name="pur_amt" value="{{ old('pur_amt') ?? $edata->pur_amt }}">                                                    
+                                             </div>                                            
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="No of Free Services ">No of Free Services  </label>
-                                                <input id="email1" type="" class="form-control  " name="pur_free_srv_count" value="">
+                                                <input id="email1" type="" class="form-control" name="pur_free_srv_count" value="{{old('pur_free_srv_count') ?? $edata->pur_free_srv_count}}">
 
                                             </div>
+                                            <div class="col-md-3 col-xl-3 mt-2">
+                                                <label for=" Free Services Provided ">Free Services Provided </label><br>
+                                                <input id="email" name="pur_free_srv" type="radio" value="1">Yes<br>
+                                                <input id="email"  name="pur_free_srv" type="radio" value="0">No
+                                            </div>                                           
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-3 col-xl-3 mt-2">
                                                 <label for="Duplicate key at H.O.">Duplicate key at H.O.</label><br>
-                                                <input id="email" name="pur_duplicate_key" type="radio" value="">Yes<br>
-                                                <input id="email"  name="pur_duplicate_key" type="radio" value="">No
-
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="IMEI Number">Tare Weight</label>
-                                                <input id="email1"  class="form-control  " name="email1" value="">
-                                            </div>
+                                                <input id="email" name="pur_duplicate_key" type="radio" value="1">Yes<br>
+                                                <input id="email"  name="pur_duplicate_key" type="radio" value="0">No
+                                            </div>                                           
                                         </div>
                                         
                                         <div class="col-sm-12 col-md-12 col-xl-12  table-responsive " style="display: none;" id="mytable3">
@@ -301,7 +265,7 @@
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Assesories Supplied at Purchase">Assesories Supplied at Purchase</label>
-                                                <input id="email" type="" name="accessories_supplied" class="form-control  " value="">
+                                                <input id="email" type="" name="accessories_supplied" class="form-control" value="">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
@@ -327,48 +291,47 @@
 
                                         <div class="col-sm-12 col-md-12 col-xl-12  table-responsive " style="display: none;" id="mytable4">
                                             
-                                             <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Start Date">Start Date</label>
-                                                <input id="email1" type="date" class="form-control  " name="sale_dt" value="">
+                                             <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Start Date">Sale Date</label>
+                                                <input id="email1" type="text" readonly="true" class="form-control datepicker" name="sale_dt" value="">
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sale Price">Sale Price </label>
                                                 <input id="email" type="" class="form-control" name="sale_amt" value="">
 
                                             </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Buyer Company">Buyer Company</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Buyer Company">Buyer Name</label>
+                                                <input id="email1" type="" class="form-control" name="buyer_name" value="">
 
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sold To">Sold To</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                                    
+                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                  
                                              </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Buyer City  ">Buyer City  </label>
+                                                <select name="buyer_city" class="selectpicker form-control">
+                                                     <option selected="true" disabled="true">Select..</option>                                           
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Buyer Phone ">Buyer Phone </label>
+                                                <input id="email1" type="text" class="form-control  " name="buyer_phone" value="{{ old('buyer_phone') ?? $edata->buyer_phone}}">
+                                            </div>
+                                            <div class="col-md-4 col-xl-4 mt-2">
+                                                <label for="Old meter Reading at Sale">Old meter Reading at Sale</label>
+                                                <input id="email1" class="form-control  " name="sale_odo_reading" value="{{ old('sale_odo_reading') ?? $edata->sale_odo_reading }}">
+                                            </div>
+                                            <div class="col-md-8 col-xl-8 mt-2">
                                                 <label for="Buyer Address">Buyer Address</label>
                                                 <textarea id="email1" class="form-control  " name="buyer_addr" value=""></textarea>
                                             </div>
-
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Buyer City  ">Buyer City  </label>
-                                                <select name="buyer_city" class="selectpicker form-control">
-                                                     <option selected="true" disabled="true">Select..</option>                                                
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Buyer Phone ">Buyer Phone </label>
-                                                <input id="email1" type="text" class="form-control  " name="buyer_phone" value="">
-                                            </div>
-                                            <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Old meter Reading at Sale">Old meter Reading at Sale</label>
-                                                <input id="email1" class="form-control  " name="sale_odo_reading" value="">
-                                            </div>
                                             <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Buyer Address">Comments</label>
-                                                <textarea id="email1" class="form-control  " name="sale_comments" value=""> </textarea>
+                                                <textarea id="email1" class="form-control  " name="sale_comments" value="{{old('sale_comments') ?? $edata->sale_comments}}"> </textarea>
                                             </div>
                                         </div>
 
@@ -376,44 +339,40 @@
                                             
                                              <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Serial No.">Serial No.</label>
-                                                <input id="email1" type="" class="form-control  " name="eng_serial_no" value="">
+                                                <input id="email1" type="" class="form-control  " name="eng_serial_no" value="{{ old('eng_serial_no') ?? $edata->eng_serial_no }}">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Power (BHP)">Power (BHP)</label>
-                                                <input id="email" type="" class="form-control" name="eng_power" value="">
+                                                <input id="email" type="" class="form-control" name="eng_power" value="{{ old('eng_power') ?? $edata->eng_power}}">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Ignition Key No.">Ignition Key No.</label>
-                                                <input id="email1" type="" class="form-control  " name="eng_ignition_key_no" value="">
+                                                <input id="email1" type="" class="form-control  " name="eng_ignition_key_no" value="{{old('eng_ignition_key_no') ?? $edata->eng_ignition_key_no}}">
 
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Fuel Type\Grade">Fuel Type\Grade</label>
-                                                <input id="email1" type="" class="form-control  " name="eng_fuel_type" value="">                                                    
+                                                <input id="email1" type="" class="form-control  " name="eng_fuel_type" value="{{ old('eng_fuel_type') ?? $edata->eng_fuel_type }}">                                                    
                                              </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Door Key No">Door Key No</label>
-                                                <input id="email1" type="text" class="form-control  " name="eng_door_key_no" value="">
+                                                <input id="email1" type="text" class="form-control  " name="eng_door_key_no" value="{{ old('eng_door_key_no') ?? $edata->eng_door_key_no }}">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Engine Color ">Engine Color</label>
-                                               <input id="email1" type="text" class="form-control  " name="eng_color" value="">
+                                               <input id="email1" type="text" class="form-control  " name="eng_color" value="{{ old('eng_color') ?? $edata->eng_color }}">
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Cylinders ">Cylinders</label>
-                                                <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="">
+                                                <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="{{ old('eng_cylinder_count') ?? $edata->eng_cylinder_count }}">
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
-                                                <label for="Engine Interior Color">Engine Interior Color</label>
-                                                <input id="email1" type="text" class="form-control  " name="email1" value="">
-                                            </div>
-                                            <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Torque (lb-ft)">Torque (lb-ft)</label>
-                                                <input id="email1" type="text" class="form-control  " name="eng_torque" value="">
+                                                <input id="email1" type="text" class="form-control  " name="eng_torque" value="{{ old('eng_torque') ?? $edata->eng_torque}}">
                                             </div>
                                         </div>
 
@@ -487,7 +446,9 @@
 
 <script type="text/javascript">
   $(document).ready( function () {
-    
+     $(function() {
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
+     });
     $('#vch_comp').on('change',function(){
         var vch_comp = $('#vch_comp').val();
         $.ajax({
@@ -509,6 +470,8 @@
             $('#mytable2').hide();
             $('#mytable3').hide();
             $('#mytable4').hide();
+            $('#mytable5').hide();
+            $('#mytable6').hide();
         }
         else if(data=='purchase'){
             $('#mytable1').hide();

@@ -19,8 +19,8 @@
                   Import
                   <input id="file" type="file" name="file"/>
                 </div>
-                  <a class="btn btn-inverse" href="{{ route('kmupdate.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
-                  <a class="btn btn-inverse" href="{{route('kmupdate.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
+                  <a  class="btn btn-inverse" href="{{ route('kmupdate.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
+                  <a  class="btn btn-inverse" href="{{route('kmupdate.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
 
               </form>
             </div>  
@@ -43,8 +43,8 @@
                   <td style="width:31%; padding-left: 20px">{{$vch_no->vch_no}}</td>
                   <td style="width:42%; padding-left: 20px">{{$Kilometer->reading }}</td>
                   <td style="width:20%; text-align:center;">
-                    <a href="{{route('kmupdate.edit',$Kilometer->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('kmupdate.delete',$Kilometer->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding:2px 5px;" href="{{route('kmupdate.edit',$Kilometer->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding:2px 8px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('kmupdate.delete',$Kilometer->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach

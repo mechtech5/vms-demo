@@ -34,9 +34,9 @@ class KMupdateController extends Controller
     {
         $fleet_code = session('fleet_code');
         $data = $request->validate([
-                                   "vch_id" => "required",
+                                   "vch_id"  => "required",
                                    "reading" => "required|numeric",
-                                   'date'       =>'required|date|date_format:Y-m-d|before:tomorrow'
+                                   'date'    =>'required|date|date_format:Y-m-d|before:tomorrow'
                                 ]);
         $data['fleet_code'] = $fleet_code;
         KMupdate::create($data);
@@ -48,7 +48,6 @@ class KMupdateController extends Controller
     {
         //
     }
-
     
     public function edit($id)
     {

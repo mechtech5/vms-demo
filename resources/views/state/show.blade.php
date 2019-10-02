@@ -42,8 +42,8 @@
                   <td>{{$states->state_name}}</td>
                   <td>{{$states->state_code}}</td>
                   <td style="width:10%; text-align:center;">
-                    <a href="{{route('state.edit',$states->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                    <a onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('state.delete',$states->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding: 2px 5px;" href="{{route('state.edit',$states->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
+                    <a style="padding: 2px 8px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('state.delete',$states->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
                   </td>
                 </tr>
                 @endforeach
