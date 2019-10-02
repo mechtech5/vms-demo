@@ -28,8 +28,8 @@ class OtherSetup extends Migration
 
         Schema::create('agent_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
+             $table->string('fleet_code', 10);
             $table->integer('agent_code',10);
-            $table->string('fleet_code', 10);
             $table->string('agent_name', 100);
             $table->string('agent_phone', 100);
             $table->string('agent_address', 255);

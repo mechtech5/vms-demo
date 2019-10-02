@@ -312,11 +312,6 @@
 
                                             </div>
 
-                                            <div class="col-md-4 col-xl-4 mt-2">
-                                                <label for="Sold To">Sold To</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                                    
-                                             </div>
-
                                              <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Buyer City  ">Buyer City  </label>
                                                 <select name="buyer_city" class="selectpicker form-control">

@@ -27,6 +27,7 @@ class VehicleSetup extends Migration
 
         Schema::create('vch_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string ('fleet_code', 10);
             $table->string('vch_no', 15);
             $table->integer('vch_comp');
             $table->integer('vch_model');
@@ -46,16 +47,17 @@ class VehicleSetup extends Migration
             $table->string('pur_dealer_city',100);
             $table->string('pur_after_sales_srv',100);
             $table->string('pur_invoice_no',100);
-            $table->date('pur_invoice_dt',100);
+            $table->date('pur_invoice_dt');
             $table->decimal('pur_amt',15,2);
-            $table->tinyIncrements('pur_free_srv');
-            $table->tinyIncrements('pur_duplicate_key');
+            $table->tinyInteger('pur_free_srv');
+            $table->tinyInteger('pur_duplicate_key');
             $table->integer('pur_free_srv_count');
             $table->string('chassis_serial_no',50);
             $table->string('chassis_color',20);
             $table->string('body_color',20);
             $table->decimal('chassis_length',5,2);
             $table->decimal('body_height',5,2);
+            $table->string('accessories_supplied');
             $table->date('sale_dt');
             $table->decimal('sale_amt',15,2);
             $table->string('buyer_name',20);
