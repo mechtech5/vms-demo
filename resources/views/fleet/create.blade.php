@@ -17,25 +17,7 @@
 				<div class="card-header">
 					<div class="row">
 						 <form style="width: 100%;padding-top: 17px;" class="form-horizontal" method="post" action="{{route('fleet.store')}}">
-		             	 {{csrf_field()}}
-		                 <div class="form-group">
-		                    <label class="col-md-4 control-label">User List</label>
-		                    <div class="col-md-4 inputGroupContainer">
-		                       <div class="input-group">
-		                          <select name="fleet_owner" class="selectpicker form-control">
-		                             <option selected=" true " disabled="true">Select..</option>
-		                             @foreach($user as $users)
-		                                <option value="{{$users->id}}">{{$users->name}}</option>
-		                             @endforeach     
-		                          </select>
-		                        </div>
-		                         @error('fleet_user')
-		                              <span class="invalid-feedback" role="alert">
-		                                  <strong>{{ $message }}</strong>
-		                              </span>
-		                          @enderror
-		                    </div>
-		                 </div>
+		             	 {{csrf_field()}}         
 
 		                   <div class="form-group">
 		                    <label class="col-md-4 control-label">Fleet Name</label>
@@ -59,7 +41,7 @@
 		                          <input id="addressLine1" name="fleet_code" class="form-control"  value="{{old('fleet_code')}}" type="text">
 		                          <?php if(Session::get('fleet_code')){ ?>
 		                          	<span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ Session::get('fleet_code') }}</strong>
+		                               <strong>{{ Session::get('fleet_code_error') }}</strong>
 		                            </span>                         	 		
 		                          	 		
 		                      <?php    	}?>

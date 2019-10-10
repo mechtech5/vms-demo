@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
 use App\State;
 use App\City;
+use Auth;
 
 class TyreVendorImport implements ToCollection,WithHeadingRow
 {    
@@ -49,7 +50,8 @@ class TyreVendorImport implements ToCollection,WithHeadingRow
 		                        'city_id'     => $city->id,
                                 'vendor_type' =>$row['supplier_type'],
                                 'gst'         =>$row['gst_no'],
-                                'email'       =>$row['email']		                        
+                                'email'       =>$row['email'],
+                                'created_by'  => Auth::user()->id
 		                        ]); 
 		                   }
 		            }

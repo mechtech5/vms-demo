@@ -14,6 +14,7 @@ use App\State;
 use File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Agent;
+use Auth;
 
 class StatePermitController extends Controller
 {
@@ -57,6 +58,7 @@ class StatePermitController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
         StatePermit::create($vdata);
         return redirect('statepermit');
     }
@@ -97,6 +99,7 @@ class StatePermitController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
         StatePermit::where('id',$id)->update($vdata);
         return redirect('statepermit');
     }

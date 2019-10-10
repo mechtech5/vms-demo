@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
+use Auth;
 
 class StateImport implements ToCollection,WithHeadingRow
 {
@@ -23,7 +24,8 @@ class StateImport implements ToCollection,WithHeadingRow
             if(!empty($row['state_name']) && !empty($row['state_code']) )                
             {   State::create(['fleet_code'  => $row['fleet_code'],
                                 'state_code' => strtoupper($row['state_code']),
-                                'state_name' => ucfirst($row['state_name'])
+                                'state_name' => ucfirst($row['state_name']),
+                                'created_by' => Auth::user()->id
                                 ]);                   
 
             }

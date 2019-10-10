@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
 
 class UserController extends Controller
 {
@@ -33,14 +35,17 @@ class UserController extends Controller
         $this->validate($request,[ 'name' =>'required',
                                    'email' => 'required|email|unique:users,email'
                                  ]);
-        $name = strtolower($request->name);
-        $password = substr($name,0,4).'1234';
+        $password = substr($request->name,0,4).'1234';
+        $name['name']     = strtolower($request->name);
+        $name['password'] = $password;
+        $name['username'] = $request->email;
         $data = array(
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($password),
                 );
         User::insert($data);
+        Mail::to($request->email)->send(new SendMailable($name));
         return redirect('admin');
     }
 

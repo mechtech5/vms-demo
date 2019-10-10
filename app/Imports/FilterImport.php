@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DB;
 use DateTime;
+use Auth;
 
 class FilterImport implements ToCollection,WithHeadingRow
 {
@@ -46,7 +47,8 @@ class FilterImport implements ToCollection,WithHeadingRow
                         'date'         => $row['date'],
                         'filter_type'  => $row['filter_type'],
                         'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        'cost'         => $row['cost'],
+                        'created_by'   => Auth::user()->id
                         ]); 
                     }
 

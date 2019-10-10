@@ -42,7 +42,7 @@
                 <tr>
                   <td style=" padding-left: 20px;">{{++$count}}</td>
                   <td style=" width:35%; padding-left: 20px">{{$Spareunit->unit_name}}</td>
-                  <td style=" width:40%; padding-left: 20px">{{$Spareunit->unit_name}}</td>
+                  <td style=" width:40%; padding-left: 20px">{{$Spareunit->unit_desc}}</td>
                   <td style="width:10%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('spareunit.edit',$Spareunit->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('spareunit.delete',$Spareunit->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>

@@ -27,21 +27,19 @@
 	                                <input id="ins_policy_no" class="form-control" name="pump_name" value="{{old('pump_name')}}" > 
 	                                @error('pump_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter petrol pump name' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>	
 
 		                        <div class="col-md-4 col-xl-4 mt-2">
-	                               <label for="Vehicle No.">Pump Phone No</label>
-	                                
+	                               <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Pump Phone No</label>	                                
 	                                <input id="ins_policy_no" class="form-control" name="pump_phone" value="{{old('pump_phone')}}" > 
 	                                @error('pump_phone')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent email' }}</strong>
+			                               <strong>{{ 'Please enter pump phone number' }}</strong>
 			                            </span>
-			                         @enderror
-		                                 
+			                         @enderror  
 		                        </div>    
 
 		                        <div class="col-md-4 col-xl-4 mt-2">
@@ -50,14 +48,13 @@
 	                                <input id="ins_policy_no" class="form-control" name="pump_gst_no" value="{{old('pump_gst_no')}}" > 
 	                                @error('pump_gst_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter GST number' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>	
                                          
 				            </div>
 				             <div class="row">
-
 			                    <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="Vehicle No.">Contact Preson </label>
 	                                
@@ -96,8 +93,7 @@
 
  							<div class="row">     
 			                    <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Email ID</label>
-	                                
+	                                <label for="Vehicle No.">Email ID</label>                            
 	                                <input id="ins_policy_no" type="email" class="form-control" name="pump_email" value="{{old('pump_email')}}" > 
 	                                @error('pump_email')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
@@ -106,28 +102,28 @@
 			                         @enderror
 		                                 
 		                        </div>
-	                         <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select State</label>		                    
+		                         <div class="col-md-4 col-xl-4 mt-2">
+				                   <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select State</label>		                    
 			                       <select id="pump_state"  name="pump_state" class="selectpicker form-control">
 			                            <option value="">Select..</option>
 			                            @foreach($state as $State)
 			                               <option value="{{$State->id}}">{{$State->state_name}}</option>
 			                            @endforeach     
 			                        </select>
-			                        @error('agent_id')
-			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
-			                              </span>
-			                          @enderror
-				                </div>
+			                        @error('pump_state')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                                <strong>{{ 'Please Select state' }}</strong>
+			                            </span>
+			                        @enderror
+					            </div>
 				                <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select City</label>		                    
+				                   <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select City</label>		                    
 			                       <select id='pump_city' name="pump_city" class="selectpicker form-control">
 			                            <option value="0" selected=" true " >Select..</option>     
 			                        </select>
-			                        @error('agent_id')
+			                        @error('pump_city')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please Select city' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>

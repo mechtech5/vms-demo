@@ -83,12 +83,6 @@
 		                            </span>
 		                         @enderror
                             </div>
-
-                            <div class="col-md-6 col-xl-6 mt-2">
-                                <label for="Manufacturer Year"> Salary </label>
-                                <input id="email" class="form-control" name="salary" value="{{old('salary') ?? $edata->salary}}">
-
-                            </div>
                             <div class="col-md-6 col-xl-6 mt-2">
                                 <label for="Regi. Date"> Join Date</label>
                                 <input id="email1" type="date" class="form-control " name="joined_dt" value="{{old('joined_dt') ?? $edata->joined_dt}}">

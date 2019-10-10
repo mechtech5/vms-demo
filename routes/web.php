@@ -19,7 +19,7 @@ Route::match(['get', 'post'], 'register', function () {
     return abort(403, 'Forbidden');
 })->name('register');
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:superadmin']], function () {
 	// This Route start For RolesController
 
 	Route::resource('/admin', 'ACL\RolesController');
@@ -32,7 +32,6 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	Route::resource('permissions', 'ACL\PermissionController');
 	Route::get('/delete_permissions/{id}', 'ACL\PermissionController@destroy')->name('delete_permissions');
-
 	// End Permission Conroller 
 
 	// Start Users Conroller 
@@ -40,15 +39,29 @@ Route::group(['middleware' => ['role:admin']], function () {
 	Route::resource('/users', 'ACL\UserController');
 	Route::get('/destroy/{id}', 'ACL\UserController@destroy')->name('destroy');
 	Route::post('/changes_role','ACL\UserController@changesRole')->name('changesRole');
-	Route::post('/changePermission','ACL\UserController@changePermission')->name('changePermission');
+	Route::post('/changePermission','ACL\UserController@changePermission')->name('changePermission');	
+
+	//Start AccountController
+
+	Route::resource('/account', 'AccountController');
+
+	//End AccountController
+});
+
+Route::group(['middleware' => ['role:account']], function () {	
 
 	//Start FleetController
-
 	Route::resource('/fleet','FleetController');
 	Route::get('fleetdestroy/{id}','FleetController@destroy')->name('model.destroy');
+	Route::post('add_on_fleet','FleetController@add_on_fleet');
+	Route::get('deletefleetuser/{id}','FleetController@user_delete')->name('fleet_user.delete');
+
+	Route::resource('/accountuser','AccountUserController');
+	Route::get('/destroy_accountuser/{id}', 'AccountUserController@destroy')->name('destroy.account');
+	Route::post('user_add_on_fleet','AccountUserController@add_on_user');
+
 
 	//End FleetController
-
 });
 // End Users Conroller 
 
@@ -57,6 +70,7 @@ Route::group(['middleware' => ['role:admin']], function () {
      	//Strat Dashboard Controller
 
 		Route::resource('/dashboard','DashboardController');
+		Route::post('/fleet_ckeck','DashboardController@fleet_ckeck')->name('fleet_ckeck');
 
 		//End Dashboard Controller
 
@@ -282,7 +296,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/fuelentryDelete/{id}','Fuel\FuelEntryController@destroy')->name('fuelentry.delete');
 		Route::get('/fuelentryExport','Fuel\FuelEntryController@export')->name('fuelentry.export');
 		Route::post('/fuelentryImport','Fuel\FuelEntryController@import')->name('fuelentry.import');
-		Route::get('/fuelentryDOwnloaD','Fuel\FuelEntryController@download')->name('fuelentry.download');
+		Route::get('/entry_download','Fuel\FuelEntryController@download')->name('fuelentry.download');
 		//End FuelEntryController
 
 		//Statr FuelBillController
@@ -306,7 +320,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/sparetypeDelete/{id}','Spare\SpareTypeController@destroy')->name('sparetype.delete');
 		Route::get('/sparetypeExport','Spare\SpareTypeController@export')->name('sparetype.export');
 		Route::post('/sparetypeImport','Spare\SpareTypeController@import')->name('sparetype.import');
-		Route::get('/sparetypeDOwnLoaD','Spare\SpareTypeController@download')->name('sparetype.download');
+		Route::get('/download_sparetype','Spare\SpareTypeController@download')->name('sparetype.download');
 		//End SpareTypeController
 
 		//Statr SpareTypeController 
@@ -349,7 +363,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 		Route::get('/tyrecompanyDelete/{id}','Tyre\TyreCompanyController@destroy')->name('tyrecompany.delete');
 		Route::get('/tyrecompany_export','Tyre\TyreCompanyController@export')->name('tyrecompany.export');
 		Route::post('/tyrecompany_import','Tyre\TyreCompanyController@import')->name('tyrecompany.import');
-		Route::get('/tyrecompany_DOwnLoaD','Tyre\TyreCompanyController@download')->name('tyrecompany.download');
+		Route::get('/tyre_download','Tyre\TyreCompanyController@download')->name('tyrecompany.download');
 		//End TyreCompanyController
 
 		//Statr TyreModelController 

@@ -164,7 +164,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Regi. Date</label>
-                                                    <input id="email1" type="text" class="form-control v" name="reg_date" readonly="true" value="{{ old('reg_date') ?? $edata->reg_date}}">
+                                                    <input id="email1" type="text" class="form-control datepicker" name="reg_date" readonly="true" value="{{ old('reg_date') ?? $edata->reg_date}}">
 
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
@@ -210,15 +210,15 @@
                                                 <input id="email" name="pur_dealer_addr"  class="form-control  " value="{{ old('pur_dealer_addr') ?? $edata->pur_dealer_addr}}">
 
                                             </div>
-                                           <div class="col-md-6 col-xl-6 mt-2">
+                                            <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Dealer City ">Dealer City</label>
                                                    <select name="pur_dealer_city" class="selectpicker form-control">
                                                         <option selected=" true " disabled="true">Select..</option>
-                                                        
-                                                    </select>
-                                                    
+                                                        @foreach($city as $cities)
+                                                           <option value="{{$cities->id}}">{{$cities->city_name}}</option>
+                                                        @endforeach                       
+                                                    </select>                                                    
                                              </div>
-
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="After Sales Services Provideb By ">After Sales Services Provideb By  </label>
                                                 <input id="email" type="text" name="pur_after_sales_srv" class="form-control  " value="{{ old('pur_after_sales_srv') ?? $edata->pur_after_sales_srv}}">
@@ -245,14 +245,14 @@
                                             </div>
                                             <div class="col-md-3 col-xl-3 mt-2">
                                                 <label for=" Free Services Provided ">Free Services Provided </label><br>
-                                                <input id="email" name="pur_free_srv" type="radio" value="1">Yes<br>
-                                                <input id="email"  name="pur_free_srv" type="radio" value="0">No
+                                                <input  name="pur_free_srv" type="radio" {{ $edata->pur_free_srv == 1 ? 'checked': '' }} value="1">Yes<br>
+                                                <input  name="pur_free_srv" type="radio" {{ $edata->pur_free_srv == 0 ? 'checked':'' }} value="0">No
                                             </div>                                           
 
                                             <div class="col-md-3 col-xl-3 mt-2">
                                                 <label for="Duplicate key at H.O.">Duplicate key at H.O.</label><br>
-                                                <input id="email" name="pur_duplicate_key" type="radio" value="1">Yes<br>
-                                                <input id="email"  name="pur_duplicate_key" type="radio" value="0">No
+                                                <input  name="pur_duplicate_key" type="radio" {{ $edata->pur_duplicate_key == 1 ? 'checked':'' }} value="1">Yes<br>
+                                                <input  name="pur_duplicate_key" type="radio" {{ $edata->pur_duplicate_key == 0 ? 'checked':'' }} value="0">No
                                             </div>                                           
                                         </div>
                                         
@@ -260,32 +260,32 @@
                                             
                                              <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Chasis Serial No.">Chasis Serial No.</label>
-                                                <input id="email1"  class="form-control  " name="chassis_serial_no" value="">
+                                                <input id="email1"  class="form-control" name="chassis_serial_no" value="{{old('chassis_serial_no') ?? $edata->chassis_serial_no}}">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Assesories Supplied at Purchase">Assesories Supplied at Purchase</label>
-                                                <input id="email" type="" name="accessories_supplied" class="form-control" value="">
+                                                <input id="email" type="" name="accessories_supplied" class="form-control" value="{{old('accessories_supplied') ?? $edata->accessories_supplied}}">
 
                                             </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Vehicle Body height">Vehicle Body height</label>
-                                                <input id="email1" type="" class="form-control  " name="body_height" value="">
+                                                <input id="email1" type="" class="form-control  " name="body_height" value="{{old('body_height') ?? $edata->body_height}}">
 
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Chasis Length">Chasis Length</label>
-                                                <input id="email1" type="" class="form-control  " name="chassis_length" value="">                                                    
+                                                <input id="email1" type="" class="form-control" name="chassis_length" value="{{old('chassis_length') ?? $edata->chassis_length}}">                                                    
                                              </div>
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Chasis color">Chasis color</label>
-                                                <input id="email1" type="text" class="form-control  " name="chassis_color" value="">
+                                                <input id="email1" type="text" class="form-control" name="chassis_color" value="{{old('chassis_color') ?? $edata->chassis_color}}">
                                             </div>
 
                                             <div class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Body color ">Body color </label>
-                                                <input id="email1" type="text" class="form-control  " name="body_color" value="">
+                                                <input id="email1" type="text" class="form-control" name="body_color" value="{{old('body_color') ?? $edata->body_color}}">
                                             </div>
                                         </div>
 
@@ -293,28 +293,30 @@
                                             
                                              <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Start Date">Sale Date</label>
-                                                <input id="email1" type="text" readonly="true" class="form-control datepicker" name="sale_dt" value="">
+                                                <input id="email1" type="text" readonly="true" class="form-control datepicker" name="sale_dt" value="{{old('sale_dt') ?? $edata->sale_dt}}">
                                             </div>
 
                                             <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sale Price">Sale Price </label>
-                                                <input id="email" type="" class="form-control" name="sale_amt" value="">
-
+                                                <input id="email" type="" class="form-control" name="sale_amt" value="{{old('sale_amt') ?? $edata->sale_amt}}">
                                             </div>
                                             <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Buyer Company">Buyer Name</label>
-                                                <input id="email1" type="" class="form-control" name="buyer_name" value="">
+                                                <input id="email1" type="" class="form-control" name="buyer_name" value="{{old('buyer_name') ?? $edata->buyer_name}}">
 
                                             </div>
 
                                             <div class="col-md-4 col-xl-4 mt-2">
                                                 <label for="Sold To">Sold To</label>
-                                                <input id="email1" type="" class="form-control  " name="email1" value="">                                  
+                                                <input id="email1" type="" class="form-control" name="email1" value="">                                  
                                              </div>
                                             <div class="col-md-4 col-xl-4 mt-2">
-                                                <label for="Buyer City  ">Buyer City  </label>
-                                                <select name="buyer_city" class="selectpicker form-control">
-                                                     <option selected="true" disabled="true">Select..</option>                                           
+                                                <label for="Buyer City">Buyer City  </label>
+                                                <select name="pur_dealer_city" class="selectpicker form-control">
+                                                    <option selected=" true " disabled="true">Select..</option>
+                                                    @foreach($city as $cities)
+                                                       <option {{ $edata->pur_dealer_city == $cities->id ? 'selected':'' }} value="{{$cities->id}}">{{$cities->city_name}}</option>
+                                                    @endforeach                       
                                                 </select>
                                             </div>
                                             <div class="col-md-4 col-xl-4 mt-2">
@@ -327,11 +329,11 @@
                                             </div>
                                             <div class="col-md-8 col-xl-8 mt-2">
                                                 <label for="Buyer Address">Buyer Address</label>
-                                                <textarea id="email1" class="form-control  " name="buyer_addr" value=""></textarea>
+                                                <textarea id="email1" class="form-control  " name="buyer_addr" value="{{ $edata->buyer_addr}}">{{ $edata->buyer_addr}}</textarea>
                                             </div>
                                             <div class="col-md-12 col-xl-12 mt-2">
                                                 <label for="Buyer Address">Comments</label>
-                                                <textarea id="email1" class="form-control  " name="sale_comments" value="{{old('sale_comments') ?? $edata->sale_comments}}"> </textarea>
+                                                <textarea id="email1" class="form-control" name="sale_comments" value="{{old('sale_comments') ?? $edata->sale_comments}}">{{$edata->sale_comments}} </textarea>
                                             </div>
                                         </div>
 

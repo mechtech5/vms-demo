@@ -56,7 +56,7 @@ class TyreTypeController extends Controller
         $data['type_desc']  = $request->type_desc;
         $data['fleet_code'] = session('fleet_code');
         TyreType::where('id',$id)->update($data);
-        return redirect('typetype');
+        return redirect('tyretype');
     }
 
     public function destroy($id)

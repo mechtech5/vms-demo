@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
 use App\Models\TyreCompany;
+use Auth;
 
 
 class TyreModelImport implements ToCollection,WithHeadingRow
@@ -27,8 +28,9 @@ class TyreModelImport implements ToCollection,WithHeadingRow
                 $comp = TyreCompany::where('fleet_code',$fleet_code)->where('comp_name', 'like',$row['tyre_company_name'])->first();
                 if(!empty($comp)){
                         TyreModel::create(['fleet_code'  => $row['fleet_code'],
-                                              'comp_id'  => $comp->id,
-                                              'model_name' => $row['tyre_model_name']
+                                            'comp_id'    => $comp->id,
+                                            'model_name' => $row['tyre_model_name'],
+                                            'created_by' = Auth::user()->id
                                             ]);  
                 }                 
 

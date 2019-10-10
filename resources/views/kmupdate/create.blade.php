@@ -50,11 +50,11 @@
                              <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Date</label>
                                 @error('date')
-		                            <span class="invalid-feedback d-block" role="alert">
+		                            <span class="invalid-feedback d-block " role="alert">
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control" type="date" name="date" value="{{old('date')}}">
+                                <input class="form-control datepicker" readonly="true" type="text" name="date" value="{{old('date')}}">
                                
                             </div>
 
@@ -78,7 +78,10 @@
   $(document).ready( function () {
     $('#myTable').DataTable();
       
-	});
+   $(function() {
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
+     });
+   });
 
 </script>
 @endsection

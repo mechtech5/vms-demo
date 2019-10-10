@@ -12,6 +12,7 @@ use Session;
 use App\Models\SpareMaster;
 use App\Models\SpareType; 
 use App\Models\Inventory\MaterialItemRequest;
+use Auth;
 
 class MaterialRequestController extends Controller
 {
@@ -39,9 +40,10 @@ class MaterialRequestController extends Controller
 
         $data1['fleet_code'] = session('fleet_code');
         $data1['remarks']    = $request->remarks;
+        $data1['created_by'] = Auth::user()->id;
         $last_id = MaterialRequest::create($data1)->id;
 
-        $ids     = $request->id;
+        $ids     = !empty($request->id)?$request->id:array();
         $qty     = $request->qty;
         $remark  = $request->remark; 
         $count = count($ids);
@@ -103,7 +105,7 @@ class MaterialRequestController extends Controller
 
     public function update(Request $request, $id)
     {
-        $ids     = $request->id;
+        $ids     = !empty($request->id)?$request->id:array();
         $qty     = $request->qty;
         $remark  = $request->remark; 
         $count = count($ids);

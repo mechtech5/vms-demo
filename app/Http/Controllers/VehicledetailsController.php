@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\vehicle_master;
 use App\vch_comp;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use File;
+use DB;
+use Auth;
 
 class VehicledetailsController extends Controller
 {
@@ -44,8 +46,9 @@ class VehicledetailsController extends Controller
         $vdata = $this->all_form_data($request);
         $vdata['fleet_code'] = session('fleet_code');
         $ddata = $this->store_image($request,$vdata);
+        $ddata['created_by'] = Auth::user()->id;
 
-        DB::table('vch_mast')->insert($ddata);
+        vehicle_master::create($ddata);
         return redirect('vehicledetails');
     }
        
@@ -57,11 +60,12 @@ class VehicledetailsController extends Controller
     public function edit($id)
     {
        $fleet_code = session('fleet_code');
-       $model  = DB::table('vch_model')->get();
+       $model   = DB::table('vch_model')->get();
        $company = vch_comp::where('fleet_code',$fleet_code)->get();
        $edata   = DB::table('vch_mast')->where('id',$id)->first();
+       $city    = DB::table('master_cities')->where('fleet_code',$fleet_code)->get();
              
-       return view('vehicle_detail.edit',compact('company','model','edata'));
+       return view('vehicle_detail.edit',compact('company','model','edata','city'));
     }
  
     public function update(Request $request, $id)
@@ -70,9 +74,10 @@ class VehicledetailsController extends Controller
         $old_data =  DB::table('vch_mast')->where('id',$id)->first();
         $vdata = $this->all_form_data($request);
         $vdata['fleet_code'] = $fleet_code;
+        $vdata['created_by'] = Auth::user()->id;
         $all_data = $this->store_image($request,$vdata,$id);
-        
-        DB::table('vch_mast')->where('id',$id)->update($all_data);
+
+        vehicle_master::where('id',$id)->update($all_data);
 
         if($old_data->vch_pic != $all_data['vch_pic'] && $all_data['vch_pic']!=null){
             Storage::delete('app/public/'.$fleet_code.'/vehicle_number/'.$old_data->vch_no.'/'.$old_data->vch_pic);
@@ -134,6 +139,7 @@ class VehicledetailsController extends Controller
                                       'reg_manuf_year'      => 'nullable',
                                       'reg_date'            => 'nullable',
                                       'reg_tank_cap'        => 'nullable',
+                                      'reg_mileage'         => 'nullable',  
                                       'pur_dealer_name'     => 'nullable',
                                       'pur_dealer_addr'     => 'nullable',
                                       'pur_dealer_city'     => 'nullable',
@@ -155,6 +161,7 @@ class VehicledetailsController extends Controller
                                       'buyer_addr'          => 'nullable',
                                       'buyer_city'          => 'nullable',
                                       'buyer_phone'         => 'nullable',
+                                      'buyer_name'          => 'nullable',
                                       'sale_odo_reading'    => 'nullable',
                                       'sale_comments'       => 'nullable',
                                       'eng_serial_no'       => 'nullable',
@@ -171,7 +178,7 @@ class VehicledetailsController extends Controller
                                       'owner_pan_pic'       => 'nullable|file|max:10000',
                                       'tds_declaration_pic' => 'nullable|file|max:10000'
             ]);
-        $vdata['vch_no'] = strtoupper($vdata['vch_no']);
+        $vdata['vch_no'] = strtoupper($vdata['vch_no']);  
         return $vdata;
     }
 

@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DateTime;
+use Auth;
 
 class BatteryImport implements ToCollection,WithHeadingRow
 {
@@ -49,6 +50,7 @@ class BatteryImport implements ToCollection,WithHeadingRow
                         'batt_acid'   => $row['battery_acid'],
                         'chr_by'      => $row['charging_by'],
                         'batt_cond'   => $row['battery_condition'],
+                        'created_by'  => Auth::user()->id
                         ]); 
                     }
 

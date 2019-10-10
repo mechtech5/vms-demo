@@ -10,6 +10,7 @@ use App\Imports\StateImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\State;
 use Validator;
+use Auth;
 
 class StateController extends Controller
 {
@@ -43,6 +44,7 @@ class StateController extends Controller
        $data['state_name'] = ucwords($request->state);
        $data['state_code'] = strtoupper($request->state_short);
        $data['fleet_code'] = $fleet_code;
+       $data['created_by'] = Auth::user()->id;
        
        State::create($data);
        return redirect('state');
@@ -69,6 +71,7 @@ class StateController extends Controller
 
        $data['state_name'] = ucwords($request->state);
        $data['state_code'] = strtoupper($request->state_short);
+       $data['created_by'] = Auth::user()->id;
        
        State::where('id',$id)->update($data);
        return redirect('state');

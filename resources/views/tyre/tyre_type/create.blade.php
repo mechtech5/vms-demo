@@ -22,16 +22,14 @@
                         	<div class="row">
 
 				                <div class="col-md-4 col-xl-4 mt-2 ">
-	                                <label class="pull-right" for="Vehicle No." >Tyre Type Name</label><span class="pull-right" style="color: #FF0000;font-size:15px;">*</span>            
-	                               
+	                                <label class="pull-right" for="Vehicle No." >Tyre Type Name</label><span class="pull-right" style="color: #FF0000;font-size:15px;">*</span>
 	                            </div>
 
-	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                                               
+	                            <div class="col-md-4 col-xl-4 mt-2">  
 	                                <input id="ins_policy_no" class="form-control" name="type_name" value="{{old('type_name')}}" > 
 	                                @error('type_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter spare type name' }}</strong>
+			                               <strong>{{ 'Please enter  name' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>

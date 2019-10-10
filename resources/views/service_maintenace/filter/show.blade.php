@@ -20,8 +20,7 @@
                   <input id="file" type="file" name="file"/>
                 </div>
                   <a class="btn btn-inverse" href="{{ route('filter.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
-
-              </form>
+                </form>
             </div>  
        
             <table id="myTable">

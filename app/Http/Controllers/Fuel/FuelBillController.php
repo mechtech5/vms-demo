@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use App\Models\FuelBill;
 use App\Models\PetrolPump;
+use Auth;
 
 class FuelBillController extends Controller
 {
@@ -36,7 +37,8 @@ class FuelBillController extends Controller
                                       "date" => "required",
                                       "total_amt_paid" => "required",
                                       "payment_mode" => "required|not_in:0"]);
-        $data['remarks'] = $request->remarks;
+        $data['remarks']    = $request->remarks;
+        $data['created_by'] = Auth::user()->id;
         $data = $this->pay_validate($request,$data);
         FuelBill::create($data);
         return redirect('fuelbill');   
@@ -65,6 +67,7 @@ class FuelBillController extends Controller
                                       "total_amt_paid" => "required",
                                       "payment_mode" => "required|not_in:0"]);
         $data['remarks'] = $request->remarks;
+        $data['created_by'] = Auth::user()->id;
         $data = $this->pay_validate($request,$data);
         FuelBill::where('id',$id)->update($data);
         return redirect('fuelbill'); 
@@ -86,7 +89,7 @@ class FuelBillController extends Controller
     {
         $data = Excel::import(new FuelBillImport,request()->file('file'));
         
-        return redirect('fuelentry');
+        return redirect('fuelbill');
     }
 
     public function download() {

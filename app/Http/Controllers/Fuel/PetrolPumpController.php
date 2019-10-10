@@ -11,6 +11,7 @@ use App\Models\PetrolPump;
 use Session;
 use App\State;
 use App\City;
+use Auth;
 
 class PetrolPumpController extends Controller
 {
@@ -46,6 +47,7 @@ class PetrolPumpController extends Controller
                                     'pump_city'  =>'required|not_in:0'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         PetrolPump::create($data);
         return redirect('petrolpump');
     }
@@ -79,6 +81,7 @@ class PetrolPumpController extends Controller
                                     'pump_city'  =>'required|not_in:0'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         PetrolPump::where('id',$id)->update($data);
         return redirect('petrolpump');
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Session;
 
 class HomeController extends Controller
 {
@@ -17,22 +18,23 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
-    {
+    
+    public function index()    
+    {//Auth::logout();
         $Id  = Auth::user()->id;
-        $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
+        $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();       
         $roleid = $hasrole->role_id;
         if($roleid == 1){
+            Session::put('user_rol','admin');
             return redirect('admin');
         }
         else if($roleid == 2){
+            Session::put('user_rol','fleet');
           return redirect('dashboard');   
+        }
+        else if($roleid == 3){
+            Session::put('user_rol','account');
+          return redirect('accountuser');   
         }
     }
 }

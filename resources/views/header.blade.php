@@ -103,7 +103,7 @@
                                     {{-- <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li> --}}
                                 </ul>
                             </li>
-                            <li class="<?php if ((Request::segment(1) == 'sparetype') || (Request::segment(1) == 'spareunit') || (Request::segment(1) == 'sparecompany') || (Request::segment(1) == 'sparemaster') ){ echo 'active'; }?>" id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
+                            <li class="<?php if ((Request::segment(1) == 'sparetype') || (Request::segment(1) == 'spareunit') || (Request::segment(1) == 'sparecompany') || (Request::segment(1) == 'sparemaster')|| (Request::segment(1) == 'sparevendor') ){ echo 'active'; }?>" id="L4"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Spare-Inventory</span>
                                 <span class=""></span></a>
                                 <ul class="dropdown-menu">
                                     <li class='dropdown-submenu'><a href="#">Setup</a>
@@ -128,11 +128,11 @@
                                     <li><a href="SpareInventoryReport.aspx"><span>Reports</span></a> </li>
                                 </ul>
                             </li>
-                            <li id="L5"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Tyre-Inventory</span>
+                            <li id="L5" class="<?php if ((Request::segment(1) == 'tyrecompany')
+                                            || (Request::segment(1) == 'tyremodel') || (Request::segment(1) == 'tyrevendor') || (Request::segment(1) == 'tyretype')) { echo 'active'; } ?>"><a href="#" data-toggle="dropdown" class='dropdown-toggle'><span>Tyre-Inventory</span>
                                 <span class=""></span></a>
                                 <ul  class="dropdown-menu">
-                                    <li  class='dropdown-submenu <?php if ((Request::segment(1) == 'tyrecompany')
-                                            || (Request::segment(1) == 'tyremodel') || (Request::segment(1) == 'tyrevendor')) { echo 'active'; } ?> '><a href="#">Setup</a>
+                                    <li  class='dropdown-submenu'><a href="#">Setup</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{route('tyrecompany.index')}}">Tyre Company</a></li>
                                             <li><a href="{{route('tyremodel.index')}}">Tyre Model</a></li>

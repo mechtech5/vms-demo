@@ -24,13 +24,11 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     
-    <script src="{{ asset('js/app.js') }}"></script>
+     <script src="{{ asset('js/app.js') }}"></script>
      <script src="{{asset('js/main_admin.js')}}"></script>
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
       <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
@@ -40,14 +38,14 @@
      <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
     <!-- Fonts -->
 
     <link rel="dns-prefetch" href="{{url('//fonts.gstatic.com')}}">
     <link href="{{url('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
   
-<!-- Styles -->
+  <!-- Styles -->
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app1.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}">
    <link rel="stylesheet" type="text/css" href="{{asset('css/main1.css')}}">
@@ -55,9 +53,13 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <!-- Styles -->
 
-    <!-- Styles -->
+   <!-- Open Model -->
+   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
+
 </head>
 <body class="app sidebar-mini rtl">
     <!-- Navbar-->
@@ -117,17 +119,17 @@
             <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
             <li><a class="dropdown-item" href="#"><i class="fa fa-user fa-lg"></i> Profile</a></li>
             <li> 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                      <span class="fa fa-sign-out fa-lg"></span>  Logout
-                                    </a>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                  <span class="fa fa-sign-out fa-lg"></span>  Logout
+                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                </form>
-                       
-                  </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                 </form>
+                   
+              </li>
           </ul>
         </li>
       </ul>
@@ -141,8 +143,17 @@
           </div>
         </div>
         <ul class="app-menu">
-          <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
+        <?php if(session('user_rol') == 'admin' ) { ?>  
+          <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa faces-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
+          <li><a class="app-menu__item active" href="{{url('account')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Account</span></a></li>
+       <?php  }
+        else{ ?>
+          <li><a class="app-menu__item active" href="{{url('accountuser')}}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Users</span></a></li>
           <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Fleet</span></a></li>
+      <?php 
+      
+        }
+        ?>            
         </ul>
    </aside> 
    

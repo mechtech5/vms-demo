@@ -10,6 +10,7 @@ use App\Models\OilChange;
 use App\Exports\OilExport;
 use App\Imports\OilImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class OilChangeController extends Controller
 {
@@ -41,6 +42,7 @@ class OilChangeController extends Controller
                                    ]);
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
+        $validatedData['created_by'] = Auth::user()->id;
         OilChange::insert($validatedData);
         return redirect('oilchange');
     }
@@ -72,6 +74,7 @@ class OilChangeController extends Controller
                                    ]);
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
+        $validatedData['created_by'] = Auth::user()->id;
         OilChange::where('id',$id)->update($validatedData);
         return redirect('oilchange');
     }

@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
 use App\State;
 use App\City;
+use Auth;
 
 class SpareVendorImport implements  ToCollection,WithHeadingRow
 {
@@ -47,7 +48,8 @@ class SpareVendorImport implements  ToCollection,WithHeadingRow
 		                        'phone'       => $row['phone_number'],
 		                        'contact_person_name' => $row['person_name'],
 		                        'state_id'    => $state->id,
-		                        'city_id'     => $city->id		                        
+		                        'city_id'     => $city->id,
+                                'created_by'  => Auth::user()->id
 		                        ]); 
 		                   }
 		            }

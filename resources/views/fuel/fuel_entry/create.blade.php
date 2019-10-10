@@ -31,7 +31,7 @@
 			                        </select>
 			                        @error('vch_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select vehicle' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
@@ -45,20 +45,20 @@
 			                        </select>
 			                        @error('fuel_stn_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select pump ' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
 				                <div class="col-md-4 col-xl-4 mt-2">
 				                    <span style="color: #FF0000;font-size:15px;">*</span><label class="">Select Payment Mode</label>		                    
 			                       <select id='pump_city' name="payment_mode" class="selectpicker form-control">
-			                            <option value="0" selected=" true " >Select..</option> 
+			                            <option value="0" >Select..</option> 
 			                            <option value="cash">Cash</option>
 			                            <option value="credit">Credit</option>
 			                       </select>
 			                        @error('payment_mode')
-			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                              <span class="invalid-feedback d-block " role="alert">
+			                                  <strong>{{ 'Please select payment mode' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
@@ -71,7 +71,7 @@
 	                                <input id="ins_policy_no" class="form-control datepicker" readonly="true" name="date" value="{{old('date')}}" > 
 	                                @error('date')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter date' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>
@@ -143,18 +143,18 @@
  								<div class="col-md-4 col-xl-4 mt-2">
 				                    <span style="color: #FF0000;font-size:15px;">*</span><label class="">Fuel Type</label>		                    
 			                       <select id='pump_city' name="fuel_type" class="selectpicker form-control">
-			                           <option value="0"> Fuel Type</option>
-										<option value="1">Ex/P</option>
-										<option selected="selected" value="2">HSD</option>
-										<option value="3">Turbo</option>
-										<option value="4">Ex Mile</option>
-										<option value="5">Pre Petrol</option>
-										<option value="6">LPG</option>
-										<option value="7">CNG</option>
+			                           <option value="0">Select Fuel Type</option>
+										<option value="ex/p">Ex/P</option>
+										<option value="hsd">HSD</option>
+										<option value="turbo">Turbo</option>
+										<option value="ex_mile">Ex Mile</option>
+										<option value="pre_petrol">Pre Petrol</option>
+										<option value="lpg">LPG</option>
+										<option value="cng">CNG</option>
 			                       </select>
 			                        @error('fuel_type')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select fuel type' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>    
@@ -164,7 +164,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="fuel_rate" value="{{old('fuel_rate')}}" > 
 	                                @error('fuel_rate')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter fuel rate' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
@@ -176,7 +176,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="total_fuel_amt" value="{{old('total_fuel_amt')}}" > 
 	                                @error('total_fuel_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter total ' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 

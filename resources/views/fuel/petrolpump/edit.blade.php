@@ -98,7 +98,7 @@
 
  							<div class="row">     
 			                    <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Email ID</label>
+	                                <label for="Vehicle No.">Email ID</label>
 	                                
 	                                <input id="ins_policy_no" type="email" class="form-control" name="pump_email" value="{{old('pump_email') ?? $data->pump_email}}" > 
 	                                @error('pump_email')
@@ -109,7 +109,7 @@
 		                                 
 		                        </div>
 	                         <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select State</label>		                    
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select State</label>		                    
 			                       <select id="pump_state" name="pump_state" class="selectpicker form-control">
 			                            <option value="0" >Select..</option>
 			                            @foreach($state as $State)
@@ -117,13 +117,13 @@
 			                            @endforeach     
 			                        </select>
 			                        @error('pump_state')
-			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
-			                              </span>
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                                <strong>{{ 'Please Select state' }}</strong>
+			                            </span>
 			                          @enderror
 				                </div>
 				                <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select City</label>		                    
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select City</label>		                    
 			                       <select id="pump_city" name="pump_city" class="selectpicker form-control">
 			                            <option value="0" >Select..</option>
 			                         </select>

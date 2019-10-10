@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
 use Session;
 use App\State;
+use Auth;
 
 class StatePermitImport implements ToCollection,WithHeadingRow
 {
@@ -44,7 +45,8 @@ class StatePermitImport implements ToCollection,WithHeadingRow
                         'valid_from'  => $row['valid_from'],
                         'valid_till'  => $row['valid_till'],
                         'pay_no'      => $row['pay_number'],
-                        'state_id'    => $state->id
+                        'state_id'    => $state->id,
+                        'created_by'  => Auth::user()->id
 
                         ]); 
                     //}

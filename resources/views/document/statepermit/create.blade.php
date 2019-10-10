@@ -7,7 +7,8 @@
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
-                <h3>STATE PERMIT DETAILS </h3>
+            	<!-- State prmit -->
+                <h3>PERMIT DETAILS </h3>
 
             </div>
             <div class="col-sm-6 col-md-6">
@@ -173,12 +174,12 @@
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
 			                            <option selected="true" value="0">Mode</option>
-			                            <option value="cash">Cash</option>
-										<option value="cheque">Cheque</option>
-										<option value="credit">Credit</option>
-										<option value="dd">DD</option>
-										<option value="rtgs">RTGS</option>
-										<option value="neft">NEFT</option>  
+			                            <option {{ old('payment_mode')== 'cash' ? 'selected':''}} value="cash">Cash</option>
+										<option {{ old('payment_mode')== 'cheque' ? 'selected':''}} value="cheque">Cheque</option>
+										<option {{ old('payment_mode')== 'credit' ? 'selected':''}} value="credit">Credit</option>
+										<option {{ old('payment_mode')== 'dd' ? 'selected':''}} value="dd">DD</option>
+										<option {{ old('payment_mode')== 'rtgs' ? 'selected':''}} value="rtgs">RTGS</option>
+										<option {{ old('payment_mode')== 'neft' ? 'selected':''}} value="neft">NEFT</option>  
 			                        </select>
 			                        @error('payment_mode')
 			                              <span class="invalid-feedback d-block " role="alert">
@@ -194,7 +195,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
 	                               
                                		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no')}}">
-                               		  @error('pay_no')
+                               		  @error('cpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque number" }}</strong>
 			                            </span>
@@ -204,7 +205,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
-                               		  @error('pay_dt')
+                               		  @error('cpay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
 			                            </span>
@@ -216,7 +217,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank')}}">
-                               		  @error('pay_bank')
+                               		  @error('cpay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
@@ -227,7 +228,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
-                               		  @error('pay_branch')
+                               		  @error('cpay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>
@@ -241,7 +242,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
 	                               
                                		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no')}}">
-                               		  @error('pay_no')
+                               		  @error('dpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD number' }}</strong>
 			                            </span>
@@ -397,7 +398,7 @@
   $(document).ready( function () {
     
   	$(function() {
-        $( ".datepicker" ).datepicker();
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     });
 
     $('#type').on('change',function(){
@@ -413,7 +414,6 @@
 
     			}
     		})
-
     	}
     	else if(type == 'dd'){
     		$('.cheque').hide();

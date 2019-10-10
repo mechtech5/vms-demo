@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DB;
 use DateTime;
 use Session;
+use Auth;
 
 class OilImport implements ToCollection,WithHeadingRow
 {
@@ -41,11 +42,12 @@ class OilImport implements ToCollection,WithHeadingRow
                     if($date1 <= $date2){
 
                         OilChange::create([
-                        'fleet_code'   => $row['fleet_code'],
-                        'vch_id'       => $vch_num->id ,
-                        'date'         => $row['date'],
-                        'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        'fleet_code'  => $row['fleet_code'],
+                        'vch_id'      => $vch_num->id ,
+                        'date'        => $row['date'],
+                        'km_reading'  => $row['km_reading'],
+                        'cost'        => $row['cost'],
+                        'created_by'  => Auth::user()->id
                         ]); 
                     }
 

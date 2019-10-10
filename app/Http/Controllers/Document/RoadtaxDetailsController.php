@@ -12,6 +12,7 @@ use App\Models\RoadtaxDetails;
 use App\vehicle_master;
 use File;
 use App\Models\Agent;
+use Auth;
 
 class RoadtaxDetailsController extends Controller
 {
@@ -49,6 +50,7 @@ class RoadtaxDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         RoadtaxDetails::create($vdata);
         return redirect('roadtax');
@@ -80,7 +82,7 @@ class RoadtaxDetailsController extends Controller
                                      "valid_till"   => 'required',
                                      "update_dt"    => 'required',
                                      "payment_mode" => 'required|not_in:0',
-                                     'roadtax_no'   => 'required',
+                                     'roadtax_no'   => 'required|numeric',
                                       'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
 
@@ -88,6 +90,7 @@ class RoadtaxDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         RoadtaxDetails::where('id',$id)->update($vdata);
         return redirect('roadtax');
@@ -152,8 +155,8 @@ class RoadtaxDetailsController extends Controller
           if($request->payment_mode == 'cheque'){                             
            $request->validate([ "cpay_no"      => 'required|numeric',
                                          "cpay_dt"      => 'required',
-                                         "cpay_bank"    => 'required|alpha',
-                                         "cpay_branch"  => 'required|alpha',                                 
+                                         "cpay_bank"    => 'required',
+                                         "cpay_branch"  => 'required',                                 
                                         ]);
             $Vdata['pay_no']  = $request->cpay_no;
            $Vdata['pay_dt'] = $request->cpay_dt;

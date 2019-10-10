@@ -8,6 +8,7 @@ use Session;
 use App\Exports\Agentexport;
 use App\Imports\AgentImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class AgentController extends Controller
 {
@@ -34,6 +35,7 @@ class AgentController extends Controller
                                       "agent_address"=> 'required'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         Agent::create($data);
         return redirect('agent');
     }
@@ -60,6 +62,7 @@ class AgentController extends Controller
                                       "agent_address"=> 'required'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         Agent::where('id',$id)->update($data);
         return redirect('agent');
     }

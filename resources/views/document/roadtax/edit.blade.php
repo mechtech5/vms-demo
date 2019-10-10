@@ -17,13 +17,12 @@
              <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('roadtax.update',$data->id)}}">
               {{csrf_field()}}
               @method('PATCH')
-                 <div class="card-body " >
+                 <div class="card-body" >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                         	<div class="row">
 	                        	<div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select Vehicle</label>
-				                     
+				                    <label class="">Select Vehicle</label>				                     
 			                       <select name="vch_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($vehicle as $vehicles)
@@ -145,7 +144,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
 	                               
                                		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no') ?? $data->payment_mode == 'cheque' ? $data->pay_no :''}}">
-                               		  @error('pay_no')
+                               		  @error('cpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque number" }}</strong>
 			                            </span>
@@ -155,7 +154,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="cpay_dt" name="pay_dt" value="{{old('pay_dt') ?? $data->payment_mode == 'cheque' ? $data->pay_dt :''}}">
-                               		  @error('pay_dt')
+                               		  @error('cpay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
 			                            </span>
@@ -166,8 +165,8 @@
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                               
-                               		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank') ?? $data->payment_mode == 'cheque' ? $data->pay_bank :''}}">
-                               		  @error('pay_bank')
+                               		 <input id="email1" class="form-control" name="cpay_bank" value="{{old('pay_bank') ?? $data->payment_mode == 'cheque' ? $data->pay_bank :''}}">
+                               		  @error('cpay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
@@ -178,7 +177,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch') ?? $data->payment_mode == 'cheque' ? $data->pay_branch :''}}">
-                               		  @error('pay_branch')
+                               		  @error('cpay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>
@@ -192,7 +191,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
 	                               
                                		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no') ?? $data->payment_mode == 'dd' ? $data->pay_no :''}}">
-                               		  @error('pay_no')
+                               		  @error('dpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD number' }}</strong>
 			                            </span>
@@ -202,7 +201,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
 	                               
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="dpay_dt" value="{{old('pay_dt') ?? $data->payment_mode == 'dd' ? $data->pay_dt :''}}">
-                               		  @error('pay_dt')
+                               		  @error('dpay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD date' }}</strong>
 			                            </span>
@@ -214,7 +213,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                                
                                		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank') ?? $data->payment_mode == 'dd' ? $data->pay_bank :''}}">
-                               		 @error('pay_bank')
+                               		 @error('dpay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
@@ -225,7 +224,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
 	                               
                                		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch') ?? $data->payment_mode == 'dd' ? $data->pay_branch :''}}">
-                               		  @error('pay_branch')
+                               		  @error('date(format)pay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>
@@ -349,8 +348,8 @@
 <script type="text/javascript">
   $(document).ready( function () {
     
-  	 $(function() {
-        $( ".datepicker" ).datepicker();
+  	$(function() {
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     });
 
     $('#type').on('change',function(){

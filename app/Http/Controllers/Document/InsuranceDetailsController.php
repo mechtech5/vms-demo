@@ -14,6 +14,7 @@ use File;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Agent;
 use App\Models\InsuranceCompany;
+use Auth;
 
 class InsuranceDetailsController extends Controller
 {
@@ -53,6 +54,7 @@ class InsuranceDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         InsuranceDetails::create($vdata);
         return redirect('insurance');
@@ -92,6 +94,7 @@ class InsuranceDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
         $old_data = InsuranceDetails::find($id);
         InsuranceDetails::where('id',$id)->update($vdata);
 

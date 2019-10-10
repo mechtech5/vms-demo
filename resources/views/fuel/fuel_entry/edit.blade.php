@@ -32,7 +32,7 @@
 			                        </select>
 			                        @error('vch_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select vehicle' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
@@ -46,7 +46,7 @@
 			                        </select>
 			                        @error('fuel_stn_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select pump' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
@@ -59,7 +59,7 @@
 			                       </select>
 			                        @error('payment_mode')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select payment mode' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>
@@ -72,7 +72,7 @@
 	                                <input id="ins_policy_no" class="form-control datepicker" readonly="true" name="date" value="{{old('date') ?? $data->date}}" > 
 	                                @error('date')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent name' }}</strong>
+			                               <strong>{{ 'Please enter date' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>
@@ -83,7 +83,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="bill_no" value="{{old('bill_no') ?? $data->bill_no}}" > 
 	                                @error('bill_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent email' }}</strong>
+			                               <strong>{{ 'Please enter bill no' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
@@ -144,18 +144,18 @@
  								<div class="col-md-4 col-xl-4 mt-2">
 				                    <span style="color: #FF0000;font-size:15px;">*</span><label class="">Fuel Type</label>		                    
 			                       <select id='pump_city' name="fuel_type" class="selectpicker form-control">
-			                           <option value="0"> Fuel Type</option>
-										<option value="ex/p">Ex/P</option>
-										<option value="hsd">HSD</option>
-										<option value="turbo">Turbo</option>
-										<option value="ex_mile">Ex Mile</option>
-										<option value="pre_petrol">Pre Petrol</option>
-										<option value="lpg">LPG</option>
-										<option value="cng">CNG</option>
+			                            <option  value="0"> Fuel Type</option>
+										<option {{ $data->fuel_type == 'ex/p' ? 'selected' :'' }} value="ex/p">Ex/P</option>
+										<option {{ $data->fuel_type == 'hsd' ? 'selected' :'' }} value="hsd">HSD</option>
+										<option {{ $data->fuel_type == 'turbo' ? 'selected' :'' }} value="turbo">Turbo</option>
+										<option {{ $data->fuel_type == 'ex_mile' ? 'selected' :'' }} value="ex_mile">Ex Mile</option>
+										<option {{ $data->fuel_type == 'pre_petrol' ? 'selected' :'' }} value="pre_petrol">Pre Petrol</option>
+										<option {{ $data->fuel_type == 'lpg' ? 'selected' :'' }} value="lpg">LPG</option>
+										<option {{ $data->fuel_type == 'cng' ? 'selected' :'' }} value="cng">CNG</option>
 			                       </select>
 			                        @error('fuel_type')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
-			                                  <strong>{{ 'Please Select Agent' }}</strong>
+			                                  <strong>{{ 'Please select fuel type' }}</strong>
 			                              </span>
 			                          @enderror
 				                </div>    
@@ -165,7 +165,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="fuel_rate" value="{{old('fuel_rate') ?? $data->fuel_rate}}" > 
 	                                @error('fuel_rate')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter fuel rate' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 
@@ -177,7 +177,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="total_fuel_amt" value="{{old('total_fuel_amt') ?? $data->total_fuel_amt}}" > 
 	                                @error('total_fuel_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter agent mobile number' }}</strong>
+			                               <strong>{{ 'Please enter total amount' }}</strong>
 			                            </span>
 			                         @enderror
 		                                 

@@ -7,7 +7,7 @@
       <div class="box box-color orange box-condensed box-bordered">
         <div class="box-title">
           <div class="col-sm-6 col-md-6">
-              <h3>STATE PERMIT DETAILS </h3>
+              <h3>PERMIT DETAILS </h3>
           </div>
           <div class="col-sm-2 col-md-2">
               <a style="margin-bottom: 5px;" href="{{route('statepermit.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>

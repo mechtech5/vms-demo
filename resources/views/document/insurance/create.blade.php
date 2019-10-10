@@ -182,7 +182,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
 	                               
                                		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no')}}">
-                               		  @error('pay_no')
+                               		  @error('cpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque number" }}</strong>
 			                            </span>
@@ -192,7 +192,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
-                               		  @error('pay_dt')
+                               		  @error('cpay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please enter cheque date" }}</strong>
 			                            </span>
@@ -204,7 +204,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank')}}">
-                               		  @error('pay_bank')
+                               		  @error('cpay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
@@ -215,7 +215,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
-                               		  @error('pay_branch')
+                               		  @error('cpay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>
@@ -229,7 +229,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
 	                               
                                		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no')}}">
-                               		  @error('pay_no')
+                               		  @error('dpay_no')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD number' }}</strong>
 			                            </span>
@@ -239,7 +239,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
 	                               
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="dpay_dt" value="{{old('pay_dt')}}">
-                               		  @error('pay_dt')
+                               		  @error('dpay_dt')
 			                         <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter DD date' }}</strong>
 			                            </span>
@@ -251,7 +251,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
 	                                
                                		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank')}}">
-                               		 @error('pay_bank')
+                               		 @error('dpay_bank')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
@@ -262,7 +262,7 @@
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
 	                               
                                		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch')}}">
-                               		  @error('pay_branch')
+                               		  @error('dpay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>

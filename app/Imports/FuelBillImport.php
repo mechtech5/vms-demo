@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
+use Auth;
 
 class FuelBillImport implements ToCollection,WithHeadingRow
 {
@@ -26,14 +27,14 @@ class FuelBillImport implements ToCollection,WithHeadingRow
                 $pump  = PetrolPump::where('fleet_code',$fleet_code)->where('pump_name', 'like',$row['pump_name'])->first();
                            
                 if(!empty($pump)){
-
+                
                     FuelBill::create([
                     'fleet_code'    => $row['fleet_code'],
-                    'date'                  => $row['date'],
-                    'payment_mode'          => $row['payment_mode'],
-                    'fuel_stn_id'           => $pump->id,
-                    'total_amt_paid'        =>$row['total_paid_amount'],
-                   
+                    'date'          => $row['date'],
+                    'payment_mode'  => $row['payment_mode'],
+                    'fuel_stn_id'   => $pump->id,
+                    'total_amt_paid'=>$row['total_paid_amount'],
+                    'created_by'    => Auth::user()->id                   
                     ]);                   
 
                 }

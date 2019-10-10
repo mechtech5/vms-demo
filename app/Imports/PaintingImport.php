@@ -11,6 +11,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DateTime;
 use Session;
+use Auth;
 class PaintingImport implements ToCollection,WithHeadingRow
 {
     
@@ -47,7 +48,8 @@ class PaintingImport implements ToCollection,WithHeadingRow
                         'cabin_color'   => $row['cabin_color'],
                         'body_colo'     => $row['body_colo'],
                         'chasis_color'  => $row['chasis_color'],
-                        'interior_color'=> $row['interior_color']
+                        'interior_color'=> $row['interior_color'],
+                        'created_by'    => Auth::user()->id
                         ]); 
                     }
 

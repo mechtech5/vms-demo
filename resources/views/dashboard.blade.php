@@ -624,7 +624,89 @@
         </tr>
     </table>
     </form>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="margin-top: 208px;">
+      <div class="modal-header">
+        <h3><b>Please Select Any One..</b></h3>
+      </div>
+      <div class="modal-body">
+        <table id="account_table">
+            <thead>
+                <tr>
+                    <th>Sno.</th>
+                    <th>fleets</th>
+                    <th>Select</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <?php 
+                    $count = 0;
+                    foreach($data['fleet_id'] as $fleet){
+                       $fleet_name = App\Fleet::find($fleet->fleet_id);  
+                 ?>
+                        <tr>
+                            <td>{{ ++$count }}</td>
+                            <td>{{ $fleet_name->fleet_code }}</td>
+                            <td><input type="radio" name="select_fleet" class="select_fleet" value="{{ $fleet_name->fleet_code }}"></td>
+                        </tr>    
+                <?php } ?>
+            </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">        
+        <input disabled="true" type="submit" class="btn btn-primary" value="Submit" id="submit">
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+<input type="hidden", id='fleet' name='fleet' value="{{ session('fleet_code') ?? $data['fleet'] }}">
+
+<script type="text/javascript">
+    $(document).ready(function(){       
+        $('#account_table').DataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bInfo": false,
+            "bAutoWidth": false});        
+                })
+    $(document).ready(function(){
+
+        var fleet = $('#fleet').val();
+        if(fleet == 'yes'){
+            $('#myModal').modal({
+                backdrop: 'static',
+                keyboard: false});
+            }
+    })
+
+    $(document).on('click','#submit',function(event){
+        event.preventDefault();
+        var fleet_code = $('.select_fleet').val();
+        $.ajax({
+            url: '/fleet_ckeck',
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {fleet_code:fleet_code},
+            success: function (data) {
+               if(data == 'success'){
+                     $('#myModal').modal('hide');
+               }
+            }
+        })
+    });
+  
+    $(document).on('click','input[name="select_fleet"]',function() { 
+        if ($(this).is(':checked')) {
+          $('#submit').attr('disabled',false)
+        } else {
+          alert("not checked");
+        }   
+    });
+
+</script>
 
 @endsection

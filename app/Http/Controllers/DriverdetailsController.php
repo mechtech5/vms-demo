@@ -13,6 +13,8 @@ use App\Exports\DriverExport;
 use App\Imports\DriverImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Driver;
 
 
 class DriverdetailsController extends Controller
@@ -21,7 +23,7 @@ class DriverdetailsController extends Controller
     public function index()
     {
         $fleet_code = session('fleet_code');
-        $driver = DB::table('driver_mast')->where('fleet_code',$fleet_code)->get();
+        $driver = Driver::where('fleet_code',$fleet_code)->get();
 
         return view('driver_details.show',compact('driver'));  
     }
@@ -29,19 +31,19 @@ class DriverdetailsController extends Controller
     public function create()
     {
         $fleet_code = session('fleet_code');
-        $state  = DB::table('master_states')->where('fleet_code',$fleet_code)->get(); 
+        $state  = Driver::where('fleet_code',$fleet_code)->get(); 
         
         return view('driver_details.create',compact('state'));
     }
 
    
     public function store(Request $request)
-    {
-       
+    {      
         $vdata = $this->all_form_data($request);
         $vdata['fleet_code'] = session('fleet_code');
         $ddata = $this->store_image($request,$vdata);
-        DB::table('driver_mast')->insert($ddata);
+        $ddata['created_by'] = Auth::user()->id;
+        Driver::create($ddata);
         return redirect('driver');
     }
 
@@ -56,7 +58,7 @@ class DriverdetailsController extends Controller
     {
         $fleet_code = session('fleet_code');
         $state  = DB::table('master_states')->where('fleet_code',$fleet_code)->get();
-        $edata = DB::table('driver_mast')->where('id',$id)->first();
+        $edata = Driver::where('id',$id)->first();
         return view('driver_details.edit',compact('edata','state'));
     }
 
@@ -66,7 +68,8 @@ class DriverdetailsController extends Controller
         $vdata = $this->all_form_data($request);
         $vdata['fleet_code'] = session('fleet_code');
         $ddata = $this->store_image($request,$vdata,$id);
-        DB::table('driver_mast')->where('id',$id)->update($ddata);
+        $ddata['created_by'] = Auth::user()->id;
+        Driver::where('id',$id)->update($ddata);
         return redirect('driver');
     }
 
@@ -86,8 +89,7 @@ class DriverdetailsController extends Controller
                                   'address'    => 'nullable',
                                   'phone'      => 'required|min:10',
                                   'license_no' => 'required|min:14',
-                                  'license_exp'=> 'required',
-                                  'salary'     => 'nullable|numeric',
+                                  'license_exp'=> 'required',                             
                                   'joined_dt'  => 'nullable',
                                   'blood_group'=> 'nullable',
                                   'is_active'  => 'nullable',
@@ -114,7 +116,7 @@ class DriverdetailsController extends Controller
             $vdata['image'] = $fileNameToStore;    
         }
        if(!empty($id)){
-          $old_data = DB::table('driver_mast')->where('id',$id)->first();
+          $old_data = Driver::where('id',$id)->first();
             if($request->image == null) {
                 $vdata['image'] = $old_data->image;    
             }

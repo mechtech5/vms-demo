@@ -166,8 +166,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Regi. Date</label>
-                                                    <input id="email1" type="text" readonly="true" class="form-control datepicker" name="reg_date" value="{{
-                                                      old('reg_date') }}">
+                                                     <input id="email" readonly="true" name="reg_date" type="text" class="form-control datepicker" value="">
                                                 </div>                                               
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="KM Reading">KM Reading</label>

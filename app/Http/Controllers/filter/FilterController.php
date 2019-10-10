@@ -10,6 +10,7 @@ use App\vehicle_master;
 use App\Exports\FilterExport;
 use App\Imports\FilterImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class FilterController extends Controller
 {
@@ -43,6 +44,7 @@ class FilterController extends Controller
      
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
+        $validatedData['created_by'] = Auth::user()->id;
         DB::table('srv_filter_replacement')->insert($validatedData);
         return redirect('filter');
     }
@@ -77,6 +79,7 @@ class FilterController extends Controller
      
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
+        $validatedData['created_by'] = Auth::user()->id;
         DB::table('srv_filter_replacement')->where('id',$id)->update($validatedData);
         return redirect('filter');
     }

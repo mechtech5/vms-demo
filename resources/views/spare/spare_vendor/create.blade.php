@@ -46,7 +46,7 @@
 	                            </div>
 	                        
 	                             <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="KM Reading">Phone No </label>
+	                                <label for="KM Reading">Phone No </label>
 	                                  <input id="email1" class="form-control" name="phone" value="{{old('phone')}}">
 	                                  @error('phone')
 			                            <span class="invalid-feedback d-block" role="alert">
@@ -123,9 +123,9 @@
                                         	<option value="{{$State->id}}">{{$State->state_name}}</option>
                                         @endforeach		
                                     </select>   
-                                    @error('comp_id')
+                                    @error('state_id')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{$message }}</strong>
+		                               <strong>{{ 'Please select state' }}</strong>
 		                            </span>
 		                        	@enderror                                 
                              	</div>
@@ -134,9 +134,9 @@
                                    <select id="city_id" name="city_id" class="selectpicker form-control">
                                         <option value="0">Select..</option>
                                     </select>    
-                                     @error('type_id')
+                                     @error('city_id')
 		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message  }}</strong>
+		                               <strong>{{ 'Please select city' }}</strong>
 		                            </span>
 		                        	@enderror                                  
                              	</div>

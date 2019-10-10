@@ -80,7 +80,7 @@ class SpareTypeController extends Controller
     }
 
     public function download() {
-       $file_path = public_path('demo_files/Demo_FuelBill.xlsx');
+       $file_path = public_path('demo_files/Demo_SpareType.xlsx');
        return response()->download($file_path);
     }
 }

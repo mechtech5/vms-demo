@@ -12,6 +12,7 @@ use App\Models\GreentaxDetails;
 use App\vehicle_master;
 use File;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 
 class GreentaxDetailsController extends Controller
@@ -49,6 +50,7 @@ class GreentaxDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         GreentaxDetails::create($vdata);
         return redirect('greentax');
@@ -88,6 +90,7 @@ class GreentaxDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = $fleet_code;
+        $vdata['created_by'] = Auth::user()->id;
         
         $old_data = GreentaxDetails::find($id);
         GreentaxDetails::where('id',$id)->update($vdata);

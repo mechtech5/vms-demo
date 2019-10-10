@@ -13,6 +13,7 @@ use Session;
 use File;
 use DB;
 use App\Models\Agent;
+use Auth;
 
 class PUCDetailsController extends Controller
 {
@@ -49,6 +50,7 @@ class PUCDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         PUCDetails::create($vdata);
         return redirect('pucdetails');
@@ -86,6 +88,7 @@ class PUCDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
        PUCDetails::where('id',$id)->update($vdata);
         return redirect('pucdetails');

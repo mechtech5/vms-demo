@@ -12,6 +12,7 @@ use Session;
 use App\Models\PetrolPump;
 use App\vehicle_master;
 use App\Driver;
+use Auth;
 
 class FuelEntryController extends Controller
 {
@@ -54,6 +55,7 @@ class FuelEntryController extends Controller
                                   "note" => "nullable"
                                  ]); 
        $data['fleet_code'] = session('fleet_code');
+       $data['created_by'] = Auth::user()->id;
        FuelEntry::create($data);
        return redirect('fuelentry');
    }
@@ -78,7 +80,7 @@ class FuelEntryController extends Controller
     {
          $data = $request->validate([ "vch_id" => "required",
                                   "fuel_stn_id" => "required",
-                                  "payment_mode" => "required",
+                                  "payment_mode" => "required|not_in:0",
                                   "date" => "required",
                                   "bill_no" => "nullable",
                                   "opening_km" => "nullable",
@@ -95,6 +97,7 @@ class FuelEntryController extends Controller
                                   "note" => "nullable"
                                  ]); 
        $data['fleet_code'] = session('fleet_code');
+       $data['created_by'] = Auth::user()->id;
        FuelEntry::where('id',$id)->update($data);
        return redirect('fuelentry');
     }

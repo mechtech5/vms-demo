@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Auth;
 
 class FitnessDetailsImport implements ToCollection,WithHeadingRow
 {
@@ -46,7 +47,8 @@ class FitnessDetailsImport implements ToCollection,WithHeadingRow
                         'pay_branch'  => $row['pay_branch'],
                         'valid_from'  => $valid_from,
                         'valid_till'  => $valid_till,
-                        'pay_no'      => $row['pay_number']
+                        'pay_no'      => $row['pay_number'],
+                        'created_by'  => Auth::user()->id;
                         ]); 
                 }
             }

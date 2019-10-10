@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
+use Auth;
 
 class SpareCompanyImport implements ToCollection,WithHeadingRow
 {
@@ -21,9 +22,10 @@ class SpareCompanyImport implements ToCollection,WithHeadingRow
             
             $row['fleet_code'] =  $fleet_code;
             if(!empty($row['spare_company_name']))                
-            {   SpareCompany::create(['fleet_code'  => $row['fleet_code'],
-                                  'comp_name' => $row['spare_company_name']
-                                ]);                   
+            {   SpareCompany::create(['fleet_code' => $row['fleet_code'],
+                                      'comp_name'  => $row['spare_company_name'],
+                                      'created_by' => Auth::user()->id
+                                        ]);                   
 
             }
         }

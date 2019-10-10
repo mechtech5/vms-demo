@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
 use Session;
 use App\State;
+use Auth;
 
 class TempPermitImport implements ToCollection,WithHeadingRow
 {
@@ -39,7 +40,8 @@ class TempPermitImport implements ToCollection,WithHeadingRow
                         'tp_tax_amt'        => $row['tax_amount'],                        
                         'tp_permit_start_dt'=> $row['permit_start_date'],
                         'tp_permit_end_dt'  => $row['permit_end_date'],
-                        'tp_state_id'       => $state->id
+                        'tp_state_id'       => $state->id,
+                        'created_by'        => Auth::user()->id
                         ]); 
                     //}
 

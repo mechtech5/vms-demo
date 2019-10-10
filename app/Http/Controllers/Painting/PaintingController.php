@@ -10,6 +10,7 @@ use App\vehicle_master;
 use App\Exports\PaintingExport;
 use App\Imports\PaintingImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class PaintingController extends Controller
 {
@@ -40,6 +41,7 @@ class PaintingController extends Controller
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         $data['remarks']    = $request->remarks;
+        $data['created_by'] = Auth::user()->id;
         Painting::create($data);
         return redirect('painting');
     }
@@ -69,6 +71,7 @@ class PaintingController extends Controller
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         $data['remarks']    = $request->remarks;
+        $data['created_by'] = Auth::user()->id;
         Painting::where('id',$id)->update($data);
         return redirect('painting');
     }

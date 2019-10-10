@@ -32,7 +32,7 @@
 	                                <input id="ins_policy_no" class="form-control" name="comp_name" value="{{old('comp_name') ?? $data->comp_name}}" > 
 	                                @error('comp_name')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter spare company name' }}</strong>
+			                               <strong>{{ 'Please enter tyre company name' }}</strong>
 			                            </span>
 			                         @enderror
 	                            </div>

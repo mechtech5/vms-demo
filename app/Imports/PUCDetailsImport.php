@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
 use DB;
 use DateTime;
+use Auth;
 
 class PUCDetailsImport implements ToCollection,WithHeadingRow
 {
@@ -39,7 +40,8 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
                         'pay_bank'    => $row['pay_bank'],
                         'pay_branch'  => $row['pay_branch'],
                         'valid_from'  => $row['valid_from'],
-                        'valid_till'  => $row['valid_till']
+                        'valid_till'  => $row['valid_till'],
+                        'created_by'  => Auth::user()->id;
                         ]); 
                     //}
 

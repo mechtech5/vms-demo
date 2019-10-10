@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
 use App\vch_comp;
+use Auth;
 
 class VehicleImport implements ToCollection,WithHeadingRow
 {
@@ -17,7 +18,8 @@ class VehicleImport implements ToCollection,WithHeadingRow
             {   
             	vch_comp::create(['fleet_code'    => session('fleet_code'),
                                      'comp_name'  => ucfirst($row['name']),
-                                     'comp_desc'  => $row['description']
+                                     'comp_desc'  => $row['description'],
+                                     'created_by' => Auth::user()->id
                                     ]);               
 
             }

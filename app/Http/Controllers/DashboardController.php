@@ -8,7 +8,10 @@ use Session;
 use App\User;
 use Auth;
 use File;
+use App\FleetUser;
+use App\Fleet;
 use Illuminate\Support\Facades\Hash;
+
 class DashboardController extends Controller
 {
      public function __construct()
@@ -19,11 +22,17 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $id = Auth::user()->id;
-        $fleet = DB::table('fleet_mast')->where('fleet_owner',$id)->get();
-
-        if(count($fleet) !=0){
-            $fleer_code = $fleet[0]->fleet_code;
+       $id          = Auth::user()->id;
+       $hasfleet    = FleetUser::where('user_id',$id)->get();
+       $count_fleet = count($hasfleet);
+        $data = array();
+        $data['fitnes']        = array();
+        $data['puc']           = array();
+        $data['roadtax']       = array();
+        $data['state_permitaA'] = array();
+        if($count_fleet <= 1){
+            $fleet_id = Fleet::find($hasfleet[0]->fleet_id);
+            $fleer_code = $fleet_id->fleet_code;
             
             Session::put('fleet_code', $fleer_code);
             
@@ -31,18 +40,18 @@ class DashboardController extends Controller
                            
             if(! File::exists($path)){
                 File::makeDirectory($path, 0777, true, true);
-            }   
-         
-         }
+            }           
+            $data['fleet']    = 'no';
+            $data['fleet_id'] = array(); 
 
-            
-        $data = array();
-        $data['fitnes']        = array();//DB::table('fitness')->get();
-        $data['puc']           = array();//DB::table('puc')->get();
-        $data['roadtax']       = array();//DB::table('roadtax')->get();
-        $data['state_permitaA'] = array();//DB::table('state_permita')->get();
-
-        return view('dashboard',compact('data'));
+            return view('dashboard',compact('data'));
+        }
+        else{
+            $data['fleet_id'] = FleetUser::where('user_id',$id)->get();
+            $data['fleet']    = 'yes';
+            return view('dashboard',compact('data'));
+        }
+        
     }
 
     
@@ -94,4 +103,15 @@ class DashboardController extends Controller
     {
         //
     }
+
+     public function fleet_ckeck(Request $request){        
+        $fleer_code = $request->fleet_code;
+        Session::put('fleet_code', $fleer_code);        
+        $path = storage_path('app/public/'.$fleer_code.'/vehicle_number');                    
+        if(! File::exists($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }     
+        return 'success';       
+     }   
 }
+

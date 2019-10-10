@@ -32,7 +32,7 @@ class TyreModelController extends Controller
     
     public function store(Request $request)
     {
-        $data = $request->validate(['comp_id'   =>'required',
+        $data = $request->validate(['comp_id'   =>'required|not_in:0',
                                     'model_name'=>'required'     
                                     ]);
         $data['fleet_code'] = session('fleet_code');
@@ -46,7 +46,6 @@ class TyreModelController extends Controller
         //
     }
 
-    
     public function edit($id)
     {
         $data = TyreModel::find($id);

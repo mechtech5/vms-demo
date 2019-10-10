@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
+use Auth;
 
 
 class CityImport implements ToCollection,WithHeadingRow
@@ -29,8 +30,9 @@ class CityImport implements ToCollection,WithHeadingRow
                     City::create(['fleet_code'  => $row['fleet_code'],
                                     'city_code' => strtoupper($row['city_code']),
                                     'city_name' => ucfirst($row['city_name']),
-                                    'state_id'  => $state->id
-                                    ]);                   
+                                    'state_id'  => $state->id,
+                                    'created_by'=> Auth::user()->id 
+                                ]);
                 }
 
             }

@@ -10,7 +10,7 @@ use App\Imports\FueltankImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Fueltank;
 use Session;
-
+use Auth;
 class FueltankController extends Controller
 {
     
@@ -37,8 +37,9 @@ class FueltankController extends Controller
                                   "cost" => 'required|numeric',
                                   'date'       =>'required|date|date_format:Y-m-d|before:tomorrow'
                                  ]);
-        $data['remarks']   = $request->remarks;
-        $data['fleet_code']= session('fleet_code');
+        $data['remarks']    = $request->remarks;
+        $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         Fueltank::create($data);
         return redirect('fueltank');
     }
@@ -68,6 +69,7 @@ class FueltankController extends Controller
                                  ]);
         $data['remarks']   = $request->remarks;
         $data['fleet_code']= session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         Fueltank::where('id',$id)->update($data);
         return redirect('fueltank');
     }

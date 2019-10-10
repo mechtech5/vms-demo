@@ -9,13 +9,15 @@ use Session;
 use App\Exports\VehicleModelExport;
 use App\Imports\VehicleModelImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
+use App\vch_model;
 
 class VehiclemodelController extends Controller
 {
     public function index()
     {
          $fleet_code = session('fleet_code');
-        $model = DB::table('vch_model')->where('fleet_code',$fleet_code)->get();
+        $model = vch_model::where('fleet_code',$fleet_code)->get();
         return view('vehicle_model.show',compact('model'));
     }
 
@@ -38,8 +40,9 @@ class VehiclemodelController extends Controller
         $vdata['model_name']    = $request->model_name;
         $vdata['model_desc']    = $request->model_desc;
         $vdata['fleet_code']    = $fleet_code;
+        $vdata['created_by']    = Auth::user()->id;
     
-        DB::table('vch_model')->insert($vdata);
+        vch_model::create($vdata);
         return redirect('vehicleModel');
     }
 
@@ -51,7 +54,7 @@ class VehiclemodelController extends Controller
     public function edit($id)
     {
         $company  = vch_comp::all();
-        $model    =  DB::table('vch_model')->where('id',$id)->get();
+        $model    =  vch_model::where('id',$id)->get();
         return view('vehicle_model.edit',compact('model','company'));
     }
 
@@ -64,14 +67,15 @@ class VehiclemodelController extends Controller
         $vdata['vcompany_code'] = $request->vehicle_company;
         $vdata['model_name']    = $request->model_name;
         $vdata['model_desc']    = $request->model_desc;
+        $vdata['created_by']    = Auth::user()->id;
     
-        DB::table('vch_model')->where('id',$id)->update($vdata);
+        vch_model::where('id',$id)->update($vdata);
         return redirect('vehicleModel');
     }
 
     public function destroy($id)
     {
-        DB::table('vch_model')->where('id',$id)->delete();
+        vch_model::where('id',$id)->delete();
          return redirect('vehicleModel');
     }
 

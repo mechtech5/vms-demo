@@ -36,6 +36,7 @@ class VehicleController extends Controller
         $vdata['comp_name'] = $request->vehicle_company;
         $vdata['comp_desc'] = $request->company_description;
         $vdata['fleet_code'] = $fleet_code;
+        $vdata['created_by'] = Auth::user()->id;
         
         vch_comp::create($vdata);
         return redirect('vehicle');
@@ -60,6 +61,7 @@ class VehicleController extends Controller
     
         $vdata['comp_name'] = $request->vehicle_company;
         $vdata['comp_desc'] = $request->company_description;
+        $vdata['created_by'] = Auth::user()->id;
     
         vch_comp::where('id',$id)->update($vdata);
         return redirect('vehicle');

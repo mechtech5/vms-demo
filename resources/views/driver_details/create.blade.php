@@ -83,18 +83,12 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control" type="date" name="license_exp" value="{{old('license_exp')}}">
+                                <input id="email1" readonly="true" class="form-control datepicker" type="text" name="license_exp" value="{{old('license_exp')}}">
                                
-                            </div>
-
-                            <div class="col-md-6 col-xl-6 mt-2">
-                                <label for="Manufacturer Year"> Salary </label>
-                                <input id="email" class="form-control" name="salary" value="{{old('salary')}}">
-
                             </div>
                             <div class="col-md-6 col-xl-6 mt-2">
                                 <label for="Regi. Date"> Join Date</label>
-                                <input id="email1" type="date" class="form-control " name="joined_dt" value="{{old('joined_dt')}}">
+                                <input id="email1" type="text" readonly="true" class="form-control datepicker" name="joined_dt" value="{{old('joined_dt')}}">
 
                             </div>                          
 
@@ -136,7 +130,9 @@
 </div>    
 
 <script type="text/javascript">
-  $(document).ready( function () {
+  $(document).ready( function () {$(function() {
+    $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
+    });
     $('#myTable').DataTable();
     
     $('#state_id').on('change',function(){

@@ -11,6 +11,8 @@ use DB;
 use App\Models\SpareType;
 use App\Models\SpareCompany;
 use App\Models\SpareUnit;
+use Auth;
+
 class SpareMasterImport implements ToCollection,WithHeadingRow
 {
     
@@ -43,7 +45,8 @@ class SpareMasterImport implements ToCollection,WithHeadingRow
                         'rate'        => $row['rate'],
                         'gst'         => $row['gst'],
                         'part_no'     => $row['part_no'],
-                        'sales_prc'   => $row['sales_price']
+                        'sales_prc'   => $row['sales_price'],
+                        'created_by'  => Auth::user()->id
 
                         ]);
                     //}

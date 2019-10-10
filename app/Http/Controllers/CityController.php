@@ -9,6 +9,7 @@ use Session;
 use App\Exports\CityExport;
 use App\Imports\CityImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class CityController extends Controller
 {
@@ -41,9 +42,10 @@ class CityController extends Controller
                                        'city_name'=> 'required|string|regex:/^[\pL\s\-]+$/u',
                                        'city_code' => 'required|max:3'
                                        ]);
-       $validatedData['city_name'] =  ucwords($request->city_name);
-       $validatedData['city_code'] = strtoupper($request->city_code); 
+       $validatedData['city_name']  =  ucwords($request->city_name);
+       $validatedData['city_code']  = strtoupper($request->city_code); 
        $validatedData['fleet_code'] = $fleet_code;   
+       $validatedData['created_by'] = Auth::user()->id;
         
         City::create($validatedData);
     
@@ -75,7 +77,8 @@ class CityController extends Controller
                                        'city_code' => 'required|max:3'                                  
                                     ]);
        $validatedData['city_name']  =  ucwords($request->city_name);
-       $validatedData['city_code'] = strtoupper($request->city_code);    
+       $validatedData['city_code']  = strtoupper($request->city_code);    
+       $validatedData['created_by'] = Auth::user()->id;
         
        City::where('id',$id)->update($validatedData);
        return redirect('city');

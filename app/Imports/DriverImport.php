@@ -11,6 +11,7 @@ use App\master_state;
 use App\City;
 use DateTime;
 use Carbon\Carbon;
+use Auth;
 
 class DriverImport implements ToCollection,WithHeadingRow
 {
@@ -31,7 +32,8 @@ class DriverImport implements ToCollection,WithHeadingRow
                 'address'    => $row['address'],
                 'salary'     => $row['salary'],
                 'license_no' => $row['license_no'],
-                'phone'      => $row['phone']                
+                'phone'      => $row['phone'],
+                'created_by' => Auth::user()->id
                 ]); 
                 
             }

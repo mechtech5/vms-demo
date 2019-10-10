@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use DB;
 use DateTime;
+use Auth;
 
 class FueltankImport implements ToCollection,WithHeadingRow
 {
@@ -38,14 +39,14 @@ class FueltankImport implements ToCollection,WithHeadingRow
                     if($date1 <= $date2){
 
                         Fueltank::create([
-                        'fleet_code'   => $row['fleet_code'],
-                        'vch_id'       => $vch_num->id ,
-                        'date'         => $row['date'],
-                        'km_reading'   => $row['km_reading'],
-                        'cost'         => $row['cost']
+                        'fleet_code' => $row['fleet_code'],
+                        'vch_id'     => $vch_num->id ,
+                        'date'       => $row['date'],
+                        'km_reading' => $row['km_reading'],
+                        'cost'       => $row['cost'],
+                        'created_by' => Auth::user()->id
                         ]); 
                     }
-
                 }
             }
         }

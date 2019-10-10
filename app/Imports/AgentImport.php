@@ -8,6 +8,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
+use Auth;
 
 class AgentImport implements ToCollection,WithHeadingRow
 {
@@ -27,7 +28,8 @@ class AgentImport implements ToCollection,WithHeadingRow
                                 'agent_name'  => $row['agent_name'],
                                 'agent_code'  => $row['agent_code'],
                                 'agent_phone' => $row['agent_phone'],
-                                'agent_email' => $email
+                                'agent_email' => $email,
+                                'created_by'  => Auth::user()->id
                                 ]);                   
                
             }

@@ -11,6 +11,7 @@ use Session;
 use App\Models\TempPermit;
 use App\vehicle_master;
 use App\State;
+use Auth;
 
 class TempPermitController extends Controller
 {
@@ -55,6 +56,7 @@ class TempPermitController extends Controller
                                 ]);
 
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         TempPermit::create($data);
         return redirect('temppermit');
     }
@@ -101,6 +103,7 @@ class TempPermitController extends Controller
                                 ]);
 
         $data['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
         TempPermit::where('id',$id)->update($data);
         return redirect('temppermit');
     }

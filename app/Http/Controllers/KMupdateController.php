@@ -9,6 +9,7 @@ use App\vehicle_master;
 use App\Exports\KMupdateExport;
 use App\Imports\KMupdateimport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 
 class KMupdateController extends Controller
@@ -38,7 +39,8 @@ class KMupdateController extends Controller
                                    "reading" => "required|numeric",
                                    'date'    =>'required|date|date_format:Y-m-d|before:tomorrow'
                                 ]);
-        $data['fleet_code'] = $fleet_code;
+        $data['fleet_code']  = $fleet_code;
+        $data['created_by'] = Auth::user()->id;
         KMupdate::create($data);
         return redirect('kmupdate');
         
@@ -67,6 +69,7 @@ class KMupdateController extends Controller
                                    'date'       =>'required|date|date_format:Y-m-d|before:tomorrow'
                                 ]);
         $data['fleet_code'] = $fleet_code;
+        $data['created_by'] = Auth::user()->id;
         KMupdate::where('id',$id)->update($data);
         return redirect('kmupdate');
     }

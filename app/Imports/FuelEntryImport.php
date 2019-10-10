@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Session;
 use App\vehicle_master;
+use Auth;
 
 class FuelEntryImport implements ToCollection,WithHeadingRow
 {
@@ -30,14 +31,15 @@ class FuelEntryImport implements ToCollection,WithHeadingRow
                 if(!empty($pump) && !empty($vehicle)){
 
                     FuelEntry::create([
-                    'fleet_code'    => $row['fleet_code'],
+                    'fleet_code'            => $row['fleet_code'],
                     'current_diesel_filled' => $row['current_diesel_filled'] ,
                     'date'                  => $row['date'],
                     'payment_mode'          => $row['payment_mode'],
                     'fuel_stn_id'           => $pump->id,
                     'vch_id'                => $vehicle->id,
                     'total_fuel_amt'        =>$row['total_fuel_amount'],
-                    'avg_obtained'          => $row['averagemileage']
+                    'avg_obtained'          => $row['averagemileage'],
+                    'created_by'            => Auth::user()->id
                     ]);                   
 
                 }

@@ -20,15 +20,15 @@
                     <div class="col-md-5 inputGroupContainer">
                        <div class="input-group">
                           <select name="comp_id" class="selectpicker form-control">
-                             <option selected=" true " disabled="true">Select..</option>
+                             <option value="0">Select..</option>
                              @foreach($company as $company)
                                 <option value="{{$company->id}}">{{$company->comp_name}}</option>
                              @endforeach     
                           </select>
                         </div>
                          @error('comp_id')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
+                              <span class="invalid-feedback d-block" role="alert">
+                                  <strong>{{ 'Please select company' }}</strong>
                               </span>
                           @enderror
                     </div>

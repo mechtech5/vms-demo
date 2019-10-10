@@ -20,9 +20,7 @@
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
-                                                            
-                            <div class='row'>                         
-
+                            <div class='row'>          
 	                             <div class="col-md-4 col-xl-4 mt-2">
                                		<label for="vehicle_model ">Select Comapny</label>
                                    <select id="state_id" name="comp_id" class="selectpicker form-control">
@@ -51,55 +49,52 @@
 		                            </span>
 		                        	@enderror                                  
                              	</div>
-                             <div class="col-md-4 col-xl-4 mt-2">
-                               <label for="vehicle_model ">Select Unit</label>
-                                   <select id="state_id" name="unit_id" class="selectpicker form-control">
-                                        <option value="0">Select..</option>
-                                        @foreach($unit as $Unit)
-                                        	<option {{$Unit->id == $data->unit_id ? 'selected':''}} value="{{$Unit->id}}">{{$Unit->unit_name}}</option>
-                                        @endforeach		
-                                    </select>     
-                                    @error('unit_id')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Please select spare unit' }}</strong>
-		                            </span>
-		                        	@enderror                                
-                             </div>
+	                             <div class="col-md-4 col-xl-4 mt-2">
+	                               <label for="vehicle_model ">Select Unit</label>
+	                                   <select id="state_id" name="unit_id" class="selectpicker form-control">
+	                                        <option value="0">Select..</option>
+	                                        @foreach($unit as $Unit)
+	                                        	<option {{$Unit->id == $data->unit_id ? 'selected':''}} value="{{$Unit->id}}">{{$Unit->unit_name}}</option>
+	                                        @endforeach		
+	                                    </select>     
+	                                    @error('unit_id')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please select spare unit' }}</strong>
+			                            </span>
+			                        	@enderror                                
+	                             </div>
                             </div> 
-                        <div class="row">     
-                            <div class="col-md-4 col-xl-4 mt-2">
-                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Spare Name</label>
-                                <input id="email" name="name" class="form-control  " value="{{old('name') ?? $data->name}}">
-                                @error('name')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Please select spare name' }}</strong>
-		                            </span>
-		                         @enderror
-                                
-                            </div>
-
-                            <div class="col-md-4 col-xl-4 mt-2">
-                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Opening Stk</label>
-                                
-                                <input id="email1" class="form-control  " name="stk_open" value="{{old('stk_open') ?? $data->stk_open}}">
-                                @error('stk_open')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Please enter spare stock open' }}</strong>
-		                            </span>
-		                         @enderror
-                               
-                            </div>
+                       		<div class="row">     
+	                            <div class="col-md-4 col-xl-4 mt-2">
+	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Spare Name</label>
+	                                <input id="email" name="name" class="form-control  " value="{{old('name') ?? $data->name}}">
+	                                @error('name')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please select spare name' }}</strong>
+			                            </span>
+			                         @enderror 
+	                            </div>
+	                            <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Opening Stk</label>
+	                                
+	                                <input id="email1" class="form-control  " name="stk_open" value="{{old('stk_open') ?? $data->stk_open}}">
+	                                @error('stk_open')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please enter spare stock open' }}</strong>
+			                            </span>
+			                         @enderror
+	                               
+	                            </div>
                         
-                             <div class="col-md-4 col-xl-4 mt-2">
-                                <span style="color: #FF0000;font-size:15px;">*</span><label for="KM Reading">Current Stk </label>
-                                  <input id="email1" class="form-control" name="stk_curr" value="{{old('stk_curr') ?? $data->stk_curr}}">
-                                  @error('stk_curr')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Pease enter spare current stock' }}</strong>
-		                            </span>
-		                         @enderror
-                               
-                            </div>
+	                             <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="KM Reading">Current Stk </label>
+	                                  <input id="email1" class="form-control" name="stk_curr" value="{{old('stk_curr') ?? $data->stk_curr}}">
+	                                  @error('stk_curr')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Pease enter spare current stock' }}</strong>
+			                            </span>
+			                         @enderror
+	                            </div>
                             </div> 
                         <div class="row">
 
@@ -167,14 +162,13 @@
                             </div>
 
                         </div>
-                      <div class="row">       
-                         <div class="col-md-12 text-center"  style="margin-top: 24px;">
-                         	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active ">
-                       	</div>
-                    </div>      	
+	                      <div class="row">       
+	                         <div class="col-md-12 text-center"  style="margin-top: 24px;">
+	                         	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active ">
+	                       	</div>
+	                    </div>      	
                        	<div class="row">
-                       		<div class="col-sm-2">
-                       			
+                       		<div class="col-sm-2">                       			
                        		</div>
                             <div class="col-sm-8">
                                 <div class="box box-color orange box-condensed box-bordered">
@@ -230,7 +224,7 @@
 					                             <div class="row">    
 					                             	<input type="hidden" value="{{$data->id}}" id="eid" name="">
 							                         <div class="col-md-12" style="margin-top: 24px;">
-							                         	<button id="submitven" disabled="true" style="margin-right: -8px;" value="Submit" class="btn btn-primary active text-center">Submit</button>
+							                         	<button id="submitven" disabled="true" style="margin-right: -8px;" class="btn btn-primary active text-center">Submit</button>
 							                       	</div>
 							                    </div>   
 					                            <div class="row sup_table" style="padding-top: 21px;">
@@ -300,23 +294,23 @@
        $('#target').submit();
       });
 
-    $('#submitven').on('click',function(){
-    var vendor_id = $('#vendor_id').val();
-    var comp_id   = $('#comp_id').val();
-    var rate      = $('#rate').val();
-    var eid       = $('#eid').val();
-  
-    $.ajax({
-          url: '{{route('sparemaster.suppliers')}}',
-          type: 'POST',
-          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-          data: {'vendor_id':vendor_id,comp_id:comp_id,rate:rate,spare_id:eid},
-          success: function (data) {
-        
-              $('.sup_table').html(data);
-          }
-      });
-  })
+    $('#submitven').on('click',function(event){
+    	event.preventDefault()
+	    var vendor_id = $('#vendor_id').val();
+	    var comp_id   = $('#comp_id').val();
+	    var rate      = $('#rate').val();
+	    var eid       = $('#eid').val();
+	  
+	    $.ajax({
+	          url: '{{route('sparemaster.suppliers')}}',
+	          type: 'POST',
+	          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+	          data: {'vendor_id':vendor_id,comp_id:comp_id,rate:rate,spare_id:eid},
+	          success: function (data) {        
+	              $('.sup_table').html(data);
+	          }
+	      });
+ 	 })
 
 } );
  </script>

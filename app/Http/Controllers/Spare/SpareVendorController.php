@@ -34,17 +34,17 @@ class SpareVendorController extends Controller
   
     public function store(Request $request)
     {
-        $data = $request->validate(["name" => 'required|alpha',
-                                    "contact_person_name" => 'nullable|alpha',
-                                    "contact_person_phone" => 'nullable|min:10|max:10',
+        $data = $request->validate(["name" => 'required',
+                                    "contact_person_name" => 'nullable',
+                                    "contact_person_phone" => 'nullable',
                                     "gst" => 'required|numeric',
-                                    "mobile" => 'nullable|min:10|max:10',
+                                    "mobile" => 'nullable',
                                     "email" => 'nullable',
                                     "website" => 'nullable',
                                     "state_id" => "required|not_in:0",
                                     "city_id" => "required|not_in:0",
                                     "addr" => 'nullable',
-                                    'phone'=> 'nullable|min:10|max:10'
+                                    'phone'=> 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         SpareVendor::create($data);
@@ -68,17 +68,17 @@ class SpareVendorController extends Controller
 
     public function update(Request $request, $id)
     {
-       $data = $request->validate(["name" => 'required|alpha',
-                                    "contact_person_name" => 'nullable|alpha',
-                                    "contact_person_phone" => 'nullable|min:10|max:10',
+       $data = $request->validate(["name" => 'required',
+                                    "contact_person_name" => 'nullable',
+                                    "contact_person_phone" => 'nullable',
                                     "gst" => 'required|numeric',
-                                    "mobile" => 'nullable|min:10|max:10',
+                                    "mobile" => 'nullable',
                                     "email" => 'nullable',
                                     "website" => 'nullable',
-                                    "state_id" => "required",
+                                    "state_id" => "required|not_in:0",
                                     "city_id" => "required|not_in:0",
                                     "addr" => 'nullable',
-                                    'phone'=> 'nullable|min:10|max:10'
+                                    'phone'=> 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         SpareVendor::where('id',$id)->update($data);

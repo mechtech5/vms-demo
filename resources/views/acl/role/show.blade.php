@@ -20,20 +20,7 @@
 @endsection
 @section('content')
 
-  <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">{{ Auth::user()->name }}</p>
-         
-        </div>
-      </div>
-      <ul class="app-menu">
-        <li><a class="app-menu__item active" href="{{url('admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">ACL</span></a></li>
-        <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Fleet</span></a></li>
-      </ul>
- </aside> 
-
- <main class="app-content">
+  <main class="app-content">
 	  <div class="app-title">
 	    <div>
 	      <h1><i class="fa fa-dashboard"></i>ACL</h1>

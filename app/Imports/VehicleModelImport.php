@@ -10,6 +10,7 @@ use Session;
 use App\master_state;
 use App\City;
 use App\vch_model;
+use Auth;
 
 class VehicleModelImport implements ToCollection,WithHeadingRow
 {
@@ -34,7 +35,8 @@ class VehicleModelImport implements ToCollection,WithHeadingRow
                     vch_model::create(['fleet_code'     => $fleet_code,
                                        'vcompany_code'  => $data['comp_id'],
                                        'model_name'     => $row['model_name'],
-                                       'model_desc'     => $row['description']
+                                       'model_desc'     => $row['description'],
+                                       'created_by'     => Auth::user()->id;
                                      ]);  
                 }
                 

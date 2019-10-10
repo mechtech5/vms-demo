@@ -9,6 +9,7 @@ use App\Exports\InsurancExport;
 use App\Imports\InsurancImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Validator;
+use Auth;
 
 class InsuranceCompanyController extends Controller
 {
@@ -35,6 +36,7 @@ class InsuranceCompanyController extends Controller
                                       "comp_addr"   => 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         InsuranceCompany::create($data);
         return redirect('company');
     }
@@ -59,6 +61,7 @@ class InsuranceCompanyController extends Controller
                                       "comp_addr"=> 'nullable'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+         $data['created_by'] = Auth::user()->id;
         InsuranceCompany::where('id',$id)->update($data);
         return redirect('company');
     }

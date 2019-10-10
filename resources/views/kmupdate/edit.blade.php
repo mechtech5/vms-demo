@@ -55,7 +55,7 @@
 		                               <strong>{{ $message }}</strong>
 		                            </span>
 		                         @enderror
-                                <input id="email1" class="form-control" type="date" name="date" value="{{old('date') ?? $data->date}}">
+                                <input class="form-control datepicker" type="text" readonly="true" name="date" value="{{old('date') ?? $data->date}}">
                                
                             </div>
 
@@ -78,6 +78,10 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
+
+     $(function() {
+        $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
+     });
       
 	});
 

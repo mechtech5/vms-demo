@@ -37,13 +37,11 @@ class TyreCompanyController extends Controller
         return redirect('tyrecompany');
     }
 
-   
     public function show($id)
     {
         //
     }
 
-   
     public function edit($id)
     {
         $data = TyreCompany::find($id);
@@ -53,14 +51,12 @@ class TyreCompanyController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate(['comp_name'=>'required']);
-
         $data['comp_desc']  = $request->comp_desc;
         $data['fleet_code'] = session('fleet_code');
         TyreCompany::where('id',$id)->update($data);
         return redirect('tyrecompany');
     }
 
-    
     public function destroy($id)
     {
         TyreCompany::where('id',$id)->delete();
@@ -69,18 +65,17 @@ class TyreCompanyController extends Controller
 
     public function export() 
     {
-        return Excel::download(new TyreCompanyExport, 'Demo_TyreCompany.xlsx');
+        return Excel::download(new TyreCompanyExport, 'TyreCompany.xlsx');
     }
 
      public function import(Request $request) 
     {
         $data = Excel::import(new TyreCompanyImport,request()->file('file'));
-        
         return redirect('tyrecompany');
     }
 
     public function download() {
-       $file_path = public_path('demo_files/Demo_SpareMaster.xlsx');
+       $file_path = public_path('demo_files/Demo_TyreCompany.xlsx');
        return response()->download($file_path);
     }
 }

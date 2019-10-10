@@ -12,6 +12,7 @@ use App\Models\FitnessDetails;
 use App\vehicle_master;
 use File;
 use App\Models\Agent;
+use Auth;
 
 class FitnessDetailsController extends Controller
 {
@@ -48,6 +49,7 @@ class FitnessDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         FitnessDetails::create($vdata);
         return redirect('fitness');
@@ -63,8 +65,8 @@ class FitnessDetailsController extends Controller
     public function edit($id)
     {
         $fleet_code = session('fleet_code');
-        $vehicle = vehicle_master::where('fleet_code',$fleet_code)->get(); 
-        $data = FitnessDetails::find($id);
+        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get(); 
+        $data       = FitnessDetails::find($id);
         $agent      = Agent::where('fleet_code',$fleet_code)->get();
         return view('document.fitness.edit',compact('vehicle','data','agent'));
     }
@@ -86,6 +88,7 @@ class FitnessDetailsController extends Controller
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data,$id);
         $vdata['fleet_code'] = session('fleet_code');
+        $vdata['created_by'] = Auth::user()->id;
 
         FitnessDetails::where('id',$id)->update($vdata);
         return redirect('fitness');
