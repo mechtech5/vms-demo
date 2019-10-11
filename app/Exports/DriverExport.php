@@ -21,13 +21,13 @@ class DriverExport implements FromQuery,WithMapping,WithHeadings
 
     public function map($drivers): array
     {
-    	return [ $drivers->name,$drivers->address,$drivers->salary,$drivers->license_no,$drivers->phone 
+    	return [ $drivers->name,$drivers->address,$drivers->license_no,$drivers->phone 
         	 ];
     }
 
     public function headings(): array
     {
-        return ['Name','Address','Salary','License No','Phone'];
+        return ['Name','Address','License No','Phone'];
     }
 
 }

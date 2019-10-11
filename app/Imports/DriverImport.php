@@ -30,7 +30,6 @@ class DriverImport implements ToCollection,WithHeadingRow
                 'fleet_code' => $row['fleet_code'],
                 'name'       => $row['name'],
                 'address'    => $row['address'],
-                'salary'     => $row['salary'],
                 'license_no' => $row['license_no'],
                 'phone'      => $row['phone'],
                 'created_by' => Auth::user()->id
