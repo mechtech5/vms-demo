@@ -136,6 +136,7 @@
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id:ids,user_id:user_id},
             success: function (data) {
+            	$('#myModal').modal('hide');
                $('#table_refresh').html(data);
             }
         })

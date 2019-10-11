@@ -36,7 +36,7 @@ class VehicleModelImport implements ToCollection,WithHeadingRow
                                        'vcompany_code'  => $data['comp_id'],
                                        'model_name'     => $row['model_name'],
                                        'model_desc'     => $row['description'],
-                                       'created_by'     => Auth::user()->id;
+                                       'created_by'     => Auth::user()->id
                                      ]);  
                 }
                 

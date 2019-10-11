@@ -11,10 +11,10 @@
 		@php  $count =0;	@endphp 
 		@foreach($user as $users)
 			<tr>
-				<td style="width: 16.66%">{{ ++$count}}</td>
-				<td style="width: 16.66%">{{$users->name}}</td>
-				<td style="width: 16.66%">{{$users->email}}</td>	
-				<td><a href="{{route('destroy.account',$users->id)}}"><i class="fa-lg fa fa-trash" aria-hidden="true"></i></a>	</td>			
+				<td style="width: 30%">{{ ++$count}}</td>
+				<td style="width: 30%">{{$users->name}}</td>
+				<td style="width: 30%">{{$users->email}}</td>	
+				<td style="width: 30%"><a href="{{route('destroy.account',$users->id)}}"><i class="fa-lg fa fa-trash" aria-hidden="true"></i></a>	</td>			
 			</tr>
 		@endforeach
 	</tbody>

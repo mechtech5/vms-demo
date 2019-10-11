@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'sendmail'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'm.kushwah33@gmail.com',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '8871601323',
 
     /*
     |--------------------------------------------------------------------------
