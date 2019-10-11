@@ -25,8 +25,8 @@ class KMupdateimport implements ToCollection,WithHeadingRow
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
             $date   = Date::excelToDateTimeObject($row['date']);
-            $date   = $date->format('Y-m-d'); 
-            
+
+            $date3   = $date->format('Y-m-d'); 
             if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['kilometer_reading']))
             {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();                
@@ -46,7 +46,7 @@ class KMupdateimport implements ToCollection,WithHeadingRow
                         KMupdate::create([
                         'fleet_code' => $row['fleet_code'],
                         'vch_id'     => $vch_num->id ,
-                        'date'       => $date,
+                        'date'       => $date3,
                         'reading'    => $row['kilometer_reading'],
                         'created_by' => Auth::user()->id
                         ]); 
