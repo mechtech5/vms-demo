@@ -41,7 +41,7 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
                         'pay_branch'  => $row['pay_branch'],
                         'valid_from'  => $row['valid_from'],
                         'valid_till'  => $row['valid_till'],
-                        'created_by'  => Auth::user()->id;
+                        'created_by'  => Auth::user()->id
                         ]); 
                     //}
 
