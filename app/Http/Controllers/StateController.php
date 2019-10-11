@@ -91,8 +91,7 @@ class StateController extends Controller
 
      public function import(Request $request) 
     {
-        $data = Excel::import(new StateImport,request()->file('file'));
-        
+        $data = Excel::import(new StateImport,request()->file('file'));        
         return redirect()->back();
     }
 

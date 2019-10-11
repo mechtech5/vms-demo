@@ -26,7 +26,7 @@ class StateImport implements ToCollection,WithHeadingRow
                                 'state_code' => strtoupper($row['state_code']),
                                 'state_name' => ucfirst($row['state_name']),
                                 'created_by' => Auth::user()->id
-                                ]);                   
+                                ]);                 
 
             }
         }

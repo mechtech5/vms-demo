@@ -16,8 +16,7 @@ class StateExport implements FromQuery,WithMapping,WithHeadings
     public function query()
     {
         $fleet_code = session('fleet_code');
-    	$comp = State::where('fleet_code',$fleet_code);
- 
+    	$comp = State::where('fleet_code',$fleet_code); 
         return $comp;   
     }
 
