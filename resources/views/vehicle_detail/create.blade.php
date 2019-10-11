@@ -28,7 +28,7 @@
                           <strong style="font-size: smaller;">{{ "Please enter vehicle number" }}</strong>
                       </span>
                     @enderror
-                   <input id="vch_no" name="vch_no" class="form-control  " value="" >
+                   <input id="vch_no" name="vch_no" class="form-control" value="" >
 
                 </div>
                   
@@ -114,12 +114,12 @@
 
                                                 <a style="background: #5bc0de;margin-right: 6px;max-width: 165px;" data = 'registration' class="col-md-2  text-center btn big active_class get_table"  id="registration">Registration Details</a>
 
-                                                <a style="background: #5bc0de;margin-right: 6px;max-width: 168.5PX;" data = 'purchase' class="col-md-2 text-center btn big get_table" id="purchase">Purchase Details</a>
+                                                {{-- <a style="background: #5bc0de;margin-right: 6px;max-width: 168.5PX;" data = 'purchase' class="col-md-2 text-center btn big get_table" id="purchase">Purchase Details</a> --}}
 
                                                 <a style="background: #5bc0de;max-width: 168.5PX;margin-right: 6px;" data="chasis" class="col-md-2 text-center btn big get_table" id="chasis">Chasis Details</a>
 
-                                                <a style="background: #5bc0de;margin-right: 6px;max-width: 168.5PX;" data = 'sale' class="col-md-2  text-center btn big active_class get_table"  id="sale">
-                                                Sale Details</a>
+                                               {{--  <a style="background: #5bc0de;margin-right: 6px;max-width: 168.5PX;" data = 'sale' class="col-md-2  text-center btn big active_class get_table"  id="sale">
+                                                Sale Details</a> --}}
 
                                                 <a style="background: #5bc0de;margin-right: 6px;max-width: 168.5PX;" data = 'engine' class="col-md-2 text-center btn big get_table" id="engine">
                                                 Engine Details</a>

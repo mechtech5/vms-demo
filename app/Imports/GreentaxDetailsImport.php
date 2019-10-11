@@ -22,7 +22,7 @@ class GreentaxDetailsImport implements ToCollection,WithHeadingRow
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
             if(!empty($row['vehicle_number']) && !empty($row['pay_date'])  && !empty($row['greentax_number']) && !empty($row['payment_mode']) && !empty($row['pay_number']))
-            {                        
+              {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
                 
    
