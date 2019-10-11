@@ -36,6 +36,7 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
                         'puc_no'      => $row['puc_number'],
                         'puc_amt'     => $row['amount'],
                         'payment_mode'=> $row['payment_mode'],
+                        'pay_no'      => $row['pay_number'],
                         'pay_dt'      => $row['pay_date'],
                         'pay_bank'    => $row['pay_bank'],
                         'pay_branch'  => $row['pay_branch'],

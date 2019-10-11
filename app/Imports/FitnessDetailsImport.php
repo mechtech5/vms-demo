@@ -48,7 +48,7 @@ class FitnessDetailsImport implements ToCollection,WithHeadingRow
                         'valid_from'  => $valid_from,
                         'valid_till'  => $valid_till,
                         'pay_no'      => $row['pay_number'],
-                        'created_by'  => Auth::user()->id;
+                        'created_by'  => Auth::user()->id
                         ]); 
                 }
             }
