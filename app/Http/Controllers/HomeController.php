@@ -23,7 +23,11 @@ class HomeController extends Controller
     {//Auth::logout();
         $Id  = Auth::user()->id;
         $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();       
-        $roleid = $hasrole->role_id;
+        $roleid = 0;
+        if(!empty($hasrole)){
+           $roleid = $hasrole->role_id;
+         }
+
         if($roleid == 1){
             Session::put('user_rol','admin');
             return redirect('admin');
@@ -35,6 +39,10 @@ class HomeController extends Controller
         else if($roleid == 3){
             Session::put('user_rol','account');
           return redirect('accountuser');   
+        }
+        elseif($roleid == 0) {
+          Auth::logout();
+          return redirect()->back()->with('error_msg',"please contact your admin");
         }
     }
 }
