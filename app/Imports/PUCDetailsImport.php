@@ -7,6 +7,8 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+
 use App\vehicle_master;
 use DB;
 use DateTime;
@@ -26,6 +28,7 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
             $row['fleet_code'] =  $fleet_code;
             if(!empty($row['vehicle_number']) && !empty($row['valid_from'])  && !empty($row['puc_number'])
                 && !empty($row['payment_mode']))
+<<<<<<< HEAD
             {   
                 $pay_date   = Date::excelToDateTimeObject($row['pay_date']);
                 $valid_from = Date::excelToDateTimeObject($row['valid_from']);
@@ -33,6 +36,15 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
                 $vch_num    = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
 
                 $pay_date   = $pay_date->format('Y-m-d');
+=======
+            {  
+                $pay_date   = Date::excelToDateTimeObject($row['pay_date']);
+                $valid_from = Date::excelToDateTimeObject($row['valid_from']);
+                $valid_till = Date::excelToDateTimeObject($row['valid_till']);  
+
+                $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
+                 $pay_date   = $pay_date->format('Y-m-d');
+>>>>>>> 7d3aa13754fdaa9ecf9808a6f0fb2072f28c1298
                 $valid_from = $valid_from->format('Y-m-d');
                 $valid_till = $valid_till->format('Y-m-d');
    
@@ -50,7 +62,11 @@ class PUCDetailsImport implements ToCollection,WithHeadingRow
                         'pay_bank'    => $row['pay_bank'],
                         'pay_branch'  => $row['pay_branch'],
                         'valid_from'  => $valid_from,
+<<<<<<< HEAD
                         'valid_till'  => $valid_till,
+=======
+                        'valid_till'  =>$valid_till,
+>>>>>>> 7d3aa13754fdaa9ecf9808a6f0fb2072f28c1298
                         'created_by'  => Auth::user()->id
                         ]); 
                     //}

@@ -8,6 +8,7 @@ use App\Models\TyreType;
 use App\Exports\TyreTypeExport;
 use App\Imports\TyreTypeImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class TyreTypeController extends Controller
 {
@@ -30,6 +31,7 @@ class TyreTypeController extends Controller
         $data['type_name']  = strtoupper($request->type_name);
         $data['type_desc']  = $request->type_desc;
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by']  = Auth::user()->id;
         TyreType::create($data);
         return redirect('tyretype');
     }

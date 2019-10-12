@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use App\Models\TyreModel;
 use App\Models\TyreCompany;
+use Auth;
 
 class TyreModelController extends Controller
 {
@@ -37,6 +38,7 @@ class TyreModelController extends Controller
                                     ]);
         $data['fleet_code'] = session('fleet_code');
         $data['model_desc'] = $request->model_desc;
+        $data['created_by']  = Auth::user()->id;
         TyreModel::create($data);
         return redirect('tyremodel');
     }

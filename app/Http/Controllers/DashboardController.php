@@ -22,6 +22,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+
        $id          = Auth::user()->id;
        $hasfleet    = FleetUser::where('user_id',$id)->get();
        $count_fleet = count($hasfleet);
@@ -31,10 +32,11 @@ class DashboardController extends Controller
         $data['roadtax']       = array();
         $data['state_permitaA'] = array();
         if($count_fleet != 0){
+
             if($count_fleet <= 1){
                 $fleet_id = Fleet::find($hasfleet[0]->fleet_id);
                 $fleer_code = $fleet_id->fleet_code;
-                
+               
                 Session::put('fleet_code', $fleer_code);
                 
                 $path = storage_path('app/public/'.$fleer_code.'/vehicle_number');
@@ -111,6 +113,7 @@ class DashboardController extends Controller
 
      public function fleet_ckeck(Request $request){        
         $fleer_code = $request->fleet_code;
+        
         Session::put('fleet_code', $fleer_code);        
         $path = storage_path('app/public/'.$fleer_code.'/vehicle_number');                    
         if(! File::exists($path)){

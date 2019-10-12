@@ -11,6 +11,7 @@ use Session;
 use App\Models\TyreVendor;
 use App\State;
 use App\City;
+use Auth;
 
 class TyreVendorController extends Controller
 {
@@ -45,6 +46,7 @@ class TyreVendorController extends Controller
                                     'vendor_type'=>'required'
                                     ]);
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by']  = Auth::user()->id;
         TyreVendor::create($data);
         return redirect('tyrevendor');
     }

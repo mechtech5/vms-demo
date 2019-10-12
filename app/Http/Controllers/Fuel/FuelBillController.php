@@ -39,6 +39,7 @@ class FuelBillController extends Controller
                                       "payment_mode" => "required|not_in:0"]);
         $data['remarks']    = $request->remarks;
         $data['created_by'] = Auth::user()->id;
+        $data['fleet_code'] = session('fleet_code');
         $data = $this->pay_validate($request,$data);
         FuelBill::create($data);
         return redirect('fuelbill');   

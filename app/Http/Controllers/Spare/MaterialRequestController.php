@@ -162,10 +162,11 @@ class MaterialRequestController extends Controller
 
     public function save_in_session(Request $request){
         $id      = array_unique($request->id);
+        
         $page    = $request->page;
         $data1   = array();
         $data    = array(); 
-        $ids     = session('ids');
+        $ids     = !empty(session('ids')) ? session('ids') :array();
         $item_id = array();        
 
         if($page =='edit'){

@@ -10,6 +10,7 @@ use Session;
 use App\Exports\BatteryExport;
 use App\Imports\BatteryImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class BatteryController extends Controller
 {
@@ -44,6 +45,7 @@ class BatteryController extends Controller
                                    ]);
         $data['remarks']    = $request->remarks;
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by'] = Auth::user()->id;
         BatteryCharge::create($data);
         return redirect('batterycharge');
     }

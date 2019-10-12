@@ -11,6 +11,7 @@ use App\Exports\FilterExport;
 use App\Imports\FilterImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Auth;
+use App\Models\Filter;
 
 class FilterController extends Controller
 {
@@ -18,7 +19,7 @@ class FilterController extends Controller
     public function index()
     {
         $fleet_code = session('fleet_code');
-        $filter = DB::table('srv_filter_replacement')->where('fleet_code',$fleet_code)->get();
+        $filter = Filter::where('fleet_code',$fleet_code)->get();
         return view('service_maintenace.filter.show',compact('filter'));
     }
 
@@ -26,7 +27,7 @@ class FilterController extends Controller
     public function create()
     {
         $fleet_code = session('fleet_code');
-        $vehicle    = DB::table('vch_mast')->where('fleet_code',$fleet_code)->get();
+        $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         return view('service_maintenace.filter.create',compact('vehicle'));
     }
 
@@ -34,18 +35,18 @@ class FilterController extends Controller
     {
         $fleet_code = session('fleet_code');
         $validatedData = $request->validate([
-                                        'vch_id'=>'required|not_in:0',
-                                       'km_reading'=> 'required',
-                                       'filter_comp' => 'required',
-                                       'filter_type'=>'required',
-                                       'cost'       =>'required',
-                                       'date'       =>'required|date|date_format:Y-m-d|before:tomorrow'
+                                             'vch_id'      => 'required|not_in:0',
+                                             'km_reading'  => 'required|numeric',
+                                             'filter_comp' => 'required|regex:/^[\pL\s\-]+$/u',
+                                             'filter_type' => 'required|regex:/^[\pL\s\-]+$/u',
+                                             'cost'        => 'required|numeric',
+                                             'date'        =>'required|date|date_format:Y-m-d|before:tomorrow'
                                    ]);
      
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
         $validatedData['created_by'] = Auth::user()->id;
-        DB::table('srv_filter_replacement')->insert($validatedData);
+        Filter::create($validatedData);
         return redirect('filter');
     }
 
@@ -59,7 +60,7 @@ class FilterController extends Controller
     {
         $fleet_code = session('fleet_code');
         $vehicle    = DB::table('vch_mast')->where('fleet_code',$fleet_code)->get();
-        $data = DB::table('srv_filter_replacement')->where('id',$id)->first();
+        $data = Filter::where('id',$id)->first();
         
         return view('service_maintenace.filter.edit',compact('data','vehicle'));
     }
@@ -80,14 +81,14 @@ class FilterController extends Controller
         $validatedData['fleet_code'] = $fleet_code;
         $validatedData['remarks']    = $request['remarks'];
         $validatedData['created_by'] = Auth::user()->id;
-        DB::table('srv_filter_replacement')->where('id',$id)->update($validatedData);
+        Filter::where('id',$id)->update($validatedData);
         return redirect('filter');
     }
 
     
     public function destroy($id)
     {
-        DB::table('srv_filter_replacement')->where('id',$id)->delete();
+        Filter::where('id',$id)->delete();
         return redirect('filter');
     }
 

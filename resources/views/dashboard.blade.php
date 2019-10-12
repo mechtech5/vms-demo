@@ -644,6 +644,7 @@
                     $count = 0;
                     foreach($data['fleet_id'] as $fleet){
                        $fleet_name = App\Fleet::find($fleet->fleet_id);  
+                       
                  ?>
                         <tr>
                             <td>{{ ++$count }}</td>
@@ -685,7 +686,7 @@
 
     $(document).on('click','#submit',function(event){
         event.preventDefault();
-        var fleet_code = $('.select_fleet').val();
+        var fleet_code = $("input:radio.select_fleet:checked").val();
         $.ajax({
             url: '/fleet_ckeck',
             type: 'POST',

@@ -9,6 +9,7 @@ use App\Exports\TyreCompanyExport;
 use App\Imports\TyreCompanyImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\TyreCompany;
+use Auth;
 
 class TyreCompanyController extends Controller
 {
@@ -33,6 +34,7 @@ class TyreCompanyController extends Controller
 
         $data['comp_desc']  = $request->comp_desc;
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by']  = Auth::user()->id;
         TyreCompany::create($data);
         return redirect('tyrecompany');
     }

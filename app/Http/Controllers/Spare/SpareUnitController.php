@@ -9,6 +9,7 @@ use Session;
 use App\Exports\SpareUnitExport;
 use App\Imports\SpareUnitImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class SpareUnitController extends Controller
 {
@@ -34,6 +35,7 @@ class SpareUnitController extends Controller
         $data['unit_name']  = strtoupper($request->unit_name);
         $data['fleet_code'] = session('fleet_code');
         $data['unit_desc']  = $request->unit_desc;
+        $data['created_by']  = Auth::user()->id;
         SpareUnit::create($data);
         return redirect('spareunit');
     }

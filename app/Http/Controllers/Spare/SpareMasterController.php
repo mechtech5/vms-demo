@@ -14,6 +14,7 @@ use App\Models\SpareType;
 use App\Models\SpareUnit;
 use App\Models\SpareVendor;
 use App\Models\SpareSuppliers;
+use Auth;
 
 class SpareMasterController extends Controller
 {
@@ -51,6 +52,7 @@ class SpareMasterController extends Controller
                                     "part_no" => "nullable|numeric",
                                     "sales_prc" => "nullable|numeric"
                                 ]);
+        $data['created_by']  = Auth::user()->id;
         $data['fleet_code'] = session('fleet_code');
         SpareMaster::create($data);
         return redirect('sparemaster');
