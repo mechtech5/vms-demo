@@ -41,7 +41,10 @@ class LoginController extends Controller
     {
         $Id  = Auth::user()->id;     
         $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
-        $roleid = $hasrole->role_id;
+        $roleid = 0;
+        if(!empty($hasrole)){
+            $roleid = $hasrole->role_id;
+        }
        
         if(!empty($roleid)){
             if (method_exists($this, 'redirectTo')) {

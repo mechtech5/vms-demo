@@ -8,6 +8,11 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    <?php
+                        if(session('error_msg')){ ?>
+                        <div class="text-center mb-4"><span  style="color: #FF0000;font-size:15px;">{{ session('error_msg') }}</span></div>
+                    <?php }
+                     ?>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
