@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use App\vehicle_master;
 use Session;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
+use Auth;
 
 class InsuranceDetailsImport implements ToCollection,WithHeadingRow
 {
@@ -43,7 +44,7 @@ class InsuranceDetailsImport implements ToCollection,WithHeadingRow
                     'valid_till'  => $row['valid_till'],
                     'pay_no'      => $row['pay_number'],
                     'ins_comp'    => $row['insurance_company'],
-                    'created_by'  => Auth::user()->id;
+                    'created_by'  => Auth::user()->id
                     ]);   
                 }
             }

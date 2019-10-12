@@ -71,7 +71,7 @@
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">PUC Amount</label>
 	                               
-	                                <input id="email" name="puc_amt" class="form-control  " value="{{old('spec_grav')}}">
+	                                <input id="email" name="puc_amt" class="form-control  " value="{{old('puc_amt')}}">
 	                                 @error('puc_amt')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Please enter PUC amount (in number)' }}</strong>
