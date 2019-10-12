@@ -8,6 +8,7 @@ use App\Models\SpareType;
 use App\Exports\SpareTypeExport;
 use App\Imports\SpareTypeImport;
 use Maatwebsite\Excel\Facades\Excel;
+use Auth;
 
 class SpareTypeController extends Controller
 {
@@ -31,6 +32,7 @@ class SpareTypeController extends Controller
         $data['type_name']  = strtoupper($request->type_name);
         $data['type_desc']  = $request->type_desc;
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by']  = Auth::user()->id;
         SpareType::create($data);
         return redirect('sparetype');
     }

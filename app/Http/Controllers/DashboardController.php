@@ -36,7 +36,7 @@ class DashboardController extends Controller
             if($count_fleet <= 1){
                 $fleet_id = Fleet::find($hasfleet[0]->fleet_id);
                 $fleer_code = $fleet_id->fleet_code;
-                
+               
                 Session::put('fleet_code', $fleer_code);
                 
                 $path = storage_path('app/public/'.$fleer_code.'/vehicle_number');

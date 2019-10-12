@@ -9,6 +9,7 @@ use App\Exports\SpareCompanyExport;
 use App\Imports\SpareCompanyImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\SpareCompany;
+use Auth;
 
 class SpareCompanyController extends Controller
 {
@@ -31,6 +32,7 @@ class SpareCompanyController extends Controller
 
         $data['comp_desc']  = $request->comp_desc;
         $data['fleet_code'] = session('fleet_code');
+        $data['created_by']  = Auth::user()->id;
         SpareCompany::create($data);
         return redirect('sparecompany');   
     }

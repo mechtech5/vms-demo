@@ -295,7 +295,7 @@
 <script type="text/javascript">
   $(document).ready( function () {
         $(function() {
-     	   $( ".datepicker" ).datepicker();
+     	   $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     	})
 
 

@@ -22,127 +22,127 @@
 
                         	<div class="col-md-3 col-xl-3 mt-2">
 			                    <label class="">Select Vehicle</label>
-			                      @error('vch_id')
-		                              <span class="invalid-feedback d-block pull-right" role="alert">
-		                                  <strong>{{ 'Please Select Vehicle' }}</strong>
-		                              </span>
-		                          @enderror
 		                       <select name="vch_id" class="selectpicker form-control">
 		                            <option value="0" selected=" true " disabled="true">Select..</option>
 		                            @foreach($vehicle as $vehicles)
 		                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
 		                            @endforeach     
 		                        </select>
+                                @error('vch_id')
+                                  <span class="invalid-feedback d-block pull-right" role="alert">
+                                      <strong>{{ 'Please Select Vehicle' }}</strong>
+                                  </span>
+                                @enderror
 		                      
 			                </div>
                                                             
                             <div class="col-md-3 col-xl-3 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">KM Reading</label>
-                                @error('km_reading')
-		                            <span class="invalid-feedback d-block pull-right" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="vehicle_no" class="form-control" name="km_reading" value="{{old('km_reading')}}" > 
+                                @error('km_reading')
+                                  <span class="invalid-feedback d-block pull-right" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                  
                             </div>
                                                        
                             <div class="col-md-3 col-xl-3 mt-2">
                                  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Specific Gravity</label>
-                                @error('spec_grav')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email" name="spec_grav" class="form-control  " value="{{old('spec_grav')}}">
+                                @error('spec_grav')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                 
                             </div>
 
                             <div class="col-md-3 col-xl-3 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Volt Reading</label>
-                                @error('volt_reading')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="volt_reading" value="{{old('volt_reading')}}">
+                                @error('volt_reading')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                            <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Battery Water</label>
-                                @error('batt_water')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="batt_water" value="{{old('batt_water')}}">
+                                @error('batt_water')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Battery Acid</label>
-                                @error('batt_acid')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="batt_acid" value="{{old('batt_acid')}}">
+                                @error('batt_acid')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Charging By</label>
-                                @error('chr_by')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="chr_by" value="{{old('chr_by')}}">
+                                @error('chr_by')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Battery Condition</label>
-                                @error('batt_cond')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="batt_cond" value="{{old('batt_cond')}}">
+                                @error('batt_cond')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cost</label>
-                                @error('cost')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control  " name="cost" value="{{old('cost')}}">
+                                @error('cost')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Charging Date</label>
-                                @error('date')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <input id="email1" class="form-control datepicker" readonly="true" name="date" value="{{old('date')}}">
+                                @error('date')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
 
                              <div class="col-md-12 col-xl-12 mt-2">
                                 <label for="Engine No">Remark</label>
-                                @error('remarks')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
                                 <textarea id="email1" class="form-control  " name="remarks" value="">{{old('remarks')}}</textarea>
+                                @error('remarks')
+                                  <span class="invalid-feedback d-block" role="alert">
+                                     <strong>{{ $message }}</strong>
+                                  </span>
+                                @enderror
                                
                             </div>
                         </div>     
@@ -163,10 +163,9 @@
 
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#myTable').DataTable();
-
+    
     $(function() {
-      $( ".datepicker" ).datepicker();
+      $(".datepicker" ).datepicker({format:'yyyy-mm-dd'});
    })
       
 	});

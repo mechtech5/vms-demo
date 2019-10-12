@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\SpareVendor;
 use App\State;
 use App\City;
+use Auth;
 
 class SpareVendorController extends Controller
 {
@@ -46,6 +47,7 @@ class SpareVendorController extends Controller
                                     "addr" => 'nullable',
                                     'phone'=> 'nullable'
                                     ]);
+        $data['created_by']  = Auth::user()->id;
         $data['fleet_code'] = session('fleet_code');
         SpareVendor::create($data);
         return redirect('sparevendor');

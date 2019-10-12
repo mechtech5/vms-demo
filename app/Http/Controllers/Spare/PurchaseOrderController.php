@@ -12,6 +12,7 @@ use App\Models\Inventory\MaterialItemRequest;
 use App\Models\Inventory\PurchaseOrder;
 use App\Models\Inventory\PurchaseOrder_item;
 use Session;
+use Auth;
 
 class PurchaseOrderController extends Controller
 {
@@ -79,9 +80,10 @@ class PurchaseOrderController extends Controller
        $po_data['cgst_amt']    = $data['totl_cgst_amt'];
        $po_data['sgst_amt']    = $data['totl_sgst_amt'];
        $po_data['net_amt']     = $data['totl_net_amt'];
-
+       $po_data['created_by']  = Auth::user()->id;
        $po_id = PurchaseOrder::create($po_data)->id;
 
+       $quty = !empty($data['qty'])?$data['qty']:array();
        $count = count($data['qty']);
        $x = 0;
        $id       = $request->id; 

@@ -22,84 +22,82 @@
 
                         	<div class="col-md-4 col-xl-4 mt-2">
 			                    <label class="">Select Vehicle</label>
-			                      @error('vch_id')
-		                              <span class="invalid-feedback d-block pull-right" role="alert">
-		                                  <strong>{{ 'Please Select Vehicle' }}</strong>
-		                              </span>
-		                          @enderror
-		                       <select name="vch_id" class="selectpicker form-control">
+			                      <select name="vch_id" class="selectpicker form-control">
 		                            <option value="0" selected=" true " disabled="true">Select..</option>
 		                            @foreach($vehicle as $vehicles)
 		                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
 		                            @endforeach     
 		                        </select>
-		                      
+                            @error('vch_id')
+                                  <span class="invalid-feedback d-block pull-right" role="alert">
+                                      <strong>{{ 'Please Select Vehicle' }}</strong>
+                                  </span>
+                              @enderror		                      
 			                </div>
                                                             
                             <div class="col-md-4 col-xl-4 mt-2">
-                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">KM Reading</label>
-                                @error('km_reading')
-		                            <span class="invalid-feedback d-block pull-right" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">KM Reading</label>                                
                                 <input id="vehicle_no" class="form-control" name="km_reading" value="{{old('km_reading')}}" > 
-                                 
+                                 @error('km_reading')
+                                <span class="invalid-feedback d-block pull-right" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
                                                        
                             <div class="col-md-4 col-xl-4 mt-2">
                                  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chasis No">Filter Company</label>
-                                @error('filter_comp')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
-                                <input id="email" name="filter_comp" class="form-control  " value="{{old('filter_comp')}}">
                                 
+                                <input id="email" name="filter_comp" class="form-control  " value="{{old('filter_comp')}}">
+                                @error('filter_comp')
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
 
                             <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Filter Type</label>
-                                @error('filter_type')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                
                                 <input id="email1" class="form-control  " name="filter_type" value="{{old('filter_type')}}">
-                               
+                                @error('filter_type')
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
 
                              <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Filter Cost</label>
-                                @error('cost ')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                
                                 <input id="email1" class="form-control  " name="cost" value="{{old('cost ')}}">
-                               
+                               @error('cost')
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
 
                              <div class="col-md-4 col-xl-4 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Date</label>
-                                @error('date')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                
                                 <input id="email1" class="form-control datepicker" readonly="true" name="date" value="{{old('date')}}">
-                               
+                               @error('date')
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
 
                             <div class="col-md-12 col-xl-12 mt-2">
                                 <label for="Engine No">Remark</label>
-                                @error('remarks')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                
                                 <textarea id="email1" class="form-control  " name="remarks" value="">{{old('remarks')}}</textarea>
-                               
+                               @error('remarks')
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
                             </div>
                         </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
@@ -121,7 +119,7 @@
   $(document).ready( function () {
     $('#myTable').DataTable();
       $(function() {
-      $( ".datepicker" ).datepicker();
+      $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
    })
 	});
 
