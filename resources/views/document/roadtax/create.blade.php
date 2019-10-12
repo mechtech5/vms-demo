@@ -21,7 +21,7 @@
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                         	<div class="row">
 	                        	<div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select Vehicle</label>
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select Vehicle</label>
 				                     
 			                       <select name="vch_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
@@ -38,7 +38,7 @@
 
 
 				                <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select Agent</label>
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select Agent</label>
 				                    
 			                       <select name="agent_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
@@ -117,16 +117,16 @@
 	                        </div>
 	                        <div class="row">    
 	                            <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Payment mode</label>
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Payment mode</label>
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
 			                            <option selected="true" value="0">Mode</option>
-			                            <option value="cash">Cash</option>
-										<option value="cheque">Cheque</option>
-										<option value="credit">Credit</option>
-										<option value="dd">DD</option>
-										<option value="rtgs">RTGS</option>
-										<option value="neft">NEFT</option>  
+			                            <option {{old('payment_mode') =='cash' ? 'selected':'' }} value="cash">Cash</option>
+										<option {{old('payment_mode') =='cheque' ? 'selected':'' }}  value="cheque">Cheque</option>
+										<option {{old('payment_mode') =='credit' ? 'selected':'' }}  value="credit">Credit</option>
+										<option {{old('payment_mode') =='dd' ? 'selected':'' }}  value="dd">DD</option>
+										<option {{old('payment_mode') =='rtgs' ? 'selected':'' }}  value="rtgs">RTGS</option>
+										<option {{old('payment_mode') =='neft' ? 'selected':'' }}  value="neft">NEFT</option>  
 			                        </select>
 			                        @error('payment_mode')
 			                              <span class="invalid-feedback d-block " role="alert">

@@ -21,7 +21,7 @@ class RoadtaxDetailsImport implements ToCollection,WithHeadingRow
 
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
-            if(!empty($row['vehicle_number']) && !empty($row['pay_date'])  && !empty($row['roadtax_number']) && !empty($row['payment_mode']) && !empty($row['pay_number']))
+            if(!empty($row['vehicle_number']) && !empty($row['valid_from'])  && !empty($row['roadtax_number']) && !empty($row['payment_mode']) && !empty($row['pay_number']))
             {
                 $pay_date   = Date::excelToDateTimeObject($row['pay_date']);
                 $valid_from = Date::excelToDateTimeObject($row['valid_from']);

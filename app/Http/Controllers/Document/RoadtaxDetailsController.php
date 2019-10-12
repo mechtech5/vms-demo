@@ -37,7 +37,7 @@ class RoadtaxDetailsController extends Controller
     public function store(Request $request)
     {
          $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'     => 'required',   
+                                     'agent_id'     => 'required|numeric',   
                                      "roadtax_amt"  => 'required|numeric',
                                      "valid_from"   => 'required',
                                      "valid_till"   => 'required',

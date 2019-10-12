@@ -21,7 +21,6 @@
               </div>
                 <a class="btn btn-inverse" href="{{ route('state.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
                 <a class="btn btn-inverse" href="{{route('state.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
-
             </form>  
                        
           </div>
@@ -61,6 +60,7 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
+    
     $('#file').change(function() {
        $('#target').submit();
       });

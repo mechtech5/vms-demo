@@ -348,7 +348,7 @@
   $(document).ready( function () {
     
      $(function() {
-        $( ".datepicker" ).datepicker();
+        $(".datepicker" ).datepicker({format:'yyyy-mm-dd'});
      });
 
     $('#type').on('change',function(){

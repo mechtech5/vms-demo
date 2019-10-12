@@ -39,8 +39,7 @@
 
 
 				                <div class="col-md-4 col-xl-4 mt-2">
-				                    <label class="">Select Agent</label>
-				                    
+				                   <label class="">Select Agent</label>	                  
 			                       <select name="agent_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($agent as $Agent)
