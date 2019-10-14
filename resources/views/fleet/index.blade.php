@@ -23,11 +23,11 @@
  <main class="app-content">
 	  <div class="app-title">
 	    <div>
-	      <h1><i class="fa fa-dashboard"></i>Fleets</h1>
+	      <h1><i class="fa fa-truck pr-2" aria-hidden="true"></i>Fleet</h1>
 	    </div>
 	    <ul class="app-breadcrumb breadcrumb">
 	      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-	      <li class="breadcrumb-item"><a href="#">fleets</a></li>
+	      <li class="breadcrumb-item"><a href="{{url('fleet')}}">Fleet</a></li>
 	    </ul>
 	  </div>
 	  <div class="row">
@@ -36,7 +36,7 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable1">
-							<a style="margin-left: 18px;margin-bottom: 10px;" href="{{route('fleet.create')}}" id="add" type="button" class="btn btn-info">Add Fleet</a>
+							<a style="margin-bottom: 10px;" href="{{route('fleet.create')}}" id="add" type="button" class="btn btn-info">Add Fleet</a>
 
 							<table class="table table-stripped table-bordered" id="fleet_table" style="width: 100%">
 								<thead>

@@ -17,7 +17,7 @@ class FleetController extends Controller
     
     public function index()
     {
-        $user  = User::where('account_id',Auth::user()->id)->get();
+        $user  = User::where('parent_id',Auth::user()->id)->get();
         $fleet = Fleet::where('fleet_owner',Auth::user()->id)->get();
        
         return view('fleet.index',compact('user','fleet'));
@@ -25,7 +25,7 @@ class FleetController extends Controller
 
     public function create()
     {
-         $user  = User::where('account_id',Auth::user()->id)->get();
+         $user  = User::where('parent_id',Auth::user()->id)->get();
         return view('fleet.create',compact('user'));    }
 
     
@@ -33,28 +33,22 @@ class FleetController extends Controller
     {
         $validatedData = $request->validate([
                                        'fleet_name'  => 'required',
-                                       'fleet_code'  => 'required',
+                                       'fleet_code'  => 'required|unique:fleet_mast',
                                        'fleet_desc'  =>'nullable'
-                                       ]);
-      
-       $ckh_fleet = DB::table('fleet_mast')->where('fleet_code', '=', $validatedData['fleet_code'])->first();
-       if(!empty($ckh_fleet)){
-          return redirect()->back()->with('fleet_code_error','Fleet Code already exists');
-       }
-       else{                                  
-
-          $validatedData['fleet_owner'] = Auth::user()->id;
-          $last_id = Fleet::create($validatedData)->id;           
-          //Mail::to($user->email)->send(new SendMailable($name));
-          return redirect('fleet');
-      }
+                                       ]);      
+       
+        $validatedData['fleet_owner'] = Auth::user()->id;
+        $validatedData['acc_type']    = 'C';
+        $last_id = Fleet::create($validatedData)->id;           
+        //Mail::to($user->email)->send(new SendMailable($name));
+        return redirect('fleet');      
     }
 
     public function show($id)
     {
         $user = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('fleet_id',$id)->get();
         $fleet_id = $id;
-        $model_user = User::where('account_id',Auth::user()->id)->get();
+        $model_user = User::where('parent_id',Auth::user()->id)->get();
         return view('fleet.show',compact('user','model_user','fleet_id'));   
     }
    

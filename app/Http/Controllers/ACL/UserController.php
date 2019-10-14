@@ -44,6 +44,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($password),
                 );
+        $data['acc_type'] = 'B';
         User::insert($data);
         Mail::to($request->email)->send(new SendMailable($name));
         return redirect('admin');
@@ -56,14 +57,21 @@ class UserController extends Controller
         $data['user']        = User::find($id);
         $data['role']        = Role::get();
         $data['permissions'] = Permission::get();
-        $permission  = DB::table('model_has_permissions')->where('model_id',$id)->get();
+        $permission          = DB::table('model_has_permissions')->where('model_id',$id)->get();
+        $role                = DB::table('model_has_roles')->where('model_id',$id)->get();
+        $user                = User::where('parent_id',$id)->get();        
 
         $permission_ids = array();
-        foreach ($permission as $id) {
-            $permission_ids[] = $id->permission_id; 
+        $role_ids = array();
+        foreach ($permission as $ids) {
+            $permission_ids[] = $ids->permission_id; 
         }
-        
-        return view('acl.users.show',compact('data','permission_ids'));
+
+        foreach ($role as $roles) {
+            $role_ids[] = $roles->role_id; 
+        }
+
+        return view('acl.users.show',compact('data','permission_ids','user','role_ids'));
     }
 
     

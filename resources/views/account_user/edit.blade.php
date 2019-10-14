@@ -23,17 +23,22 @@
  <main class="app-content">
 	  <div class="app-title">
 	    <div>
-	      <h1><i class="fa fa-dashboard"></i>ACL</h1>
+	      <h1><i class="fa fa-user pr-2"></i>User</h1>
 	    </div>
 	    <ul class="app-breadcrumb breadcrumb">
 	      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-	      <li class="breadcrumb-item"><a href="#">ACL</a></li>
+	      <li class="breadcrumb-item"><a href="{{url('accountuser')}}">User</a></li>
 	    </ul>
 	  </div>
 	  <div class="row">
 		<div class="col-md-12 m-auto">
 			<div class="card">
 				<div style="padding-top: 30px;padding-bottom: 30px;">
+					<div class="row">
+						<div class="col-md-10 mb-4">
+							<a href="{{url('accountuser')}}" style="color: #fff;" class="btn btn-primary pull-right">Back</a>
+						</div>
+					</div>
 					<form action="{{ route('accountuser.update',$data->id) }}"  method="Post">
                         {{csrf_field()}}
                         @method('PUT')

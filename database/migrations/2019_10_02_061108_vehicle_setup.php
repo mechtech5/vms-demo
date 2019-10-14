@@ -13,6 +13,7 @@ class VehicleSetup extends Migration
             $table->string('fleet_code', 10);
             $table->string('comp_name', 100);
             $table->string('comp_desc', 255);
+
             $table->timestamp();
         });
 
@@ -22,6 +23,7 @@ class VehicleSetup extends Migration
             $table->integer('vcompany_code');     
             $table->string ('model_name', 100);
             $table->string ('model_desc', 100);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
 
@@ -79,6 +81,7 @@ class VehicleSetup extends Migration
             $table->string('rc_book_pic',50);
             $table->string('owner_pan_pic',50);
             $table->string('tds_declaration_pic',50);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
 
@@ -87,7 +90,8 @@ class VehicleSetup extends Migration
             $table->string('fleet_code', 10);
             $table->integer('vch_id');
             $table->decimal('reading',10,2);
-            $table->date('date');            
+            $table->date('date');
+            $table->integer('created_by',11);
             $table->timestamp();
         });
     }

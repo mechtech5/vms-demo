@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\User;
 
 
 class RolesController extends Controller
@@ -21,26 +22,15 @@ class RolesController extends Controller
        
         $show_role    = DB::table('roles')->get();
         $permissions  = DB::table('permissions')->get();
-        $user         = DB::table('users')->get();
+        $user         = User::where('acc_type','B')->get();
         return view('acl.admin_satting',compact('show_role','permissions','user'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         return view('acl.role.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->validate(['name' => 'required']);
@@ -51,12 +41,6 @@ class RolesController extends Controller
          return redirect('admin');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $permison_list = DB::table('role_has_permissions')->where('role_id',$id)->get();
@@ -70,25 +54,12 @@ class RolesController extends Controller
         return view('acl.role.show',compact('role','permissions','permission_ids'));
     }
 
-    /**
-     * Show the form for editing the specified resource. 
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $data = DB::table('roles')->find($id);
         return view('acl.role.edit',compact('data'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
         $id  = $request->id;
@@ -100,12 +71,6 @@ class RolesController extends Controller
         return redirect('admin');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
          DB::table('roles')->where('id',$id)->delete();
@@ -115,11 +80,7 @@ class RolesController extends Controller
     public function saveChanges(Request $request){
         $role       = Role::findOrFail($request->roleId);
         $permissionid = $request->permissionId;
-            
-        // foreach($permissionid as $id){
-        //     $p = Permission::where('id', '=', $id)->firstOrFail();
-            $role->syncPermissions($permissionid);
-        // }
+        $role->syncPermissions($permissionid);
         return "Permissions Save" ;
     }
 }
