@@ -43,7 +43,8 @@
 					<div class="row">						
 			
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable3">
-							<a style="margin-left: 18px;margin-bottom: 10px;" onclick="showModal()"  id="add" type="button" class="btn btn-info">Add User</a>
+							<a style="margin-bottom: 10px;" onclick="showModal()"  id="add" type="button" class="btn btn-info">Add User</a>
+							<a style="margin-bottom: 10px;" href="{{url('fleet')}}" class="btn btn-info pull-right">Back</a>
 							<div id = 'table_refresh'>
 								<table class="table table-stripped table-bordered" id="account_table" style="width: 100%">
 									<thead>
@@ -90,15 +91,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					@php  $count =0;	@endphp 
-					@foreach($model_user as $user)					
+					@php  $count =0;	@endphp
+					@foreach($model_user as $user)
+						<?php if(in_array($user->id, $fleet_users_id)){ ?>
+								<tr>
+							<td style="width: 16.66%">{{ ++$count}}</td>
+							<td>{{$user->name}}</td>
+							<td style="width: 16.66%;text-align: center;">
+								<input type="checkbox" checked disabled>
+							</td>
+						</tr>			
+						<?php }else{ ?>	
 						<tr>
 							<td style="width: 16.66%">{{ ++$count}}</td>
-							<td>{{$user->name}}</td>							
+							<td>{{$user->name}}</td>
 							<td style="width: 16.66%;text-align: center;">
-								<input type="checkbox" id='add_user' data-id='{{ $user->id }}'>		
+								<input type="checkbox" class='add_user' data-id='{{ $user->id }}'>
 							</td>
 						</tr>
+						<?php }	?>
 					@endforeach
 				</tbody>
 			</table>
@@ -126,16 +137,19 @@
   		var ids      = [];
   		var fleet_id = $('#fleet_id').val();
 
-		$('input[id="add_user"]:checked').each(function() {
+		$('input[class="add_user"]:checked').each(function() {
 		   ids.push($(this).attr('data-id')); 
 		});
+		
 		$.ajax({
             url: '/add_on_fleet',
             type: 'POST',
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {id:ids,fleet_id:fleet_id},
             success: function (data) {
+            	$('#myModal').modal('hide');
                $('#table_refresh').html(data);
+               location.reload();
             }
         })
 	});

@@ -8,6 +8,7 @@ use App\User;
 use DB;
 use Auth;
 use App\Fleet;
+use App\FleetUser;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
 
@@ -55,12 +56,17 @@ class AccountUserController extends Controller
     }
    
     public function show($id)
-    {
+    { 
         $fleet = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('user_id',$id)->get();
-        $user_id = $id;
+        $user_id = $id; 
         $model_fleet = Fleet::where('fleet_owner',Auth::user()->id)->get();
-
-        return view('account_user.show',compact('fleet','user_id','model_fleet'));
+       $user_fleet=FleetUser::where('user_id',$user_id)->get();
+        $user_fleet_id = array();
+        foreach ($user_fleet as $value) {
+          $user_fleet_id[] = $value->fleet_id;
+        }
+       // dd($model_fleet);
+        return view('account_user.show',compact('fleet','user_id','model_fleet','user_fleet_id'));
     }
 
     

@@ -23,11 +23,11 @@
  <main class="app-content">
 	  <div class="app-title">
 	    <div>
-	      <h1><i class="fa fa-dashboard"></i>ACL</h1>
+	      <h1><i class="fa fa-dashboard"></i>USERS</h1>
 	    </div>
 	    <ul class="app-breadcrumb breadcrumb">
 	      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-	      <li class="breadcrumb-item"><a href="#">ACL</a></li>
+	      <li class="breadcrumb-item"><a href="#">USERS</a></li>
 	    </ul>
 	  </div>
 	  @if(session('success'))
@@ -43,7 +43,7 @@
 					<div class="row">						
 			
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable3">
-							<a style="margin-left: 18px;margin-bottom: 10px;" href="{{route('accountuser.create')}}" id="add" type="button" class="btn btn-info">Add</a>
+							<a style=";margin-bottom: 10px;" href="{{route('accountuser.create')}}" id="add" type="button" class="btn btn-info">Add</a>
 							<table class="table table-stripped table-bordered" id="account_table" style="width: 100%">
 								<thead>
 									<tr>

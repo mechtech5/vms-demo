@@ -36,7 +36,7 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable1">
-							<a style="margin-left: 18px;margin-bottom: 10px;" href="{{route('fleet.create')}}" id="add" type="button" class="btn btn-info">Add Fleet</a>
+							<a style="margin-bottom: 10px;" href="{{route('fleet.create')}}" id="add" type="button" class="btn btn-info">Add Fleet</a>
 
 							<table class="table table-stripped table-bordered" id="fleet_table" style="width: 100%">
 								<thead>
