@@ -48,8 +48,15 @@ class FleetController extends Controller
     {
         $user = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('fleet_id',$id)->get();
         $fleet_id = $id;
-        $model_user = User::where('parent_id',Auth::user()->id)->get();
-        return view('fleet.show',compact('user','model_user','fleet_id'));   
+
+        $model_user = User::where('account_id',Auth::user()->id)->get();
+        $fleet_users=FleetUser::where('fleet_id',$fleet_id)->get();
+        $fleet_users_id = array();
+        foreach ($fleet_users as $value) {
+          $fleet_users_id[] = $value->user_id;
+        } 
+        return view('fleet.show',compact('user','model_user','fleet_id','fleet_users_id','count1','count2'));   
+
     }
    
     public function edit($id)

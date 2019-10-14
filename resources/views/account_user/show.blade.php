@@ -43,7 +43,9 @@
 					<div class="row">			
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable3">
 							<a style="margin-bottom: 10px;" onclick="showModal()"  id="add" type="button" class="btn btn-info">Add Fleet</a>
-							<a href="{{url('accountuser')}}" style="color: #fff;" class="btn btn-primary pull-right">Back</a>
+
+							<a style="margin-bottom: 10px;" href="{{url('accountuser')}}"  class="btn btn-info pull-right">Back</a>
+
 							<div id="table_refresh">
 								<table class="table table-stripped table-bordered" id="account_table" style="width: 100%">
 									<thead>
@@ -91,7 +93,17 @@
 				</thead>
 				<tbody>
 					@php  $count =0;	@endphp 
-					@foreach($model_fleet as $user_fleet)					
+					@foreach($model_fleet as $user_fleet)
+					<?php if(in_array($user_fleet->id, $user_fleet_id)){ ?>
+							<tr>
+							<td style="width: 16.66%">{{ ++$count}}</td>
+							<td>{{$user_fleet->fleet_code}}</td>
+							<td>{{$user_fleet->fleet_name}}</td>							
+							<td style="width: 16.66%;text-align: center;">
+								<input type="checkbox" checked="" disabled="">		
+							</td>
+						</tr>				
+						<?php }else{ ?>					
 						<tr>
 							<td style="width: 16.66%">{{ ++$count}}</td>
 							<td>{{$user_fleet->fleet_code}}</td>
@@ -100,6 +112,7 @@
 								<input type="checkbox" id='add_user' data-id='{{ $user_fleet->id }}'>		
 							</td>
 						</tr>
+						<?php }	?>
 					@endforeach
 				</tbody>
 			</table>
@@ -138,6 +151,7 @@
             success: function (data) {
             	$('#myModal').modal('hide');
                $('#table_refresh').html(data);
+               location.reload();
             }
         })
 	});
