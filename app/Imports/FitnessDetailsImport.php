@@ -21,7 +21,7 @@ class FitnessDetailsImport implements ToCollection,WithHeadingRow
         foreach ($rows as $row) {
             $row['fleet_code'] =  $fleet_code;
             
-            if(!empty($row['vehicle_number']) && !empty($row['pay_date']) && !empty($row['pay_number'])   && !empty($row['fitness_number'])
+            if(!empty($row['vehicle_number']) && !empty($row['valid_from']) && !empty($row['pay_number'])   && !empty($row['fitness_number'])
                 && !empty($row['payment_mode']))
             {   
                 $pay_date   = Date::excelToDateTimeObject($row['pay_date']);

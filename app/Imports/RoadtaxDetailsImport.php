@@ -16,7 +16,7 @@ class RoadtaxDetailsImport implements ToCollection,WithHeadingRow
 
     public function collection(Collection $rows)
     {   
-         $error = array();
+        $error = array();
         $fleet_code = session('fleet_code');
 
         foreach ($rows as $row) {
@@ -25,9 +25,14 @@ class RoadtaxDetailsImport implements ToCollection,WithHeadingRow
             {
                 $pay_date   = Date::excelToDateTimeObject($row['pay_date']);
                 $valid_from = Date::excelToDateTimeObject($row['valid_from']);
-                $valid_till = Date::excelToDateTimeObject($row['valid_till']);                        
+                $valid_till = Date::excelToDateTimeObject($row['valid_till']);
+
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
-   
+
+                $pay_date   = $pay_date->format('Y-m-d');
+                $valid_from = $valid_from->format('Y-m-d');
+                $valid_till = $valid_till->format('Y-m-d');
+           
                 if(!empty($vch_num)){
                     
                         RoadtaxDetails::create([
