@@ -14,8 +14,8 @@ class DriverDetails extends Migration
             $table->string('name', 100);
             $table->string('image', 100);
             $table->string('address', 100);
-            $table->integer('city_id');
-            $table->integer('state_id');
+            $table->integer('city_id',11);
+            $table->integer('state_id',11);
             $table->date('joined_dt');
             $table->decimal('salary',10,2);
             $table->string('license_no',100);

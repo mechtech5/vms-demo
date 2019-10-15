@@ -31,8 +31,8 @@ class VehicleSetup extends Migration
             $table->bigIncrements('id');
             $table->string ('fleet_code', 10);
             $table->string('vch_no', 15);
-            $table->integer('vch_comp');
-            $table->integer('vch_model');
+            $table->integer('vch_comp',11);
+            $table->integer('vch_model',11);
             $table->string('owner_name', 100);
             $table->string('owner_addr', 250);
             $table->string('owner_pan',50);

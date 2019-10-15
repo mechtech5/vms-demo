@@ -102,7 +102,7 @@ class DocumentDetails extends Migration
             $table->integer('vch_id',11);
             $table->integer('agent_id', 11);
             $table->tinyIncrements('all_india_permit');
-            $table->integer('state_id '11);
+            $table->integer('state_id',11);
             $table->string('payment_mode',50);
             $table->integer('pay_no',11);
             $table->date('pay_dt');
