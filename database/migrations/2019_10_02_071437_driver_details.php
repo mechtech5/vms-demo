@@ -23,6 +23,7 @@ class DriverDetails extends Migration
             $table->string('phone',14);
             $table->string('blood_group ',6);
             $table->tinyInteger('is_active ',6);
+            $table->integer('created_by',11);
             $table->timestamp();
         });        
     }

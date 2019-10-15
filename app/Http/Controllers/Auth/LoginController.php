@@ -39,27 +39,27 @@ class LoginController extends Controller
 
      public function redirectPath()
     {
-        $Id  = Auth::user()->id;     
-        $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
-        $roleid = 0;
-        if(!empty($hasrole)){
-            $roleid = $hasrole->role_id;
-        }
+        $acc_type  = Auth::user()->acc_type;     
+        // $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();
+        // $roleid = 0;
+        // if(!empty($hasrole)){
+        //     $roleid = $hasrole->role_id;
+        // }
        
-        if(!empty($roleid)){
+        if(!empty($acc_type)){
             if (method_exists($this, 'redirectTo')) {
                 return $this->redirectTo();
             }
-            switch ($roleid) {                
-                case '1' : 
+            switch ($acc_type) {                
+                case 'A' : 
                     Session::put('user_rol','admin');
                     return $login = '/admin';
                     break;
-                case '2':
+                case 'C':
                     Session::put('user_rol','fleet');
                     return $login = '/dashboard';
                     break;
-                case '3':
+                case 'B':
                     Session::put('user_rol','account');
                     return $login = '/accountuser';
                     break;    

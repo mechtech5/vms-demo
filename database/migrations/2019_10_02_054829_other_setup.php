@@ -14,6 +14,7 @@ class OtherSetup extends Migration
             $table->string('fleet_code', 10);
             $table->string('state_name', 100);
             $table->string('state_code', 100);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
 
@@ -23,6 +24,7 @@ class OtherSetup extends Migration
             $table->string('fleet_code', 10);
             $table->string('city_name', 100);
             $table->string('city_code', 100);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
 
@@ -34,6 +36,7 @@ class OtherSetup extends Migration
             $table->string('agent_phone', 100);
             $table->string('agent_address', 255);
             $table->string('agent_email', 50);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
 
@@ -44,6 +47,7 @@ class OtherSetup extends Migration
             $table->string('comp_phone', 100);
             $table->string('comp_addr', 255);
             $table->string('comp_email', 50);
+            $table->integer('created_by',11);
             $table->timestamp();
         });
     }

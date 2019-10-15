@@ -44,6 +44,7 @@
     <link rel="dns-prefetch" href="{{url('//fonts.gstatic.com')}}">
     <link href="{{url('https://fonts.googleapis.com/css?family=Nunito')}}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   
   <!-- Styles -->
    <link rel="stylesheet" type="text/css" href="{{ asset('css/app1.css') }}">
@@ -149,7 +150,7 @@
        <?php  }
         else{ ?>
           <li><a class="app-menu__item active" href="{{url('accountuser')}}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Users</span></a></li>
-          <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Fleet</span></a></li>
+          <li><a class="app-menu__item active" href="{{route('fleet.index')}}"><i class="fa fa-truck pr-3" aria-hidden="true"></i><span class="app-menu__label">Fleet</span></a></li>
       <?php 
       
         }

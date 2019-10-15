@@ -23,11 +23,11 @@
  <main class="app-content">
 	  <div class="app-title">
 	    <div>
-	      <h1><i class="fa fa-dashboard"></i>ACL</h1>
+	      <h1><i class="fa fa-truck pr-2" aria-hidden="true"></i>Fleet</h1>
 	    </div>
 	    <ul class="app-breadcrumb breadcrumb">
 	      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-	      <li class="breadcrumb-item"><a href="#">ACL</a></li>
+	      <li class="breadcrumb-item"><a href="{{ url('fleet') }}">Fleet</a></li>
 	    </ul>
 	  </div>
 	  @if(session('success'))
@@ -44,7 +44,9 @@
 			
 						<div class="col-sm-12 col-md-12 col-xl-12  table-responsive " id="mytable3">
 							<a style="margin-bottom: 10px;" onclick="showModal()"  id="add" type="button" class="btn btn-info">Add User</a>
+
 							<a style="margin-bottom: 10px;" href="{{url('fleet')}}" class="btn btn-info pull-right">Back</a>
+
 							<div id = 'table_refresh'>
 								<table class="table table-stripped table-bordered" id="account_table" style="width: 100%">
 									<thead>
@@ -56,8 +58,11 @@
 										</tr>
 									</thead>
 									<tbody>
-										@php  $count =0;	@endphp 
+										@php  $count =0;	
+											  $fleet_user_id = array();
+										@endphp 
 										@foreach($user as $users)
+										<?php $fleet_user_id[] = $users->id; ?>
 											<tr>
 												<td style="width: 30%">{{ ++$count}}</td>
 												<td style="width: 30%">{{$users->name}}</td>
@@ -81,6 +86,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
+      
       <div class="modal-body">
         <table class="table table-stripped table-bordered" id="account_table" style="width: 100%">
 				<thead>
@@ -106,7 +112,14 @@
 							<td style="width: 16.66%">{{ ++$count}}</td>
 							<td>{{$user->name}}</td>
 							<td style="width: 16.66%;text-align: center;">
+<<<<<<< HEAD
+								<?php 
+									if(in_array($user->id,$fleet_user_id)){ ?>
+									<input type="checkbox" id='add_user' data-id='{{ $user->id }}'>	
+								<?php } ?>
+=======
 								<input type="checkbox" class='add_user' data-id='{{ $user->id }}'>
+>>>>>>> fe8819e1b381b42b41d9d10a6b6d8f75312397a2
 							</td>
 						</tr>
 						<?php }	?>
