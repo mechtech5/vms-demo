@@ -18,18 +18,18 @@ class TyreDetails extends Migration
             $table->string('fleet_code', 50);
             $table->string('comp_name', 50);
             $table->string('comp_desc', 100);
-            $table->integer('created_by', 11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
 
         Schema::create('tyre_model_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 100);
-            $table->integer('comp_id', 11);
+            $table->unsignedInteger('comp_id');
             $table->string('model_name', 50);
             $table->string('model_desc', 100);
-            $table->integer('created_by', 11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
 
         Schema::create('tyre_type_mast', function (Blueprint $table) {
@@ -37,8 +37,8 @@ class TyreDetails extends Migration
             $table->string('fleet_code', 50);
             $table->string('type_name', 50);
             $table->string('type_desc', 100);
-            $table->integer('created_by', 11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
 
         Schema::create('tyre_vendor_mast', function (Blueprint $table) {
@@ -52,13 +52,13 @@ class TyreDetails extends Migration
             $table->text('addr', 500);
             $table->string('contact_person_name', 100);
             $table->string('contact_person_phone', 10);
-            $table->integer('gst', 11);
-            $table->integer('city_id', 11);
-            $table->integer('state_id', 11);
+            $table->unsignedInteger('gst');
+            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('state_id');
             $table->enum('vendor_type', ['remolding company','repairing vendor',
                 'tyre supplier', 'hard']);
-            $table->integer('created_by', 11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
     }
 

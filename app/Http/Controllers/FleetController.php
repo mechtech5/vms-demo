@@ -62,7 +62,7 @@ class FleetController extends Controller
    
     public function edit($id)
     {
-        $fleet = DB::table('fleet_mast')->where('fleet_owner',$id)->get();
+        $fleet =Fleet::where('fleet_owner',$id)->get();
         $user = User::all();
         return view('fleet.edit',compact('fleet','user'));
     }
@@ -75,14 +75,14 @@ class FleetController extends Controller
                                        'fleet_desc'  =>'nullable'
                                        ]);
 
-        DB::table('fleet_mast')->where('fleet_owner',$id)->update($validatedData);
+        Fleet::where('fleet_owner',$id)->update($validatedData);
         return redirect('fleet');
     }
 
    
     public function destroy($id)
     {
-        DB::table('fleet_mast')->where('fleet_owner',$id)->delete();
+        Fleet::where('fleet_owner',$id)->delete();
         return redirect('fleet');
     }
 
@@ -98,14 +98,14 @@ class FleetController extends Controller
       $data = array();
       foreach ($ids as $id) {
         $data = ['user_id'=>$id,'fleet_id'=>$fleet_id];
-        DB::table('fleet_user')->insert($data);
+        FleetUser::insert($data);
       }
       $user = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('fleet_id',$fleet_id)->get();
       return view('fleet.table_refresh',compact('user'));  
     }
     public function user_delete($id)
     {
-       DB::table('fleet_user')->where('id',$id)->delete();
+       FleetUser::where('id',$id)->delete();
        return redirect()->back();
     }
 }

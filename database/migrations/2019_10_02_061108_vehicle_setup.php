@@ -13,8 +13,7 @@ class VehicleSetup extends Migration
             $table->string('fleet_code', 10);
             $table->string('comp_name', 100);
             $table->string('comp_desc', 255);
-
-            $table->timestamp();
+            $table->timestamps();
         });
 
         Schema::create('vch_model', function (Blueprint $table) {
@@ -23,16 +22,16 @@ class VehicleSetup extends Migration
             $table->integer('vcompany_code');     
             $table->string ('model_name', 100);
             $table->string ('model_desc', 100);
-            $table->integer('created_by',11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
 
         Schema::create('vch_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string ('fleet_code', 10);
             $table->string('vch_no', 15);
-            $table->integer('vch_comp');
-            $table->integer('vch_model');
+            $table->unsignedInteger('vch_comp');
+            $table->unsignedInteger('vch_model');
             $table->string('owner_name', 100);
             $table->string('owner_addr', 250);
             $table->string('owner_pan',50);
@@ -53,7 +52,7 @@ class VehicleSetup extends Migration
             $table->decimal('pur_amt',15,2);
             $table->tinyInteger('pur_free_srv');
             $table->tinyInteger('pur_duplicate_key');
-            $table->integer('pur_free_srv_count');
+            $table->unsignedInteger('pur_free_srv_count');
             $table->string('chassis_serial_no',50);
             $table->string('chassis_color',20);
             $table->string('body_color',20);
@@ -64,7 +63,7 @@ class VehicleSetup extends Migration
             $table->decimal('sale_amt',15,2);
             $table->string('buyer_name',20);
             $table->text('buyer_addr');
-            $table->integer('buyer_city');
+            $table->unsignedInteger('buyer_city');
             $table->string('buyer_phone',20);
             $table->decimal('sale_odo_reading',10,2);
             $table->text('sale_comments');
@@ -72,7 +71,7 @@ class VehicleSetup extends Migration
             $table->string('eng_power',50);
             $table->string('eng_ignition_key_no',50);
             $table->string('eng_door_key_no',50);
-            $table->integer('eng_cylinder_count');
+            $table->unsignedInteger('eng_cylinder_count');
             $table->string('eng_torque',50);
             $table->enum('eng_fuel_type',['petrol','diesel','cng','electric']);
             $table->string('eng_color',50);
@@ -81,18 +80,34 @@ class VehicleSetup extends Migration
             $table->string('rc_book_pic',50);
             $table->string('owner_pan_pic',50);
             $table->string('tds_declaration_pic',50);
-            $table->integer('created_by',11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
 
         Schema::create('vch_km_readings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
-            $table->integer('vch_id');
+            $table->unsignedInteger('vch_id');
             $table->decimal('reading',10,2);
             $table->date('date');
-            $table->integer('created_by',11);
-            $table->timestamp();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
+        });
+
+        Schema::create('vch_painting_job', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger ('vch_id');
+            $table->date('date');     
+            $table->unsignedInteger ('km_reading');
+            $table->string ('cabin_color',10);
+
+            $table->string('body_color',10);
+            $table->string('chasis_color',10);
+            $table->string('interior_color',10);     
+            $table->decimal('cost',10,2);
+            $table->text ('remarks',500);
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });
     }
 
@@ -101,7 +116,8 @@ class VehicleSetup extends Migration
         Schema::dropIfExists('vch_comps');
         Schema::dropIfExists('vch_comps');
         Schema::dropIfExists('vch_mast');
-        Schema::dropIfExists('vch_km_readings');        
+        Schema::dropIfExists('vch_km_readings');
+        Schema::dropIfExists('vch_painting_job');        
     }
 }
    
