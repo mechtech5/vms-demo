@@ -14,17 +14,17 @@ class DriverDetails extends Migration
             $table->string('name', 100);
             $table->string('image', 100);
             $table->string('address', 100);
-            $table->integer('city_id',11);
-            $table->integer('state_id',11);
+            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('state_id');
             $table->date('joined_dt');
             $table->decimal('salary',10,2);
             $table->string('license_no',100);
             $table->date('license_exp');
             $table->string('phone',14);
-            $table->string('blood_group ',6);
-            $table->tinyInteger('is_active ',6);
-            $table->integer('created_by',11);
-            $table->timestamp();
+            $table->string('blood_group',6);
+            $table->unsignedTinyInteger('is_active');
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
         });        
     }
 
