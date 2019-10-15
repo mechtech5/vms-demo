@@ -13,14 +13,14 @@
               <a style="margin-bottom: 5px;" href="{{route('pucdetails.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
           </div>
           <div class="col-sm-4 col-md-4">
-           <form id="target" class="pull-right" action="{{ route('pucdetails.import1') }}" method="POST" enctype="multipart/form-data">
+           <form id="target" class="pull-right" action="{{ route('pucdetails.import') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
-               <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+               <div class="file btn btn-inverse"><i class="fa fa-file-download"></i>
                 Import
                 <input id="file" type="file" name="file"/>
               </div>
-                <a class="btn btn-inverse" href="{{ route('pucdetails.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
-                <a class="btn btn-inverse" href="{{route('pucdetails.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
+                <a class="btn btn-inverse" href="{{ route('pucdetails.export') }}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Export Bulk Data</a>
+                <a class="btn btn-inverse" href="{{route('pucdetails.download') }}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Format</a>
 
             </form>  
                        

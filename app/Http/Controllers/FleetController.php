@@ -55,7 +55,8 @@ class FleetController extends Controller
         foreach ($fleet_users as $value) {
           $fleet_users_id[] = $value->user_id;
         } 
-        return view('fleet.show',compact('user','model_user','fleet_id','fleet_users_id','count1','count2'));   
+
+        return view('fleet.show',compact('user','model_user','fleet_id','fleet_users_id'));   
 
     }
    
