@@ -22,6 +22,7 @@ class HomeController extends Controller
     public function index()    
     {//Auth::logout();
         $acc_type  = Auth::user()->acc_type;
+        
         // $hasrole = DB::table('model_has_roles')->where('model_id',$Id)->first();       
         // $roleid = 0;
         // if(!empty($hasrole)){

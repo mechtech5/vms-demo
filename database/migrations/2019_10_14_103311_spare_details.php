@@ -54,6 +54,24 @@ class SpareDetails extends Migration
             $table->integer('created_by',11);
             $table->timestamp();
         });
+
+        Schema::create('spare_vendor_mast', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('fleet_code', 10);
+            $table->string('name',50);
+            $table->string('mobile',15);
+            $table->string('phone',15);
+            $table->string('email',20);
+            $table->string('website',50);
+            $table->text('addr',50);
+            $table->string('contact_person_name',50);
+            $table->string('contact_person_phone',15);
+            $table->unsignedInteger('gst');
+            $table->unsignedInteger('city_id');
+            $table->unsignedInteger('state_id');            
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
+        });
     }
 
    
