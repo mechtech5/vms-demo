@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index()    
     {//Auth::logout();
         $acc_type  = Auth::user()->acc_type;
-       
+
         if($acc_type == 'A'){
             Session::put('user_rol','admin');
             return redirect('admin');
