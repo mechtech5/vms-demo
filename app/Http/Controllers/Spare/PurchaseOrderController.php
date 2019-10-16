@@ -83,44 +83,48 @@ class PurchaseOrderController extends Controller
        $po_data['created_by']  = Auth::user()->id;
        $po_id = PurchaseOrder::create($po_data)->id;
 
-       $quty = !empty($data['qty'])?$data['qty']:array();
-       $count = count($data['qty']);
-       $x = 0;
-       $id       = $request->id; 
-       $qty      = $data['qty'];
-       $rate     = $data['rate'];
-       $disc_pct = $data['disc_pct'];
-       $igst_pct = $data['igst_pct'];
-       $cgst_pct = $data['cgst_pct'];
-       $sgst_pct = $data['sgst_pct'];
-       $amt      = $data['amt'];
-       $disc_amt = $data['disc_amt'];
-       $igst_amt = $data['igst_amt'];
-       $cgst_amt = $data['cgst_amt'];
-       $sgst_amt = $data['sgst_amt'];
-       $net_amt  = $data['net_amt'];
-       $status   = false;
-       
-       if($po_id){
-            while($x < $count){
-                $itm_data['spare_id']  = $id[$x];
-                $itm_data['po_id']     = $po_id;
-                $itm_data['qty']       = $qty[$x];
-                $itm_data['rate']      = $rate[$x];
-                $itm_data['disc_pct']  = $disc_pct[$x];
-                $itm_data['igst_pct']  = $igst_pct[$x];
-                $itm_data['cgst_pct']  = $cgst_pct[$x];
-                $itm_data['sgst_pct']  = $sgst_pct[$x];
-                $itm_data['disc_amt']  = $disc_amt[$x];
-                $itm_data['igst_amt']  = $igst_amt[$x];
-                $itm_data['cgst_amt']  = $cgst_amt[$x];
-                $itm_data['sgst_amt']  = $sgst_amt[$x];
-                $itm_data['amt']       = $amt[$x];
-                $itm_data['net_amt']   = $net_amt[$x];
-                PurchaseOrder_item::create($itm_data);
-                $x++;
-                $status = true;
-           }
+        $count = 0;
+        $status   = false;
+        if(!empty($data['qty'])){
+           $count = count($data['qty']);
+     
+           $x = 0;
+           $id       = $request->id; 
+           $qty      = $data['qty'];
+           $rate     = $data['rate'];
+           $disc_pct = $data['disc_pct'];
+           $igst_pct = $data['igst_pct'];
+           $cgst_pct = $data['cgst_pct'];
+           $sgst_pct = $data['sgst_pct'];
+           $amt      = $data['amt'];
+           $disc_amt = $data['disc_amt'];
+           $igst_amt = $data['igst_amt'];
+           $cgst_amt = $data['cgst_amt'];
+           $sgst_amt = $data['sgst_amt'];
+           $net_amt  = $data['net_amt'];
+           $status   = false;
+           
+           if($po_id){
+                while($x < $count){
+                    $itm_data['spare_id']  = $id[$x];
+                    $itm_data['po_id']     = $po_id;
+                    $itm_data['qty']       = $qty[$x];
+                    $itm_data['rate']      = $rate[$x];
+                    $itm_data['disc_pct']  = $disc_pct[$x];
+                    $itm_data['igst_pct']  = $igst_pct[$x];
+                    $itm_data['cgst_pct']  = $cgst_pct[$x];
+                    $itm_data['sgst_pct']  = $sgst_pct[$x];
+                    $itm_data['disc_amt']  = $disc_amt[$x];
+                    $itm_data['igst_amt']  = $igst_amt[$x];
+                    $itm_data['cgst_amt']  = $cgst_amt[$x];
+                    $itm_data['sgst_amt']  = $sgst_amt[$x];
+                    $itm_data['amt']       = $amt[$x];
+                    $itm_data['net_amt']   = $net_amt[$x];
+                    PurchaseOrder_item::create($itm_data);
+                    $x++;
+                    $status = true;
+                }
+              } 
         }
         if($status){
             session::forget('data');        

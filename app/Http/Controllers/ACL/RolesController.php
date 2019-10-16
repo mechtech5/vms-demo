@@ -22,7 +22,7 @@ class RolesController extends Controller
        
         $show_role    = DB::table('roles')->get();
         $permissions  = DB::table('permissions')->get();
-        $user         = User::where('acc_type','B')->get();
+        $user         = User::where('acc_type','B')->orWhere('acc_type','A')->get();
         return view('acl.admin_satting',compact('show_role','permissions','user'));
     }
    

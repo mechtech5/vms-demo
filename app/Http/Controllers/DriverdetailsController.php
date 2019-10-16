@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Driver;
+use App\State;
 
 
 class DriverdetailsController extends Controller
@@ -31,8 +32,7 @@ class DriverdetailsController extends Controller
     public function create()
     {
         $fleet_code = session('fleet_code');
-        $state  = Driver::where('fleet_code',$fleet_code)->get(); 
-        
+        $state  = State::where('fleet_code',$fleet_code)->get();     
         return view('driver_details.create',compact('state'));
     }
 
@@ -93,6 +93,8 @@ class DriverdetailsController extends Controller
                                   'joined_dt'  => 'nullable',
                                   'blood_group'=> 'nullable',
                                   'is_active'  => 'nullable',
+                                  'state_id'   => 'nullable|not_in:0',
+                                  'city_id'    => 'nullable|not_in:0',
                                   'image'      => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                 ]);
         return $vdata;
@@ -128,9 +130,10 @@ class DriverdetailsController extends Controller
         $id   = $request->id; 
         $city = DB::table('master_cities')->where('state_id',$id)->get();
         ?>
-            <option>Select..</option>
+        <option value="0">Select..</option>
     <?php    foreach ($city as $cities) { ?>
-            <option value='<?php echo $cities->id ;?>'><?php echo $cities->city_name ;?></option>
+            <option value='<?php echo $cities->id ;?>'><?php echo $cities->city_name ;?>
+        </option>
     <?php  } 
     }
 
@@ -142,7 +145,6 @@ class DriverdetailsController extends Controller
      public function import(Request $request) 
     {
         $data = Excel::import(new DriverImport,request()->file('file'));
-        
         return redirect('driver');
     }
     public function download() {

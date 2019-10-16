@@ -36,7 +36,7 @@ class PetrolPumpImport implements ToCollection,WithHeadingRow
                     'pump_gst_no' => $row['petrol_pump_gst'],
                     'pump_state'  => $state->id,
                     'pump_city'   => $city->id,
-                    'created_by'  => Auth::user()->id;
+                    'created_by'  => Auth::user()->id
                    ]);    
                 }
             }

@@ -44,6 +44,7 @@ Route::group(['middleware' => ['role:superadmin']], function () {
 	//Start AccountController
 
 	Route::resource('/account', 'AccountController');
+	Route::get('account_delete/{id}', 'AccountController@destroy')->name('account.destroy');
 
 	//End AccountController
 });

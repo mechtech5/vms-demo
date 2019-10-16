@@ -39,18 +39,28 @@
                             <div class="col-md-6 col-xl-6 mt-2">
                                <label for="vehicle_model ">State</label>
                                    <select id="state_id" name="state_id" class="selectpicker form-control">
-                                        <option>Select..</option>
+                                        <option value="0">Select..</option>
                                         @foreach($state as $states)
-                                        	<option value="{{$states->id}}">{{$states->state_name}}</option>
+                                        	<option {{ old('state_id') ==  $states->id ? 'selected' : ''}} value="{{$states->id}}">{{$states->state_name}}</option>
                                         @endforeach		
-                                    </select>                                    
+                                    </select>          
+                                    @error('state_id')
+                                      <span class="invalid-feedback d-block" role="alert">
+                                         <strong>{{ 'Please select state' }}</strong>
+                                      </span>
+                                   @enderror                          
                              </div>
 
                              <div class="col-md-6 col-xl-6 mt-2">
                                 <label for="vehicle_model ">City</label>
                                    <select name="city_id" id="city_id" class="selectpicker form-control">
-                                        <option selected=" true " disabled="true">Select..</option>
+                                        <option selected="true" disabled="true">Select..</option>
                                    </select>
+                                    @error('city_id')
+                                      <span class="invalid-feedback d-block" role="alert">
+                                         <strong>{{ 'Please select city' }}</strong>
+                                      </span>
+                                   @enderror  
                                     
                              </div>
 

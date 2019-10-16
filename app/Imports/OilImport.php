@@ -9,10 +9,12 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use DB;
 use DateTime;
 use Session;
 use Auth;
+
 
 class OilImport implements ToCollection,WithHeadingRow
 {
@@ -27,7 +29,8 @@ class OilImport implements ToCollection,WithHeadingRow
             if(!empty($row['vehicle_number']) && !empty($row['date'])  && !empty($row['km_reading']) && !empty($row['cost']))
             {                        
                 $vch_num  = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', 'like',$row['vehicle_number'])->first();
-                
+                $oil_date   = Date::excelToDateTimeObject($row['date']);
+                $oil_date   = $oil_date->format('Y-m-d');
 
                 if(!empty($vch_num)){
 
@@ -44,7 +47,7 @@ class OilImport implements ToCollection,WithHeadingRow
                         OilChange::create([
                         'fleet_code'  => $row['fleet_code'],
                         'vch_id'      => $vch_num->id ,
-                        'date'        => $row['date'],
+                        'date'        => $oil_date,
                         'km_reading'  => $row['km_reading'],
                         'cost'        => $row['cost'],
                         'created_by'  => Auth::user()->id

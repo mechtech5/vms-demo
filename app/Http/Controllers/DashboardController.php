@@ -22,7 +22,6 @@ class DashboardController extends Controller
 
     public function index()
     {
-
        $id          = Auth::user()->id;
        $hasfleet    = FleetUser::where('user_id',$id)->get();
        $count_fleet = count($hasfleet);

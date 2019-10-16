@@ -59,7 +59,8 @@ class UserController extends Controller
         $data['permissions'] = Permission::get();
         $permission          = DB::table('model_has_permissions')->where('model_id',$id)->get();
         $role                = DB::table('model_has_roles')->where('model_id',$id)->get();
-        $user                = User::where('parent_id',$id)->get();        
+        $user                = User::where('parent_id',$id)->get();      
+        $type                = $data['user']->acc_type;  
 
         $permission_ids = array();
         $role_ids = array();
@@ -71,7 +72,7 @@ class UserController extends Controller
             $role_ids[] = $roles->role_id; 
         }
 
-        return view('acl.users.show',compact('data','permission_ids','user','role_ids'));
+        return view('acl.users.show',compact('data','permission_ids','user','role_ids','type'));
     }
 
     

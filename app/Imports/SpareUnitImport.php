@@ -24,7 +24,7 @@ class SpareUnitImport implements ToCollection,WithHeadingRow
             if(!empty($row['spare_unit_name']))                
             {   SpareUnit::create(['fleet_code' => $row['fleet_code'],
                                   'unit_name'   => $row['spare_unit_name'],
-                                  'created_by'  => Auth::user()->id;
+                                  'created_by'  => Auth::user()->id
                                 ]);                   
 
             }

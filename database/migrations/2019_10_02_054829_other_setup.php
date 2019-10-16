@@ -34,7 +34,7 @@ class OtherSetup extends Migration
             $table->unsignedInteger('agent_code');
             $table->string('agent_name', 100);
             $table->string('agent_phone', 100);
-            $table->string('agent_address', 255);
+            $table->string('agent_address', 255)->nullable();
             $table->string('agent_email', 50);
             $table->unsignedInteger('created_by');
             $table->timestamps();
@@ -45,7 +45,7 @@ class OtherSetup extends Migration
             $table->string('fleet_code', 10);
             $table->string('comp_name', 100);
             $table->string('comp_phone', 100);
-            $table->string('comp_addr', 255);
+            $table->string('comp_addr', 255)->nullable();
             $table->string('comp_email', 50);
             $table->unsignedInteger('created_by');
             $table->timestamps();

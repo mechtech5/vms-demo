@@ -17,7 +17,7 @@ class DriverImport implements ToCollection,WithHeadingRow
 {
     
     public function collection(Collection $rows)
-    {        
+    {       
         $error = array();
         $fleet_code = session('fleet_code');
         foreach ($rows as $row) {

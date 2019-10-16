@@ -17,7 +17,7 @@ class AccountMast extends Migration
             $table->bigIncrements('id');
             $table->string('acc_code',20);
             $table->unsignedInteger('acc_owner');
-            $table->unsignedInteger('contact');
+            $table->string('contact',20);
             $table->text('remarks',500);
             $table->timestamps();
         });

@@ -81,7 +81,6 @@ class InsuranceCompanyController extends Controller
      public function import(Request $request) 
     {
         $data = Excel::import(new InsurancImport,request()->file('file'));
-        
         return redirect('company');
     }
     public function download() {

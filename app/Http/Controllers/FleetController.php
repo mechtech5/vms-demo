@@ -38,7 +38,6 @@ class FleetController extends Controller
                                        ]);      
        
         $validatedData['fleet_owner'] = Auth::user()->id;
-        $validatedData['acc_type']    = 'C';
         $last_id = Fleet::create($validatedData)->id;           
         //Mail::to($user->email)->send(new SendMailable($name));
         return redirect('fleet');      
@@ -49,7 +48,7 @@ class FleetController extends Controller
         $user = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('fleet_id',$id)->get();
         $fleet_id = $id;
 
-        $model_user = User::where('account_id',Auth::user()->id)->get();
+        $model_user = User::where('parent_id',Auth::user()->id)->get();
         $fleet_users=FleetUser::where('fleet_id',$fleet_id)->get();
         $fleet_users_id = array();
         foreach ($fleet_users as $value) {

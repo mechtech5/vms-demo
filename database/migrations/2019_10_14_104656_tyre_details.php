@@ -1,4 +1,4 @@
-<?php
+->nullable()<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,7 +17,7 @@ class TyreDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 50);
             $table->string('comp_name', 50);
-            $table->string('comp_desc', 100);
+            $table->string('comp_desc', 100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -27,7 +27,7 @@ class TyreDetails extends Migration
             $table->string('fleet_code', 100);
             $table->unsignedInteger('comp_id');
             $table->string('model_name', 50);
-            $table->string('model_desc', 100);
+            $table->string('model_desc', 100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -36,7 +36,7 @@ class TyreDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 50);
             $table->string('type_name', 50);
-            $table->string('type_desc', 100);
+            $table->string('type_desc', 100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -47,16 +47,16 @@ class TyreDetails extends Migration
             $table->string('name', 25);
             $table->string('mobile', 100);
             $table->string('phone', 50);
-            $table->string('email', 50);
-            $table->string('website', 100);
-            $table->text('addr', 500);
+            $table->string('email', 50)->nullable();
+            $table->string('website', 100)->nullable();
+            $table->text('addr', 500)->nullable();
             $table->string('contact_person_name', 100);
-            $table->string('contact_person_phone', 10);
-            $table->unsignedInteger('gst');
+            $table->string('contact_person_phone', 10)->nullable();
+            $table->unsignedInteger('gst')->nullable();
             $table->unsignedInteger('city_id');
             $table->unsignedInteger('state_id');
             $table->enum('vendor_type', ['remolding company','repairing vendor',
-                'tyre supplier', 'hard']);
+                'tyre supplier', 'hard'])->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });

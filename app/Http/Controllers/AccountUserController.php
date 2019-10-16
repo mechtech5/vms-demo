@@ -9,6 +9,7 @@ use DB;
 use Auth;
 use App\Fleet;
 use App\FleetUser;
+use App\Mail\UserRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
 
@@ -42,7 +43,8 @@ class AccountUserController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($password),
                     );
-        $data['account_id'] = Auth::user()->id;
+        $data['parent_id'] = Auth::user()->id;
+        $data['acc_type']  = 'C';
         
         $last_id = User::insertGetId($data);
         $user    = User::find($last_id);
@@ -93,7 +95,7 @@ class AccountUserController extends Controller
 
     
     public function destroy($id)
-    {
+    { 
         User::destroy($id);
         DB::table('fleet_mast')->where('fleet_owner',$id)->delete();
         return redirect('accountuser');

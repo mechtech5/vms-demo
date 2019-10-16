@@ -30,7 +30,7 @@ class TyreModelImport implements ToCollection,WithHeadingRow
                         TyreModel::create(['fleet_code'  => $row['fleet_code'],
                                             'comp_id'    => $comp->id,
                                             'model_name' => $row['tyre_model_name'],
-                                            'created_by' = Auth::user()->id
+                                            'created_by' => Auth::user()->id
                                             ]);  
                 }                 
 

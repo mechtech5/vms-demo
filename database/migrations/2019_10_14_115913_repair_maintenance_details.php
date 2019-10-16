@@ -6,11 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class RepairMaintenanceDetails extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    
     public function up()
     {
        Schema::create('srv_filter_replacement', function (Blueprint $table) {
@@ -22,7 +18,7 @@ class RepairMaintenanceDetails extends Migration
             $table->string('filter_type', 50);
             $table->string('filter_comp', 50);
             $table->decimal('cost', 10,2);
-            $table->text('remarks', 500);
+            $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -34,7 +30,7 @@ class RepairMaintenanceDetails extends Migration
             $table->date('date');
             $table->decimal('km_reading', 10,2);
             $table->decimal('cost', 10,2);
-            $table->text('remarks', 500);
+            $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -52,7 +48,7 @@ class RepairMaintenanceDetails extends Migration
             $table->string('batt_cond', 50);
             $table->decimal('cost', 10,2);
             $table->decimal('km_reading', 10,2);
-            $table->text('remarks', 500);
+            $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -62,12 +58,12 @@ class RepairMaintenanceDetails extends Migration
             $table->unsignedInteger('vch_id'); 
             $table->date('date'); 
             $table->decimal('km_reading', 10,2);
-            $table->string('cabin_color', 100);
-            $table->string('body_colo', 50);
-            $table->string('chasis_color', 50);
-            $table->string('interior_color', 50);
+            $table->string('cabin_color', 100)->nullable();
+            $table->string('body_colo', 50)->nullable();
+            $table->string('chasis_color', 50)->nullable();
+            $table->string('interior_color', 50)->nullable();
             $table->decimal('cost', 10,2);
-            $table->text('remarks', 500);
+            $table->text('remarks', 500)->nullable();
             $table->string('fleet_code', 50);
             $table->unsignedInteger('created_by');
             $table->timestamps();
@@ -80,17 +76,12 @@ class RepairMaintenanceDetails extends Migration
             $table->date('date');
             $table->decimal('km_reading', 10,2);
             $table->decimal('cost', 10,2);
-            $table->text('remarks', 500);
+            $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
        Schema::dropIfExists('srv_filter_replacement');

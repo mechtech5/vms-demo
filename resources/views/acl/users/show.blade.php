@@ -41,9 +41,10 @@
 
                 <a style="background: #5bc0de;margin-right: 20px;max-width: 100px;" data = 'permissions_table' class="col-md-6 col-sm-6 text-center btn big get_table permissions_table">
                 Permissions</a>
-
-                <a style="background: #5bc0de;margin-right: 20px;max-width: 100px;" data = 'users_table' class="col-md-6 col-sm-6 text-center btn big get_table users_table">
-                Users</a>
+                <?php if($type != 'A') { ?>
+                  <a style="background: #5bc0de;margin-right: 20px;max-width: 100px;" data = 'users_table' class="col-md-6 col-sm-6 text-center btn big get_table users_table">
+                  Users</a>
+                <?php } ?>  
             </div>
           </div>        
         </div>

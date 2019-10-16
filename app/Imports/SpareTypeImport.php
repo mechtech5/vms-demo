@@ -24,7 +24,7 @@ class SpareTypeImport implements ToCollection,WithHeadingRow
             if(!empty($row['spare_type_name']))                
             {   SpareType::create(['fleet_code'=> $row['fleet_code'],
                                   'type_name'  => $row['spare_type_name'],
-                                  'created_by' => Auth::user()->id;
+                                  'created_by' => Auth::user()->id
                                 ]);                   
 
             }

@@ -112,14 +112,7 @@
 							<td style="width: 16.66%">{{ ++$count}}</td>
 							<td>{{$user->name}}</td>
 							<td style="width: 16.66%;text-align: center;">
-<<<<<<< HEAD
-								<?php 
-									if(in_array($user->id,$fleet_user_id)){ ?>
-									<input type="checkbox" id='add_user' data-id='{{ $user->id }}'>	
-								<?php } ?>
-=======
 								<input type="checkbox" class='add_user' data-id='{{ $user->id }}'>
->>>>>>> fe8819e1b381b42b41d9d10a6b6d8f75312397a2
 							</td>
 						</tr>
 						<?php }	?>

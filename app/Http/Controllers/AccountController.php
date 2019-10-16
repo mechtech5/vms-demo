@@ -8,6 +8,7 @@ use App\Models\Account;
 use DB; 
 use App\User;
 use Mail;
+use App\Mail\SendMailable;
 use App\Mail\UserRequest;
 
 class AccountController extends Controller
@@ -15,9 +16,9 @@ class AccountController extends Controller
     
    public function index()
     {
-        $user = array();
-        $fleet = DB::table('fleet_mast')->get();       
-        return view('account_admin.show',compact('user','fleet'));
+        $user = Account::all();
+        
+        return view('account_admin.show',compact('user'));
     }
 
     public function create()
@@ -72,21 +73,21 @@ class AccountController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-                                       'fleet_owner' =>'required',
-                                       'fleet_name'  => 'required',
-                                       'fleet_code'  => 'required',
-                                       'fleet_desc'  =>'nullable'
+                                       'acc_code' =>'required|min:5',
+                                       'acc_owner'=> 'required|not_in:0',
+                                       'contact'  => 'required|numeric',
+                                       'remarks'  =>'nullable'
                                        ]);
 
-        DB::table('fleet_mast')->where('fleet_owner',$id)->update($validatedData);
-        return redirect('fleet');
+        Account::where('id',$id)->update($validatedData);
+        return redirect('account');
     }
 
    
     public function destroy($id)
-    {
-        DB::table('fleet_mast')->where('fleet_owner',$id)->delete();
-        return redirect('fleet');
+    {      
+        Account::where('id',$id)->delete();
+        return redirect('account');
     }
 
     public function mail()
