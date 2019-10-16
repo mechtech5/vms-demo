@@ -17,7 +17,7 @@ class Fleet extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code',20);
             $table->string('fleet_name',20);
-            $table->string('fleet_desc',20);
+            $table->string('fleet_desc',20)->nullable();
             $table->unsignedInteger('fleet_owner');
             $table->timestamps();
         });
