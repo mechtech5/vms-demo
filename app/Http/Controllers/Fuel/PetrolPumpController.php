@@ -122,7 +122,7 @@ class PetrolPumpController extends Controller
     }
 
     public function download() {
-       $file_path = public_path('demo_files/Demo_Kmupdate.xlsx');
+       $file_path = public_path('demo_files/PetrolPump.xlsx');
     return response()->download($file_path);
     }
 }

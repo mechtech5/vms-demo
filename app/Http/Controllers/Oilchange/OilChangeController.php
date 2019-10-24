@@ -97,4 +97,8 @@ class OilChangeController extends Controller
         
         return redirect('oilchange');
     }
+    public function download() {
+       $file_path = public_path('demo_files/Oilchange.xlsx');
+    return response()->download($file_path);
+    }
 }

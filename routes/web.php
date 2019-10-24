@@ -59,7 +59,9 @@ Route::group(['middleware' => ['role:account']], function () {
 
 	Route::resource('/accountuser','AccountUserController');
 	Route::get('/destroy_accountuser/{id}', 'AccountUserController@destroy')->name('destroy.account');
-	Route::post('user_add_on_fleet','AccountUserController@add_on_user');
+	Route::post('user_add_on_fleet','AccountUserController@add_on_user'); 
+	Route::post('checkAccount','AccountUserController@checkAccount');
+	Route::post('AuthLogout','AccountUserController@AuthLogout');
 
 
 	//End FleetController
@@ -141,6 +143,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/filtrdelete/{id}','filter\FilterController@destroy')->name('filter.delete');
 		Route::get('/filterExport','filter\FilterController@export')->name('filter.export');
 		Route::post('/filterImport','filter\FilterController@import')->name('filter.import');
+		Route::get('/filterDownload','filter\FilterController@download')->name('filter.download');
 
 		//end filtercontroller
 
@@ -150,6 +153,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/oildelete/{id}','Oilchange\OilChangeController@destroy')->name('oilchange.delete');
 		Route::get('/oilExport','Oilchange\OilChangeController@export')->name('oilchange.export');
 		Route::post('/oilImport','Oilchange\OilChangeController@import')->name('oilchange.import');
+		Route::get('/oilDownload','Oilchange\OilChangeController@download')->name('oilchange.download');
 
 		//end oliChangeController
 
@@ -159,6 +163,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/betterydelete/{id}','BatteryCharge\BatteryController@destroy')->name('batterycharge.delete');
 		Route::get('/batteryExport','BatteryCharge\BatteryController@export')->name('batterycharge.export');
 		Route::post('/batteryImport','BatteryCharge\BatteryController@import')->name('batterycharge.import');
+		Route::get('/batteryDownload','BatteryCharge\BatteryController@download')->name('batterycharge.download');
 
 		//end oliChangeController
 
@@ -177,6 +182,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/fueltankdelete/{id}','Fueltank\FueltankController@destroy')->name('fueltank.delete');
 		Route::get('/fueltankExport','Fueltank\FueltankController@export')->name('fueltank.export');
 		Route::post('/fueltankImport','Fueltank\FueltankController@import')->name('fueltank.import');
+		Route::get('/fueltankDownload','Fueltank\FueltankController@download')->name('fueltank.download');
 
 		//end FueltankController
 
@@ -287,7 +293,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/petrolpumpDelete/{id}','Fuel\PetrolPumpController@destroy')->name('petrolpump.delete');
 		Route::get('/petrolpumpExport','Fuel\PetrolPumpController@export')->name('petrolpump.export');
 		Route::post('/petrolpumpImport','Fuel\PetrolPumpController@import')->name('petrolpump.import');
-		Route::get('/petrolpumpDOWnloAd','Fuel\PetrolPumpController@download')->name('petrolpump.download');
+		Route::get('/petrolPumpDownload','Fuel\PetrolPumpController@download')->name('petrolpump.download');
 		Route::post('/get_city','Fuel\PetrolPumpController@get_city')->name('petrolpump.get_city');
 
 		//End PetrolPumpContrller

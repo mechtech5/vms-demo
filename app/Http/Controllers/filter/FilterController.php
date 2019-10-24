@@ -103,4 +103,8 @@ class FilterController extends Controller
         
         return redirect('filter');
     }
+    public function download() {
+       $file_path = public_path('demo_files/Filter.xlsx');
+    return response()->download($file_path);
+    }
 }

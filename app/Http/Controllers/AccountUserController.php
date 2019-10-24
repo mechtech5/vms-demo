@@ -12,6 +12,7 @@ use App\FleetUser;
 use App\Mail\UserRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
+use App\Models\Account;
 
 class AccountUserController extends Controller
 {
@@ -48,7 +49,7 @@ class AccountUserController extends Controller
         
         $last_id = User::insertGetId($data);
         $user    = User::find($last_id);
-        $user->roles()->sync(2);
+        $user->roles()->sync(3);
 
         $name['name']     = $name1;
         $name['password'] = $password;
@@ -112,5 +113,15 @@ class AccountUserController extends Controller
       }
      $fleet = User::join('fleet_user','users.id','=','fleet_user.user_id')->where('user_id',$user_id)->get();    
       return view('account_user.table_refresh',compact('fleet'));  
+    }
+
+    public function checkAccount(Request $request){
+      $id = $request->id;
+      $data = Account::where('acc_owner',$id)->get()->count();
+      return $data;
+    }
+
+    public function AuthLogout(){
+        Auth::logout();
     }
 }

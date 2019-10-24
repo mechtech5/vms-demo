@@ -9,6 +9,7 @@ class SpareDetails extends Migration
     
     public function up()
     {
+       
         Schema::create('spare_type_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
@@ -31,7 +32,7 @@ class SpareDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
             $table->string('comp_name',50);
-            $table->text('comp_desc', 500)->nullable()->nullable();            
+            $table->text('comp_desc', 500)->nullable();            
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -55,6 +56,7 @@ class SpareDetails extends Migration
             $table->timestamps();
         });
 
+        
          Schema::create('spare_vendor_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
@@ -64,7 +66,7 @@ class SpareDetails extends Migration
             $table->string('email',20)->nullable();
             $table->string('website',50)->nullable();
             $table->text('addr',50)->nullable();
-            $table->string('contact_person_name',50->nullable());
+            $table->string('contact_person_name',50)->nullable();
             $table->string('contact_person_phone',15)->nullable();
             $table->unsignedInteger('gst')->nullable();
             $table->unsignedInteger('city_id');
@@ -140,24 +142,6 @@ class SpareDetails extends Migration
             $table->unsignedInteger('vendor_id');
             $table->unsignedInteger('spare_comp_id');
             $table->decimal('rate',10,2);            
-            $table->unsignedInteger('created_by');
-            $table->timestamps();
-        });
-
-        Schema::create('spare_vendor_mast', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
-            $table->string('name',50);
-            $table->string('mobile',15);
-            $table->string('phone',15);
-            $table->string('email',20);
-            $table->string('website',50);
-            $table->text('addr',50);
-            $table->string('contact_person_name',50);
-            $table->string('contact_person_phone',15);
-            $table->unsignedInteger('gst');
-            $table->unsignedInteger('city_id');
-            $table->unsignedInteger('state_id');            
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });

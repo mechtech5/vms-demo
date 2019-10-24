@@ -80,11 +80,62 @@
 		</div>
 	</div>
 </main>			
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="margin-top: 208px;">
+      <div class="modal-header">
+        
+      </div>
+      <div class="modal-body">
+       <center> <h3><b>Please Contact To VMS Admin...</b></h3></center>
+      </div>
+      <div class="modal-footer">         
+      	<input type="hidden" id="auth_id" value="<?php echo Auth::user()->id ; ?>">
+        <input type="submit" class="btn btn-primary" value="Ok" id="submit"  style="margin-right: 45% ">
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 	$(document).ready(function(){		
 		$('#account_table').DataTable();		
 	})	
+	$(document).ready(function(){
+        
+        var id = $('#auth_id').val();
+        $.ajax({
+            url: '/checkAccount',
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {id:id},
+            success: function (data) {
+                if(data == 0){
+                	$('#myModal').modal({
+                		backdrop: 'static',
+                		keyboard: false
+                	});		
+                }
+                else{
+                	$('#myModal').modal('hide');
+                }
+            }
+        })
+    $('#submit').on('click',function(){
+    		
+    $.ajax({
+            url: '/AuthLogout',
+            type: 'POST',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {id:id},
+            success: function (data) {
+                 
+            },
+            error: function (request, status, error) {
+            	location.reload();        		
+    		}
+    	})  
+     })           
+})
 </script>
 
 @endsection

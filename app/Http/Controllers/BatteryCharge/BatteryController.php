@@ -104,4 +104,9 @@ class BatteryController extends Controller
         
         return redirect('batterycharge');
     }
+
+     public function download() {
+       $file_path = public_path('demo_files/BatteryCharge.xlsx');
+      return response()->download($file_path);
+    }
 }

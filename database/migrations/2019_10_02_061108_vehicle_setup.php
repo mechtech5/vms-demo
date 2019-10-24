@@ -8,6 +8,7 @@ class VehicleSetup extends Migration
 {   
     public function up()
     {
+        
         Schema::create('vch_comps', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
@@ -17,12 +18,13 @@ class VehicleSetup extends Migration
             $table->timestamps();
         });
 
+        
         Schema::create('vch_model', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string ('fleet_code', 10);
             $table->integer('vcompany_code');     
             $table->string ('model_name', 100);
-            $table->string ('model_desc', 100);
+            $table->string ('model_desc', 100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -33,6 +35,7 @@ class VehicleSetup extends Migration
             $table->string('vch_no', 15);
             $table->unsignedInteger('vch_comp');
             $table->unsignedInteger('vch_model');
+            $table->string('personal_vch')->nullable();
             $table->string('owner_name', 100)->nullable();
             $table->string('owner_addr', 250)->nullable();
             $table->string('owner_pan',50)->nullable();
@@ -101,12 +104,11 @@ class VehicleSetup extends Migration
             $table->date('date');     
             $table->unsignedInteger ('km_reading');
             $table->string ('cabin_color',10);
-
             $table->string('body_color',10);
             $table->string('chasis_color',10);
             $table->string('interior_color',10);     
             $table->decimal('cost',10,2);
-            $table->text ('remarks',500);
+            $table->text ('remarks',500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -115,7 +117,7 @@ class VehicleSetup extends Migration
     public function down()
     {
         Schema::dropIfExists('vch_comps');
-        Schema::dropIfExists('vch_comps');
+        Schema::dropIfExists('vch_model');
         Schema::dropIfExists('vch_mast');
         Schema::dropIfExists('vch_km_readings');
         Schema::dropIfExists('vch_painting_job');        

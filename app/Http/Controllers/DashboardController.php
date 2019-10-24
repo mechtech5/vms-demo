@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use DB;
 use Session;
 use App\User;
@@ -10,7 +11,7 @@ use Auth;
 use File;
 use App\FleetUser;
 use App\Fleet;
-use Illuminate\Support\Facades\Hash;
+use App\Models\FitnessDetails;
 
 class DashboardController extends Controller
 {
@@ -25,11 +26,13 @@ class DashboardController extends Controller
        $id          = Auth::user()->id;
        $hasfleet    = FleetUser::where('user_id',$id)->get();
        $count_fleet = count($hasfleet);
+       
         $data = array();
-        $data['fitnes']        = array();
+        $data['fitnes']        =array();
         $data['puc']           = array();
         $data['roadtax']       = array();
         $data['state_permitaA'] = array();
+        
         if($count_fleet != 0){
 
             if($count_fleet <= 1){
@@ -49,13 +52,14 @@ class DashboardController extends Controller
                 return view('dashboard',compact('data'));
             }
             else{
+
                 $data['fleet_id'] = FleetUser::where('user_id',$id)->get();
                 $data['fleet']    = 'yes';
                 return view('dashboard',compact('data'));
             }
         }
         else{
-            echo  "You Have Hot Any Fleet Yet. Please Contact Your Account Owner..";
+            echo  "You Have Not Any Fleet Yet. Please Contact Your Account Owner..";
         }
         
     }

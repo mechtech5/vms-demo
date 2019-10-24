@@ -25,7 +25,7 @@ class TyreVendorImport implements ToCollection,WithHeadingRow
                 && !empty($row['person_name']) && !empty($row['state_name']) && !empty($row['city_name']) && !empty($row['supplier_type']))
             {                        
                 $state  = State::where('fleet_code',$fleet_code)->where('state_name', 'like',$row['state_name'])->first();
-                $city   = City::where('fleet_code',$fleet_code)->where('city_name', 'like',$row['city_name'])->first();
+                $city   = City::where('fleet_code',$fleet_code)->where('city_name', 'like',$row['city_name'])->first(); 
                 $status= TRUE;
 
                 if($status == TRUE){

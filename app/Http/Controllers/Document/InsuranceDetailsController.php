@@ -38,8 +38,8 @@ class InsuranceDetailsController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([ 'vch_id'        => 'required',
-                                     'agent_id'      => 'required',   
-                                     "ins_policy_no" => 'required|numeric',
+                                     'agent_id'      => 'nullable',   
+                                     "ins_policy_no" => 'required',
                                      "valid_from"    => 'required',
                                      "valid_till"    => 'required',
                                      "update_dt"     => 'required',

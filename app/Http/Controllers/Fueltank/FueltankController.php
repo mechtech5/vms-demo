@@ -92,4 +92,8 @@ class FueltankController extends Controller
         
         return redirect('fueltank');
     }
+    public function download() {
+       $file_path = public_path('demo_files/Fueltank.xlsx');
+    return response()->download($file_path);
+    }
 }

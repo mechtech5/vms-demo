@@ -17,14 +17,14 @@ class DocumentDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
             $table->unsignedInteger('vch_id');
-            $table->unsignedInteger('agent_id');
+            $table->unsignedInteger('agent_id')->nullable();
             $table->string('fitness_no',100);
             $table->decimal('fitness_amt',10,2);
             $table->string('payment_mode',50);
-            $table->unsignedInteger('pay_no');
-            $table->date('pay_dt');
-            $table->string('pay_bank',100);
-            $table->string('pay_branch',100);
+            $table->unsignedInteger('pay_no')->nullable();
+            $table->date('pay_dt')->nullable();
+            $table->string('pay_bank',100)->nullable();
+            $table->string('pay_branch',100)->nullable();
             $table->date('valid_from');
             $table->date('valid_till');
             $table->date('update_dt')->nullable();
@@ -57,31 +57,31 @@ class DocumentDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
             $table->unsignedInteger('vch_id');
-            $table->unsignedInteger('agent_id');
+            $table->unsignedInteger('agent_id')->nullable();
             $table->string('ins_comp',100);
             $table->string('ins_policy_no',50);
             $table->string('payment_mode',50);
-            $table->unsignedInteger('pay_no')nullable();
-            $table->date('pay_dt')nullable();
-            $table->string('pay_bank',100)nullable();
-            $table->string('pay_branch',100)nullable();
+            $table->unsignedInteger('pay_no')->nullable();
+            $table->date('pay_dt')->nullable();
+            $table->string('pay_bank',100)->nullable();
+            $table->string('pay_branch',100)->nullable();
             $table->date('valid_from');
             $table->date('valid_till');
             $table->decimal('ins_amt',10,2);
-            $table->decimal('ins_pre_amt',10,2)nullable();
-            $table->decimal('ins_type',10,2)nullable();
-            $table->date('update_dt')nullable();
-            $table->string('doc_file',100)nullable();
+            $table->decimal('ins_pre_amt',10,2)->nullable();
+            $table->decimal('ins_type',10,2)->nullable();
+            $table->date('update_dt')->nullable();
+            $table->string('doc_file',100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });        
-->nullable()
+
         Schema::create('doc_puc_det', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 10);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
-            $table->unsignedInteger('puc_no')->nullable();
+            $table->unsignedInteger('puc_no');
             $table->decimal('puc_amt',10,2);
             $table->string('payment_mode',50);
             $table->unsignedInteger('pay_no')->nullable();
@@ -101,6 +101,7 @@ class DocumentDetails extends Migration
             $table->string('fleet_code', 10);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
+            $table->unsignedInteger('permit_no');
             $table->unsignedTinyInteger('all_india_permit')->nullable();
             $table->unsignedInteger('state_id');
             $table->string('payment_mode',50);
@@ -111,11 +112,10 @@ class DocumentDetails extends Migration
             $table->date('valid_from');
             $table->date('valid_till');             
             $table->date('update_dt')->nullable();
-            $table->string('doc_file',100);nullable()
+            $table->string('doc_file',100)->nullable();
             $table->decimal('permit_amt',10,2);
-            $table->unsignedInteger('draft_no')->nullable();
-            $table->date('draft_date')->nullable();
-            $table->unsignedInteger('permit_no')->nullable();
+            $table->unsignedInteger('draft_no');
+            $table->date('draft_date');
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });

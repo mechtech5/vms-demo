@@ -23,7 +23,7 @@ class FuelDetails extends Migration
             $table->unsignedInteger('pay_no')->nullable();
             $table->date('pay_dt')->nullable();
             $table->string('pay_bank',20)->nullable();
-            $table->string('pay_branch', 20);->nullable()
+            $table->string('pay_branch', 20)->nullable();
             $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
@@ -31,7 +31,7 @@ class FuelDetails extends Migration
 
        Schema::create('fuel_filled_entry', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 100)->nullable();
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->date('date')->nullable();
             $table->string('payment_mode', 50)->nullable();
@@ -47,7 +47,7 @@ class FuelDetails extends Migration
             $table->string('fuel_consumed', 100)->nullable();
             $table->string('avg_obtained',100)->nullable();
             $table->string('last_filling_avg',100)->nullable();
-            $table->unsignedInteger('driver_id')->nullable();->nullable()
+            $table->unsignedInteger('driver_id')->nullable();
             $table->text('remarks', 500)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
