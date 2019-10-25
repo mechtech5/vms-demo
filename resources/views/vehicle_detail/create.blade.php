@@ -25,7 +25,7 @@
                    <span style="color: #FF0000;font-size:15px;">*</span> <label for="Vehicle No.">Vehicle No.</label>
                     @error('vch_no')
                       <span class="text-danger pull-right" role="alert">
-                          <strong style="font-size: smaller;">{{ "Please enter vehicle number" }}</strong>
+                          <strong style="font-size: smaller;">{{ $message }}</strong>
                       </span>
                     @enderror
                    <input id="vch_no" name="vch_no" class="form-control" value="" >

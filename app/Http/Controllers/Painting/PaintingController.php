@@ -93,4 +93,8 @@ class PaintingController extends Controller
         
         return redirect('painting');
     }
+    public function download() {
+       $file_path = public_path('demo_files/Painting .xlsx');
+    return response()->download($file_path);
+    }
 }

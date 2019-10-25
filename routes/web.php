@@ -173,6 +173,7 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/paintingdelete/{id}','Painting\PaintingController@destroy')->name('painting.delete');
 		Route::get('/paintingExport','Painting\PaintingController@export')->name('painting.export');
 		Route::post('/paintingImport','Painting\PaintingController@import')->name('painting.import');
+		Route::get('/paintingDownload','Painting\PaintingController@download')->name('painting.download');
 
 		//end PaintingController
 

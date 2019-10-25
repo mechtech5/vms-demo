@@ -126,7 +126,7 @@ class VehicledetailsController extends Controller
 
 
     public function all_form_data($request){
-        $vdata = $request->validate([ 'vch_no'              =>'required',
+        $vdata = $request->validate([ 'vch_no'              =>'required|unique:vch_mast',
                                       'vch_comp'            => 'required|not_in:0',
                                       'vch_model'           => 'required|not_in:0',
                                       'owner_name'          => 'nullable',
@@ -177,7 +177,13 @@ class VehicledetailsController extends Controller
                                       'rc_book_pic'         => 'nullable|file|max:10000',
                                       'owner_pan_pic'       => 'nullable|file|max:10000',
                                       'tds_declaration_pic' => 'nullable|file|max:10000'
-            ]);
+            ],
+            [
+              'vch_no.required' => 'Please enter vehicle number',
+              'vch_no.unique' => 'Vehicle Number Already Added..!'
+            ]
+
+          );
         $vdata['vch_no'] = strtoupper($vdata['vch_no']);  
         return $vdata;
     }
