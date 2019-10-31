@@ -37,7 +37,6 @@
 									@php  $count =0;	@endphp 
 									@foreach($user as $fleets)
 									<?php $users = App\User::where('id', $fleets->acc_owner)->first(); 
-									dd($users);
 										?>
 										<tr>
 											<td  style="width: 16.66%">{{ ++$count}}</td>
