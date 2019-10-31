@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'm.kushwah33@gmail.com',
+    'username' => 'info@laxyo.org',
 
-    'password' => '8871601323',
+    'password' => 'mechtech5$',
 
     /*
     |--------------------------------------------------------------------------

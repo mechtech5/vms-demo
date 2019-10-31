@@ -37,6 +37,7 @@
 									@php  $count =0;	@endphp 
 									@foreach($user as $fleets)
 									<?php $users = App\User::where('id', $fleets->acc_owner)->first(); 
+									dd($users);
 										?>
 										<tr>
 											<td  style="width: 16.66%">{{ ++$count}}</td>
@@ -44,11 +45,9 @@
 											<td>{{$users->name}}</td>
 											<td>{{$fleets->contact}}</td>
 											<td>{{$fleets->remarks}}</td>
-											<td  style="width: 16.66%;text-align: center;">
-												
+											<td  style="width: 16.66%;text-align: center;">	
 												<a href="{{route('account.edit',[$fleets->id])}}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-												<a href="{{route('account.destroy',$fleets->id)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
-																								
+												<a href="{{route('account.destroy',$fleets->id)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>									
 											</td>
 										</tr>
 									@endforeach
