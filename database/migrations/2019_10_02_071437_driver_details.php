@@ -10,7 +10,7 @@ class DriverDetails extends Migration
     {
         Schema::create('driver_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('name', 100);
             $table->string('image', 100)->nullable();
             $table->string('address', 100)->nullable();

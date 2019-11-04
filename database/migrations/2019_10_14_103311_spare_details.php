@@ -12,7 +12,7 @@ class SpareDetails extends Migration
        
         Schema::create('spare_type_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('type_name',50);
             $table->text('type_desc', 500)->nullable();            
             $table->unsignedInteger('created_by');
@@ -21,7 +21,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_unit_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('unit_name',50);
             $table->text('unit_desc', 500)->nullable();            
             $table->unsignedInteger('created_by');
@@ -30,7 +30,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_comp_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('comp_name',50);
             $table->text('comp_desc', 500)->nullable();            
             $table->unsignedInteger('created_by');
@@ -39,7 +39,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('name',50);
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('unit_id');
@@ -59,7 +59,7 @@ class SpareDetails extends Migration
         
          Schema::create('spare_vendor_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('name',50);
             $table->string('mobile',15)->nullable();
             $table->string('phone',15)->nullable();
@@ -77,7 +77,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_mtr_req', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('mtr_no');
             $table->date('mtr_date');
             $table->string('prep_by',10);
@@ -98,7 +98,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_purchase_order', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',10);
+            $table->string('fleet_code',100);
             $table->unsignedInteger('po_number')->nullable();
             $table->date('po_date')->nullable();
             $table->unsignedInteger('vendor_code');
@@ -137,7 +137,7 @@ class SpareDetails extends Migration
 
         Schema::create('spare_suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('spare_id');
             $table->unsignedInteger('vendor_id');
             $table->unsignedInteger('spare_comp_id');

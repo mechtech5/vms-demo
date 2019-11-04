@@ -15,7 +15,7 @@ class FuelDetails extends Migration
     {
         Schema::create('fuel_bill_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10)->nullable();
+            $table->string('fleet_code', 100);
             $table->date('date')->nullable();
             $table->unsignedInteger('fuel_stn_id')->nullable();
             $table->decimal('total_amt_paid', 10,2)->nullable();

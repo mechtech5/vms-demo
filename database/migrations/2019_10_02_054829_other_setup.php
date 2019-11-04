@@ -11,7 +11,7 @@ class OtherSetup extends Migration
     {
         Schema::create('master_states', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('state_name', 100);
             $table->string('state_code', 100);
             $table->unsignedInteger('created_by');
@@ -21,7 +21,7 @@ class OtherSetup extends Migration
         Schema::create('master_cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('state_id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('city_name', 100);
             $table->string('city_code', 100);
             $table->unsignedInteger('created_by');
@@ -30,7 +30,7 @@ class OtherSetup extends Migration
 
         Schema::create('agent_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('agent_code');
             $table->string('agent_name', 100);
             $table->string('agent_phone', 100);
@@ -42,7 +42,7 @@ class OtherSetup extends Migration
 
         Schema::create('insurance_comp_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->string('comp_name', 100);
             $table->string('comp_phone', 100);
             $table->string('comp_addr', 255)->nullable();

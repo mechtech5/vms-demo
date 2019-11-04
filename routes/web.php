@@ -123,6 +123,9 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::resource('/vehicledetails','VehicledetailsController');
 		Route::post('/vehicleget','VehicledetailsController@get_model');
 		Route::get('vdetails_delete/{id}','VehicledetailsController@destroy')->name('vehicledetails.destroy');
+		Route::get('/vehicledetails_export','VehicledetailsController@export')->name('vehicledetails.export');
+		Route::post('/vehicledetails_import','VehicledetailsController@import')->name('vehicledetails.import');
+		Route::get('/vehicledetails_download','VehicledetailsController@download')->name('vehicledetails.download');
 
 		//End VehicledetailsController
 

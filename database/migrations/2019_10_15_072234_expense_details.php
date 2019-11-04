@@ -15,7 +15,7 @@ class ExpenseDetails extends Migration
     {
         Schema::create('expense_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',10);
+            $table->string('fleet_code',100);
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('mode_id');
             $table->decimal('exp_amt',10,2);
@@ -25,7 +25,7 @@ class ExpenseDetails extends Migration
 
         Schema::create('expense_catg_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',10);
+            $table->string('fleet_code',100);
             $table->string('catg_name',10);
             $table->string('catg_desc',10);
             $table->timestamps();
@@ -33,7 +33,7 @@ class ExpenseDetails extends Migration
 
         Schema::create('expense_mode_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',10);
+            $table->string('fleet_code',100);
             $table->string('mode_name',10);
             $table->string('mode_desc',10);
             $table->timestamps();

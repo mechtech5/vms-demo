@@ -7,6 +7,9 @@ use App\vehicle_master;
 use App\vch_comp;
 use Session;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\VehicleDetailsImport;
+use App\Exports\vehicleDetailsExport;
 use File;
 use DB;
 use Auth;
@@ -120,70 +123,70 @@ class VehicledetailsController extends Controller
         $model = DB::table('vch_model')->where('vcompany_code',$id)->get(); ?>
         <option>Selecte..</option>
         <?php foreach ($model as $models) { ?>
-            <option value="<?php echo $models->id; ?>"><?php echo $models->model_name; ?></option>
+            <option value="<?php echo $models->id; ?>" ><?php echo $models->model_name; ?></option>
        <?php  } 
     }
 
 
-    public function all_form_data($request){
-        $vdata = $request->validate([ 'vch_no'              =>'required',
-                                      'vch_comp'            => 'required|not_in:0',
-                                      'vch_model'           => 'required|not_in:0',
-                                      'owner_name'          => 'nullable',
-                                      'owner_addr'          => 'nullable',
-                                      'owner_pan'           => 'nullable',
-                                      'reg_make'            => 'nullable',
-                                      'reg_no_tyres'        => 'nullable',
-                                      'reg_chassis_no'      => 'nullable',
-                                      'reg_engine_no'       => 'nullable',
-                                      'reg_manuf_year'      => 'nullable',
-                                      'reg_date'            => 'nullable',
-                                      'reg_tank_cap'        => 'nullable',
-                                      'reg_mileage'         => 'nullable',  
-                                      'pur_dealer_name'     => 'nullable',
-                                      'pur_dealer_addr'     => 'nullable',
-                                      'pur_dealer_city'     => 'nullable',
-                                      'pur_after_sales_srv' => 'nullable',
-                                      'pur_invoice_no'      => 'nullable',
-                                      'pur_invoice_dt'      => 'nullable',
-                                      'pur_free_srv'        => 'nullable',
-                                      'pur_amt'             => 'nullable',  
-                                      'pur_free_srv_count'  => 'nullable',
-                                      'pur_duplicate_key'   => 'nullable',
-                                      'chassis_serial_no'   => 'nullable',
-                                      'accessories_supplied'=> 'nullable',
-                                      'body_height'         => 'nullable',
-                                      'chassis_length'      => 'nullable',
-                                      'chassis_color'       => 'nullable',
-                                      'body_color'          => 'nullable',
-                                      'sale_dt'             => 'nullable',
-                                      'sale_amt'            => 'nullable',
-                                      'buyer_addr'          => 'nullable',
-                                      'buyer_city'          => 'nullable',
-                                      'buyer_phone'         => 'nullable',
-                                      'buyer_name'          => 'nullable',
-                                      'sale_odo_reading'    => 'nullable',
-                                      'sale_comments'       => 'nullable',
-                                      'eng_serial_no'       => 'nullable',
-                                      'eng_power'           => 'nullable',
-                                      'eng_ignition_key_no' => 'nullable',
-                                      'eng_fuel_type'       => 'nullable',
-                                      'eng_door_key_no'     => 'nullable',
-                                      'eng_color'           => 'nullable',
-                                      'eng_cylinder_count'  => 'nullable',
-                                      'eng_torque'          => 'nullable',
-                                      'vch_pic'             => 'nullable|file|max:10000',
-                                      'chassic_pic'         => 'nullable|file|max:10000',
-                                      'rc_book_pic'         => 'nullable|file|max:10000',
-                                      'owner_pan_pic'       => 'nullable|file|max:10000',
-                                      'tds_declaration_pic' => 'nullable|file|max:10000'
-             ]//,
-            // [
-            //   'vch_no.required' => 'Please enter vehicle number',
-            //   'vch_no.unique' => 'Vehicle Number Already Added..!'
-            // ]
-
-          );
+    public function all_form_data($request)
+    {
+        $vdata = $request->validate([ 'vch_no'                    => 'required',
+                                      'vch_comp'                  => 'required',
+                                      'vch_model'                 => 'required',
+                                      'reg_km_reading'            => 'nullable',
+                                      'owner_name'                => 'nullable',
+                                      'vch_class'                 => 'nullable',
+                                      'owner_addr'                => 'nullable',
+                                      'owner_pan'                 => 'nullable',
+                                      'reg_make'                  => 'nullable',
+                                      'reg_no_tyres'              => 'nullable',
+                                      'reg_invoice_no'            => 'nullable',
+                                      'reg_invoice_date'          => 'nullable',
+                                      'reg_seating_capacity'      => 'nullable',
+                                      'reg_unladen_weight'        => 'nullable',
+                                      'reg_type_of_body'          => 'nullable',
+                                      'reg_manuf_year'            => 'nullable',
+                                      'reg_date'                  => 'nullable',
+                                      'reg_tank_cap'              => 'nullable',
+                                      'reg_mileage'               => 'nullable',  
+                                      'pur_dealer_name'           => 'nullable',
+                                      'pur_dealer_addr'           => 'nullable',
+                                      'pur_dealer_city'           => 'nullable',
+                                      'pur_after_sales_srv'       => 'nullable',
+                                      'pur_invoice_no'            => 'nullable',
+                                      'pur_invoice_dt'            => 'nullable',
+                                      'pur_free_srv'              => 'nullable',
+                                      'pur_amt'                   => 'nullable',  
+                                      'pur_free_srv_count'        => 'nullable',
+                                      'pur_duplicate_key'         => 'nullable',
+                                      'chassis_serial_no'         => 'nullable',
+                                      'accessories_supplied'      => 'nullable',
+                                      'body_height'               => 'nullable',
+                                      'chassis_length'            => 'nullable',
+                                      'chassis_color'             => 'nullable',
+                                      'body_color'                => 'nullable',
+                                      'sale_dt'                   => 'nullable',
+                                      'sale_amt'                  => 'nullable',
+                                      'buyer_addr'                => 'nullable',
+                                      'buyer_city'                => 'nullable',
+                                      'buyer_phone'               => 'nullable',
+                                      'buyer_name'                => 'nullable',
+                                      'sale_odo_reading'          => 'nullable',
+                                      'sale_comments'             => 'nullable',
+                                      'eng_serial_no'             => 'nullable',
+                                      'eng_power'                 => 'nullable',
+                                      'eng_ignition_key_no'       => 'nullable',
+                                      'eng_fuel_type'             => 'nullable',
+                                      'eng_door_key_no'           => 'nullable',
+                                      'eng_color'                 => 'nullable',
+                                      'eng_cylinder_count'        => 'nullable',
+                                      'eng_torque'                => 'nullable',
+                                      'vch_pic'                   => 'nullable|file|max:10000',
+                                      'chassic_pic'               => 'nullable|file|max:10000',
+                                      'rc_book_pic'               => 'nullable|file|max:10000',
+                                      'owner_pan_pic'             => 'nullable|file|max:10000',
+                                      'tds_declaration_pic'       => 'nullable|file|max:10000'
+             ]);
         $vdata['vch_no'] = strtoupper($vdata['vch_no']);  
         return $vdata;
     }
@@ -295,4 +298,20 @@ class VehicledetailsController extends Controller
         return $vdata;
     }
 
+    public function import(Request $request) 
+    {
+        $data = Excel::import(new VehicleDetailsImport,request()->file('file'));
+        
+        return redirect('vehicledetails');
+    }
+    public function export() 
+    {
+        return Excel::download(new vehicleDetailsExport, 'vehicle_details.xlsx');
+    }
+
+    public function download() 
+    {
+        $file_path = public_path('demo_files/vehicle_details.xlsx');
+        return response()->download($file_path);
+    }
 }

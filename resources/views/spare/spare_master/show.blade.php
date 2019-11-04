@@ -19,8 +19,8 @@
                 Import
                 <input id="file" type="file" name="file"/>
               </div>
-                <a class="btn btn-inverse" href="{{ route('sparemaster.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Export Bulk Data</a>
-                <a class="btn btn-inverse" href="{{route('sparemaster.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i></i>Format</a>
+                <a class="btn btn-inverse" href="{{ route('sparemaster.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i>Export Bulk Data</a>
+                <a class="btn btn-inverse" href="{{route('sparemaster.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i>Format</a>
 
             </form>  
                        

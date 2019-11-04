@@ -15,7 +15,7 @@ class DocumentDetails extends Migration
     {
         Schema::create('doc_fitness_det', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id')->nullable();
             $table->string('fitness_no',100);
@@ -35,7 +35,7 @@ class DocumentDetails extends Migration
 
         Schema::create('doc_greentax_det', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
             $table->string('greentax_no',100);
@@ -55,7 +55,7 @@ class DocumentDetails extends Migration
 
         Schema::create('doc_insurance_det', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id')->nullable();
             $table->string('ins_comp',100);
@@ -78,7 +78,7 @@ class DocumentDetails extends Migration
 
         Schema::create('doc_puc_det', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
             $table->unsignedInteger('puc_no');
@@ -98,7 +98,7 @@ class DocumentDetails extends Migration
 
         Schema::create('doc_statepermit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code', 10);
+            $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
             $table->unsignedInteger('permit_no');
@@ -142,7 +142,7 @@ class DocumentDetails extends Migration
 
         Schema::create('doc_temporary_permit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',10);
+            $table->string('fleet_code',100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id');
             $table->string('curr_loc',20);

@@ -15,7 +15,7 @@ class VendorMast extends Migration
     {
        Schema::create('vendor_mast', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fleet_code',20);
+            $table->string('fleet_code',100);
             $table->string('name',20);
             $table->string('email',20);
             $table->string('tax_number',20);
