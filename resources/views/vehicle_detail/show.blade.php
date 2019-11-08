@@ -14,13 +14,13 @@
               <div class="col-sm-3 col-md-3">
                  <a style="margin-bottom: 5px;" href="{{route('vehicledetails.create')}}" class="btn btn-inverse" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
                </div>
-              <div class="col-sm-9 col-md-9 pull-right" style="padding-left: 55px;">
-               <div class="file btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i class="fas fa-file-download"></i>
+              <div class="col-sm-9 col-md-9 pull-right" style="padding-left: 46px;">
+               <div class="file btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i class="fa fa-file-download"></i>
                 Import
               </div>
-              <div class="dropdown-menu">
+              <div class="dropdown-menu" style="width:50%;">
              {{--  first dropdown import  --}}
-                 <div class="dropdown-item"> 
+                 <div class="dropdown-item" > 
                     <form id="target1"  action="{{ route('vehicledetails.import') }}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                      <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
