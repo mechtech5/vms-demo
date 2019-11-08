@@ -11,7 +11,7 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 use App\vch_comp;
 use App\vch_model;
 
-class VehicleDetailsImport implements ToCollection,WithHeadingRow
+class UpdateVehicleDetailsImport implements ToCollection,WithHeadingRow
 {
     /**
     * @param Collection $collection
@@ -42,14 +42,27 @@ class VehicleDetailsImport implements ToCollection,WithHeadingRow
             {   
                 $comp = vehicle_master::where('fleet_code',$fleet_code)->where('vch_no', $row['vehicle_no'])->first();
                 $pay_date   = Date::excelToDateTimeObject($row['manufacture_date']);
-                if(empty($comp)){
-                        vehicle_master::create(['fleet_code'  => $data[0]->fleet_code,
+                if(!empty($comp)){
+                        vehicle_master::where('fleet_code',$fleet_code)
+                        				->where('id', $comp->id)
+                        				->update(['fleet_code'  => $data[0]->fleet_code,
                                             'vch_no'    => $row['vehicle_no'],
                                             'vch_comp' => $data[0]->id,
                                             'vch_model' => $model[0]->id,
-                                            'vch_serial_no' =>$randomString
-                                            ]);  
-                }                 
+                                            'owner_name' => $row['owner_name'],
+                                            'owner_addr' => $row['owner_address']
+                                            ]);
+
+                	  
+                }else{
+                	vehicle_master::create(['fleet_code'  => $data[0]->fleet_code,
+                                            'vch_no'    => $row['vehicle_no'],
+                                            'vch_comp' => $data[0]->id,
+                                            'vch_model' => $model[0]->id,
+                                            'vch_serial_no' =>$randomString,
+                                            'owner_name' => $row['owner_name']
+                                            ]); 
+                }                
 
             }
         }

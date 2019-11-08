@@ -9,22 +9,44 @@
           <div class="col-sm-6 col-md-6">
               <h3> VEHICLE DETAILS </h3>
           </div>
-          <div class="col-sm-2 col-md-2">
-              <a style="margin-bottom: 5px;" href="{{route('vehicledetails.create')}}" class="btn btn-inverse pull-right" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
-          </div>
-          <div class="col-sm-4 col-md-4">
-           <form id="target" class="pull-right" action="{{ route('vehicledetails.import') }}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-               <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+          <div class="col-sm-6 col-md-6">
+            <div class="row">
+              <div class="col-sm-3 col-md-3">
+                 <a style="margin-bottom: 5px;" href="{{route('vehicledetails.create')}}" class="btn btn-inverse" ><i style="margin-right: 5px; " class="fas fa-plus"></i>ADD NEW</a>
+               </div>
+              <div class="col-sm-9 col-md-9 pull-right" style="padding-left: 55px;">
+               <div class="file btn btn-inverse dropdown-toggle" data-toggle="dropdown"><i class="fas fa-file-download"></i>
                 Import
-                <input id="file" type="file" name="file"/>
+              </div>
+              <div class="dropdown-menu">
+             {{--  first dropdown import  --}}
+                 <div class="dropdown-item"> 
+                    <form id="target1"  action="{{ route('vehicledetails.import') }}" method="POST" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                     <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+                      Import New Data
+                      <input id="file1" type="file" name="file"/>
+                    </div>
+                  </form>
+                </div>
+
+                  {{--  second dropdown import  --}}
+                <div class="dropdown-item">
+                  <form id="target2"  action="{{ route('updatevehicledetails.import') }}" method="POST" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                     <div class="file btn btn-inverse"><i class="fas fa-file-download"></i>
+                      Update Existing Data
+                      <input id="file2" type="file" name="file"/>
+                    </div>
+                  </form>
+                </div>
+
               </div>
                 <a class="btn btn-inverse" href="{{ route('vehicledetails.export') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i>Export Bulk Data</a>
-                <a class="btn btn-inverse" href="{{route('vehicledetails.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i>Format</a>
-
-            </form>  
-                       
+                <a class="btn btn-inverse" href="{{route('vehicledetails.download') }}"><i style="margin-right: 5px; " class="fas fa-file-import"></i>Format</a>            
           </div>
+        </div>
+      </div>
             <table id="myTable">
               <thead>
                 <tr >
@@ -67,8 +89,11 @@
 <script type="text/javascript">
   $(document).ready( function () {
     $('#myTable').DataTable();
-    $('#file').change(function() {
-       $('#target').submit();
+    $('#file1').change(function() {
+       $('#target1').submit();
+      });
+    $('#file2').change(function() {
+       $('#target2').submit();
       });
 } );
 

@@ -148,7 +148,7 @@
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Avg. Mileage">Km. Reading</label>
-                                                    <input id="email1" type="text" name="reg_km_reading" class="form-control" value="{{ old('reg_km_reading') }}">
+                                                    <input id="email1" type="text" name="vch_km_reading" class="form-control" value="{{ old('vch_km_reading') }}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">

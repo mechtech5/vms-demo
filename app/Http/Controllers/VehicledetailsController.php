@@ -9,6 +9,7 @@ use Session;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\VehicleDetailsImport;
+use App\Imports\UpdateVehicleDetailsImport;
 use App\Exports\vehicleDetailsExport;
 use File;
 use DB;
@@ -51,6 +52,14 @@ class VehicledetailsController extends Controller
         $ddata = $this->store_image($request,$vdata);
         $ddata['created_by'] = Auth::user()->id;
 
+        $length = 12;
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $ddata['vch_serial_no'] = $randomString;
         vehicle_master::create($ddata);
         return redirect('vehicledetails');
     }
@@ -133,7 +142,7 @@ class VehicledetailsController extends Controller
         $vdata = $request->validate([ 'vch_no'                    => 'required',
                                       'vch_comp'                  => 'required',
                                       'vch_model'                 => 'required',
-                                      'reg_km_reading'            => 'nullable',
+                                      'vch_km_reading'            => 'nullable',
                                       'owner_name'                => 'nullable',
                                       'vch_class'                 => 'nullable',
                                       'owner_addr'                => 'nullable',
@@ -304,6 +313,15 @@ class VehicledetailsController extends Controller
         
         return redirect('vehicledetails');
     }
+
+    public function updateimport(Request $request) 
+    {
+
+        $data = Excel::import(new UpdateVehicleDetailsImport,request()->file('file'));
+        
+        return redirect('vehicledetails');
+    }
+
     public function export() 
     {
         return Excel::download(new vehicleDetailsExport, 'vehicle_details.xlsx');
