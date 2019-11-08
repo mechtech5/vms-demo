@@ -47,8 +47,10 @@ class VehicleDetailsImport implements ToCollection,WithHeadingRow
                                             'vch_no'    => $row['vehicle_no'],
                                             'vch_comp' => $data[0]->id,
                                             'vch_model' => $model[0]->id,
-                                            'vch_serial_no' =>$randomString
-                                            ]);  
+                                            'vch_serial_no' =>$randomString,
+                                            'owner_name' =>$row['owner_name'],
+                                            'owner_addr' =>$row['owner_name'],
+                                            ]);  //testing
                 }                 
 
             }
