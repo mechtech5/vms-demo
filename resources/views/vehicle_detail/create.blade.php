@@ -168,7 +168,7 @@
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Chasis Serial No.">Chassis Serial No.</label>
-                                                    <input id="email1"  class="form-control" name="chassis_serial_no" value="">
+                                                    <input id="email1"  class="form-control" name="reg_chassis_no" value="">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
@@ -193,7 +193,7 @@
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Serial No.">Engine Serial No.</label>
-                                                    <input id="email1" type="" class="form-control  " name="eng_serial_no" value="">
+                                                    <input id="email1" type="" class="form-control  " name="reg_engine_no" value="">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
@@ -231,21 +231,56 @@
                                                 <input class="image"type="file" data="chasis_pic" name="chassic_pic" value="">
 
                                             </div>
-                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2" id="reg_pic">
+                                            <div style="display: none" class="col-md-3 col-xl-3 mt-2" id="reg_pic">
                                                 <label for="Registration Book (RC)">Registration Book (RC)</label>
                                                 <input class="image"type="file" data="reg_pic" name="rc_book_pic" value="">
 
                                             </div>
 
-                                            <div class="col-md-6 col-xl-6 mt-2" style="display: none" id="pan_pic">
+                                            <div class="col-md-3 col-xl-3 mt-2" style="display: none" id="pan_pic">
                                                 <label for="Owner PAN Card">Owner PAN Card</label>
                                                 <input class="image" data="pan_pic" type="file" name="owner_pan_pic" value="">                                                    
                                             </div>
-                                            <div style="display: none" class="col-md-6 col-xl-6 mt-2"  id="tds_pic">
+                                            <div style="display: none" class="col-md-3 col-xl-3 mt-2"  id="tds_pic">
                                                 <label for="TDS Declaration">TDS Declaration</label>
                                                 <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
                                             </div>
-                                            </div>   
+                                            <div>
+                                            <div class="col-md-9 col-xl-9 mt-2">
+                                              <table class="table">
+                                                <tr>
+                                                  <th>Vehicle Image</th>
+                                                  <th >RC Image</th>
+                                                  <th >Chassis Image</th>
+                                                  <th >Pan Image</th>
+                                                  <th >TDS Image</th>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <div  class="vch_pic">
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="reg_pic">
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="chasis_pic">
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="pan_pic">
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="tds_pic">
+                                                    </div>
+                                                  </td>
+
+                                                </tr>
+                                              </table>
+                                            </div>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
@@ -340,7 +375,25 @@
             $('#tds_pic').show();
         }
     });
+    $(".image").change(function () {
+        var img_id = $(this).attr('data');
+        filePreview(this,img_id);
+    });
   })  
+
+
+
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection

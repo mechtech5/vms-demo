@@ -45,7 +45,8 @@ class DashboardController extends Controller
                                
                 if(! File::exists($path)){
                     File::makeDirectory($path, 0777, true, true);
-                }           
+                } 
+                          
                 $data['fleet']    = 'no';
                 $data['fleet_id'] = array(); 
 

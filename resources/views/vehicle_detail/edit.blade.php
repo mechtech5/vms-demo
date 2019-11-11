@@ -109,98 +109,98 @@
                                                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Vehicle No.">Maker Name</label>
-                                                    <input id="vehicle_no" class="form-control" name="reg_make" value="" > 
+                                                    <input id="vehicle_no" class="form-control" name="reg_make" value="{{old('reg_make') ?? $edata->reg_make}}" > 
                                                 </div>
                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="No Of Tyres">No Of Tyres </label>
-                                                    <input id="email" type="text" name="reg_no_tyres" class="form-control" value="{{ old('reg_no_tyres') }}">
+                                                    <input id="email" type="text" name="reg_no_tyres" class="form-control" value="{{ old('reg_no_tyres') ?? $edata->reg_no_tyres}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Seating Capacity">Seating Capacity</label>
-                                                    <input id="email" type="text" name="reg_seating_capacity" class="form-control" value="{{ old('reg_seating_capacity') }}">
+                                                    <input id="email" type="text" name="reg_seating_capacity" class="form-control" value="{{ old('reg_seating_capacity')  ?? $edata->reg_seating_capacity}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Seating Capacity">Unladen Weight
                                                     </label>
-                                                    <input id="email" type="text" name="reg_unladen_weight" class="form-control" value="{{ old('reg_unladen_weight') }}">
+                                                    <input id="email" type="text" name="reg_unladen_weight" class="form-control" value="{{ old('reg_unladen_weight') ?? $edata->reg_unladen_weight}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Seating Capacity">Type Of Body</label>
-                                                    <input id="email" type="text" name="reg_type_of_body" class="form-control" value="{{ old('reg_type_of_body') }}">
+                                                    <input id="email" type="text" name="reg_type_of_body" class="form-control" value="{{ old('reg_type_of_body') ?? $edata->reg_type_of_body}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Avg. Mileage">Avg. Mileage</label>
-                                                    <input id="email1" type="text" name="reg_mileage" class="form-control" value="{{ old('reg_mileage') }}">
+                                                    <input id="email1" type="text" name="reg_mileage" class="form-control" value="{{ old('reg_mileage') ?? $edata->reg_mileage}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Avg. Mileage">Km. Reading</label>
-                                                    <input id="email1" type="text" name="reg_km_reading" class="form-control" value="{{ old('reg_km_reading') }}">
+                                                    <input id="email1" type="text" name="vch_km_reading" class="form-control" value="{{ old('vch_km_reading') ?? $edata->vch_km_reading}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Chasis No">Invoice No </label>
-                                                    <input id="email" name="reg_invoice_no" class="form-control" value="{{ old('reg_invoice_no') }}">
+                                                    <input id="email" name="reg_invoice_no" class="form-control" value="{{ old('reg_invoice_no') ?? $edata->reg_invoice_no}}">
                                                 </div>
                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Invoice date</label>
-                                                     <input id="email" readonly="true" name="reg_invoice_date" type="text" class="form-control datepicker" value="">
+                                                     <input id="email" readonly="true" name="reg_invoice_date" type="text" class="form-control datepicker" value="{{old('reg_invoice_date') ?? $edata->reg_invoice_date}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Manufacturer Year"> Manufacturer Year</label>
-                                                    <input id="email" type="text" class="form-control" name="reg_manuf_year" value="{{old('reg_manuf_year')}}">
+                                                    <input id="email" type="text" class="form-control" name="reg_manuf_year" value="{{old('reg_manuf_year') ?? $edata->reg_manuf_year}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Chasis Serial No.">Chassis Serial No.</label>
-                                                    <input id="email1"  class="form-control" name="chassis_serial_no" value="">
+                                                    <input id="email1"  class="form-control" name="reg_chassis_no" value="{{old('reg_chassis_no')?? $edata->reg_chassis_no}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Chasis color">Chassis color</label>
-                                                    <input id="email1" type="text" class="form-control  " name="chassis_color" value="">
+                                                    <input id="email1" type="text" class="form-control  " name="chassis_color" value="{{old('chassis_color') ?? $edata->chassis_color}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Body color ">Body color </label>
-                                                    <input id="email1" type="text" class="form-control  " name="body_color" value="">
+                                                    <input id="email1" type="text" class="form-control  " name="body_color" value="{{old('body_color') ?? $edata->body_color}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Regi. Date">Registration Date</label>
-                                                     <input id="email" readonly="true" name="reg_date" type="text" class="form-control datepicker" value="">
+                                                     <input id="email" readonly="true" name="reg_date" type="text" class="form-control datepicker" value="{{old('reg_date') ?? $edata->reg_date}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for=" D. Tank Capacity">Fuel Tank Capacity</label>
-                                                    <input id="email" name="reg_tank_cap" type="text" class="form-control  " value="">
+                                                    <input id="email" name="reg_tank_cap" type="text" class="form-control  " value="{{old('reg_tank_cap') ?? $edata->reg_tank_cap}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Serial No.">Engine Serial No.</label>
-                                                    <input id="email1" type="" class="form-control  " name="eng_serial_no" value="">
+                                                    <input id="email1" type="" class="form-control  " name="reg_engine_no" value="{{old('reg_engine_no') ?? $edata->reg_engine_no}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Power (BHP)">Horse Power</label>
-                                                    <input id="email" type="" class="form-control" name="eng_power" value="">
+                                                    <input id="email" type="" class="form-control" name="eng_power" value="{{old('eng_power') ?? $edata->eng_power}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Fuel Type\Grade">Fuel Type</label>
-                                                    <input id="email1" type="" class="form-control  " name="eng_fuel_type" value="">
+                                                    <input id="email1" type="" class="form-control  " name="eng_fuel_type" value="{{old('eng_fuel_type') ?? $edata->eng_fuel_type}}">
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Cylinders ">No of Cylinders</label>
-                                                    <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="">
+                                                    <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="{{old('eng_cylinder_count') ?? $edata->eng_cylinder_count}}">
                                                 </div>
 
                                                 <div  class="col-md-6 col-xl-6 mt-2">
@@ -237,8 +237,103 @@
                                                 <label for="TDS Declaration">TDS Declaration</label>
                                                 <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
                                             </div>
+                                            
+                                            {{-- <div class="col-md-6 col-xl-6 mt-2"> --}}
+                                              {{-- <table class="table">
+                                                <tr>
+                                                  @if(!empty($edata->vch_pic))
+                                                  <th>Vehicle Image</th>@endif
+
+                                                  @if(!empty($edata->rc_book_pic))
+                                                  <th >RC Image</th>@endif
+
+                                                  @if(!empty($edata->chassic_pic))
+                                                  <th >Chassis Image</th>@endif
+
+                                                </tr>
+                                                <tr> --}}
+                                                  {{-- <td >
+                                                    @if(!empty($edata->vch_pic))
+                                                      <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->vch_pic")}}" width="100" height="100" >
+                                                    @endif
+                                                  </td> --}}
+                                                {{-- 
+                                                  <td style="padding-left:20px;">
+                                                    @if(!empty($edata->rc_book_pic))
+                                                      <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->rc_book_pic")}}" width="100" height="100">
+                                                    @endif
+                                                  </td> --}}
+                                                  {{-- <td style="padding-left:20px;">
+                                                    @if(!empty($edata->chassic_pic))
+                                                      <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->chassic_pic")}}" width="100" height="100" >
+                                                    @endif
+                                                  </td> --}}
+                                                  {{-- <td style="padding-left:20px;">
+                                                    @if(!empty($edata->owner_pan_pic))
+                                                      <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->owner_pan_pic")}}" width="100" height="100" >
+                                                    @endif
+                                                  </td> --}}
+                                                  {{-- <td style="padding-left:20px;">
+                                                    @if(!empty($edata->tds_declaration_pic))
+                                                      <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->tds_declaration_pic")}}" width="100" height="100" >
+                                                    @endif
+                                                  </td> --}}
+                                              {{-- </tr>
+                                              </table>  --}} 
+                                            {{-- </div> --}}
                                             </div>   
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-9 col-xl-9 mt-2">
+                                              <table class="table">
+                                                <tr>
+                                                  <th>Vehicle Image</th>
+                                                  <th >RC Image</th>
+                                                  <th >Chassis Image</th>
+                                                  <th >Pan Image</th>
+                                                  <th >TDS Image</th>
+                                                </tr>
+                                                <tr>
+                                                  <td>
+                                                    <div  class="vch_pic">
+                                                      @if(!empty($edata->vch_pic))
+                                                        <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->vch_pic")}}" width="100" height="100" >
+                                                      @endif
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="reg_pic">
+                                                      @if(!empty($edata->rc_book_pic))
+                                                         <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->rc_book_pic")}}" width="100" height="100">
+                                                      @endif
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="chasis_pic">
+                                                      @if(!empty($edata->chassic_pic))
+                                                        <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->chassic_pic")}}" width="100" height="100" >
+                                                    @endif
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="pan_pic">
+                                                      @if(!empty($edata->owner_pan_pic))
+                                                        <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->owner_pan_pic")}}" width="100" height="100" >
+                                                      @endif
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div  class="tds_pic">
+                                                      @if(!empty($edata->tds_declaration_pic))
+                                                        <img src="{{asset("storage/$edata->fleet_code/vehicle_number/$edata->vch_no/$edata->tds_declaration_pic")}}" width="100" height="100" >
+                                                      @endif
+                                                    </div>
+                                                  </td>
+
+                                                </tr>
+                                              </table>
+                                            </div>
+                                          </div>
                                     </div>
                                 </div>
                             </div>
@@ -370,7 +465,22 @@
             $('#tds_pic').show();
         }
       });
-    })  
+    $(".image").change(function () {
+        var img_id = $(this).attr('data');
+        filePreview(this,img_id);
+    });
+  })
+    function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}  
 
 </script>
 @endsection
