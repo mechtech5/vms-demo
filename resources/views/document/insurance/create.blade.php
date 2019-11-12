@@ -88,31 +88,64 @@
 	                                <input id="ins_policy_no" class="form-control" name="ins_policy_no" value="{{old('ins_policy_no')}}" > 
 	                                @error('ins_policy_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter policy number' }}</strong>
+			                               <strong>{{ 'Please Enter Policy Number' }}</strong>
 			                            </span>
 			                         @enderror   
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Amount</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Amount(p/m)</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_amt" value="{{old('ins_amt')}}" > 
 	                                @error('ins_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter greentax number' }}</strong>
+			                               <strong>{{ 'Please Enter Insurance Amount' }}</strong>
 			                            </span>
 			                         @enderror   
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Pre Amount</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Total Value</label>
+	                                <input id="vehicle_no" class="form-control" name="ins_total_amt" value="{{old('ins_total_amt')}}" > 
+	                                @error('ins_amt')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                               <strong>{{ 'Please Enter Insurance Total Amount' }}</strong>
+			                            </span>
+			                         @enderror   
+	                            </div>
+	                          </div>
+
+	                          <div class="row">
+	                            <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Prev Policy Amount</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_pre_amt" value="{{old('ins_pre_amt')}}" > 
 	                                @error('ins_pre_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter insurance amount' }}</strong>
+			                               <strong>{{ 'Please Enter Insurance amount' }}</strong>
 			                            </span>
 			                         @enderror  
 	                            </div>
-	                        </div>
+
+	                            <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">NCB Discount</label>
+	                                <input id="vehicle_no" class="form-control" name="ncb_discount" value="{{old('ins_pre_amt')}}" > 
+	                                @error('ncb_discount')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                               <strong>{{ 'Please Enter NCB Discount' }}</strong>
+			                            </span>
+			                         @enderror  
+	                            </div>
+	                        
+		                        <div class="col-md-4 col-xl-4 mt-2">
+		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Hypothecation Agreement</label>
+		                                <input id="vehicle_no" class="form-control" name="hypothecation_agreement" value="{{old('hypothecation_agreement')}}" > 
+		                                @error('ncb_discount')
+				                            <span class="invalid-feedback d-block pull-right" role="alert">
+				                               <strong>{{ 'Please Enter Hypothecation Agreement Field' }}</strong>
+				                            </span>
+				                         @enderror  
+		                            </div>
+		                        </div>
+
 
 	                        <div class="row">
 
@@ -167,7 +200,7 @@
 			                          @enderror
 				                </div>
 				            </div>
-
+				          
 			                <div style="display: none" class="row cheque">
 			                	<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
@@ -408,10 +441,10 @@
                            		 </div>
                            	</div>
                            	<div class=row>
-				                 <div class="col-md-4 col-xl-4 mt-2">
+				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
 	                                <input type="file" id="image" name="doc_file" value="" class="image">
-	                            </div>
+	                        	</div>
 	                        
 		                        <div class="col-md-2 col-xl-2 mt-5">
 	                                <table class="table">
@@ -427,6 +460,7 @@
 	                                </table>
 	                            </div>    
                             </div>
+                           </div>
                         </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
                          	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right">
