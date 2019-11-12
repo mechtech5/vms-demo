@@ -145,7 +145,7 @@ class InsuranceDetailsController extends Controller
         
             $filename = $request->file('doc_file')->getClientOriginalName();
             $extension = $request->file('doc_file')->getClientOriginalExtension();
-            $fileNameToStore = $request->payment_mode.'_'.$filename.'.'.$extension;
+            $fileNameToStore = $request->payment_mode.'_'.$filename;
 
             $chk_path = storage_path('app/public/'.$fleet_code.'/Document/Insurance/');
                            
@@ -222,5 +222,12 @@ class InsuranceDetailsController extends Controller
             $data = array_merge($data, $Vdata);   
         }
         return $data;
+    }
+
+    public function getDetails(Request $request){
+        $id = $request->id;
+        $data  = vehicle_master::find($id);
+        return json_encode($data);
+
     }
 }

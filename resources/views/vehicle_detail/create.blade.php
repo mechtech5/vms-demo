@@ -116,7 +116,7 @@
                                             <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                                                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
-                                                    <label for="Vehicle No.">Maker Name</label>
+                                                    <label for="Vehicle No.">Make-Model</label>
                                                     <input id="vehicle_no" class="form-control" name="reg_make" value="" > 
                                                 </div>
                                                 

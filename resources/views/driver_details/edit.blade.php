@@ -94,20 +94,38 @@
                                 <input id="email" name="blood_group" type="text" class="form-control  " value="{{old('blood_group') ?? $edata->blood_group}}">
 
                             </div>
-                            <div class="col-md-6 col-xl-6 mt-2">
+                            <div class="col-md-6 col-xl-6 " style="margin-top: -53px;">
                                 <label for="IMEI Number">Is Working</label><br>
-                               Yes <input type="radio" id="email1"  name="is_active" {{$edata->is_active ==1 ? 'checked':''}} value="1">
-                                NO  <input type="radio" id="email1" name="is_active" {{$edata->is_active ==0 ? 'checked':''}} value="0">
+                               Yes <input type="radio" id="email1"  name="is_active" value="1">
+                                No <input type="radio" id="email1" name="is_active" value="0">
                             </div>
 
-                            <div class="col-md-12 col-xl-12 mt-2">
+                            <div class="col-md-6 col-xl-6 mt-2">
                                 <label for="IMEI Number">Photo</label><br>
-                                <input type="file" id="email1"  name="image" value="">
+                                <input type="file" id="image" name="image" value="" class="image">
                                 @error('image')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ $message }}</strong>
-		                            </span>
-		                         @enderror
+                                <span class="invalid-feedback d-block" role="alert">
+                                   <strong>{{ $message }}</strong>
+                                </span>
+                             @enderror
+                            </div>
+                            <div class="col-md-2 col-xl-2 mt-4">
+                              
+                                <table class="table">
+                                  <tr>
+                                    <th><center>Driver Image</center></th>
+                                  </tr>
+                                  <tr>
+                                    <td>
+                                      <div  class="image">
+                                          @if(!empty($edata->image))
+                                             <img src="{{asset("storage/$edata->fleet_code/vehicle_driver/$edata->image")}}" width="100" height="100">
+                                          @endif
+                                      </div>
+                                    </td>
+                                  </tr>
+                                </table>
+                              
                             </div>
                            
                         </div>   
@@ -142,7 +160,22 @@
                 }
             })
     })
-} );
+    $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection

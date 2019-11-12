@@ -361,12 +361,26 @@
                            		 </div>
                            	</div>
                            	<div class=row>
-				                 <div class="col-md-12 col-xl-12 mt-2 ">
+				                 <div class="col-md-4 col-xl-4 mt-2 ">
 	                                <label for="IMEI Number">Photo</label><br>
 	                                <input type="file" id="image" name="doc_file" value="">
-	                                @if(!empty($data->doc_file))
-	                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
-	                                @endif 
+	                                 
+	                            </div>
+	                            <div class="col-md-2 col-xl-2 mt-5">
+	                                <table class="table">
+	                                  <tr>
+	                                    <th><center>Insurance Image</center></th>
+	                                  </tr>
+	                                  <tr>
+	                                    <td>
+	                                      <div  class="image">
+	                                      	@if(!empty($data->doc_file))
+			                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/Insurance/$data->doc_file")}}" alt="" title="">
+			                                @endif
+	                                      </div>
+	                                    </td>
+	                                  </tr>
+	                                </table>
 	                            </div>
 	                        </div>        
 
@@ -473,7 +487,23 @@
     		$('.neft').hide();	
     	}
       
-	});
+      $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection

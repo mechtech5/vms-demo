@@ -106,7 +106,7 @@ class DriverdetailsController extends Controller
        
             $filename = $request->file('image')->getClientOriginalName();
             $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNameToStore = $request->name.'_'.$filename.'.'.$extension;
+            $fileNameToStore = $request->name.'_'.$filename;
 
             $chk_path = storage_path('app/public/'.$fleet_code.'/vehicle_driver');
                

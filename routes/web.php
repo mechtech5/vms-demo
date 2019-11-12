@@ -250,6 +250,8 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::post('/insuranceDetailsImport','Document\InsuranceDetailsController@import')->name('insurance.import');
 		Route::get('/insuranceDetailsDownload','Document\InsuranceDetailsController@download')->name('insurance.download');
 
+		Route::post('/getDetails','Document\InsuranceDetailsController@getDetails');
+
 		//end insuranceDetailsContrller
 
 		//strat StatePermitContrller  

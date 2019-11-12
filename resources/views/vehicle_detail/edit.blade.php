@@ -57,8 +57,7 @@
                       @enderror
                        <div class="inputGroupContainer">
                            <div class="input-group">
-                            @php ($vch = App\vch_model::find($edata->vch_model))                      
-                              <select id="vch_model" name="vch_model" class="selectpicker form-control">
+                            @php ($vch = App\vch_model::find($edata->vch_model))               <select id="vch_model" name="vch_model" class="selectpicker form-control">
                                  <option disabled="true">Select..</option>
                               </select>
                             </div>
@@ -108,7 +107,7 @@
                                             <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                                                                                 
                                                 <div class="col-md-6 col-xl-6 mt-2">
-                                                    <label for="Vehicle No.">Maker Name</label>
+                                                    <label for="Vehicle No.">Make-Model</label>
                                                     <input id="vehicle_no" class="form-control" name="reg_make" value="{{old('reg_make') ?? $edata->reg_make}}" > 
                                                 </div>
                                                 
@@ -292,8 +291,7 @@
                                                   <th >Chassis Image</th>
                                                   <th >Pan Image</th>
                                                   <th >TDS Image</th>
-                                                </tr>
-                                                <tr>
+                                                </tr>                                               <tr>
                                                   <td>
                                                     <div  class="vch_pic">
                                                       @if(!empty($edata->vch_pic))

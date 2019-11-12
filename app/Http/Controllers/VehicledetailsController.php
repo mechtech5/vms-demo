@@ -127,12 +127,17 @@ class VehicledetailsController extends Controller
     }
 
     public function get_model(Request $request)
-    {
+    { 
         $id = $request->id;
-        $model = DB::table('vch_model')->where('vcompany_code',$id)->get(); ?>
+        $model = DB::table('vch_model')->where('vcompany_code',$id)->get();
+         
+        $edata   = DB::table('vch_mast')->where('id',$id)->first();
+     
+        ?>
+
         <option>Selecte..</option>
         <?php foreach ($model as $models) { ?>
-            <option value="<?php echo $models->id; ?>" ><?php echo $models->model_name; ?></option>
+            <option value="<?php echo $models->id; ?>"><?php echo $models->model_name; ?></option>
        <?php  } 
     }
 
