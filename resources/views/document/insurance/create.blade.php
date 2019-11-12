@@ -6,20 +6,19 @@
       <div class="col-sm-12">
         <div class="box box-color orange box-condensed box-bordered">
           <div class="box-title">
-            <div class="col-sm-6 col-md-6">
-                <h3>INSURANCE DETAILS </h3>
-            </div>
-            <div class="col-sm-6 col-md-6">
-                <a class="btn btn-inverse pull-right" href="{{route('insurance.index')}}">Back</a>
-            </div>
+	            <div class="col-sm-6 col-md-6">
+	                <h3>INSURANCE DETAILS </h3>
+	            </div>
+	            <div class="col-sm-6 col-md-6">
+	                <a class="btn btn-inverse pull-right" href="{{route('insurance.index')}}">Back</a>
+	            </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('insurance.store')}}">
-              {{csrf_field()}}
+              <form enctype="multipart/form-data" class="well form-horizontal" method="post" 		action="{{route('insurance.store')}}">
+              		{{csrf_field()}}
                  <div class="card-body " >
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-xl-12" id="mytable1">
                         	<div class="row">
-	                        	
 	                        	<div class="col-md-3 col-xl-3 mt-2">
 				                    <label class="">Select Vehicle</label>
 				                     
@@ -35,7 +34,6 @@
 			                              </span>
 			                          @enderror
 			                    </div>
-
 
 				                <div class="col-md-3 col-xl-3 mt-2">
 				                    <label class="">Select Agent</label>
@@ -82,7 +80,18 @@
 				                </div>
 				            </div>
 
-                            <div class='row'>                                
+                            <div class='row'>
+                            	<div class="col-md-4 col-xl-4 mt-2">
+		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insured's Name</label>
+		                                
+		                                <input id="insured_name" class="form-control" name="ins_policy_no" value="{{old('insured_name')}}" > 
+		                                @error('ins_policy_no')
+				                            <span class="invalid-feedback d-block pull-right" role="alert">
+				                               <strong>{{ 'Please enter policy number' }}</strong>
+				                            </span>
+				                         @enderror       
+		                        </div>
+
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Policy No</label>
 	                                <input id="ins_policy_no" class="form-control" name="ins_policy_no" value="{{old('ins_policy_no')}}" > 
@@ -102,7 +111,9 @@
 			                            </span>
 			                         @enderror   
 	                            </div>
+	                        </div>
 
+	                        <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Total Value</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_total_amt" value="{{old('ins_total_amt')}}" > 
@@ -112,9 +123,7 @@
 			                            </span>
 			                         @enderror   
 	                            </div>
-	                          </div>
 
-	                          <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Prev Policy Amount</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_pre_amt" value="{{old('ins_pre_amt')}}" > 
@@ -134,7 +143,10 @@
 			                            </span>
 			                         @enderror  
 	                            </div>
-	                        
+		                    </div>
+
+
+	                        <div class="row">
 		                        <div class="col-md-4 col-xl-4 mt-2">
 		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Hypothecation Agreement</label>
 		                                <input id="vehicle_no" class="form-control" name="hypothecation_agreement" value="{{old('hypothecation_agreement')}}" > 
@@ -143,11 +155,7 @@
 				                               <strong>{{ 'Please Enter Hypothecation Agreement Field' }}</strong>
 				                            </span>
 				                         @enderror  
-		                            </div>
 		                        </div>
-
-
-	                        <div class="row">
 
 		                        <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
@@ -168,7 +176,9 @@
 			                            </span>
 			                         @enderror
 	                            </div>
-
+	                        </div>
+	                        
+	                        <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt')}}">
@@ -178,9 +188,7 @@
 			                            </span>
 			                         @enderror
 	                            </div>
-	                        </div>
-	                        
-	                        <div class="row">    
+
 	                            <div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Payment mode</label>
 				                      
@@ -201,245 +209,245 @@
 				                </div>
 				            </div>
 				          
-			                <div style="display: none" class="row cheque">
-			                	<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
-                               		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no')}}">
-                               		  @error('cpay_no')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ "Please enter cheque number" }}</strong>
-			                            </span>
-			                         @enderror
-                                </div>
+				                <div style="display: none" class="row cheque">
+				                	<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque No.</label>
+	                               		 <input id="cheque_no" class="form-control  " name="cpay_no" value="{{old('pay_no')}}">
+	                               		  @error('cpay_no')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ "Please enter cheque number" }}</strong>
+				                            </span>
+				                         @enderror
+	                                </div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
-                               		 <input id="email1" class="form-control datepicker" readonly="true" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
-                               		  @error('cpay_dt')
-			                         <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ "Please enter cheque date" }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
-                           		
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
-                               		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank')}}">
-                               		  @error('cpay_bank')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank name' }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
+	                               		 <input id="email1" class="form-control datepicker" readonly="true" name="cpay_dt" name="pay_dt" value="{{old('pay_dt')}}">
+	                               		  @error('cpay_dt')
+				                         <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ "Please enter cheque date" }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
+	                           		
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
+	                               		 <input id="email1" class="form-control  " name="cpay_bank" value="{{old('pay_bank')}}">
+	                               		  @error('cpay_bank')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank name' }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
 
-                           		 <div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
-                               		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
-                               		  @error('cpay_branch')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank branch' }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
-                           	</div>
+	                           		 <div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
+	                               		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
+	                               		  @error('cpay_branch')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank branch' }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
+	                           	</div>
 
-                           	<div style="display: none" class="row dd">
-			                	<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
-                               		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no')}}">
-                               		  @error('dpay_no')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter DD number' }}</strong>
-			                            </span>
-			                         @enderror
-                                </div>
+	                           	<div style="display: none" class="row dd">
+				                	<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD No</label>
+	                               		 <input id="email1" class="form-control  " name="dpay_no" value="{{old('pay_no')}}">
+	                               		  @error('dpay_no')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter DD number' }}</strong>
+				                            </span>
+				                         @enderror
+	                                </div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
-                               		 <input id="email1" class="form-control datepicker" readonly="true" name="dpay_dt" value="{{old('pay_dt')}}">
-                               		  @error('dpay_dt')
-			                         <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter DD date' }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
-                           		
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
-                               		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank')}}">
-                               		 @error('dpay_bank')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank name' }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">DD Date</label>
+	                               		 <input id="email1" class="form-control datepicker" readonly="true" name="dpay_dt" value="{{old('pay_dt')}}">
+	                               		  @error('dpay_dt')
+				                         <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter DD date' }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
+	                           		
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
+	                               		 <input id="email1" class="form-control  " name="dpay_bank" value="{{old('pay_bank')}}">
+	                               		 @error('dpay_bank')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank name' }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
 
-                           		 <div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
-                               		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch')}}">
-                               		  @error('dpay_branch')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank branch' }}</strong>
-			                            </span>
-			                         @enderror
-                           		 </div>
-                           	</div>
+	                           		 <div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
+	                               		 <input id="email1" class="form-control  " name="dpay_branch" value="{{old('pay_branch')}}">
+	                               		  @error('dpay_branch')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank branch' }}</strong>
+				                            </span>
+				                         @enderror
+	                           		 </div>
+	                           	</div>
 
-                           	<div style="display: none" class="row rtgs">
-			                	<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS No.</label>
-	                                @error('rpay_no')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter RTGS number' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_no" value="{{old('rpay_no')}}">
-                                </div>
+	                           	<div style="display: none" class="row rtgs">
+				                	<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS No.</label>
+		                                @error('rpay_no')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter RTGS number' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="rpay_no" value="{{old('rpay_no')}}">
+	                                </div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS Date</label>
-	                                @error('rpay_dt')
-			                         <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter RTGS date' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control datepicker" readonly="true" name="rpay_dt" value="{{old('pay_dt')}}">
-                           		 </div>
-                           		
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name </label>
-	                                @error('rpay_bank')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank name' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_bank" value="{{old('rpay_bank')}}">
-                           		 </div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS Date</label>
+		                                @error('rpay_dt')
+				                         <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter RTGS date' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control datepicker" readonly="true" name="rpay_dt" value="{{old('pay_dt')}}">
+	                           		 </div>
+	                           		
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name </label>
+		                                @error('rpay_bank')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank name' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="rpay_bank" value="{{old('rpay_bank')}}">
+	                           		 </div>
 
-                           		 <div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
-	                                @error('rpay_branch')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter branch name' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="rpay_branch" value="{{old('rpay_branch')}}">
-                           		 </div>
-                           	</div>
+	                           		 <div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
+		                                @error('rpay_branch')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter branch name' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="rpay_branch" value="{{old('rpay_branch')}}">
+	                           		 </div>
+	                           	</div>
 
-                           	<div style="display: none" class="row neft">
-			                	<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT No.</label>
-	                                @error('nupdate_dt')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter NEFT number' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_no" value="{{old('npay_no')}}">
-                                </div>
+	                           	<div style="display: none" class="row neft">
+				                	<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT No.</label>
+		                                @error('nupdate_dt')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter NEFT number' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="npay_no" value="{{old('npay_no')}}">
+	                                </div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT Date</label>
-	                                @error('npay_dt')
-			                         <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter NEFT date' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control datepicker" readonly="true"  name="npay_dt" value="{{old('npay_dt')}}">
-                           		 </div>
-                           		
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
-	                                @error('npay_bank')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter bank name' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_bank" value="{{old('npay_bank')}}">
-                           		 </div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT Date</label>
+		                                @error('npay_dt')
+				                         <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter NEFT date' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control datepicker" readonly="true"  name="npay_dt" value="{{old('npay_dt')}}">
+	                           		 </div>
+	                           		
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
+		                                @error('npay_bank')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter bank name' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="npay_bank" value="{{old('npay_bank')}}">
+	                           		 </div>
 
-                           		 <div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
-	                                @error('npay_branch')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please enter branch name' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="email1" class="form-control  " name="npay_branch" value="{{old('npay_branch')}}">
-                           		 </div>
-                           	</div>
+	                           		 <div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
+		                                @error('npay_branch')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please enter branch name' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="email1" class="form-control  " name="npay_branch" value="{{old('npay_branch')}}">
+	                           		 </div>
+	                           	</div>
 
-                           	<div style="display: none" class="row vehicle">
-                           		
-			                	<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Engine No.</label>
-	                                @error('engine_no')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Engine No. Not Available' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="engine_no" class="form-control  " name="engine_no" value="{{old('engine_no') }}">
-                                </div>
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chassis No">Chassis No</label>
-	                                @error('chassis_no')
-			                         <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Chassis No. Not Available' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="chassis_no" class="form-control" {{-- readonly="true" --}}  name="chassis_no" value="{{old('chassis_no') }}">
-                               
-                           		 </div>
-                           		
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Manufacture Year</label>
-	                                @error('manufacture_year')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please Enter Manufacture Year' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="manufacture_year" class="form-control" name="manufacture_year" value="{{old('manufacture_year') }}">
-                           		</div>
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Body</label>
-	                                @error('type_of_body')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please Enter Type Of Body' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="type_of_body" class="form-control  " name="type_of_body" value="{{old('type_of_body')}}">
-                           		</div>
+	                           	<div style="display: none" class="row vehicle">
+	                           		
+				                	<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Engine No.</label>
+		                                @error('engine_no')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Engine No. Not Available' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="engine_no" class="form-control  " name="engine_no" value="{{old('engine_no') }}">
+	                                </div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chassis No">Chassis No</label>
+		                                @error('chassis_no')
+				                         <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Chassis No. Not Available' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="chassis_no" class="form-control" {{-- readonly="true" --}}  name="chassis_no" value="{{old('chassis_no') }}">
+	                               
+	                           		 </div>
+	                           		
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Manufacture Year</label>
+		                                @error('manufacture_year')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please Enter Manufacture Year' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="manufacture_year" class="form-control" name="manufacture_year" value="{{old('manufacture_year') }}">
+	                           		</div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Body</label>
+		                                @error('type_of_body')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please Enter Type Of Body' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="type_of_body" class="form-control  " name="type_of_body" value="{{old('type_of_body')}}">
+	                           		</div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Fuel</label>
-	                                @error('type_of_fuel')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please Enter Type Of Fuel' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="type_of_fuel" class="form-control  " name="type_of_fuel" value="{{old('type_of_fuel') }}">
-                           		</div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Fuel</label>
+		                                @error('type_of_fuel')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please Enter Type Of Fuel' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="type_of_fuel" class="form-control  " name="type_of_fuel" value="{{old('type_of_fuel') }}">
+	                           		</div>
 
-                           		<div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Seating Capacity(including Driver)</label>
-	                                @error('seating_capacity')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please Enter Seating Capacity' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="seating_capacity" class="form-control  " name="seating_capacity" value="{{old('seating_capacity')}}">
-                           		</div>
+	                           		<div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Seating Capacity(including Driver)</label>
+		                                @error('seating_capacity')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please Enter Seating Capacity' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="seating_capacity" class="form-control  " name="seating_capacity" value="{{old('seating_capacity')}}">
+	                           		</div>
 
-                           		 <div class="col-md-3 col-xl-3 mt-2">
-                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cubic Capacity</label>
-	                                @error('cubic_capacity')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Please Enter Cubic Capacity' }}</strong>
-			                            </span>
-			                         @enderror
-                               		 <input id="cubic_capacity" class="form-control  " name="cubic_capacity" value="{{old('cubic_capacity') }}">
-                           		 </div>
-                           	</div>
+	                           		 <div class="col-md-3 col-xl-3 mt-2">
+	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cubic Capacity</label>
+		                                @error('cubic_capacity')
+				                            <span class="invalid-feedback d-block" role="alert">
+				                               <strong>{{ 'Please Enter Cubic Capacity' }}</strong>
+				                            </span>
+				                         @enderror
+	                               		 <input id="cubic_capacity" class="form-control  " name="cubic_capacity" value="{{old('cubic_capacity') }}">
+	                           		 </div>
+	                           	</div>
                            	<div class=row>
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
@@ -460,24 +468,21 @@
 	                                </table>
 	                            </div>    
                             </div>
-                           </div>
-                        </div>     
+
+                        </div>
+                    </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
                          	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right">
                        	</div>
-
-                    		</div>
-                    	</div>
-                    </div>
-                </div>
-            </form>
+                 </div>     
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
- </div>
+  </div>
 </div>
-</div>
-</div>
-
 <script type="text/javascript">
   $(document).ready( function () {
     
