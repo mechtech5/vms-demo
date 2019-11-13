@@ -36,21 +36,33 @@ class InsuranceDetailsController extends Controller
     }
    
     public function store(Request $request)
-    {
-        $data = $request->validate([ 'vch_id'        => 'required',
-                                     'agent_id'      => 'nullable',   
-                                     "ins_policy_no" => 'required',
-                                     "valid_from"    => 'required',
-                                     "valid_till"    => 'required',
-                                     "update_dt"     => 'required',
-                                     "payment_mode"  => 'required|not_in:0',
-                                     'ins_amt'       => 'required',
-                                     'ins_pre_amt'   => 'required',
-                                     'ins_comp'      => 'required',
-                                     'ins_type'      => 'nullable',
-                                      'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+    {   
+        $data = $request->validate([    "insured_name"      =>'nullable',
+                                        "vch_id"            =>'required',
+                                        "ins_comp"          =>'required',
+                                        'ins_type'          => 'nullable',
+                                        "ins_policy_no"     =>'required',
+                                        "ins_amt"           =>'required',
+                                        'agent_id'          => 'nullable',
+                                        "ins_total_amt"     =>'nullable',
+                                        "ins_pre_policy_no" =>'nullable',
+                                        "ncb_discount"      =>'nullable',
+                                        "hypothecation_agreement" =>'nullable',
+                                        "valid_from"        =>'required',
+                                        "valid_till"        =>'required',
+                                        "update_dt"         =>'required',
+                                        "payment_mode"      =>'required|not_in:0',
+                                        "engine_no"         =>'nullable',
+                                        "chassis_no"        =>'nullable',
+                                        "manufacture_year"  =>'nullable',
+                                        "type_of_body"      =>'nullable',
+                                        "type_of_fuel"      =>'nullable',
+                                        "seating_capacity"  =>'nullable',
+                                        "cubic_capacity"    =>'nullable',
+                                        'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
+                                     
                                      ]);
-    
+       
         $data = $this->pay_validate($request,$data);    
         $vdata   = $this->store_image($request,$data);
         $vdata['fleet_code'] = session('fleet_code');
@@ -77,18 +89,29 @@ class InsuranceDetailsController extends Controller
     
     public function update(Request $request, $id)
     {
-        $data = $request->validate([ 'vch_id'        => 'required',
-                                     'agent_id'      => 'required',   
-                                     "ins_policy_no" => 'required|numeric',
-                                     "valid_from"    => 'required',
-                                     "valid_till"    => 'required',
-                                     "update_dt"     => 'required',
-                                     "payment_mode"  => 'required|not_in:0',
-                                     'ins_amt'       => 'required',
-                                     'ins_pre_amt'   => 'required',
-                                     'ins_comp'      => 'required',
-                                     'ins_type'      => 'nullable',
-                                      'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $data = $request->validate([ "insured_name"      =>'nullable',
+                                        "vch_id"            =>'required',
+                                        "ins_comp"          =>'required',
+                                        'ins_type'          => 'nullable',
+                                        "ins_policy_no"     =>'required',
+                                        "ins_amt"           =>'required',
+                                        'agent_id'          => 'nullable',
+                                        "ins_total_amt"     =>'nullable',
+                                        "ins_pre_policy_no" =>'nullable',
+                                        "ncb_discount"      =>'nullable',
+                                        "hypothecation_agreement" =>'nullable',
+                                        "valid_from"        =>'required',
+                                        "valid_till"        =>'required',
+                                        "update_dt"         =>'required',
+                                        "payment_mode"      =>'required|not_in:0',
+                                        "engine_no"         =>'nullable',
+                                        "chassis_no"        =>'nullable',
+                                        "manufacture_year"  =>'nullable',
+                                        "type_of_body"      =>'nullable',
+                                        "type_of_fuel"      =>'nullable',
+                                        "seating_capacity"  =>'nullable',
+                                        "cubic_capacity"    =>'nullable',
+                                        'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -97,9 +120,9 @@ class InsuranceDetailsController extends Controller
         $vdata['created_by'] = Auth::user()->id;
         $old_data = InsuranceDetails::find($id);
         InsuranceDetails::where('id',$id)->update($vdata);
-
+        $fleet_code = session('fleet_code');
         if($old_data->doc_file != null && $old_data->doc_file != $vdata['doc_file'] && $vdata['doc_file']!=null){
-            Storage::delete('app/public/'.$fleet_code.'/Document/Insurance/'.$old_data->doc_file);
+            Storage::delete('public/'.$fleet_code.'/Document/Insurance/'.$old_data->doc_file);
         }
         return redirect('insurance');
     }
@@ -108,9 +131,10 @@ class InsuranceDetailsController extends Controller
     {
         $old_data = InsuranceDetails::find($id);
         InsuranceDetails::where('id',$id)->delete();
+        $fleet_code = session('fleet_code');
 
-        if($old_data->doc_file != null && $old_data->doc_file != $vdata['doc_file'] && $vdata['doc_file']!=null){
-            Storage::delete('app/public/'.$fleet_code.'/Document/Insurance/'.$old_data->doc_file);
+        if(!empty($old_data->doc_file)){
+            Storage::delete('public/'.$fleet_code.'/Document/Insurance/'.$old_data->doc_file);
         }
         return redirect('insurance');
     }

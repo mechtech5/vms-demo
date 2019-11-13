@@ -84,8 +84,8 @@
                             	<div class="col-md-4 col-xl-4 mt-2">
 		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insured's Name</label>
 		                                
-		                                <input id="insured_name" class="form-control" name="ins_policy_no" value="{{old('insured_name')}}" > 
-		                                @error('ins_policy_no')
+		                                <input id="insured_name" class="form-control" name="insured_name" value="{{old('insured_name')}}" > 
+		                                @error('insured_name')
 				                            <span class="invalid-feedback d-block pull-right" role="alert">
 				                               <strong>{{ 'Please enter policy number' }}</strong>
 				                            </span>
@@ -94,7 +94,7 @@
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Policy No</label>
-	                                <input id="ins_policy_no" class="form-control" name="ins_policy_no" value="{{old('ins_policy_no')}}" > 
+	                                <input id="ins_policy_nopayment_mode" class="form-control" name="ins_policy_no" value="{{old('ins_policy_no')}}" > 
 	                                @error('ins_policy_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please Enter Policy Number' }}</strong>
@@ -115,9 +115,9 @@
 
 	                        <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Total Value</label>
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Total Amount</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_total_amt" value="{{old('ins_total_amt')}}" > 
-	                                @error('ins_amt')
+	                                @error('ins_total_amt')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please Enter Insurance Total Amount' }}</strong>
 			                            </span>
@@ -125,9 +125,9 @@
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Prev Policy Amount</label>
-	                                <input id="vehicle_no" class="form-control" name="ins_pre_amt" value="{{old('ins_pre_amt')}}" > 
-	                                @error('ins_pre_amt')
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Prev Policy No</label>
+	                                <input id="vehicle_no" class="form-control" name="ins_pre_policy_no" value="{{old('ins_pre_policy_no')}}" > 
+	                                @error('ins_pre_policy_no')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please Enter Insurance amount' }}</strong>
 			                            </span>
@@ -136,7 +136,7 @@
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">NCB Discount</label>
-	                                <input id="vehicle_no" class="form-control" name="ncb_discount" value="{{old('ins_pre_amt')}}" > 
+	                                <input id="vehicle_no" class="form-control" name="ncb_discount" value="{{old('ncb_discount')}}" > 
 	                                @error('ncb_discount')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please Enter NCB Discount' }}</strong>
@@ -149,8 +149,9 @@
 	                        <div class="row">
 		                        <div class="col-md-4 col-xl-4 mt-2">
 		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Hypothecation Agreement</label>
-		                                <input id="vehicle_no" class="form-control" name="hypothecation_agreement" value="{{old('hypothecation_agreement')}}" > 
-		                                @error('ncb_discount')
+		                                <input id="vehicle_no" class="form-control" 
+		                                name="hypothecation_agreement" value="{{old('hypothecation_agreement')}}" > 
+		                                @error('hypothecation_agreement')
 				                            <span class="invalid-feedback d-block pull-right" role="alert">
 				                               <strong>{{ 'Please Enter Hypothecation Agreement Field' }}</strong>
 				                            </span>
@@ -386,8 +387,10 @@
 				                               <strong>{{ 'Engine No. Not Available' }}</strong>
 				                            </span>
 				                         @enderror
-	                               		 <input id="engine_no" class="form-control  " name="engine_no" value="{{old('engine_no') }}">
+	                               		 <input id="engine_no" class="form-control "
+	                               		  name="engine_no" value="{{old('engine_no') }}">
 	                                </div>
+
 	                           		<div class="col-md-3 col-xl-3 mt-2">
 	                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chassis No">Chassis No</label>
 		                                @error('chassis_no')
@@ -415,7 +418,8 @@
 				                               <strong>{{ 'Please Enter Type Of Body' }}</strong>
 				                            </span>
 				                         @enderror
-	                               		 <input id="type_of_body" class="form-control  " name="type_of_body" value="{{old('type_of_body')}}">
+	                               		 <input id="type_of_body" class="form-control  " 
+	                               		 name="type_of_body" value="{{old('type_of_body')}}">
 	                           		</div>
 
 	                           		<div class="col-md-3 col-xl-3 mt-2">
@@ -425,7 +429,8 @@
 				                               <strong>{{ 'Please Enter Type Of Fuel' }}</strong>
 				                            </span>
 				                         @enderror
-	                               		 <input id="type_of_fuel" class="form-control  " name="type_of_fuel" value="{{old('type_of_fuel') }}">
+	                               		 <input id="type_of_fuel" class="form-control  "
+	                               		  name="type_of_fuel" value="{{old('type_of_fuel') }}">
 	                           		</div>
 
 	                           		<div class="col-md-3 col-xl-3 mt-2">
@@ -445,7 +450,8 @@
 				                               <strong>{{ 'Please Enter Cubic Capacity' }}</strong>
 				                            </span>
 				                         @enderror
-	                               		 <input id="cubic_capacity" class="form-control  " name="cubic_capacity" value="{{old('cubic_capacity') }}">
+	                               		 <input id="cubic_capacity" class="form-control  " 
+	                               		 name="cubic_capacity" value="{{old('cubic_capacity') }}">
 	                           		 </div>
 	                           	</div>
                            	<div class=row>

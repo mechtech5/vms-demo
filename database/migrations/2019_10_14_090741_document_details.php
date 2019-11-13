@@ -72,6 +72,20 @@ class DocumentDetails extends Migration
             $table->decimal('ins_type',10,2)->nullable();
             $table->date('update_dt')->nullable();
             $table->string('doc_file',100)->nullable();
+
+            $table->string('insured_name',100)->nullable();
+            $table->string('ins_total_amt',100)->nullable();
+            $table->string('ins_pre_policy_no',100)->nullable();
+            $table->decimal('ncb_discount',10,2)->nullable();
+            $table->string('hypothecation_agreement',100)->nullable();
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
+
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });        
