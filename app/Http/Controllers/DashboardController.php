@@ -11,7 +11,9 @@ use Auth;
 use File;
 use App\FleetUser;
 use App\Fleet;
+use App\vehicle_master;
 use App\Models\FitnessDetails;
+use App\Models\InsuranceDetails;
 
 class DashboardController extends Controller
 {
@@ -26,6 +28,9 @@ class DashboardController extends Controller
        $id          = Auth::user()->id;
        $hasfleet    = FleetUser::where('user_id',$id)->get();
        $count_fleet = count($hasfleet);
+       $fleet_code = session('fleet_code');
+       // dd($fleet_code);
+       $insurance  = InsuranceDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
        
         $data = array();
         $data['fitnes']        =array();
@@ -50,13 +55,13 @@ class DashboardController extends Controller
                 $data['fleet']    = 'no';
                 $data['fleet_id'] = array(); 
 
-                return view('dashboard',compact('data'));
+                return view('dashboard',compact('data','insurance'));
             }
             else{
 
                 $data['fleet_id'] = FleetUser::where('user_id',$id)->get();
                 $data['fleet']    = 'yes';
-                return view('dashboard',compact('data'));
+                return view('dashboard',compact('data','insurance'));
             }
         }
         else{

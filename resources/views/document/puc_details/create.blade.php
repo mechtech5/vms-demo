@@ -8,13 +8,12 @@
           <div class="box-title">
             <div class="col-sm-6 col-md-6">
                 <h3>PUC DOCUMENT DETAILS</h3>
-
             </div>
             <div class="col-sm-6 col-md-6">
                 <a class="btn btn-inverse pull-right" href="{{route('pucdetails.index')}}">Back</a>
             </div>
             <div id="add-city-form">
-             <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('pucdetails.store')}}">
+            <form enctype="multipart/form-data" class="well form-horizontal" method="post" action="{{route('pucdetails.store')}}">
               {{csrf_field()}}
                  <div class="card-body " >
                     <div class="row">
@@ -116,6 +115,7 @@
 	                               
 	                            </div>
 	                        </div>
+
 	                        <div class="row">    
 	                            <div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Payment mode</label>
@@ -319,20 +319,33 @@
                            		 </div>
                            	</div>
                            	<div class=row>
-				                 <div class="col-md-12 col-xl-12 mt-2">
+				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
-	                                <input type="file" id="image" name="doc_file" value="">
-	                            </div>
-	                        </div>    
+	                                <input type="file" id="image" name="doc_file" value="" class="image">
+	                        	</div>
+	                        
+		                        <div class="col-md-2 col-xl-2 mt-5">
+	                                <table class="table">
+	                                  <tr>
+	                                    <th><center>Road  Tax Image</center></th>
+	                                  </tr>
+	                                  <tr>
+	                                    <td>
+	                                      <div  class="image">
+	                                      </div>
+	                                    </td>
+	                                  </tr>
+	                                </table>
+	                            </div>    
+                            </div>    
 
                         </div>     
-                         <div class="col-md-6" style="margin-top: 24px;">
+                        <div class="col-md-6" style="margin-top: 24px;">
                          	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right">
                        	</div>
-
                     </div>
-                </form>
-              </div>
+              	 </div>
+            </form>
             </div>
           </div>
         </div>
@@ -426,8 +439,22 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
-      
-	});
+      $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection

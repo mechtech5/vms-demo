@@ -67,8 +67,15 @@
                                 	<div id="pnlinsurance" style="height:90px;width:100%;overflow:auto;">
 									<table id="Tbl_4" class="table table-hover table-nomargin dataTable table-bordered">
 										<tr id="TableHeaderRow3">
-											<th id="TableHeaderCell31" style="font-size:10px;font-weight:bold;">Vehicle No</th><th id="TableHeaderCell33" style="font-size:10px;font-weight:bold;">Expiry Date</th>
+											<th id="TableHeaderCell31" style="font-size:10px;font-weight:bold;">Vehicle No</th>
+                                            <th id="TableHeaderCell33" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 										</tr>
+                                        @foreach($insurance as $ins)
+                                            <tr>
+                                                <td>{{$ins->vehicle->vch_no}}</td>
+                                                <td>{{$ins->valid_till}}</td>
+                                            </tr>
+                                        @endforeach
 									</table>
 									</div>
 									</td>
@@ -695,6 +702,7 @@
             success: function (data) {
                if(data == 'success'){
                      $('#myModal').modal('hide');
+                     location.reload();  // for reload page
                }
             }
         })

@@ -68,8 +68,9 @@
 			                          @enderror
 			                    </div>
 			                </div>
+
 			                <div class="row">    
-			                	<div class="col-md-3 col-xl-3 mt-2">
+			                	<div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Draft No</label>
 	                                
 	                                <input id="ins_policy_no" class="form-control" name="draft_no" value="{{old('draft_no')}}" > 
@@ -80,7 +81,7 @@
 			                         @enderror
 	                            </div>	
 
-	                              <div class="col-md-3 col-xl-3 mt-2">
+	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Draft Date</label>
 	                                
 	                                <input id="ins_policy_no" class="form-control datepicker" readonly="true" name="draft_date" value="{{old('draft_date')}}" > 
@@ -88,11 +89,10 @@
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter draft date' }}</strong>
 			                            </span>
-			                         @enderror
-		                                 
+			                         @enderror         
 		                        </div>
 
-			                    <div class="col-md-3 col-xl-3 mt-2">
+			                    <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Permit No</label>
 	                                
 	                                <input id="ins_policy_no" class="form-control" name="permit_no" value="{{old('permit_no')}}" > 
@@ -102,8 +102,11 @@
 			                            </span>
 			                         @enderror
 		                                 
-		                        </div>
-	                            <div class="col-md-3 col-xl-3 mt-2">
+		                        </div>                   
+				            </div>
+
+	                        <div class="row">
+	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Permit Amount</label>
 	                                
 	                                <input id="ins_policy_no" class="form-control" name="permit_amt" value="{{old('permit_amt')}}" > 
@@ -111,25 +114,21 @@
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter permit amout' }}</strong>
 			                            </span>
-			                         @enderror
-	                                 
+			                         @enderror    
 	                            </div>
-	                            	
-	                                           
-				            </div>
-	                         <div class="row">	                        
-	                        <div class="col-md-4 col-xl-4 mt-2">
-                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
-                               
-                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_from" value="{{old('valid_from')}}">
-                                 @error('valid_from')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Please select valid from ' }}</strong>
-		                            </span>
-		                         @enderror	                               
-	                        </div>
 
-	                           <div class="col-md-4 col-xl-4 mt-2">
+		                        <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
+	                               
+	                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_from" value="{{old('valid_from')}}">
+	                                 @error('valid_from')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please select valid from ' }}</strong>
+			                            </span>
+			                         @enderror	                               
+		                        </div>
+
+	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
 	                               
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_till" value="{{old('valid_till')}}">
@@ -137,10 +136,11 @@
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select expiry date' }}</strong>
 			                            </span>
-			                         @enderror
-	                               
+			                         @enderror   
 	                            </div>
+	                        </div>
 
+	                        <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
@@ -149,30 +149,25 @@
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ "Please select update date" }}</strong>
 			                            </span>
-			                         @enderror
-	                               
+			                         @enderror  
 	                            </div>
-	                        </div>
-	                        <div class="row">
-	                        	<div class="col-md-3 col-xl-3 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">All India Permit No</label>
-	                                
+
+	                        	<div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">All India Permit No:</label>
+	                                </br>
 	                                <input id="ins_policy_no" checked="true" type='radio' name="all_india_permit" value="1" >Yes
 	                                <input id="ins_policy_no" type='radio' name="all_india_permit" value="0" >No 
 	                                @error('all_india_permit')
 			                            <span class="invalid-feedback d-block pull-right" role="alert">
 			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
 			                            </span>
-			                         @enderror
-		                                 
+			                         @enderror     
 		                        </div>
-	                        </div>
-	                        
-	                        <div class="row">    
-	                            <div class="col-md-4 col-xl-4 mt-2">
+		                         
+		                        <div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Payment mode</label>
 				                      
-			                       <select id="type" name="payment_mode" class=" form-control">
+			                        <select id="type" name="payment_mode" class=" form-control">
 			                            <option selected="true" value="0">Mode</option>
 			                            <option {{ old('payment_mode')== 'cash' ? 'selected':''}} value="cash">Cash</option>
 										<option {{ old('payment_mode')== 'cheque' ? 'selected':''}} value="cheque">Cheque</option>
@@ -181,13 +176,15 @@
 										<option {{ old('payment_mode')== 'rtgs' ? 'selected':''}} value="rtgs">RTGS</option>
 										<option {{ old('payment_mode')== 'neft' ? 'selected':''}} value="neft">NEFT</option>  
 			                        </select>
-			                        @error('payment_mode')
+			                        	@error('payment_mode')
 			                              <span class="invalid-feedback d-block " role="alert">
 			                                  <strong>{{ 'Please Select payment mode' }}</strong>
 			                              </span>
-			                          @enderror
-			                      
+			                            @enderror
 				                </div>
+	                        </div>
+	                        
+	                        <div class="row">     
 				            </div>
 
 			                <div style="display: none" class="row cheque">
@@ -201,6 +198,7 @@
 			                            </span>
 			                         @enderror
                                 </div>
+
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cheque Date</label>
 	                               
@@ -210,8 +208,7 @@
 			                               <strong>{{ "Please enter cheque date" }}</strong>
 			                            </span>
 			                         @enderror
-                               
-                           		 </div>
+                           		</div>
                            		
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
@@ -222,9 +219,9 @@
 			                               <strong>{{ 'Please enter bank name' }}</strong>
 			                            </span>
 			                         @enderror
-                               
-                           		 </div>
-                           		 <div class="col-md-3 col-xl-3 mt-2">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name </label>
 	                               
                                		 <input id="email1" class="form-control  " name="cpay_branch" value="{{old('pay_branch')}}">
@@ -233,8 +230,7 @@
 			                               <strong>{{ 'Please enter bank branch' }}</strong>
 			                            </span>
 			                         @enderror
-                               
-                           		 </div>
+                           		</div>
                            	</div>
 
                            	<div style="display: none" class="row dd">
@@ -282,7 +278,6 @@
 			                         @enderror
                                
                            		 </div>
-
                            	</div>
 
                            	<div style="display: none" class="row rtgs">
@@ -295,6 +290,7 @@
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="rpay_no" value="{{old('rpay_no')}}">
                                 </div>
+
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">RTGS Date</label>
 	                                @error('rpay_dt')
@@ -303,8 +299,7 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="rpay_dt" value="{{old('pay_dt')}}">
-                               
-                           		 </div>
+                           		</div>
                            		
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name </label>
@@ -314,9 +309,9 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="rpay_bank" value="{{old('rpay_bank')}}">
-                               
-                           		 </div>
-                           		 <div class="col-md-3 col-xl-3 mt-2">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
 	                                @error('rpay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
@@ -324,8 +319,7 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="rpay_branch" value="{{old('rpay_branch')}}">
-                               
-                           		 </div>
+                           		</div>
                            	</div>
 
                            	<div style="display: none" class="row neft">
@@ -338,6 +332,7 @@
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="npay_no" value="{{old('npay_no')}}">
                                 </div>
+
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">NEFT Date</label>
 	                                @error('npay_dt')
@@ -346,8 +341,7 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control datepicker" readonly="true" name="npay_dt" value="{{old('npay_dt')}}">
-                               
-                           		 </div>
+                           		</div>
                            		
                            		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Bank Name</label>
@@ -357,9 +351,9 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="npay_bank" value="{{old('npay_bank')}}">
-                               
-                           		 </div>
-                           		 <div class="col-md-3 col-xl-3 mt-2">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
                               	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Branch Name</label>
 	                                @error('npay_branch')
 			                            <span class="invalid-feedback d-block" role="alert">
@@ -367,23 +361,35 @@
 			                            </span>
 			                         @enderror
                                		 <input id="email1" class="form-control  " name="npay_branch" value="{{old('npay_branch')}}">
-                               
-                           		 </div>
+                           		</div>
                            	</div>
                            	<div class=row>
-				                 <div class="col-md-12 col-xl-12 mt-2">
+				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
-	                                <input type="file" id="image" name="doc_file" value="">
-	                            </div>
-	                        </div>    
+	                                <input type="file" id="image" name="doc_file" value="" class="image">
+	                        	</div>
+	                        
+		                        <div class="col-md-2 col-xl-2 mt-5">
+	                                <table class="table">
+	                                  <tr>
+	                                    <th><center>Road  Tax Image</center></th>
+	                                  </tr>
+	                                  <tr>
+	                                    <td>
+	                                      <div  class="image">
+	                                      </div>
+	                                    </td>
+	                                  </tr>
+	                                </table>
+	                            </div>    
+                            </div>    
 
                         </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
                          	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right">
-                       	</div>
-
-                    		</div>
+                       	 </div>
                     	</div>
+                      </div>
                     </div>
                 </div>
             </form>
@@ -478,8 +484,22 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
-      
-	});
+      $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection
