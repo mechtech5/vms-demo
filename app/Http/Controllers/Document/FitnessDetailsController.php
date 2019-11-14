@@ -35,15 +35,23 @@ class FitnessDetailsController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([ 'vch_id'       => 'required',
-                                     'agent_id'     => 'required',   
-                                     "fitness_amt"  => 'required|numeric',
-                                     "valid_from"   => 'required',
-                                     "valid_till"   => 'required',
-                                     "update_dt"    => 'required',
-                                     "payment_mode" => 'required|not_in:0',
-                                     'fitness_no'   => 'required|numeric',
-                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $data = $request->validate([ 'vch_id'                   => 'required',
+                                     'agent_id'                 => 'nullable',   
+                                     "fitness_amt"              => 'required|numeric',
+                                     "valid_from"               => 'required',
+                                     "valid_till"               => 'required',
+                                     "update_dt"                => 'required',
+                                     "payment_mode"             => 'required|not_in:0',
+                                     'fitness_no'               => 'required|numeric',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     
+                                     'doc_file'                  => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -74,15 +82,23 @@ class FitnessDetailsController extends Controller
     
     public function update(Request $request, $id)
     {
-        $data = $request->validate([ 'vch_id'       => 'required',
-                                     'agent_id'     => 'required',   
-                                     "fitness_amt"  => 'required|numeric',
-                                     "valid_from"   => 'required',
-                                     "valid_till"   => 'required',
-                                     "update_dt"    => 'required',
-                                     "payment_mode" => 'required|not_in:0',
-                                     'fitness_no'   => 'required|numeric',
-                                      'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $data = $request->validate([ 'vch_id'                   => 'required',
+                                     'agent_id'                 => 'nullable',   
+                                     "fitness_amt"              => 'required|numeric',
+                                     "valid_from"               => 'required',
+                                     "valid_till"               => 'required',
+                                     "update_dt"                => 'required',
+                                     "payment_mode"             => 'required|not_in:0',
+                                     'fitness_no'               => 'required|numeric',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "cubic_capacity"           =>'nullable',
+                                     
+                                     'doc_file'                  => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    

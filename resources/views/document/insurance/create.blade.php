@@ -576,9 +576,6 @@
     		$('.neft').hide();	
     	}
 
-
-
-
     $('#vehicle_no1').on('change',function(){
     	var id = $(this).val();
     	$.ajax({

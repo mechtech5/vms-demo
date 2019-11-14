@@ -36,15 +36,22 @@ class PUCDetailsController extends Controller
   
     public function store(Request $request)
     {  
-        $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'    => 'required',   
-                                     "puc_amt"     => 'required|numeric',
-                                     "valid_from"  => 'required',
-                                     "valid_till"  => 'required',
-                                     "update_dt"   => 'required',
-                                     "payment_mode"=> 'required|not_in:0',
-                                     'puc_no'      => 'required|numeric',
-                                      'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+        $data = $request->validate([ 'vch_id'            => 'required',
+                                     'agent_id'          => 'nullable',   
+                                     "puc_amt"           => 'required|numeric',
+                                     "valid_from"        => 'required',
+                                     "valid_till"        => 'required',
+                                     "update_dt"         => 'required',
+                                     "payment_mode"      => 'required|not_in:0',
+                                     'puc_no'            => 'required|numeric',
+                                     "engine_no"         =>'nullable',
+                                     "chassis_no"        =>'nullable',
+                                     "manufacture_year"  =>'nullable',
+                                     "type_of_body"      =>'nullable',
+                                     "type_of_fuel"      =>'nullable',
+                                     "seating_capacity"  =>'nullable',
+                                     "cubic_capacity"    =>'nullable',
+                                     'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -69,20 +76,28 @@ class PUCDetailsController extends Controller
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
         $data       = PUCDetails::where('id',$id)->first();
         $agent      = Agent::where('fleet_code',$fleet_code)->get();
+       
         return view('document.puc_details.edit',compact('vehicle','data','agent'));
     }
     
     public function update(Request $request, $id)
     {
-          $data = $request->validate([ 'vch_id'      => 'required',
-                                       'agent_id'    => 'required',   
-                                       "puc_amt"     => 'required|numeric',
-                                       "valid_from"  => 'required',
-                                       "valid_till"  => 'required',
-                                       "update_dt"   => 'required',
-                                       "payment_mode"=> 'required|not_in:0',
-                                       'puc_no'      => 'required|numeric',
-                                        'doc_file'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+          $data = $request->validate([ 'vch_id'            => 'required',
+                                       'agent_id'          => 'nullable',   
+                                       "puc_amt"           => 'required|numeric',
+                                       "valid_from"        => 'required',
+                                       "valid_till"        => 'required',
+                                       "update_dt"         => 'required',
+                                       "payment_mode"      => 'required|not_in:0',
+                                       'puc_no'            => 'required|numeric',
+                                       "engine_no"         =>'nullable',
+                                       "chassis_no"        =>'nullable',
+                                       "manufacture_year"  =>'nullable',
+                                       "type_of_body"      =>'nullable',
+                                       "type_of_fuel"      =>'nullable',
+                                       "seating_capacity"  =>'nullable',
+                                       "cubic_capacity"    =>'nullable',
+                                       'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -124,7 +139,7 @@ class PUCDetailsController extends Controller
         
             $filename = $request->file('doc_file')->getClientOriginalName();
             $extension = $request->file('doc_file')->getClientOriginalExtension();
-            $fileNameToStore = $request->payment_mode.'_'.$filename.'.'.$extension;
+            $fileNameToStore = $request->payment_mode.'_'.$filename;
 
             $chk_path = storage_path('app/public/'.$fleet_code.'/Document');
                

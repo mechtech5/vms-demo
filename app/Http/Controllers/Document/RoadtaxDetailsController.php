@@ -37,13 +37,23 @@ class RoadtaxDetailsController extends Controller
     public function store(Request $request)
     {
          $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'     => 'required|numeric',   
+                                     'agent_id'     => 'nullable',   
                                      "roadtax_amt"  => 'required|numeric',
                                      "valid_from"   => 'required',
                                      "valid_till"   => 'required',
                                      "update_dt"    => 'required',
                                      "payment_mode" => 'required|not_in:0',
                                      'roadtax_no'   => 'required|numeric',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "cubic_capacity"           =>'nullable',
+                                     "tax_type"                 =>'required',
+                                     "receipt_id"               =>'required',
+                                     "receipt_date"             =>'required',
                                       'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
@@ -76,13 +86,23 @@ class RoadtaxDetailsController extends Controller
     public function update(Request $request, $id)
     {
          $data = $request->validate([ 'vch_id'      => 'required',
-                                     'agent_id'     => 'required',   
+                                     'agent_id'     => 'nullable',   
                                      "roadtax_amt"  => 'required|numeric',
                                      "valid_from"   => 'required',
                                      "valid_till"   => 'required',
                                      "update_dt"    => 'required',
                                      "payment_mode" => 'required|not_in:0',
                                      'roadtax_no'   => 'required|numeric',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "cubic_capacity"           =>'nullable',
+                                     "tax_type"                 =>'required',
+                                     "receipt_id"               =>'required',
+                                     "receipt_date"             =>'required',
                                       'doc_file'    => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
 

@@ -40,17 +40,27 @@ class StatePermitController extends Controller
     public function store(Request $request)
     { 
         $data = $request->validate([ 'vch_id'           => 'required',
-                                     'agent_id'         => 'required',   
+                                     'agent_id'         => 'nullable',   
                                      "all_india_permit" => 'required|numeric',
                                      "valid_from"    => 'required',
                                      "valid_till"    => 'required',
                                      "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
-                                     'draft_date'    => 'required',
+                                     
                                      'permit_no'     => 'required|numeric',
                                      'permit_amt'    => 'required|numeric',
-                                     'draft_no'      => 'required|numeric',
-                                     'state_id'      => 'required', 
+                                     
+                                     'state_id'      => 'required',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "cubic_capacity"           =>'nullable',
+                                     "permit_office"           =>'nullable',
+                                     "permit_owner_name"       =>'nullable',
+                                     "permit_owner_address"    =>'nullable', 
                                       'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
         
@@ -81,17 +91,27 @@ class StatePermitController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([ 'vch_id'           => 'required',
-                                     'agent_id'         => 'required',   
+                                     'agent_id'         => 'nullable',   
                                      "all_india_permit" => 'required|numeric',
                                      "valid_from"    => 'required',
                                      "valid_till"    => 'required',
                                      "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
-                                     'draft_date'    => 'required',
+                                     
                                      'permit_no'     => 'required|numeric',
                                      'permit_amt'    => 'required|numeric',
-                                     'draft_no'      => 'required|numeric',
-                                     'state_id'      => 'required', 
+                                     
+                                     'state_id'      => 'required',
+                                     "engine_no"                =>'nullable',
+                                     "chassis_no"               =>'nullable',   
+                                     "manufacture_year"         =>'nullable',
+                                     "type_of_body"             =>'nullable',
+                                     "type_of_fuel"             =>'nullable',
+                                     "seating_capacity"         =>'nullable',
+                                     "cubic_capacity"           =>'nullable',
+                                     "permit_office"           =>'nullable',
+                                     "permit_owner_name"       =>'nullable',
+                                     "permit_owner_address"    =>'nullable', 
                                       'doc_file'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
         

@@ -28,6 +28,15 @@ class DocumentDetails extends Migration
             $table->date('valid_from');
             $table->date('valid_till');
             $table->date('update_dt')->nullable();
+
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
+
             $table->string('doc_file',100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
@@ -94,8 +103,8 @@ class DocumentDetails extends Migration
             $table->bigIncrements('id');
             $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
-            $table->unsignedInteger('agent_id');
-            $table->unsignedInteger('puc_no');
+            $table->unsignedInteger('agent_id')->nullable();
+            $table->string('puc_no');
             $table->decimal('puc_amt',10,2);
             $table->string('payment_mode',50);
             $table->unsignedInteger('pay_no')->nullable();
@@ -108,13 +117,21 @@ class DocumentDetails extends Migration
             $table->string('doc_file',100)->nullable();
             $table->unsignedInteger('created_by');
             $table->timestamps();
+
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
         });
 
         Schema::create('doc_statepermit', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
-            $table->unsignedInteger('agent_id');
+            $table->unsignedInteger('agent_id')->nullable();
             $table->unsignedInteger('permit_no');
             $table->unsignedTinyInteger('all_india_permit')->nullable();
             $table->unsignedInteger('state_id');
@@ -130,6 +147,20 @@ class DocumentDetails extends Migration
             $table->decimal('permit_amt',10,2);
             $table->unsignedInteger('draft_no');
             $table->date('draft_date');
+
+
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
+            $table->string('permit_office',100)->nullable();
+            $table->string('permit_owner_name',100)->nullable();
+            $table->string('permit_owner_address',200)->nullable();
+
+
             $table->unsignedInteger('created_by');
             $table->timestamps();
         });
@@ -137,7 +168,7 @@ class DocumentDetails extends Migration
         Schema::create('doc_roadtax_det', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('vch_id');
-            $table->unsignedInteger('agent_id');
+            $table->unsignedInteger('agent_id')->nullable();
             $table->unsignedInteger('roadtax_no');
             $table->decimal('roadtax_amt',10,2);
             $table->string('payment_mode',50);
@@ -148,6 +179,19 @@ class DocumentDetails extends Migration
             $table->date('valid_from');
             $table->date('valid_till');             
             $table->date('update_dt')->nullable();
+
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
+
+            $table->string('tax_type',100)->nullable();
+            $table->string('receipt_id',100)->nullable();
+            $table->date('receipt_date');
+
             $table->string('doc_file',100)->nullable();
             $table->string('fleet_code',10);
             $table->unsignedInteger('created_by');

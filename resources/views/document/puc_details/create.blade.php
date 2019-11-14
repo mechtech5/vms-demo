@@ -22,7 +22,7 @@
 	                        	<div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Select Vehicle</label>
 				                     
-			                       <select name="vch_id" class="selectpicker form-control">
+			                       <select name="vch_id" class="selectpicker form-control" id="vehicle_no1">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($vehicle as $vehicles)
 			                               <option value="{{$vehicles->id}}">{{$vehicles->vch_no}}</option>
@@ -318,6 +318,84 @@
                                
                            		 </div>
                            	</div>
+
+                           	<div style="display: none" class="row vehicle">
+                           		
+			                	<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Engine No.</label>
+	                                @error('engine_no')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Engine No. Not Available' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="engine_no" class="form-control "
+                               		  name="engine_no" value="{{old('engine_no') }}">
+                                </div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chassis No">Chassis No</label>
+	                                @error('chassis_no')
+			                         <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Chassis No. Not Available' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="chassis_no" class="form-control" {{-- readonly="true" --}}  name="chassis_no" value="{{old('chassis_no') }}">
+                               
+                           		 </div>
+                           		
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Manufacture Year</label>
+	                                @error('manufacture_year')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Manufacture Year' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="manufacture_year" class="form-control" name="manufacture_year" value="{{old('manufacture_year') }}">
+                           		</div>
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Body</label>
+	                                @error('type_of_body')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Type Of Body' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="type_of_body" class="form-control  " 
+                               		 name="type_of_body" value="{{old('type_of_body')}}">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Fuel</label>
+	                                @error('type_of_fuel')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Type Of Fuel' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="type_of_fuel" class="form-control  "
+                               		  name="type_of_fuel" value="{{old('type_of_fuel') }}">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Seating Capacity(including Driver)</label>
+	                                @error('seating_capacity')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Seating Capacity' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="seating_capacity" class="form-control  " name="seating_capacity" value="{{old('seating_capacity')}}">
+                           		</div>
+
+                           		 <div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cubic Capacity</label>
+	                                @error('cubic_capacity')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Cubic Capacity' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="cubic_capacity" class="form-control  " 
+                               		 name="cubic_capacity" value="{{old('cubic_capacity') }}">
+                           		 </div>
+                           	</div>
+                           	
                            	<div class=row>
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
@@ -439,6 +517,29 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
+    	$('#vehicle_no1').on('change',function(){
+    	var id = $(this).val();
+    	$.ajax({
+    		type:'POST',
+    		url:'/getDetails',
+    		 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    		data:{id:id},
+    		success:function(data){
+    			$('.vehicle').show();
+    			var parsed_result = JSON.parse(data);  //parsing here
+    			console.log(parsed_result)
+       	    	for (var key in parsed_result){
+				    $('#engine_no').val(parsed_result['reg_engine_no'])
+				    $('#chassis_no').val(parsed_result['reg_chassis_no'])
+				    $('#manufacture_year').val(parsed_result['reg_manuf_year'])
+				    $('#type_of_body').val(parsed_result['reg_type_of_body'])
+				    $('#type_of_fuel').val(parsed_result['eng_fuel_type']);
+				    $('#seating_capacity').val(parsed_result['reg_seating_capacity'])
+				   // $('#cubic_capacity').val(parsed_result['tender_id']);
+    			}
+    		}
+    	})
+    })
       $(".image").change(function () {
         var img_id = $(this).attr('id');
         filePreview(this,img_id);
