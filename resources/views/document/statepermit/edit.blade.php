@@ -370,7 +370,7 @@
                                
                            		 </div>
                            	</div>
-                           	<div class=row>
+                           	{{-- <div class=row>
 				                 <div class="col-md-12 col-xl-12 mt-2 shadow-none p-3 mb-5 bg-light rounded">
 	                                <label for="IMEI Number">Photo</label><br>
 	                                <input type="file" id="image" name="doc_file" value="">
@@ -378,7 +378,21 @@
 	                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
 	                                @endif 
 	                            </div>
-                           	</div>
+                           	</div> --}}
+                           	<div class=row>
+				                 <div class="col-md-6 col-xl-6 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+	                                <label for="IMEI Number">Photo</label><br>
+	                                <input type="file" id="image" name="doc_file" value="" class="image">
+	                                
+	                            </div>
+	                            <div class="col-md-6 col-xl-6 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+		                            <div  class="image">
+		                            	@if(!empty($data->doc_file))
+	                                 		<img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
+	                                	@endif 
+	                                </div>
+	                            </div>
+	                        </div>
                         </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
                          	<input  style="margin-right: -8px;" type="submit" value="Submit" class="btn btn-primary active pull-right">
@@ -481,8 +495,22 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
-      
-	});
+      $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection

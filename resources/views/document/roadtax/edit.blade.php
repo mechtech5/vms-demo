@@ -65,6 +65,49 @@
 	                                 
 	                            </div>
 	                        </div> 
+
+	                        <div class="row">
+	                        	<div class="col-md-4 col-xl-4 mt-2">
+				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select Tax Type</label>
+				                     
+			                       <select name="tax_type" class="selectpicker form-control" id="tax_type">
+			                            <option value="0"  disabled="true">Select type..</option>
+			                            <option value="1" {{$data->tax_type == '1' ? 'selected':''}} >Quarterly Road Tax.</option> 
+			                            <option value="2" {{$data->tax_type == '2' ? 'selected':''}} >Half Yearly Tax</option>
+			                            <option value="3" {{$data->tax_type == '3' ? 'selected':''}}>Life Time Tax</option>   
+			                        </select>
+			                         @error('tax_type')
+			                              <span class="invalid-feedback d-block pull-right" role="alert">
+			                                  <strong>{{ 'Please Select Tax Type' }}</strong>
+			                              </span>
+			                          @enderror
+			                    </div>
+
+
+				                <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="receipt_id">Receipt Id</label>
+	                                
+	                                <input id="receipt_id" class="form-control" name="receipt_id" value="{{old('receipt_id') ?? $data->receipt_id}}" > 
+	                                @error('receipt_id')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                               <strong>{{ 'Please Enter Receipt Id'}}</strong>
+			                            </span>
+			                         @enderror
+	                                 
+	                            </div>
+	                                                            
+	                            <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Receipt Date</label>
+	                                
+	                                <input  id="receipt_date" class="form-control datepicker" name="receipt_date" value="{{old('receipt_date') ?? $data->receipt_date}}" readonly="true"> 
+	                                @error('receipt_date')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                               <strong>{{ 'Please enter roadtax number' }}</strong>
+			                            </span>
+			                         @enderror
+	                                 
+	                            </div>
+	                        </div>
 	                        
 	                        <div class="row">    
                                                        
@@ -319,15 +362,92 @@
                                
                            		 </div>
                            	</div>
-                           	<div class=row>
-				                 <div class="col-md-12 col-xl-12 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+
+                           	<div  class="row vehicle">
+                           		
+			                	<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Engine No.</label>
+	                                @error('engine_no')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Engine No. Not Available' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="engine_no" class="form-control  " name="engine_no" value="{{old('engine_no') ?? $data->engine_no }}">
+                                </div>
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Chassis No">Chassis No</label>
+	                                @error('chassis_no')
+			                         <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Chassis No. Not Available' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="chassis_no" class="form-control" {{-- readonly="true" --}}  name="chassis_no" value="{{old('chassis_no') ?? $data->chassis_no }}">
+                               
+                           		 </div>
+                           		
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Manufacture Year</label>
+	                                @error('manufacture_year')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Manufacture Year' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="manufacture_year" class="form-control" name="manufacture_year" value="{{old('manufacture_year') ?? $data->manufacture_year }}">
+                           		</div>
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Body</label>
+	                                @error('type_of_body')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Type Of Body' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="type_of_body" class="form-control  " name="type_of_body" value="{{old('type_of_body') ?? $data->type_of_body}}">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Type Of Fuel</label>
+	                                @error('type_of_fuel')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Type Of Fuel' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="type_of_fuel" class="form-control  " name="type_of_fuel" value="{{old('type_of_fuel') ?? $data->type_of_fuel }}">
+                           		</div>
+
+                           		<div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Seating Capacity(including Driver)</label>
+	                                @error('seating_capacity')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Seating Capacity' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="seating_capacity" class="form-control  " name="seating_capacity" value="{{old('seating_capacity') ?? $data->seating_capacity}}">
+                           		</div>
+
+                           		 <div class="col-md-3 col-xl-3 mt-2">
+                              	  <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Cubic Capacity</label>
+	                                @error('cubic_capacity')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please Enter Cubic Capacity' }}</strong>
+			                            </span>
+			                         @enderror
+                               		 <input id="cubic_capacity" class="form-control  " name="cubic_capacity" value="{{old('cubic_capacity') ?? $data->cubic_capacity }}">
+                           		 </div>
+                           	</div>
+	                        <div class=row>
+				                 <div class="col-md-6 col-xl-6 mt-2 shadow-none p-3 mb-5 bg-light rounded">
 	                                <label for="IMEI Number">Photo</label><br>
-	                                <input type="file" id="image" name="doc_file" value="">
-	                                @if(!empty($data->doc_file))
-	                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
-	                                @endif 
+	                                <input type="file" id="image" name="doc_file" value="" class="image">
+	                                
 	                            </div>
-	                        </div>    
+	                            <div class="col-md-6 col-xl-6 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+		                            <div  class="image">
+		                            	@if(!empty($data->doc_file))
+	                                 		<img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
+	                                	@endif 
+	                                </div>
+	                            </div>
+	                        </div>   
 
                         </div>     
                          <div class="col-md-6" style="margin-top: 24px;">
@@ -430,8 +550,22 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
-      
-	});
+      $(".image").change(function () {
+        var img_id = $(this).attr('id');
+        filePreview(this,img_id);
+    });
+});
+  function filePreview(input,img_id) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+img_id+' + img').remove();
+            $('.'+img_id).html('<img src="'+e.target.result+'" width="100" height="100"/>');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 </script>
 @endsection
