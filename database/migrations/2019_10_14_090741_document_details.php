@@ -132,7 +132,7 @@ class DocumentDetails extends Migration
             $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id')->nullable();
-            $table->unsignedInteger('permit_no');
+            $table->string('permit_no',100);
             $table->unsignedTinyInteger('all_india_permit')->nullable();
             $table->unsignedInteger('state_id');
             $table->string('payment_mode',50);

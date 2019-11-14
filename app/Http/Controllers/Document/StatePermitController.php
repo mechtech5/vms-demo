@@ -47,7 +47,7 @@ class StatePermitController extends Controller
                                      "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
                                      
-                                     'permit_no'     => 'required|numeric',
+                                     'permit_no'     => 'required',
                                      'permit_amt'    => 'required|numeric',
                                      
                                      'state_id'      => 'required',
@@ -98,7 +98,7 @@ class StatePermitController extends Controller
                                      "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
                                      
-                                     'permit_no'     => 'required|numeric',
+                                     'permit_no'     => 'required',
                                      'permit_amt'    => 'required|numeric',
                                      
                                      'state_id'      => 'required',
