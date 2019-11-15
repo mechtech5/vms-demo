@@ -601,7 +601,7 @@
 				    $('#type_of_body').val(parsed_result['reg_type_of_body'])
 				    $('#type_of_fuel').val(parsed_result['eng_fuel_type']);
 				    $('#seating_capacity').val(parsed_result['reg_seating_capacity'])
-				   // $('#cubic_capacity').val(parsed_result['tender_id']);
+				    $('#cubic_capacity').val(parsed_result['cubic_capacity']);
     			}
     		}
     	})

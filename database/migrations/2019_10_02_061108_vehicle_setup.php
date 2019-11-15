@@ -52,6 +52,7 @@ class VehicleSetup extends Migration
             $table->string('reg_type_of_body',4)->nullable();
             $table->date('reg_date')->nullable();
             $table->decimal('reg_tank_cap',10,2)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
             $table->string('pur_dealer_name',100)->nullable();
             $table->string('pur_dealer_addr',100)->nullable();
             $table->string('pur_dealer_city',100)->nullable();

@@ -198,6 +198,11 @@
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
+                                                    <label for="Serial No.">Cubic Capacity</label>
+                                                    <input id="email1" type="" class="form-control" name="cubic_capacity" value="{{old('cubic_capacity') ?? $edata->cubic_capacity}}">
+                                                </div>
+
+                                                <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Cylinders ">No of Cylinders</label>
                                                     <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="{{old('eng_cylinder_count') ?? $edata->eng_cylinder_count}}">
                                                 </div>

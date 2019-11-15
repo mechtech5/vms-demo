@@ -69,28 +69,7 @@
 			                    </div>
 			                </div>
 
-			                <div class="row">    
-			                	{{-- <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Draft No</label>
-	                                
-	                                <input id="ins_policy_no" class="form-control" name="draft_no" value="{{old('draft_no')}}" > 
-	                                @error('draft_no')
-			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter draft number' }}</strong>
-			                            </span>
-			                         @enderror
-	                            </div>	
-
-	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Draft Date</label>
-	                                
-	                                <input id="ins_policy_no" class="form-control datepicker" readonly="true" name="draft_date" value="{{old('draft_date')}}" > 
-	                                @error('draft_date')
-			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter draft date' }}</strong>
-			                            </span>
-			                         @enderror         
-		                        </div> --}}
+			                <div class="row">
 		                        <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Permit Amount</label>
 	                                
@@ -424,6 +403,7 @@
                                		 name="cubic_capacity" value="{{old('cubic_capacity') }}">
                            		 </div>
                            	</div>
+
                            	<div class=row>
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
@@ -564,7 +544,7 @@
 				    $('#type_of_body').val(parsed_result['reg_type_of_body'])
 				    $('#type_of_fuel').val(parsed_result['eng_fuel_type']);
 				    $('#seating_capacity').val(parsed_result['reg_seating_capacity'])
-				   // $('#cubic_capacity').val(parsed_result['tender_id']);
+				    $('#cubic_capacity').val(parsed_result['cubic_capacity']);
     			}
     		}
     	})

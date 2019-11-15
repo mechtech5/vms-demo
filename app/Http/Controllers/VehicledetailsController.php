@@ -165,6 +165,7 @@ class VehicledetailsController extends Controller
                                       'reg_mileage'               => 'nullable',  
                                       'pur_dealer_name'           => 'nullable',
                                       'pur_dealer_addr'           => 'nullable',
+                                      'cubic_capacity'            => 'nullable',
                                       'pur_dealer_city'           => 'nullable',
                                       'pur_after_sales_srv'       => 'nullable',
                                       'pur_invoice_no'            => 'nullable',

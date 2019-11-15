@@ -205,6 +205,10 @@
                                                     <label for="Fuel Type\Grade">Fuel Type</label>
                                                     <input id="email1" type="" class="form-control  " name="eng_fuel_type" value="">
                                                 </div>
+                                                <div class="col-md-6 col-xl-6 mt-2">
+                                                    <label for="Serial No.">Cubic Capacity</label>
+                                                    <input id="email1" type="" class="form-control" name="cubic_capacity" value="">
+                                                </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Cylinders ">No of Cylinders</label>

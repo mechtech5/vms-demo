@@ -517,6 +517,30 @@
     		$('.rtgs').hide();
     		$('.neft').hide();	
     	}
+
+    	$('#vehicle_no1').on('change',function(){
+    	var id = $(this).val();
+    	$.ajax({
+    		type:'POST',
+    		url:'/getDetails',
+    		 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+    		data:{id:id},
+    		success:function(data){
+    			$('.vehicle').show();
+    			var parsed_result = JSON.parse(data);  //parsing here
+    			console.log(parsed_result)
+       	    	for (var key in parsed_result){
+				    $('#engine_no').val(parsed_result['reg_engine_no'])
+				    $('#chassis_no').val(parsed_result['reg_chassis_no'])
+				    $('#manufacture_year').val(parsed_result['reg_manuf_year'])
+				    $('#type_of_body').val(parsed_result['reg_type_of_body'])
+				    $('#type_of_fuel').val(parsed_result['eng_fuel_type']);
+				    $('#seating_capacity').val(parsed_result['reg_seating_capacity'])
+				    $('#cubic_capacity').val(parsed_result['cubic_capacity']);
+    			}
+    		}
+    	})
+    })
       $(".image").change(function () {
         var img_id = $(this).attr('id');
         filePreview(this,img_id);
