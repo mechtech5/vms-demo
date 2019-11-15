@@ -44,12 +44,9 @@ class StatePermitController extends Controller
                                      "all_india_permit" => 'required|numeric',
                                      "valid_from"    => 'required',
                                      "valid_till"    => 'required',
-                                     "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
-                                     
                                      'permit_no'     => 'required',
                                      'permit_amt'    => 'required|numeric',
-                                     
                                      'state_id'      => 'required',
                                      "engine_no"                =>'nullable',
                                      "chassis_no"               =>'nullable',   
@@ -95,12 +92,9 @@ class StatePermitController extends Controller
                                      "all_india_permit" => 'required|numeric',
                                      "valid_from"    => 'required',
                                      "valid_till"    => 'required',
-                                     "update_dt"     => 'required',
                                      "payment_mode"  => 'required|not_in:0',
-                                     
                                      'permit_no'     => 'required',
                                      'permit_amt'    => 'required|numeric',
-                                     
                                      'state_id'      => 'required',
                                      "engine_no"                =>'nullable',
                                      "chassis_no"               =>'nullable',   

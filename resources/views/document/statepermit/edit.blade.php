@@ -375,7 +375,7 @@
 	                            <div class="col-md-6 col-xl-6 mt-2 shadow-none p-3 mb-5 bg-light rounded">
 		                            <div  class="image">
 		                            	@if(!empty($data->doc_file))
-	                                 		<img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/$data->doc_file")}}" alt="" title="">
+	                                 		<img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/statepermit/$data->doc_file")}}" alt="" title="">
 	                                	@endif 
 	                                </div>
 	                            </div>

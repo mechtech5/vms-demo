@@ -218,7 +218,7 @@
                                                     <option value='chasis_pic'>Chasis Picture</option>
                                                     <option value="reg_pic">Registration Book (RC)</option>
                                                     <option value="pan_pic">Owner PAN Card</option>
-                                                    <option value="tds_pic">TDS Declaration</option>   
+                                                   {{--  <option value="tds_pic">TDS Declaration</option>  --}}  
                                                 </select>
                                             </div>
                                              <div  class="col-md-3 col-xl-3 mt-2" id='vehicle_pic'>
@@ -241,10 +241,10 @@
                                                 <label for="Owner PAN Card">Owner PAN Card</label>
                                                 <input class="image" data="pan_pic" type="file" name="owner_pan_pic" value="">                                                    
                                             </div>
-                                            <div style="display: none" class="col-md-3 col-xl-3 mt-2"  id="tds_pic">
+                                            {{-- <div style="display: none" class="col-md-3 col-xl-3 mt-2"  id="tds_pic">
                                                 <label for="TDS Declaration">TDS Declaration</label>
                                                 <input class="image" data="tds_pic" type="file" name="tds_declaration_pic" value="">
-                                            </div>
+                                            </div> --}}
                                             <div>
                                             <div class="col-md-9 col-xl-9 mt-2">
                                               <table class="table">
@@ -253,7 +253,7 @@
                                                   <th >RC Image</th>
                                                   <th >Chassis Image</th>
                                                   <th >Pan Image</th>
-                                                  <th >TDS Image</th>
+                                                  {{-- <th >TDS Image</th> --}}
                                                 </tr>
                                                 <tr>
                                                   <td>
@@ -272,10 +272,10 @@
                                                     <div  class="pan_pic">
                                                     </div>
                                                   </td>
-                                                  <td>
+                                                  {{-- <td>
                                                     <div  class="tds_pic">
                                                     </div>
-                                                  </td>
+                                                  </td> --}}
 
                                                 </tr>
                                               </table>
@@ -341,14 +341,14 @@
             $('#chasis_pic').hide();
             $('#reg_pic').hide();
             $('#pan_pic').hide();
-            $('#tds_pic').hide();
+            // $('#tds_pic').hide();
         }
         else if(data=='chasis_pic'){
             $('#vehicle_pic').hide();
             $('#chasis_pic').show();
             $('#reg_pic').hide();
             $('#pan_pic').hide();
-            $('#tds_pic').hide();
+            // $('#tds_pic').hide();
         }
 
         else if(data=='reg_pic'){
@@ -356,7 +356,7 @@
             $('#chasis_pic').hide();
             $('#reg_pic').show();
             $('#pan_pic').hide();
-            $('#tds_pic').hide();
+            // $('#tds_pic').hide();
         }
 
         else if(data=='pan_pic'){
@@ -364,16 +364,16 @@
             $('#chasis_pic').hide();
             $('#reg_pic').hide();
             $('#pan_pic').show();
-            $('#tds_pic').hide();
+            // $('#tds_pic').hide();
         }
 
-        else if(data=='tds_pic'){
-            $('#vehicle_pic').hide();
-            $('#chasis_pic').hide();
-            $('#reg_pic').hide();
-            $('#pan_pic').hide();
-            $('#tds_pic').show();
-        }
+        // else if(data=='tds_pic'){
+        //     $('#vehicle_pic').hide();
+        //     $('#chasis_pic').hide();
+        //     $('#reg_pic').hide();
+        //     $('#pan_pic').hide();
+        //     $('#tds_pic').show();
+        // }
     });
     $(".image").change(function () {
         var img_id = $(this).attr('data');
