@@ -70,12 +70,12 @@
 											<th id="TableHeaderCell31" style="font-size:10px;font-weight:bold;">Vehicle No</th>
                                             <th id="TableHeaderCell33" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 										</tr>
-                                        {{-- @foreach($insurance as $ins)
+                                        @foreach($insurance as $ins)
                                             <tr>
                                                 <td>{{$ins->vehicle->vch_no}}</td>
                                                 <td>{{$ins->valid_till}}</td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
 									</table>
 									</div>
 									</td>
