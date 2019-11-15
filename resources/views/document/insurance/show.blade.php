@@ -41,7 +41,8 @@
               
               <?php $count = 0; ?>
               @foreach($insurance as $Insurance) 
-              @php ($vch_no = \App\vehicle_master::find($Insurance->vch_id))            
+              @php ($vch_no = \App\vehicle_master::find($Insurance->vch_id))  
+              <?php dd($vch_no); ?>          
                 <tr>
                   <td style="width: 10%;  padding-left: 20px;">{{++$count}}</td>
                   <td style="width: 17%;padding-left: 20px">{{$Insurance->ins_policy_no  }}</td>
