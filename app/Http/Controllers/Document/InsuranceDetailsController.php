@@ -22,8 +22,8 @@ class InsuranceDetailsController extends Controller
     public function index()
     {
         $fleet_code = session('fleet_code');
-        return $fleet_code;
-        $insurance  = InsuranceDetails::where('fleet_code',$fleet_code)->get();
+
+        $insurance  = InsuranceDetails::where('fleet_code',$fleet_code)->get();        
         return view('document.insurance.show',compact('insurance'));
     }
    
@@ -51,7 +51,6 @@ class InsuranceDetailsController extends Controller
                                         "hypothecation_agreement" =>'nullable',
                                         "valid_from"        =>'required',
                                         "valid_till"        =>'required',
-                                        "update_dt"         =>'required',
                                         "payment_mode"      =>'required|not_in:0',
                                         "engine_no"         =>'nullable',
                                         "chassis_no"        =>'nullable',
@@ -103,7 +102,6 @@ class InsuranceDetailsController extends Controller
                                         "hypothecation_agreement" =>'nullable',
                                         "valid_from"        =>'required',
                                         "valid_till"        =>'required',
-                                        "update_dt"         =>'required',
                                         "payment_mode"      =>'required|not_in:0',
                                         "engine_no"         =>'nullable',
                                         "chassis_no"        =>'nullable',

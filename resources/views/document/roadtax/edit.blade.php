@@ -70,7 +70,7 @@
 	                        	<div class="col-md-4 col-xl-4 mt-2">
 				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select Tax Type</label>
 				                     
-			                       <select name="tax_type" class="selectpicker form-control" id="tax_type">
+			                       <select name="tax_type" class="form-control tax_type" id="">
 			                            <option value="0"  disabled="true">Select type..</option>
 			                            <option value="1" {{$data->tax_type == '1' ? 'selected':''}} >Quarterly Road Tax.</option> 
 			                            <option value="2" {{$data->tax_type == '2' ? 'selected':''}} >Half Yearly Tax</option>
@@ -134,20 +134,34 @@
 			                         @enderror
 	                               
 	                            </div>
-
-	                           <div class="col-md-3 col-xl-3 mt-2">
+	                            
+	                            
+	                            <div class="col-md-3 col-xl-3 mt-2 valid_till" style="display: none;">
+	                                <?php if($data->tax_type == 1 || $data->tax_type == 2){?>
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
 	                               
-	                                <input id="email1" class="form-control datepicker" readonly="true"  name="valid_till" value="{{old('valid_till') ?? $data->valid_till}}">
+	                                <input id="email1" class="form-control datepicker valid_till" readonly="true" name="valid_till" value="{{old('valid_till')?? $data->valid_till}}">
 	                                 @error('valid_till')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Plesae select till date' }}</strong>
+			                            </span>
+			                         @enderror
+			                       <?php } ?>
+	                            </div>
+	                            
+	                            <div class="col-md-3 col-xl-3 mt-2 fvalid_till" >
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
+	                               
+	                                <input id="email1" class="form-control fvalid_till" readonly="true" name="expire_time" value="{{old('expire_time') ?? $data->expire_time}}">
+	                                 @error('expire_time')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select till date' }}</strong>
 			                            </span>
 			                         @enderror
 	                               
 	                            </div>
-
-	                            <div class="col-md-3 col-xl-3 mt-2">
+	                            
+	                            {{-- <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt') ?? $data->update_dt}}">
@@ -158,10 +172,9 @@
 			                         @enderror
 	                               
 	                            </div>
-	                        </div>
-	                        <div class="row">   
+	                            --}}
 	                        
-	                            <div class="col-md-4 col-xl-4 mt-2">
+	                            <div class="col-md-3 col-xl-3 mt-2">
 				                    <label class="">Payment mode</label>
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
@@ -471,6 +484,28 @@
   	$(function() {
         $( ".datepicker" ).datepicker({format:'yyyy-mm-dd'});
     });
+
+    $('.tax_type').on('change',function(){
+    	var re= $(this).val();
+    	if(re == '3')
+    	{	
+    		$('.fvalid_till').show();
+    		$('.valid_till').hide();
+    		$('.fvalid_till').val('LIFE TIME')
+    	}
+    	if(re == '2')
+    	{	
+    		$('.fvalid_till').hide();
+    		$('.valid_till').show();
+    		
+    	}
+    	if(re == '1')
+    	{	
+    		$('.fvalid_till').hide();
+    		$('.valid_till').show();
+    		
+    	}
+    })
 
     $('#type').on('change',function(){
     	var type = $(this).val();

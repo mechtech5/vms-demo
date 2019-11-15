@@ -86,13 +86,12 @@
 										<th id="TableHeaderCell2" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell4" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($data['puc'] as $puc)
-                                    @php( $vehicle = \App\vehicle_master::where('id',$puc->v_id)->get() )
-                                    <tr>
-                                    	<td><?php echo($vehicle[0]->v_no);?></td>
-                                    	<td>{{$puc->expiry_date}}</td> 
-                                    </tr>
-                                    @endforeach		
+									@foreach($PUCDetails as $puc)
+                                            <tr>
+                                                <td>{{$puc->vehicle->vch_no}}</td>
+                                                <td>{{$puc->valid_till}}</td>
+                                            </tr>
+                                        @endforeach		
 									</table>
 									</div>
 									</td>
@@ -103,13 +102,12 @@
 										<th id="TableHeaderCell12" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell14" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($data['fitnes'] as $fitnes)
-                                    @php( $vehicle = \App\vehicle_master::where('id',$fitnes->v_id)->get() )
-                                    <tr>
-                                    	<td><?php echo($vehicle[0]->v_no);?></td>
-                                    	<td>{{$fitnes->expiry_date}}</td> 
-                                    </tr>		
-                                    @endforeach
+									@foreach($fitnessetails as $fitness)
+                                            <tr>
+                                                <td>{{$fitness->vehicle->vch_no}}</td>
+                                                <td>{{$fitness->valid_till}}</td>
+                                            </tr>
+                                        @endforeach
 									</table>
 									</div>
 									</td>
@@ -120,13 +118,12 @@
 										<th id="TableHeaderCell22" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell24" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($data['roadtax'] as $roadtax)
-                                    @php( $vehicle = \App\vehicle_master::where('id',$roadtax->v_id)->get() )
-                                    <tr>
-                                    	<td><?php echo($vehicle[0]->v_no);?></td>
-                                    	<td>{{$roadtax->expiry_date}}</td> 
-                                    </tr>
-                                    @endforeach	
+									@foreach($roadtax as $road)
+                                            <tr>
+                                                <td>{{$road->vehicle->vch_no}}</td>
+                                                <td>{{$road->valid_till == null ? $road->expire_time : $road->valid_till}}</td>
+                                            </tr>
+                                        @endforeach	
 									</table>
 									</div>
 									</td>

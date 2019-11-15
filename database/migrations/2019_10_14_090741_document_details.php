@@ -169,7 +169,7 @@ class DocumentDetails extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id')->nullable();
-            $table->unsignedInteger('roadtax_no');
+            $table->string('roadtax_no',100);
             $table->decimal('roadtax_amt',10,2);
             $table->string('payment_mode',50);
             $table->unsignedInteger('pay_no')->nullable();
@@ -177,7 +177,8 @@ class DocumentDetails extends Migration
             $table->string('pay_bank',100)->nullable();
             $table->string('pay_branch',100)->nullable();
             $table->date('valid_from');
-            $table->date('valid_till');             
+            $table->date('valid_till')->nullable();
+            $table->string('expire_time',20)->nullable();             
             $table->date('update_dt')->nullable();
 
             $table->string('engine_no',100)->nullable();

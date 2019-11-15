@@ -68,6 +68,7 @@
 			                          @enderror
 			                    </div>
 			                </div>
+
 			                <div class="row">    
 			                	<div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Draft No</label>
@@ -113,21 +114,20 @@
 			                            </span>
 			                         @enderror
 	                                 
-	                            </div>
-	                            	
-	                                           
+	                            </div> 	                  
 				            </div>
-	                         <div class="row">	                        
-	                        <div class="col-md-4 col-xl-4 mt-2">
-                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
-                               
-                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_from" value="{{old('valid_from') ?? $data->valid_from}}">
-                                 @error('valid_from')
-		                            <span class="invalid-feedback d-block" role="alert">
-		                               <strong>{{ 'Please select valid from ' }}</strong>
-		                            </span>
-		                         @enderror	                               
-	                        </div>
+
+	                        <div class="row">	                        
+		                        <div class="col-md-4 col-xl-4 mt-2">
+		                            <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
+		                           
+		                            <input id="email1" class="form-control datepicker" readonly="true" name="valid_from" value="{{old('valid_from') ?? $data->valid_from}}">
+		                             @error('valid_from')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Please select valid from ' }}</strong>
+			                            </span>
+			                         @enderror	                               
+		                        </div>
 
 	                           <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
@@ -142,21 +142,8 @@
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
-	                                
-	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt') ?? $data->update_dt}}">
-	                                @error('update_dt')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ "Please select update date" }}</strong>
-			                            </span>
-			                         @enderror
-	                               
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                        	<div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">All India Permit No</label>
-	                                
+	                                </br>
 	                                <input id="ins_policy_no" {{$data->all_india_permit == 1 ? 'checked':''}} type='radio' name="all_india_permit" value="1" >Yes
 	                                <input {{$data->all_india_permit == 0 ? 'checked':''}} id="ins_policy_no" type='radio' name="all_india_permit" value="0" >No 
 	                                @error('all_india_permit')

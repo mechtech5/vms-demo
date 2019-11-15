@@ -14,6 +14,8 @@ use App\Fleet;
 use App\vehicle_master;
 use App\Models\FitnessDetails;
 use App\Models\InsuranceDetails;
+use App\Models\PUCDetails;
+use App\Models\RoadtaxDetails;
 
 class DashboardController extends Controller
 {
@@ -31,7 +33,10 @@ class DashboardController extends Controller
        $fleet_code = session('fleet_code');
        // dd($fleet_code);
        $insurance  = InsuranceDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
-       
+       $PUCDetails  = PUCDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $fitnessetails  = FitnessDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $roadtax  = RoadtaxDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       // dd($fitnessetails);
         $data = array();
         $data['fitnes']        =array();
         $data['puc']           = array();
@@ -55,13 +60,13 @@ class DashboardController extends Controller
                 $data['fleet']    = 'no';
                 $data['fleet_id'] = array(); 
 
-                return view('dashboard',compact('data','insurance'));
+                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax'));
             }
             else{
 
                 $data['fleet_id'] = FleetUser::where('user_id',$id)->get();
                 $data['fleet']    = 'yes';
-                return view('dashboard',compact('data','insurance'));
+                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax'));
             }
         }
         else{

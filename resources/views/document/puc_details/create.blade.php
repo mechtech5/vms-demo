@@ -102,7 +102,7 @@
 			                         @enderror
 	                               
 	                            </div>
-
+{{-- 
 	                            <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
@@ -114,10 +114,8 @@
 			                         @enderror
 	                               
 	                            </div>
-	                        </div>
-
-	                        <div class="row">    
-	                            <div class="col-md-4 col-xl-4 mt-2">
+	                             --}}
+	                            <div class="col-md-3 col-xl-3 mt-2">
 				                    <label class="">Payment mode</label>
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
@@ -136,7 +134,7 @@
 			                          @enderror
 			                      
 				                </div>
-				            </div>
+				       		</div>
 
 			                <div style="display: none" class="row cheque">
 			                	<div class="col-md-3 col-xl-3 mt-2">

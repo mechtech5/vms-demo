@@ -180,7 +180,7 @@
 	                        </div>
 	                        
 	                        <div class="row">
-	                            <div class="col-md-4 col-xl-4 mt-2">
+	                            {{-- <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt')}}">
 	                                @error('update_dt')
@@ -188,7 +188,7 @@
 			                               <strong>{{ "Please select update date" }}</strong>
 			                            </span>
 			                         @enderror
-	                            </div>
+	                            </div> --}}
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Payment mode</label>

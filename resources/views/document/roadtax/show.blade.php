@@ -48,7 +48,7 @@
                   <td style="padding-left: 20px">{{$vch_no->vch_no }}</td>
                   <td style="padding-left: 20px">{{$Roadtax->roadtax_amt}}</td>
                   <td style="padding-left: 20px">{{$Roadtax->valid_from}}</td>
-                  <td style="padding-left: 20px">{{$Roadtax->valid_till}}</td>
+                  <td style="padding-left: 20px">{{$Roadtax->valid_till == null ? $Roadtax->expire_time : $Roadtax->valid_till}}</td>
                   <td style="width:10%; text-align:center;">
                     <a style="padding: 2px 5px;" href="{{route('roadtax.edit',$Roadtax->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding: 2px 7px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{route('roadtax.delete',$Roadtax->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>

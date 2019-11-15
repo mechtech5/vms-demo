@@ -69,11 +69,11 @@
 	                        	<div class="col-md-4 col-xl-4 mt-2">
 				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Select Tax Type</label>
 				                     
-			                       <select name="tax_type" class="selectpicker form-control" id="tax_type">
+			                       <select name="tax_type" class="selectpicker form-control tax_type" id="">
 			                            <option value="0"  disabled="true">Select type..</option>
-			                            <option value="1"  >Quarterly Road Tax.</option>
+			                            <option value="1" >Quarterly Road Tax.</option>
 			                            <option value="2"  >Half Yearly Tax</option>
-			                            <option value="3" selected="true" >Life Time Tax</option>   
+			                            <option value="3" >Life Time Tax</option>   
 			                        </select>
 			                         @error('tax_type')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
@@ -133,10 +133,10 @@
 	                               
 	                            </div>
 
-	                           <div class="col-md-3 col-xl-3 mt-2">
+	                           <div class="col-md-3 col-xl-3 mt-2 valid_till">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
 	                               
-	                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_till" value="{{old('valid_till')}}">
+	                                <input id="email1" class="form-control datepicker valid_till" readonly="true" name="valid_till" value="{{old('valid_till')}}">
 	                                 @error('valid_till')
 			                            <span class="invalid-feedback d-block" role="alert">
 			                               <strong>{{ 'Plesae select till date' }}</strong>
@@ -145,7 +145,19 @@
 	                               
 	                            </div>
 
-	                            <div class="col-md-3 col-xl-3 mt-2">
+	                            <div class="col-md-3 col-xl-3 mt-2 fvalid_till" style="display: none;">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
+	                               
+	                                <input id="email1" type="text" class="form-control fvalid_till" readonly="true" name="expire_time" value="{{old('valid_till')}}">
+	                                 @error('valid_till')
+			                            <span class="invalid-feedback d-block" role="alert">
+			                               <strong>{{ 'Plesae select till date' }}</strong>
+			                            </span>
+			                         @enderror
+	                               
+	                            </div>
+
+	                            {{-- <div class="col-md-3 col-xl-3 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt')}}">
@@ -155,11 +167,9 @@
 			                            </span>
 			                         @enderror
 	                               
-	                            </div>
-	                        </div>
-
-	                        <div class="row">    
-	                            <div class="col-md-4 col-xl-4 mt-2">
+	                            </div> --}}
+	                            
+	                            <div class="col-md-3 col-xl-3 mt-2">
 				                    <label class=""><span style="color: #FF0000;font-size:15px;">*</span>Payment mode</label>
 				                      
 			                       <select id="type" name="payment_mode" class=" form-control">
@@ -482,6 +492,17 @@
     
       });
 
+
+    $('.tax_type').on('change',function(){
+    	var re= $(this).val();
+    	if(re == '3')
+    	{	
+    		$('.fvalid_till').show();
+    		$('.valid_till').hide();
+    		$('.fvalid_till').val('LIFE TIME')
+    	}
+    })
+
     $('#type').on('change',function(){
     	var type = $(this).val();
     	if(type == 'cheque'){
@@ -602,6 +623,7 @@
         reader.readAsDataURL(input.files[0]);
     }
 }
+
 
 </script>
 @endsection

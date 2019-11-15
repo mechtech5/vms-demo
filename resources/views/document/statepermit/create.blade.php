@@ -127,15 +127,16 @@
 				            </div>
 
 	                        <div class="row">
+
 	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
-	                                
-	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt')}}">
-	                                @error('update_dt')
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
+	                               
+	                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_till" value="{{old('valid_till')}}">
+	                                 @error('valid_till')
 			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ "Please select update date" }}</strong>
+			                               <strong>{{ 'Plesae select expiry date' }}</strong>
 			                            </span>
-			                         @enderror  
+			                         @enderror   
 	                            </div>
 
 	                            <div class="col-md-4 col-xl-4 mt-2">
@@ -157,18 +158,17 @@
 			                            @enderror
 				                </div>
 
-	                        	
-
-	                            <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Expiry Date</label>
-	                               
-	                                <input id="email1" class="form-control datepicker" readonly="true" name="valid_till" value="{{old('valid_till')}}">
-	                                 @error('valid_till')
-			                            <span class="invalid-feedback d-block" role="alert">
-			                               <strong>{{ 'Plesae select expiry date' }}</strong>
+				                <div class="col-md-4 col-xl-4 mt-2">
+	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">All India Permit No:</label>
+	                                </br>
+	                                <input id="ins_policy_no" checked="true" type='radio' name="all_india_permit" value="1" >Yes
+	                                <input id="ins_policy_no" type='radio' name="all_india_permit" value="0" >No 
+	                                @error('all_india_permit')
+			                            <span class="invalid-feedback d-block pull-right" role="alert">
+			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
 			                            </span>
-			                         @enderror   
-	                            </div>
+			                         @enderror     
+		                        </div>
 	                        </div>
 
 			                <div style="display: none" class="row cheque">
@@ -424,23 +424,6 @@
                                		 name="cubic_capacity" value="{{old('cubic_capacity') }}">
                            		 </div>
                            	</div>
-
-	                        <div class="row">
-	                            
-		                        <div class="col-md-4 col-xl-4 mt-2">
-	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">All India Permit No:</label>
-	                                </br>
-	                                <input id="ins_policy_no" checked="true" type='radio' name="all_india_permit" value="1" >Yes
-	                                <input id="ins_policy_no" type='radio' name="all_india_permit" value="0" >No 
-	                                @error('all_india_permit')
-			                            <span class="invalid-feedback d-block pull-right" role="alert">
-			                               <strong>{{ 'Please enter All India Permit No' }}</strong>
-			                            </span>
-			                         @enderror     
-		                        </div>
-		                        
-	                        </div>
-
                            	<div class=row>
 				                <div class="col-md-4 col-xl-4 mt-2">
 	                                <label for="IMEI Number">Photo</label><br>
