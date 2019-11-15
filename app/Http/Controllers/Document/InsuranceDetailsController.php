@@ -22,6 +22,7 @@ class InsuranceDetailsController extends Controller
     public function index()
     {
         $fleet_code = session('fleet_code');
+        return $fleet_code;
         $insurance  = InsuranceDetails::where('fleet_code',$fleet_code)->get();
         return view('document.insurance.show',compact('insurance'));
     }
