@@ -39,7 +39,12 @@
 				                    <label class="">Vehicle type</label>
 				                    
 			                       <select name="vch_type_id" class="selectpicker form-control">
+
 			                            <option value="0" selected=" true " disabled="true">Select..</option> 
+			                            <option value="1" >HMV</option>
+			                            <option value="2" >PRIVATE</option>
+			                            <option value="3" >COMMERCIAL</option>
+
 			                        </select>
 			                        @error('vch_type_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">

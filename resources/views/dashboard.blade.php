@@ -45,18 +45,18 @@
                             <table width="100%" border="10px" style="border-color: #358fde; border-style: inherit;">
                                 <tr style="background-color: #3ca99e;">
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Insurance</td>
+                                        Insurance Details</td>
 
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                         PUC</td>
+                                         PUC Details</td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Fitness</td>
+                                        Fitness Details</td>
                                      <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Road Tax</td>
+                                        Road Tax Details</td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        State Permit A</td>
+                                        Permit Details </td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        State Permit B</td>
+                                        RC Details</td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
                                         All India Permit</td>
                                    <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
@@ -70,12 +70,12 @@
 											<th id="TableHeaderCell31" style="font-size:10px;font-weight:bold;">Vehicle No</th>
                                             <th id="TableHeaderCell33" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 										</tr>
-                                        @foreach($insurance as $ins)
-                                            <tr>
-                                                <td>{{$ins->vehicle->vch_no}}</td>
-                                                <td>{{$ins->valid_till}}</td>
-                                            </tr>
-                                        @endforeach
+                                            @foreach($insurance as $ins)
+                                                <tr>
+                                                    <td>{{$ins->vehicle->vch_no}}</td>
+                                                    <td>{{$ins->valid_till}}</td>
+                                                </tr>
+                                            @endforeach
 									</table>
 									</div>
 									</td>
@@ -86,7 +86,7 @@
 										<th id="TableHeaderCell2" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell4" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($PUCDetails as $puc)
+									   @foreach($PUCDetails as $puc)
                                             <tr>
                                                 <td>{{$puc->vehicle->vch_no}}</td>
                                                 <td>{{$puc->valid_till}}</td>
@@ -102,7 +102,7 @@
 										<th id="TableHeaderCell12" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell14" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($fitnessetails as $fitness)
+									   @foreach($fitnessetails as $fitness)
                                             <tr>
                                                 <td>{{$fitness->vehicle->vch_no}}</td>
                                                 <td>{{$fitness->valid_till}}</td>
@@ -134,12 +134,11 @@
 										<th id="TableHeaderCell42" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell44" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
-									@foreach($data['state_permitaA'] as $state_permitaA)
-                                    @php( $vehicle = \App\vehicle_master::where('id',$state_permitaA->v_id)->get() )
-                                    <tr>
-                                    	<td><?php echo($vehicle[0]->v_no);?></td>
-                                    	<td>{{$state_permitaA->expiry_date}}</td> 
-                                    </tr>
+									@foreach($permit as $permits)
+                                            <tr>
+                                                <td>{{$permits->vehicle->vch_no}}</td>
+                                                <td>{{$permits->valid_till}}</td>
+                                            </tr>
                                     @endforeach	
 									</table>
 									</div>
@@ -151,6 +150,12 @@
 										<th id="TableHeaderCell70" style="font-size:10px;font-weight:bold;">Vehicle No</th>
 										<th id="TableHeaderCell79" style="font-size:10px;font-weight:bold;">Expiry Date</th>
 									</tr>
+                                    @foreach($rcdetails as $rcdetail)
+                                            <tr>
+                                                <td>{{$rcdetail->vehicle->vch_no}}</td>
+                                                <td>{{$rcdetail->valid_till}}</td>
+                                            </tr>
+                                        @endforeach
 									</table>
 									</div>
 									</td>

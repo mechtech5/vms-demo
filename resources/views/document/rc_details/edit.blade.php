@@ -41,6 +41,9 @@
 				                    
 			                       <select name="vch_type_id" class="selectpicker form-control">
 			                            <option value="0" selected=" true " disabled="true">Select..</option> 
+			                            <option value="1" {{$data->vch_type_id == 1 ? 'selected':''}}>HMV</option>
+			                            <option value="2" {{$data->vch_type_id == '2' ? 'selected':''}}>PRIVATE</option>
+			                            <option value="3" {{$data->vch_type_id == 3 ? 'selected':''}}>COMMERCIAL</option> 
 			                        </select>
 			                        @error('vch_type_id')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">
@@ -418,18 +421,12 @@
 	                                <input type="file" id="image" name="doc_file" value="" class="image">
 	                        	</div>
 	                        
-		                        <div class="col-md-2 col-xl-2 mt-5">
-	                                <table class="table">
-	                                  <tr>
-	                                    <th><center>Road  Tax Image</center></th>
-	                                  </tr>
-	                                  <tr>
-	                                    <td>
-	                                      <div  class="image">
-	                                      </div>
-	                                    </td>
-	                                  </tr>
-	                                </table>
+		                        <div class="col-md-3 col-xl-3 mt-2 shadow-none p-3 mb-5 bg-light rounded">
+		                            <div  class="image">
+		                            	@if(!empty($data->doc_file))
+		                                 <img class="edit_image" src="{{asset("storage/$data->fleet_code/Document/RCDetails/$data->doc_file")}}" alt="" title="">
+		                                @endif
+	                                </div>
 	                            </div>    
                             </div>    
 
