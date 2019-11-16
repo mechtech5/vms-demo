@@ -45,18 +45,18 @@
                             <table width="100%" border="10px" style="border-color: #358fde; border-style: inherit;">
                                 <tr style="background-color: #3ca99e;">
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Insurance Details</td>
+                                        Insurance Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$inscount}}</span></td>
 
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                         PUC Details</td>
+                                         PUC Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$puccount}}</span></td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Fitness Details</td>
+                                        Fitness Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$fitnesscount}}</span></td>
                                      <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Road Tax Details</td>
+                                        Road Tax Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$roadcount}}</span></td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        Permit Details </td>
+                                        Permit Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$permitcount}}</span> </td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
-                                        RC Details</td>
+                                        RC Details<span style="float: right;padding-right: 5px;color: red;"> Total:{{$rccount}}</span></td>
                                     <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">
                                         All India Permit</td>
                                    <td style="width: 12%; color: White; height: 20px; font-size: 12px; font-weight: bold;margin-left: 20px;" align="left" valign="top">

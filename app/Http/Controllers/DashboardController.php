@@ -33,14 +33,25 @@ class DashboardController extends Controller
        $hasfleet    = FleetUser::where('user_id',$id)->get();
        $count_fleet = count($hasfleet);
        $fleet_code = session('fleet_code');
-       // dd($fleet_code);
+ 
        $insurance  = InsuranceDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $inscount=count($insurance);
+       
        $PUCDetails  = PUCDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $puccount=count($PUCDetails);
+
        $fitnessetails  = FitnessDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $fitnesscount=count($fitnessetails);
+
        $roadtax  = RoadtaxDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $roadcount=count($roadtax);
+
        $permit  = StatePermit::with('vehicle')->where('fleet_code',$fleet_code)->get();
+       $permitcount=count($permit);
+
        $rcdetails  = RcDetails::with('vehicle')->where('fleet_code',$fleet_code)->get();
-       // dd($fitnessetails);
+      $rccount = count($rcdetails);
+
         $data = array();
         $data['fitnes']        =array();
         $data['puc']           = array();
@@ -64,13 +75,13 @@ class DashboardController extends Controller
                 $data['fleet']    = 'no';
                 $data['fleet_id'] = array(); 
 
-                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax','permit','rcdetails'));
+                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax','permit','rcdetails','inscount','puccount','fitnesscount','roadcount','permitcount','rccount'));
             }
             else{
 
                 $data['fleet_id'] = FleetUser::where('user_id',$id)->get();
                 $data['fleet']    = 'yes';
-                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax','permit','rcdetails'));
+                return view('dashboard',compact('data','insurance','PUCDetails','fitnessetails','roadtax','permit','rcdetails','inscount','puccount','fitnesscount','roadcount','permitcount','rccount'));
             }
         }
         else{
