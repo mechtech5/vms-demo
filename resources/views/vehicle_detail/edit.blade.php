@@ -117,7 +117,7 @@
                                                 </div>
 
                                                 <div class="col-md-6 col-xl-6 mt-2">
-                                                    <label for="Seating Capacity">Seating Capacity</label>
+                                                    <label for="Seating Capacity">Seating Capacity(including Driver)</label>
                                                     <input id="email" type="text" name="reg_seating_capacity" class="form-control" value="{{ old('reg_seating_capacity')  ?? $edata->reg_seating_capacity}}">
                                                 </div>
 

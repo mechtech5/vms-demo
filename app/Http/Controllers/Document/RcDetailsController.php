@@ -8,29 +8,30 @@ use App\vehicle_master;
 use App\Exports\PUCDetailsExport;
 use App\Imports\PUCDetailsImport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\PUCDetails;
+use App\Models\RcDetails;
 use Session;
 use File;
 use DB;
 use App\Models\Agent;
 use Auth;
 
-class PUCDetailsController extends Controller
+class RcDetailsController extends Controller
 {
    
     public function index()
-    {
+    { 
         $fleet_code = session('fleet_code');
-        $pucDetails = PUCDetails::where('fleet_code',$fleet_code)->get();
-        return view('document.puc_details.show',compact('pucDetails'));
+        $rcDetails = RcDetails::where('fleet_code',$fleet_code)->get();
+        
+        return view('document.rc_details.show',compact('rcDetails'));
     }
 
     public function create()
-    {
+    { 
         $fleet_code  = session('fleet_code');
         $vehicle     = vehicle_master::where('fleet_code',$fleet_code)->get();
         $agent       = Agent::where('fleet_code',$fleet_code)->get();
-        return view('document.puc_details.create',compact('vehicle','agent'));
+        return view('document.rc_details.create',compact('vehicle','agent'));
     }
 
   
@@ -38,11 +39,13 @@ class PUCDetailsController extends Controller
     {  
         $data = $request->validate([ 'vch_id'            => 'required',
                                      'agent_id'          => 'nullable',   
-                                     "puc_amt"           => 'required|numeric',
+                                     "rc_amt"            => 'required|numeric',
                                      "valid_from"        => 'required',
                                      "valid_till"        => 'required',
                                      "payment_mode"      => 'required|not_in:0',
-                                     'puc_no'            => 'required|numeric',
+                                     "vch_type_id"       => 'nullable',
+                                     'rc_no'             => 'required',
+                                     "hypothecation_agreement"         =>'nullable',
                                      "engine_no"         =>'nullable',
                                      "chassis_no"        =>'nullable',
                                      "manufacture_year"  =>'nullable',
@@ -58,8 +61,8 @@ class PUCDetailsController extends Controller
         $vdata['fleet_code'] = session('fleet_code');
         $vdata['created_by'] = Auth::user()->id;
 
-        PUCDetails::create($vdata);
-        return redirect('pucdetails');
+        RcDetails::create($vdata);
+        return redirect('rcdetails');
     }
 
     
@@ -73,29 +76,31 @@ class PUCDetailsController extends Controller
     {
         $fleet_code = session('fleet_code');
         $vehicle    = vehicle_master::where('fleet_code',$fleet_code)->get();
-        $data       = PUCDetails::where('id',$id)->first();
+        $data       = RcDetails::find($id);
         $agent      = Agent::where('fleet_code',$fleet_code)->get();
        
-        return view('document.puc_details.edit',compact('vehicle','data','agent'));
+        return view('document.rc_details.edit',compact('vehicle','data','agent'));
     }
     
     public function update(Request $request, $id)
     {
-          $data = $request->validate([ 'vch_id'            => 'required',
-                                       'agent_id'          => 'nullable',   
-                                       "puc_amt"           => 'required|numeric',
-                                       "valid_from"        => 'required',
-                                       "valid_till"        => 'required',
-                                       "payment_mode"      => 'required|not_in:0',
-                                       'puc_no'            => 'required|numeric',
-                                       "engine_no"         =>'nullable',
-                                       "chassis_no"        =>'nullable',
-                                       "manufacture_year"  =>'nullable',
-                                       "type_of_body"      =>'nullable',
-                                       "type_of_fuel"      =>'nullable',
-                                       "seating_capacity"  =>'nullable',
-                                       "cubic_capacity"    =>'nullable',
-                                       'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
+          $data = $request->validate([ 	 'vch_id'            => 'required',
+	                                     'agent_id'          => 'nullable',   
+	                                     "rc_amt"            => 'required|numeric',
+	                                     "valid_from"        => 'required',
+	                                     "valid_till"        => 'required',
+	                                     "payment_mode"      => 'required|not_in:0',
+	                                     "vch_type_id"       => 'nullable',
+	                                     'rc_no'             => 'required',
+	                                     "hypothecation_agreement"         =>'nullable',
+	                                     "engine_no"         =>'nullable',
+	                                     "chassis_no"        =>'nullable',
+	                                     "manufacture_year"  =>'nullable',
+	                                     "type_of_body"      =>'nullable',
+	                                     "type_of_fuel"      =>'nullable',
+	                                     "seating_capacity"  =>'nullable',
+	                                     "cubic_capacity"    =>'nullable',
+	                                     'doc_file'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
                                      ]);
     
         $data = $this->pay_validate($request,$data);    
@@ -103,14 +108,14 @@ class PUCDetailsController extends Controller
         $vdata['fleet_code'] = session('fleet_code');
         $vdata['created_by'] = Auth::user()->id;
 
-       PUCDetails::where('id',$id)->update($vdata);
-        return redirect('pucdetails');
+       RcDetails::where('id',$id)->update($vdata);
+        return redirect('rcdetails');
     }
 
     public function destroy($id)
     {
-        PUCDetails::where('id',$id)->delete();
-        return redirect('pucdetails');
+        RcDetails::where('id',$id)->delete();
+        return redirect('rcdetails');
     }
     public function export() 
     {
@@ -139,18 +144,18 @@ class PUCDetailsController extends Controller
             $extension = $request->file('doc_file')->getClientOriginalExtension();
             $fileNameToStore = $request->payment_mode.'_'.$filename;
 
-            $chk_path = storage_path('app/public/'.$fleet_code.'/Document');
+            $chk_path = storage_path('app/public/'.$fleet_code.'/Document/RCDetails/');
                
             if(! File::exists($chk_path)){
                 File::makeDirectory($chk_path, 0777, true, true);
             }
 
-            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/PUCDetails', $fileNameToStore);
+            $path = $request->file('doc_file')->storeAs('public/'.$fleet_code.'/Document/RCDetails/', $fileNameToStore);
             $vdata['doc_file'] = $fileNameToStore;    
         }
         
        if(empty($request->hasFile('doc_file')) && !empty($id)){
-           $old_data =PUCDetails::where('id',$id)->first();
+           $old_data =RcDetails::where('id',$id)->first();
 
             if($request->image == null) {
                 $vdata['doc_file'] = $old_data->doc_file;    

@@ -104,8 +104,38 @@ class DocumentDetails extends Migration
             $table->string('fleet_code', 100);
             $table->unsignedInteger('vch_id');
             $table->unsignedInteger('agent_id')->nullable();
-            $table->string('puc_no');
+            $table->string('puc_no',100)->nullable();
             $table->decimal('puc_amt',10,2);
+            $table->string('payment_mode',50);
+            $table->unsignedInteger('pay_no')->nullable();
+            $table->date('pay_dt')->nullable();
+            $table->string('pay_bank',100)->nullable();
+            $table->string('pay_branch',100)->nullable();
+            $table->date('valid_from');
+            $table->date('valid_till');             
+            $table->date('update_dt')->nullable();
+            $table->string('doc_file',100)->nullable();
+            $table->unsignedInteger('created_by');
+            $table->timestamps();
+
+            $table->string('engine_no',100)->nullable();
+            $table->string('chassis_no',100)->nullable();
+            $table->string('manufacture_year',100)->nullable();
+            $table->string('type_of_body',100)->nullable();
+            $table->string('type_of_fuel',100)->nullable();
+            $table->string('seating_capacity',100)->nullable();
+            $table->string('cubic_capacity',100)->nullable();
+        });
+
+        Schema::create('doc_rc_det', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('fleet_code', 100);
+            $table->unsignedInteger('vch_id');
+            $table->unsignedInteger('vch_type_id')->nullable();
+            $table->unsignedInteger('agent_id')->nullable();
+            $table->string('rc_no',100);
+            $table->string('hypothecation_agreement',100);
+            $table->decimal('rc_amt',10,2);
             $table->string('payment_mode',50);
             $table->unsignedInteger('pay_no')->nullable();
             $table->date('pay_dt')->nullable();

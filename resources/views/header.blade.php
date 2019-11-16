@@ -100,6 +100,7 @@
                                   {{--   <li><a href="{{/oute('greentax.index')}}">Green Tax Details</a> </li> --}}
                                     <li><a href="{{route('insurance.index')}}">Insurance Details</a> </li>
                                     <li><a href="{{route('statepermit.index')}}">Permit</a> </li>
+                                    <li><a href="{{route('rcdetails.index')}}">RC Details</a> </li>
                                     {{-- <li><a href="{{route('temppermit.index')}}">Temporary Permit</a> </li> --}}
                                 </ul>
                             </li>

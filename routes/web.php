@@ -207,7 +207,9 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/pucdetailsdelete/{id}','Document\PUCDetailsController@destroy')->name('pucdetails.delete');
 		Route::get('/pucdetailsExport','Document\PUCDetailsController@export')->name('pucdetails.export');
 		Route::post('/pucdetailsImport','Document\PUCDetailsController@import')->name('pucdetails.import');
-		Route::get('/pucdetailsdownload','Document\PUCDetailsController@download')->name('pucdetails.download');
+		// Route::get('/pucdetailsdownload','Document\PUCDetailsController@download1')->name('pucdetails.download');
+
+		Route::get('/pucdetl/download','Document\PUCDetailsController@download')->name('pucdetl.download');
 
 		//end PUCDetailsController
 
@@ -263,6 +265,16 @@ Route::group(['middleware' => ['role:account']], function () {
 		Route::get('/statepermitDetailsDOwnload','Document\StatePermitController@download')->name('statepermit.download');
 
 		//end StatePermitContrller
+
+		//start RcDetailsController
+
+		Route::resource('/rcdetails','Document\RcDetailsController');
+		Route::get('/rcdetailsDelete/{id}','Document\RcDetailsController@destroy')->name('rcdetails.delete');
+		Route::get('/rcdetailsExport','Document\RcDetailsController@export')->name('rcdetails.export');
+		Route::post('/rcdetailsImport','Document\RcDetailsController@import')->name('rcdetails.import');
+		Route::get('/rcdetailsDOwnload','Document\RcDetailsController@download')->name('rcdetails.download');
+
+		// end RcDetailsController
 
 		//strat TempPermitContrller  
 		
