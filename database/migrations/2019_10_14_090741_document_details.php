@@ -268,6 +268,7 @@ class DocumentDetails extends Migration
         Schema::dropIfExists('doc_puc_det');
         Schema::dropIfExists('doc_statepermit');
         Schema::dropIfExists('doc_roadtax_det');
+        Schema::dropIfExists('doc_rc_det');
         Schema::dropIfExists('doc_temporary_permit');
     }
 }
