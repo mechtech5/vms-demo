@@ -71,9 +71,9 @@
 				                     
 			                       <select name="tax_type" class="selectpicker form-control tax_type" id="">
 			                            <option value="0"  disabled="true">Select type..</option>
-			                            <option value="1" >Quarterly Road Tax.</option>
-			                            <option value="2"  >Half Yearly Tax</option>
-			                            <option value="3" >Life Time Tax</option>   
+			                            <option value="1" >QUARTERLY ROAD TEX</option>
+			                            <option value="2"  >HALF  YEARLY TAX</option>
+			                            <option value="3" >LIFE TIME TAX</option>   
 			                        </select>
 			                         @error('tax_type')
 			                              <span class="invalid-feedback d-block pull-right" role="alert">

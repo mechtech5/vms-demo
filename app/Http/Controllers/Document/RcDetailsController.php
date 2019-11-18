@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\vehicle_master;
-use App\Exports\PUCDetailsExport;
+use App\Exports\RCDetailsExport;
 use App\Imports\PUCDetailsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\RcDetails;
@@ -119,7 +119,7 @@ class RcDetailsController extends Controller
     }
     public function export() 
     {
-        return Excel::download(new PUCDetailsExport, 'PUCDetails.xlsx');
+        return Excel::download(new RCDetailsExport, 'RCDetails.xlsx');
     }
 
      public function import(Request $request) 
@@ -131,7 +131,7 @@ class RcDetailsController extends Controller
     }
    
     public function download(){        
-      $file_path = public_path('demo_files/Demo_PUCDetails.xlsx');
+      $file_path = public_path('demo_files/Demo_RCDetails.xlsx');
       return response()->download($file_path);
     }
 

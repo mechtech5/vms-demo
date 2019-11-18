@@ -17,18 +17,64 @@ class RoadtaxDetailsExport implements FromQuery,WithMapping,WithHeadings
    public function query()
     {
         $fleet_code = session('fleet_code');
-    	$comp = RoadtaxDetails::join('vch_mast', 'vch_mast.id', '=', 'doc_roadtax_det.vch_id')->where('doc_roadtax_det.fleet_code',$fleet_code);
-    	
+    	$comp = RoadtaxDetails::with('vehicle','agent')
+                                ->where('doc_roadtax_det.fleet_code',$fleet_code);
+
         return $comp;
     }
 
     public function map($comp): array
     {
-    	return [ $comp->vch_no,$comp->roadtax_no,$comp->roadtax_amt,$comp->payment_mode,$comp->pay_no,$comp->pay_dt,$comp->pay_bank,$comp->pay_branch,$comp->valid_from,$comp->valid_till];
+        // dd($comp);
+    	return [ $comp->fleet_code,
+            $comp->vehicle->vch_no,
+            $comp->agent == null ? '' : $comp->agent->agent_name,
+            $comp->roadtax_no,
+            $comp->roadtax_amt,
+            $comp->tax_type,
+            $comp->receipt_id,
+            $comp->receipt_date,
+            $comp->payment_mode,
+            $comp->pay_no,
+            $comp->pay_dt,
+            $comp->pay_bank,
+            $comp->pay_branch,
+            $comp->valid_from,
+            $comp->expire_time != 'LIFE TIME' ? $comp->valid_till : $comp->expire_time,
+            $comp->engine_no,
+            $comp->chassis_no,
+            $comp->manufacture_year,
+            $comp->type_of_body,
+            $comp->type_of_fuel,
+            $comp->seating_capacity,
+            $comp->cubic_capacit];
     }
 
     public function headings(): array
     {
-        return ['Vehicle Number','Roadtax Number','Roadtax Amount ','Payment Mode','Pay Number','Pay Date','Pay Bank','Pay Branch','Valid From','Valid Till'];
+        return [
+            'Fleet Code',
+            'Vehicle Number',
+            'Agent Name',
+            'Goods & Service tax Number',
+            'Roadtax Amount',
+            'Tax Type',
+            'Receipt Id',
+            'Receipt Date',
+            'Payment Mode',
+            'Pay Number',
+            'Pay Date',
+            'Pay Bank',
+            'Pay Branch',
+            'Valid From',
+            'Valid Till',
+            'Engine No',
+            'Chassis No',
+            'Manufacture Year',
+            'Type Of Body',
+            'Type Of Fuel',
+            'Seating Capacity',
+            'Cubic Capacity'
+            ];
     }
 }

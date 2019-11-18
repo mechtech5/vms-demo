@@ -126,7 +126,7 @@ class StatePermitController extends Controller
     }
 
      public function export() 
-    {
+    { 
         return Excel::download(new StatePermitExport, 'StatePermit.xlsx');
     }
 
@@ -137,17 +137,13 @@ class StatePermitController extends Controller
         return redirect('statepermit');
     }
 
-     public function download() {
-
-     
-
-
-        $file_path =
-        public_path('demo_files/Demo_Insurance.xlsx');
+     public function download()
+      {
+        $file_path = public_path('demo_files/Demo_permit.xlsx');
 
         return response()->download($file_path);
     }
-
+   
     public function store_image(Request $request,$vdata,$id='')
     {   
         $fleet_code = session('fleet_code');

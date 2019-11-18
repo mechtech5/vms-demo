@@ -151,10 +151,6 @@ class InsuranceDetailsController extends Controller
     }
 
      public function download() {
-
-     
-
-
         $file_path =
         public_path('demo_files/Demo_Insurance.xlsx');
 

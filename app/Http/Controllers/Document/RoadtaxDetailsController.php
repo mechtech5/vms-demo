@@ -19,9 +19,11 @@ class RoadtaxDetailsController extends Controller
     
     public function index()
     {
+
         $fleet_code = session('fleet_code');
         $roadtax    = RoadtaxDetails::where('fleet_code',$fleet_code)->get();
         return view('document.roadtax.show',compact('roadtax'));
+        
     }
 
    

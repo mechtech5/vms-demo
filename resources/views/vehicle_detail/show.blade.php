@@ -60,7 +60,7 @@
               <?php $count = 0; ?>
               @foreach($model as $models)
                <?php
-
+                  // need to change
                		$vch_comp = \App\vch_comp::where('id',$models->vch_comp )->get();
 
                 	$vch_model = \App\vch_model::where('id',$models->vch_model )->get();

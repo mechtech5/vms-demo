@@ -12,4 +12,10 @@ class InsuranceDetails extends Model
     public function vehicle(){
     	return $this->belongsTo('App\vehicle_master','vch_id');
     }
+    public function agent(){
+    	return $this->belongsTo('App\Models\Agent','agent_id');
+    }
+    public function insurance_company(){
+    	return $this->belongsTo('App\Models\InsuranceCompany','ins_comp');
+    }
 }

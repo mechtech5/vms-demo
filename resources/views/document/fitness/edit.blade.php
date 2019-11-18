@@ -22,8 +22,7 @@
                         	<div class="row">
 	                        	<div class="col-md-4 col-xl-4 mt-2">
 				                    <label class="">Select Vehicle</label>
-				                     
-			                       <select name="vch_id" class="selectpicker form-control">
+			                       <select name="vch_id" class="selectpicker form-control" id="vehicle_no1">
 			                            <option value="0" selected=" true " disabled="true">Select..</option>
 			                            @foreach($vehicle as $vehicles)
 			                               <option value="{{$vehicles->id}}" {{$vehicles->id == $data->vch_id ? 'selected':''}}>{{$vehicles->vch_no}}</option>

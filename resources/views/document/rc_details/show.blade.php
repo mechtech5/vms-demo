@@ -19,8 +19,8 @@
                 Import
                 <input id="file" type="file" name="file"/>
               </div>
-                <a class="btn btn-inverse" href="{{-- {{ route('pucdetails.export') }} --}}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Export Bulk Data</a>
-                <a class="btn btn-inverse" href="{{-- {{route('pucdetl.download') }} --}}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Format</a>
+                <a class="btn btn-inverse" href="{{ route('rcdetails.export') }}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Export Bulk Data</a>
+                <a class="btn btn-inverse" href="{{route('rcdetails.download') }}"><i style="margin-right: 5px; " class="fa fa-file-import"></i>Format</a>
 
             </form>  
                        

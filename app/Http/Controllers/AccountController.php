@@ -17,7 +17,6 @@ class AccountController extends Controller
    public function index()
     {
         $user = Account::all();
-        
         return view('account_admin.show',compact('user'));
     }
 

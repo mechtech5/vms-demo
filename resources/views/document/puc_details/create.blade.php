@@ -403,7 +403,7 @@
 		                        <div class="col-md-2 col-xl-2 mt-5">
 	                                <table class="table">
 	                                  <tr>
-	                                    <th><center>Road  Tax Image</center></th>
+	                                    <th><center>PUC Image</center></th>
 	                                  </tr>
 	                                  <tr>
 	                                    <td>

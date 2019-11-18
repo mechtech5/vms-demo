@@ -84,6 +84,7 @@ class InsuranceCompanyController extends Controller
         return redirect('company');
     }
     public function download() {
+        dd("ajay");
         $file_path = public_path('demo_files/InsuranceCompany.xlsx');
         return response()->download($file_path);
     }
