@@ -210,10 +210,10 @@
                                                     <input id="email1" type="" class="form-control" name="cubic_capacity" value="">
                                                 </div>
 
-                                                <div class="col-md-6 col-xl-6 mt-2">
+                                                {{-- <div class="col-md-6 col-xl-6 mt-2">
                                                     <label for="Cylinders ">No of Cylinders</label>
                                                     <input id="email1" type="text" class="form-control  " name="eng_cylinder_count" value="">
-                                                </div>
+                                                </div> --}}
 
                                                 <div  class="col-md-6 col-xl-6 mt-2">
                                                 <label for="Buyer City  ">Select image type </label>

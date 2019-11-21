@@ -108,7 +108,7 @@
 			                         @enderror  
 	                            </div>
 
-	                            <div class="col-md-4 col-xl-4 mt-2">
+	                            {{-- <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Amount(p/m)</label>
 	                                
 	                                <input id="vehicle_no" class="form-control" name="ins_amt" value="{{old('ins_amt') ?? $data->ins_amt}}" > 
@@ -117,10 +117,7 @@
 			                               <strong>{{ 'Please Enter Insurance Amount' }}</strong>
 			                            </span>
 			                         @enderror    
-	                            </div>
-	                        </div> 
-
-	                        <div class="row">
+	                            </div> --}}
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Total Amount</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_total_amt" value="{{old('ins_total_amt') ?? $data->ins_total_amt}}" > 
@@ -130,7 +127,9 @@
 			                            </span>
 			                         @enderror   
 	                            </div>
+	                        </div> 
 
+	                        <div class="row">
 	                            <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Insurance Prev Policy No</label>
 	                                <input id="vehicle_no" class="form-control" name="ins_pre_policy_no" value="{{old('ins_pre_policy_no') ?? $data->ins_pre_policy_no}}" > 
@@ -150,10 +149,7 @@
 			                            </span>
 			                         @enderror  
 	                            </div>
-		                    </div>
 
-
-	                        <div class="row">
 		                        <div class="col-md-4 col-xl-4 mt-2">
 		                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Vehicle No.">Hypothecation Agreement</label>
 		                                <input id="vehicle_no" class="form-control" name="hypothecation_agreement" value="{{old('hypothecation_agreement') ?? $data->hypothecation_agreement}}" > 
@@ -163,6 +159,10 @@
 				                            </span>
 				                         @enderror  
 		                        </div>
+		                    </div>
+
+
+	                        <div class="row">
 
 		                        <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Valid From</label>
@@ -183,9 +183,7 @@
 			                            </span>
 			                         @enderror
 	                            </div>
-	                        </div>
-	                        
-	                        <div class="row">
+	                       
 	                            {{-- <div class="col-md-4 col-xl-4 mt-2">
 	                                <span style="color: #FF0000;font-size:15px;">*</span><label for="Engine No">Update Date</label>
 	                                <input id="email1" class="form-control datepicker" readonly="true" name="update_dt" value="{{old('update_dt') ?? $data->update_dt}}">

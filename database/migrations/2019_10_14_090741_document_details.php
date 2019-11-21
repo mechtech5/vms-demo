@@ -76,7 +76,7 @@ class DocumentDetails extends Migration
             $table->string('pay_branch',100)->nullable();
             $table->date('valid_from');
             $table->date('valid_till');
-            $table->decimal('ins_amt',10,2);
+            $table->decimal('ins_amt',10,2)->nullable();
             $table->decimal('ins_pre_amt',10,2)->nullable();
             $table->decimal('ins_type',10,2)->nullable();
             $table->date('update_dt')->nullable();

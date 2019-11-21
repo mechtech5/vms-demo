@@ -65,8 +65,14 @@ class VehicledetailsController extends Controller
     }
        
     public function show($id)
-    {
-        //
+    { 
+      
+        $fleet_code = session('fleet_code');
+        
+        $vehicledetails=vehicle_master::with('company','model','puc.agent','rc.agent','fitness.agent','insurance.agent','insurance.insurance_company','roadtax.agent','permit.agent')->find($id);
+        // return $vehicledetails->rc->vch_type_id;
+        // dd($vehicledetails);
+        return view('vehicle_detail.detail',compact('vehicledetails'));
     }
 
     public function edit($id)

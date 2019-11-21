@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <link rel = "icon" href ="{{asset('image/fleetio-logo-mark-only.svg')}}" type = "image/x-icon" style="line-height: 40px;">
-    <title>{{ config('app.name', 'VMS') }}</title>
+    <title>Vehicle Management System</title>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <!-- Scripts -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

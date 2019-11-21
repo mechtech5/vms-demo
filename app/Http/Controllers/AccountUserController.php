@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -51,11 +50,16 @@ class AccountUserController extends Controller
         $user    = User::find($last_id);
         $user->roles()->sync(3);
 
-        $name['name']     = $name1;
-        $name['password'] = $password;
-        $name['username'] = $request->email;
-        Mail::to($request->email)->send(new SendMailable($name));
-        return redirect('accountuser');
+        $dta = array(
+            'password' => $password, 
+            'email' => $request->email,
+        );
+        
+        return $dta;
+        
+        //Mail::to($request->email)->send(new SendMailable($name));
+        // dd($name);
+        //return view('account_user.create',compact('name'));
     }
    
     public function show($id)
@@ -125,3 +129,4 @@ class AccountUserController extends Controller
         Auth::logout();
     }
 }
+

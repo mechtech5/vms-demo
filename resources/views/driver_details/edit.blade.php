@@ -38,10 +38,10 @@
                             <div class="col-md-6 col-xl-6 mt-2">
                                <label for="vehicle_model ">State</label>
                                    <select id="state_id" name="state_id" class="selectpicker form-control">
-                                        <option>Select..</option>
+                                        <option value="0">Select..</option>
                                         @foreach($state as $states)
                                         	<option value="{{$states->id}}" 
-                                        		{{ $edata->id== $states->id ? 'selected':''}}>{{$states->state_name}}</option>
+                                        		{{ $edata->id == $states->id ? 'selected':''}}>{{$states->state_name}}</option>
                                         @endforeach		
                                     </select>                                    
                              </div>
@@ -76,7 +76,7 @@
 
                              <div class="col-md-6 col-xl-6 mt-2">
                                 <span style="color: #FF0000;font-size:15px;">*</span><label for="KM Reading">Licence Exp.Date </label>
-                                <input id="email1" class="form-control" type="date" name="license_exp" value="{{old('license_exp') ?? $edata->license_exp}}">
+                                <input id="email1" class="form-control"  name="license_exp" value="{{old('license_exp') ?? $edata->license_exp}}">
                                 @error('license_exp')
 		                            <span class="invalid-feedback d-block" role="alert">
 		                               <strong>{{ $message }}</strong>

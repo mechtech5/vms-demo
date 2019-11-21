@@ -22,7 +22,7 @@
 							<a href="{{url('accountuser')}}" style="color: #fff;" class="btn btn-primary pull-right">Back</a>
 						</div>
 					</div>	
-					<form action="{{ route('accountuser.store') }}"  method="Post">
+					<form >
                         {{csrf_field()}}
                         
                            <div class="form-group row">
@@ -67,7 +67,7 @@
                         </div>                       
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button id="submit"  type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
@@ -80,4 +80,50 @@
 	</div>
 </main>			
 
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="margin-top: 208px;">
+      <div class="modal-header">
+        <h3><b>Your Username And Password ....</b></h3>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<label><b>Username:</b></label>
+       			<input readonly="true" class="form-control" id="email_mod">
+       		</div>
+       		<div class="col-md-12">
+      			<label><b>Password:</b></label>
+       			<input readonly="true" class="form-control" id="pass_mod">
+       		</div>
+       	</div>
+      </div>
+      <div class="modal-footer">        
+       <input  type="submit"  class="btn btn-warning" data-dismiss="modal" value="Close" id="btn_close" >
+      </div>
+    </div>
+  </div>
+</div>
+
+<script >
+	$(document).on('click','#submit',function(event){
+        event.preventDefault();
+        $.ajax({
+            url: "{{ route('accountuser.store') }}",
+            type: 'POST',
+            data: $('form').serialize(),
+            success: function (data) {
+                $('#myModal').modal('show');
+               $('#email_mod').val((data['email']));
+               $('#pass_mod').val((data['password']));
+            }
+        })
+    });
+
+
+    document.getElementById("btn_close").onclick = function () {
+    	location.href = "{{'/accountuser'}}";
+    }
+</script>
 @endsection

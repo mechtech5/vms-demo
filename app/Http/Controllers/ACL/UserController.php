@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use DB;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMailable;
 
 class UserController extends Controller
 {
@@ -46,8 +44,15 @@ class UserController extends Controller
                 );
         $data['acc_type'] = 'B';
         User::insert($data);
-        Mail::to($request->email)->send(new SendMailable($name));
-        return redirect('admin');
+
+        $dta = array(
+            'password' => $password, 
+            'email' => $request->email,
+        );
+        
+        return $dta;
+        // Mail::to($request->email)->send(new SendMailable($name));
+        // return redirect('admin');
     }
 
    
@@ -119,3 +124,4 @@ class UserController extends Controller
         $user->syncPermissions($permissionid);
     }
 }
+

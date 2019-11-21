@@ -74,6 +74,7 @@
                   <td style="width:10%; text-align:center;">
                     <a style="padding:2px 5px;" href="{{route('vehicledetails.edit',$models->id)}}" runat="server" class="btn btn-success" rel="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
                     <a style="padding:2px 8px;" onclick="javascript:return confirm('Do You Really Want To Delete This?');" href="{{url('vdetails_delete',$models->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    <a style="padding:2px 8px;"  href="{{route('vehicledetails.show',$models->id)}}" class="btn btn-inverse" rel="tooltip" title="" data-original-title="Delete"><i class="fas fa-eye" style="color:aqua"></i></i></a>
                   </td>
                 </tr>
                 @endforeach
