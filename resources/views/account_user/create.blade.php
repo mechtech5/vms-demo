@@ -51,6 +51,20 @@
 	                                @enderror
 	                            </div>
 	                        </div>
+
+                          <div class="form-group row">
+                              <label for="mobile" class="col-md-4 col-form-label text-md-right">{{ __('Mobile No') }}</label>
+
+                              <div class="col-md-6">
+                                  <input id="mobile" type="text" class="form-control @error('mobile_no') is-invalid @enderror" name="mobile_no" value="{{ old('mobile_no') }}" required autocomplete="mobile_no" autofocus>
+
+                                  @error('mobile_no')
+                                      <span class="text-danger" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror
+                              </div>
+                          </div>
 	                    
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -74,6 +88,7 @@
                         </div>
                         </div>
                     </form>
+                    
 				</div>
 			</div>
 		</div>
@@ -93,6 +108,10 @@
       			<label><b>Username:</b></label>
        			<input readonly="true" class="form-control" id="email_mod">
        		</div>
+          <div class="col-md-12">
+            <label><b>Mobile NO:</b></label>
+            <input readonly="true" class="form-control" id="mobile_mod">
+          </div>
        		<div class="col-md-12">
       			<label><b>Password:</b></label>
        			<input readonly="true" class="form-control" id="pass_mod">
@@ -116,6 +135,7 @@
             success: function (data) {
                 $('#myModal').modal('show');
                $('#email_mod').val((data['email']));
+               $('#mobile_mod').val((data['mobile_no']));
                $('#pass_mod').val((data['password']));
             }
         })

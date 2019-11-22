@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('parent_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('mobile_no',15);
+            $table->string('otp',10)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->char('acc_type',1);

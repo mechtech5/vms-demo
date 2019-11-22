@@ -61,7 +61,7 @@ class FleetController extends Controller
    
     public function edit($id)
     {
-        $fleet =Fleet::where('fleet_owner',$id)->get();
+        $fleet =Fleet::where('id',$id)->first();
         $user = User::all();
         return view('fleet.edit',compact('fleet','user'));
     }
@@ -74,14 +74,14 @@ class FleetController extends Controller
                                        'fleet_desc'  =>'nullable'
                                        ]);
 
-        Fleet::where('fleet_owner',$id)->update($validatedData);
+        Fleet::where('id',$id)->update($validatedData);
         return redirect('fleet');
     }
 
    
     public function destroy($id)
     {
-        Fleet::where('fleet_owner',$id)->delete();
+        Fleet::where('id',$id)->delete();
         return redirect('fleet');
     }
 

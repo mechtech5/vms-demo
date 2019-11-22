@@ -31,16 +31,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[ 'name' =>'required',
-                                   'email' => 'required|email|unique:users,email'
+                                   'email' => 'required|email|unique:users,email',
+                                   'mobile_no'=>'required|numeric'
                                  ]);
         $password = substr($request->name,0,4).'1234';
         $name['name']     = strtolower($request->name);
         $name['password'] = $password;
         $name['username'] = $request->email;
+        $name['mobile_no'] = $request->mobile_no;
         $data = array(
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($password),
+                'mobile_no' => $request->mobile_no,
                 );
         $data['acc_type'] = 'B';
         User::insert($data);
@@ -48,6 +51,7 @@ class UserController extends Controller
         $dta = array(
             'password' => $password, 
             'email' => $request->email,
+            'mobile_no' => $request->mobile_no,
         );
         
         return $dta;

@@ -59,8 +59,8 @@
 											<td>{{$users->name}}</td>
 											<td  style="width: 16.66%;text-align: center;">
 												
-												<a href="{{route('fleet.edit',[$fleets->fleet_owner])}}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
-												<a href="{{url('fleetdestroy',$fleets->fleet_owner)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+												<a href="{{route('fleet.edit',[$fleets->id])}}"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
+												<a href="{{url('fleetdestroy',$fleets->id)}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
 												<a href="{{route('fleet.show',[$fleets->id])}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
 																								
 											</td>

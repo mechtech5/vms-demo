@@ -117,12 +117,14 @@
 				</tbody>
 			</table>
       </div>
+
       <div class="modal-footer">      	
         <button type="button" id='submit_btn' class="btn btn-success">Submit</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+  
 </div>
 </main>	
 

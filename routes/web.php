@@ -12,7 +12,8 @@
 */
 
 //Route::get('/', 'Auth\LoginController@showLoginForm');
-
+Route::post('/verification','OtpController@verifiction');
+Route::post('/verify_otp','OtpController@verify_otp');
 Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 Route::match(['get', 'post'], 'register', function () {

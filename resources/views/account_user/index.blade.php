@@ -80,6 +80,7 @@
 		</div>
 	</div>
 </main>			
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="margin-top: 208px;">

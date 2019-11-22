@@ -12,6 +12,7 @@ use App\Mail\UserRequest;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
 use App\Models\Account;
+use App\SendCode;
 
 class AccountUserController extends Controller
 {
@@ -34,7 +35,8 @@ class AccountUserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[ 'name' =>'required',
-                                   'email' => 'required|email|unique:users,email'
+                                   'email' => 'required|email|unique:users,email',
+                                   'mobile_no'=>'required|numeric'
                                  ]);
         $name1     = strtolower($request->name);
         $password = substr($name1,0,4).'1234';
@@ -42,6 +44,7 @@ class AccountUserController extends Controller
                     'name' => $request->name,
                     'email' => $request->email,
                     'password' => Hash::make($password),
+                    'mobile_no' => $request->mobile_no,
                     );
         $data['parent_id'] = Auth::user()->id;
         $data['acc_type']  = 'C';
@@ -53,6 +56,7 @@ class AccountUserController extends Controller
         $dta = array(
             'password' => $password, 
             'email' => $request->email,
+            'mobile_no' => $request->mobile_no,
         );
         
         return $dta;
@@ -127,6 +131,14 @@ class AccountUserController extends Controller
 
     public function AuthLogout(){
         Auth::logout();
+    }
+
+    public function verifiction(Request $request){
+        dd("ram");
+        $mobile_no = $request->mobile_no;
+
+        $verify =SendCode::sendCode($mobile_no);
+        return $verify;
     }
 }
 
