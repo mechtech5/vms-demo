@@ -19,41 +19,41 @@ class OtpController extends Controller
     }
 
     public function verify_otp(Request $request){
-    	
-        $mobile_no = $request->mobile_no;
-        $verifiction =User::where('mobile_no',$mobile_no)->first();
+    	echo 'hello';
+    //     $mobile_no = $request->mobile_no;
+    //     $verifiction =User::where('mobile_no',$mobile_no)->first();
        
-        if($verifiction->otp == $request->otp_no){
+    //     if($verifiction->otp == $request->otp_no){
         	
-        	if(Auth::loginUsingId($verifiction->id)){
+    //     	if(Auth::loginUsingId($verifiction->id)){
 
-        		$acc_type  = Auth::user()->acc_type;
+    //     		$acc_type  = Auth::user()->acc_type;
 
-        		if(!empty($acc_type)){
-		            if (method_exists($this, 'redirectTo')) {
-		                return $this->redirectTo();
-		            }
-		            switch ($acc_type) {                
-		                case 'A' : 
-		                    Session::put('user_rol','admin');
-		                    return redirect('admin');
-		                    break;
-		                case 'C':
-		                    Session::put('user_rol','fleet');
-		                    return redirect('dashboard');
-		                    break;
-		                case 'B':
-		                    Session::put('user_rol','account');
-		                    return redirect('accountuser');
-		                    break;    
-		                default:
-		                    return redirect('login');
-		            }
-		        }
-		        else{
-		            $login='/';
-		        }    
-        	}
-       }
+    //     		if(!empty($acc_type)){
+		  //           if (method_exists($this, 'redirectTo')) {
+		  //               return $this->redirectTo();
+		  //           }
+		  //           switch ($acc_type) {                
+		  //               case 'A' : 
+		  //                   Session::put('user_rol','admin');
+		  //                   return redirect('admin');
+		  //                   break;
+		  //               case 'C':
+		  //                   Session::put('user_rol','fleet');
+		  //                   return redirect('dashboard');
+		  //                   break;
+		  //               case 'B':
+		  //                   Session::put('user_rol','account');
+		  //                   return redirect('accountuser');
+		  //                   break;    
+		  //               default:
+		  //                   return redirect('login');
+		  //           }
+		  //       }
+		  //       else{
+		  //           $login='/';
+		  //       }    
+    //     	}
+    //    }
     }
 }

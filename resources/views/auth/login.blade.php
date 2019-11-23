@@ -166,8 +166,6 @@
                $('#otp_verify').show();
                $('#otp_send').hide(); 
                $('#phone').hide();
-
-
             }
         })
     })
